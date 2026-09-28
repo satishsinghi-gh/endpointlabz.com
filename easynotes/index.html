@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-fDTeN6keB5X2hTK2YyUXVzEuaej3KL3w8/hPxQD1iXE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://endpointlabz.com/easynotes/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with a session clipboard, Transit, reminders, verified backups, OneNote import and an optional local MCP endpoint for AI tools. Free, no account, no telemetry.">
+<!-- EndpointLabz - EasyNotes page v2 · Author: Satish Singhi -->
+<title>EasyNotes · EndpointLabz</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+/* EndpointLabz - EasyNotes page v2 · Author: Satish Singhi */
+:root{
+  --bg:#F8FAFB; --bg-2:#EEF4F6; --surface:#FFFFFF; --line:#D9E3E7; --line-2:#C2D0D6;
+  --ink:#0F1B22; --ink-2:#3A4B53; --ink-3:#6B7C84;
+  --teal:#0F766E; --teal-2:#0B5C56; --teal-soft:#DDF1EE; --teal-glow:rgba(15,118,110,.18);
+  --gold:#F0C040; --gold-soft:#FBF0D3;
+  --ocean-a:#0F3B78; --ocean-b:#1B5FBF; --ocean-soft:#EAF0FA; --amber:#FFB020;
+  --hero-bg:linear-gradient(180deg,#EAF5F3 0%,#F8FAFB 70%);
+  --blob-a:rgba(20,184,166,.22); --blob-b:rgba(212,160,23,.16); --blob-c:rgba(59,111,216,.14);
+  /* ecosystem node colours: (ink, disc) */
+  --n-endpoints:#0F766E; --n-endpoints-bg:#D7EFEB;
+  --n-cloud:#2F6BD6;     --n-cloud-bg:#DFE9FB;
+  --n-identity:#6B4FC7;  --n-identity-bg:#E9E3FA;
+  --n-data:#4A5BA6;      --n-data-bg:#E2E6F5;
+  --n-productivity:#B7791F; --n-productivity-bg:#FBF0D3;
+  --n-connectivity:#0E7C9A; --n-connectivity-bg:#DBF1F6;
+  --n-security:#C0483D;  --n-security-bg:#FBE3DF;
+  --n-monitoring:#2F8A5B; --n-monitoring-bg:#DFF3E7;
+  --shadow:0 1px 2px rgba(15,27,34,.05),0 12px 32px -12px rgba(15,27,34,.14);
+  --r-s:8px; --r-m:14px; --r-l:22px;
+  --ff-display:"Sora",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-body:"Manrope",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--ff-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+img,svg{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--ff-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+@media (max-width:640px){.wrap{width:calc(100% - 32px)}}
+.mono{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.02em}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backdrop-filter:saturate(1.4) blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--ff-display);font-weight:700;font-size:17px;letter-spacing:-.02em}
+.brand svg{width:28px;height:28px}
+.brand span b{color:#E2AC25;font-weight:700}
+:root[data-theme="dark"] .brand span b{color:#F0C040}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.nav-links a{position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--teal);transition:right .25s ease}
+.nav-links a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,border-color .2s,box-shadow .2s;font-family:var(--ff-body)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 18px -6px var(--teal-glow)}
+.btn-primary:hover{background:var(--teal-2)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.btn-ocean{background:linear-gradient(90deg,var(--ocean-a),var(--ocean-b));color:#fff}
+.btn-ocean:hover{filter:brightness(1.08)}
+.nav .btn{padding:9px 16px}
+.theme-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,color .2s}
+.theme-btn:hover{border-color:var(--teal);color:var(--teal)}
+.theme-btn svg{width:17px;height:17px}
+.theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:block}:root[data-theme="dark"] .theme-btn .moon{display:none}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:10px;width:40px;height:40px;color:var(--ink);cursor:pointer}
+@media (max-width:860px){
+  .theme-btn{margin-left:auto}
+  .menu-btn{margin-left:0}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
+  .nav-links a::after{display:none}
+  .nav.open .nav-links{display:flex}
+  .nav .btn-primary{display:none}
+  .menu-btn{display:grid;place-items:center}
+}
+
+
+/* ---------- footer ---------- */
+footer{padding-block:40px 32px;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h5{font-family:var(--ff-display);font-size:13px;font-weight:600;margin:0 0 12px;color:var(--ink)}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--ink-2)}
+footer ul a:hover{color:var(--teal)}
+footer .fine{color:var(--ink-3);font-size:13px;margin-top:12px;max-width:40ch}
+footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-3);font-size:13px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr 1fr}}
+
+
+.dd{position:relative}
+.dd-t{display:inline-flex;align-items:center;gap:6px}
+.dd-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.dd-m{position:absolute;top:calc(100% + 10px);left:-14px;min-width:260px;padding:8px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;z-index:50}
+.dd-m::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd:hover .dd-m,.dd:focus-within .dd-m{opacity:1;visibility:visible;transform:none;transition:opacity .18s ease,transform .18s ease}
+.dd:hover .chev,.dd:focus-within .chev{transform:rotate(180deg)}
+.dd-m a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--ink)}
+.dd-m a::after{display:none}
+.dd-m a:hover,.dd-m a:focus-visible{background:var(--bg-2)}
+.dd-m b{display:block;font-weight:700;font-size:14.5px}
+.dd-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.dd-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.dd-ic svg{width:18px;height:18px}
+.dd-ic.en{background:var(--ocean-soft);color:var(--ocean-b)}
+.dd-ic.tl{background:var(--teal-soft);color:var(--teal)}
+.dd-ic.sc{background:var(--gold-soft);color:#9A6B00}
+:root[data-theme="dark"] .dd-ic.sc{color:var(--gold)}
+@media (max-width:860px){
+  .nav-links{align-items:stretch}
+  .dd{width:100%}
+  .dd-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .dd-t .chev{display:none}
+  .dd-m{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:none;padding:4px 0 6px 10px;min-width:0}
+  .dd-m::before{display:none}
+  .dd-m a{border-bottom:0;padding:8px 6px}
+}
+/* ---------- v18: support pop-over, app logo ---------- */
+.sup{position:relative;display:flex;align-items:center}
+.sup-t{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;position:relative}
+.sup-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.sup-t[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.sup-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:max-content;min-width:280px;padding:14px 14px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);z-index:60;text-align:left}
+.sup-pop[hidden]{display:none}
+.sup-h{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.sup-row{display:flex;align-items:center;gap:10px;margin-top:8px;padding:8px 8px 8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2)}
+.sup-mail{font-weight:700;font-size:15px;color:var(--ink);user-select:all;white-space:nowrap}
+.sup-copy{margin-left:auto;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
+.sup-copy:hover,.sup-copy:focus-visible{color:var(--teal);border-color:var(--teal)}
+.sup-copy svg{width:17px;height:17px}
+.sup-copy .ok{display:none;color:var(--teal)}
+.sup-copy.done .cp{display:none}
+.sup-copy.done .ok{display:block}
+.sup-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;min-height:1.2em}
+.en-logo{width:40px;height:40px;flex:none;border-radius:9px}
+@media (min-width:861px){.dd.dd-x .dd-m{opacity:0!important;visibility:hidden!important}.dd.dd-x .chev{transform:none!important}}
+.dd-ic.en{background:none}
+.dd-ic img{width:30px;height:30px;border-radius:7px}
+@media (max-width:860px){
+  .sup{width:100%;flex-direction:column;align-items:stretch}
+  .sup-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .sup-pop{position:static;transform:none;width:auto;min-width:0;margin:8px 0 6px;box-shadow:none}
+  .sup-mail{white-space:normal;word-break:break-all}
+}
+
+
+/* ---------- EasyNotes page (v1) ---------- */
+body{overflow-x:hidden}
+.en-hero{position:relative;overflow:hidden;padding-block:64px 56px;background:var(--hero-bg);border-bottom:1px solid var(--line)}
+.en-hero::before{content:"";position:absolute;width:560px;height:560px;right:-160px;top:-200px;border-radius:50%;filter:blur(70px);background:radial-gradient(circle,var(--blob-c),transparent 65%);pointer-events:none}
+.en-hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:52px;align-items:center}
+.crumbs{font-size:13px;color:var(--ink-3);display:flex;gap:8px;align-items:center}
+.crumbs a:hover{color:var(--teal)}
+.en-title{display:flex;align-items:center;gap:16px;margin-top:18px}
+.en-title svg,.en-title .app-logo{width:60px;height:60px;flex:none;filter:drop-shadow(0 8px 18px rgba(15,59,120,.28))}
+.en-title .app-logo{border-radius:13px}
+.en-title h1{font-size:clamp(40px,5vw,60px);line-height:1;font-weight:700;letter-spacing:-.03em}
+.tagline{font-family:"Caveat",cursive;font-size:30px;color:var(--ocean-b);margin-top:10px;line-height:1.1}
+:root[data-theme="dark"] .tagline{color:#8DB6F5}
+.en-hero .lead{margin-top:18px;font-size:17.5px;line-height:1.62;color:var(--ink-2);max-width:54ch}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pillrow span{font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+.store-btn{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 14px;border-radius:12px;background:#111;color:#fff;border:1px solid #111;font-weight:700;line-height:1.05;transition:transform .15s,box-shadow .2s}
+:root[data-theme="dark"] .store-btn{background:#F4F7F8;color:#0B1418;border-color:#F4F7F8}
+.store-btn svg{width:26px;height:26px}
+.store-btn small{display:block;font-size:10.5px;font-weight:600;opacity:.8;letter-spacing:.02em}
+.store-btn span{font-size:16px}
+.store-btn.big{padding:12px 22px 12px 16px}
+.store-btn.big svg{width:30px;height:30px}
+.store-btn.is-placeholder{cursor:not-allowed;position:relative}
+.doc .store-btn{color:#fff}
+:root[data-theme="dark"] .doc .store-btn{color:#0B1418}
+.store-btn.is-placeholder::after{content:"Soon";position:absolute;top:-8px;right:-8px;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px;background:var(--gold);color:#3A2A00;letter-spacing:.04em}
+.ph-note{display:block;font-size:12.5px;color:var(--ink-3);margin-top:8px}
+.btn-play svg{width:15px;height:15px}
+.hero-shot{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(15,59,120,.55);background:var(--surface)}
+.hero-shot img{width:100%;height:auto}
+.only-dark{display:none!important}
+:root[data-theme="dark"] .only-dark{display:block!important}
+:root[data-theme="dark"] .only-light{display:none!important}
+.facts{border-bottom:1px solid var(--line);background:var(--bg-2)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.facts div{padding:18px 18px 18px 0;border-left:1px solid var(--line);padding-left:18px}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts b{display:block;font-family:var(--ff-display);font-size:15px}
+.facts span{display:block;font-size:13.5px;line-height:1.45;margin-top:3px;color:var(--ink-3)}
+/* docs body */
+.docs .wrap{display:grid;grid-template-columns:232px minmax(0,1fr);gap:56px;padding-block:24px 80px}
+.toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding:22px 4px 22px 0;font-size:14px;scrollbar-width:thin}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc li.grp{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 6px}
+.toc li.grp:first-child{margin-top:0}
+.toc a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--ink-2);transition:color .15s,border-color .15s,background .15s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--teal);border-left-color:var(--teal);background:color-mix(in srgb,var(--teal-soft) 60%,transparent);font-weight:700}
+.toc ul ul a{padding-left:22px;font-size:13px}
+.toc-btn{display:none}
+.doc{min-width:0}
+.doc-sec{padding-block:44px;border-top:1px solid var(--line);scroll-margin-top:76px}
+.doc-sec:first-child{border-top:0;padding-top:22px}
+.kicker{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.doc h2{font-size:clamp(26px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+.doc .h3{font-size:19px;font-weight:600;margin:30px 0 10px;scroll-margin-top:76px}
+.doc h4{font-family:var(--ff-display);font-size:15px;font-weight:600;margin-bottom:8px}
+.doc p{color:var(--ink-2);max-width:74ch;margin-bottom:12px}
+.doc p.small{font-size:14px;color:var(--ink-3)}
+.doc a{color:var(--teal);font-weight:600}
+.doc code,.doc kbd{font-family:var(--ff-mono);font-size:.82em}
+.doc code{background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink);word-break:break-word}
+kbd{display:inline-block;min-width:22px;text-align:center;font-family:var(--ff-mono);font-size:12px;line-height:1;padding:4px 6px;border-radius:6px;border:1px solid var(--line-2);border-bottom-width:2px;background:var(--surface);color:var(--ink)}
+.doc ul,.doc ol{color:var(--ink-2);max-width:74ch;padding-left:20px;margin:0 0 14px}
+.doc li{margin:5px 0}
+.doc em{font-style:normal;font-weight:600;color:var(--ink)}
+ul.ticks,ul.dash{list-style:none;padding-left:0}
+ul.ticks li,ul.dash li{position:relative;padding-left:24px}
+ul.ticks li::before{content:"";position:absolute;left:2px;top:.55em;width:11px;height:6px;border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg)}
+ul.dash li::before{content:"";position:absolute;left:3px;top:.8em;width:10px;height:2px;background:var(--gold)}
+ol.steps{counter-reset:s;list-style:none;padding-left:0}
+ol.steps li{counter-increment:s;position:relative;padding-left:40px;margin:10px 0}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-b);font:700 13px/26px var(--ff-display);text-align:center}
+:root[data-theme="dark"] ol.steps li::before{color:#8DB6F5}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 6px}
+.glance div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+.glance b{display:block;font-family:var(--ff-display);font-size:15px}
+.glance span{font-size:13.5px;color:var(--ink-3);line-height:1.45;display:block;margin-top:4px}
+table.spec{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+table.spec th,table.spec td{text-align:left;vertical-align:top;padding:11px 14px 11px 0;border-bottom:1px solid var(--line)}
+table.spec th{width:30%;font-weight:700;color:var(--ink);padding-right:18px}
+table.spec th em{font-weight:500;color:var(--ink-3);font-style:normal;font-size:13px}
+table.spec td{color:var(--ink-2)}
+table.spec tr:first-child th,table.spec tr:first-child td{border-top:1px solid var(--line)}
+table.map th{width:22%}
+table.keys th{width:38%;white-space:nowrap}
+.callout{border:1px solid var(--line);border-left:3px solid var(--teal);background:color-mix(in srgb,var(--teal-soft) 55%,var(--surface));border-radius:10px;padding:14px 18px;margin:18px 0}
+.callout.ok{border-left-color:#2F8A5B;background:color-mix(in srgb,#DFF3E7 55%,var(--surface))}
+:root[data-theme="dark"] .callout.ok{background:color-mix(in srgb,#153A26 60%,var(--surface))}
+.callout b{display:block;font-family:var(--ff-display);font-size:15px;margin-bottom:4px;color:var(--ink)}
+.callout p{margin:0;font-size:15px}
+.install{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0 8px}
+.inst-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.inst-card h3{font-size:20px;font-weight:600}
+.inst-card p{margin:0;font-size:15px}
+.inst-kind{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.inst-card .store-btn{align-self:flex-start;margin-top:6px}
+.code{position:relative;max-width:100%;margin:10px 0 14px;border-radius:10px;background:#0E1A1F;border:1px solid #1E3038}
+.code pre{margin:0;padding:14px 76px 14px 16px;overflow-x:auto;font-family:var(--ff-mono);font-size:12.8px;line-height:1.7;color:#CFE6E2}
+.code .c-p{color:#5E7F87}.code .c-h{color:#F0C040}.code .c-k{color:#7FE0D4}.code .c-s{color:#F2C58A}
+.code .copy{position:absolute;top:8px;right:8px;font:700 11.5px var(--ff-body);color:#CFE6E2;background:#17282F;border:1px solid #2A4049;border-radius:7px;padding:5px 9px;cursor:pointer}
+.code .copy:hover{border-color:#7FE0D4;color:#fff}
+.rules{border:1px dashed var(--line-2);border-radius:10px;padding:12px 16px;background:var(--surface);margin:8px 0 12px}
+.rules p{margin:3px 0;font-family:var(--ff-mono);font-size:13px;color:var(--ink)}
+details.tools{border:1px solid var(--line);border-radius:10px;padding:0 16px;margin:14px 0;background:var(--surface)}
+details.tools summary{cursor:pointer;padding:12px 0;font-weight:700;color:var(--ink)}
+details.tools p{font-family:var(--ff-mono);font-size:12.5px;line-height:1.75}
+details.tools b{font-family:var(--ff-body);font-size:13px;display:block;color:var(--ink)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:12px 0}
+.two>div{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--surface)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.fgrid div{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.fgrid i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--ocean-soft);color:var(--ocean-b)}
+:root[data-theme="dark"] .fgrid i{color:#8DB6F5}
+.fgrid i svg{width:19px;height:19px}
+.fgrid b{font-family:var(--ff-display);font-size:15px;margin-top:4px}
+.fgrid span{font-size:14px;color:var(--ink-3);line-height:1.5}
+.ptypes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
+.ptypes div{border:1px solid var(--line);border-top:3px solid var(--ocean-b);border-radius:10px;padding:14px;background:var(--surface)}
+.ptypes b{font-family:var(--ff-display);display:block}
+.ptypes span{font-size:14px;color:var(--ink-3);display:block;margin-top:4px;line-height:1.5}
+.menus{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 6px}
+.menus>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface)}
+ul.menu{list-style:none;padding:0;margin:0;font-size:14px}
+ul.menu li{padding:5px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+ul.menu li:last-child{border-bottom:0}
+ul.menu small{display:block;color:var(--ink-3);font-size:12.5px}
+/* figures */
+figure.shot{margin:18px 0 22px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.shot img{width:100%;height:auto;cursor:zoom-in;background:#fff}
+figure.shot.win{max-width:760px}
+figure.shot.nat{width:fit-content;max-width:100%}
+figure.shot.nat img{width:auto;max-width:100%}
+figure.shot.win img{background:transparent}
+figure.shot figcaption{font-size:13.5px;color:var(--ink-3);padding:10px 14px;border-top:1px solid var(--line);line-height:1.45}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.pair figure.shot,.gallery figure.shot{margin:8px 0 12px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:14px 0 8px;align-items:start}
+.ph-shot{aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--bg-2) 0 12px,var(--surface) 12px 24px);color:var(--ink-3);font-family:var(--ff-mono);font-size:12px}
+.hdr-anno{position:relative;width:640px;max-width:100%;margin:10px 0 28px;border:1px solid var(--line);border-radius:12px;overflow:visible;background:var(--surface)}
+.hdr-anno img{width:100%;height:auto;border-radius:11px 11px 0 0;cursor:zoom-in}
+.ruler{position:relative;height:30px;border-top:1px solid var(--line)}
+.ruler span{position:absolute;top:6px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;font:700 11px/20px var(--ff-display);text-align:center}
+.ruler span::before{content:"";position:absolute;left:50%;top:-7px;width:1px;height:7px;background:var(--teal)}
+ol.hdr-list{columns:2;column-gap:28px;padding-left:22px;margin-top:0}
+ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 4px}
+.tabs button{font:700 13.5px var(--ff-body);padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.get{border-top:0}
+.get-card{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;border-radius:18px;padding:32px 34px;background:linear-gradient(120deg,var(--ocean-a),var(--ocean-b));color:#fff;box-shadow:0 30px 60px -30px rgba(15,59,120,.6)}
+.get-card svg,.get-card .app-logo{width:54px;height:54px;margin-bottom:12px}
+.get-card .app-logo{display:block;border-radius:12px}
+.get-card h2{color:#fff;margin-bottom:6px}
+.get-card p{color:#DCE8FB;margin:0}
+.get-card .store-btn{background:#fff;color:#0F1B22;border-color:#fff}
+.get-card .ph-note{color:#C7DBFF}
+.get-cta{display:flex;flex-direction:column;align-items:flex-start}
+/* lightbox and video */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,14,18,.86);display:none;align-items:center;justify-content:center;padding:28px}
+.lb.open{display:flex}
+.lb figure{margin:0;max-width:min(1400px,100%);max-height:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb img,.lb video{max-width:100%;max-height:calc(100vh - 110px);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff}
+.lb video{background:#121A30}
+.lb figcaption{color:#DCE6EA;font-size:14px;text-align:center;max-width:80ch}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.lb button:hover{background:rgba(255,255,255,.22)}
+.lb .x{top:18px;right:18px}.lb .prev{left:18px;top:50%}.lb .next{right:18px;top:50%}
+@media (max-width:1020px){
+  .en-hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .docs .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{position:sticky;top:64px;z-index:30;max-height:none;overflow:visible;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line);margin:0 -20px;padding-inline:20px}
+  .toc>ul{display:none;max-height:60vh;overflow:auto;padding:8px 0}
+  .toc.open>ul{display:block}
+  .toc-btn{display:flex;width:100%;justify-content:space-between;align-items:center;font:700 14px var(--ff-body);background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;color:var(--ink);cursor:pointer}
+  .glance{grid-template-columns:1fr 1fr}
+  .fgrid,.menus,.ptypes{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .facts .wrap{grid-template-columns:1fr 1fr}.facts div{border-left:0;padding-left:0}
+  .install,.two,.pair,.glance,.fgrid,.menus,.ptypes{grid-template-columns:minmax(0,1fr)}
+  ol.hdr-list{columns:1}
+  table.spec th{width:38%}
+  table.keys th{white-space:normal}
+  .toc{margin:0 -16px;padding-inline:16px}
+  .get-card{padding:24px}
+}
+
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="EndpointLabz home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg>
+      <span>Endpoint<b>Labz</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <div class="dd">
+        <a class="dd-t" href="../#products" aria-haspopup="true">Products <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Products">
+          <a role="menuitem" href="#top"><i class="dd-ic en"><img src="../assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Microsoft Store · Free</small></span></a>
+        </div>
+      </div>
+      <div class="dd">
+        <a class="dd-t" href="../#community" aria-haspopup="true">Community Contributions <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Community Contributions">
+          <a role="menuitem" href="../#tools"><i class="dd-ic tl"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="11" rx="2"/><path d="M7 18h6M6 8l2 2-2 2M10 12h3"/></svg></i><span><b>Tools</b><small>MDM-ODA</small></span></a>
+          <a role="menuitem" href="../#scripts"><i class="dd-ic sc"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4M11 4l-2 12"/></svg></i><span><b>Scripts &amp; Automations</b><small>Intune, Graph &amp; OS platform</small></span></a>
+        </div>
+      </div>
+      <a href="../#blogs">Blogs</a>
+      <div class="sup" id="sup">
+        <button class="sup-t" id="supBtn" type="button" aria-expanded="false" aria-controls="supPop">Support <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
+        <div class="sup-pop" id="supPop" role="dialog" aria-label="Contact support" hidden>
+          <p class="sup-h">Email support</p>
+          <div class="sup-row">
+            <span class="sup-mail" id="supMail">support@endpointlabz.com</span>
+            <button class="sup-copy" id="supCopy" type="button" aria-label="Copy the email address" title="Copy">
+              <svg class="cp" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>
+              <svg class="ok" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+            </button>
+          </div>
+          <p class="sup-note" id="supNote" aria-live="polite"></p>
+        </div>
+      </div>
+      <a href="../#about">About</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode" title="Light / dark">
+      <svg class="moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12.5A7 7 0 0 1 7.5 4a7 7 0 1 0 8.5 8.5z"/></svg>
+      <svg class="sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>
+    </button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg></button>
+  </div>
+</header>
+
+<section class="en-hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="crumbs"><a href="../">Home</a><span>/</span><a href="../#products">Products</a><span>/</span><span>EasyNotes</span></p>
+      <div class="en-title"><img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt=""><h1>EasyNotes</h1></div>
+      <p class="tagline">Productivity starts with organizing</p>
+      <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; with a session clipboard, Transit, reminders, verified backups, OneNote import and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
+      <div class="pillrow"><span>Free</span><span>Windows 10 (2004+) &amp; 11</span><span>x64</span><span>No account &middot; no telemetry</span></div>
+      <div class="hero-cta">
+        <a class="store-btn is-placeholder" href="#install" aria-disabled="true" title="The Store listing link is added at publication"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span><small>Get it from</small>Microsoft Store</span></a>
+        <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch the 6-minute tour</button>
+      </div>
+    </div>
+    <div class="hero-shot"><img class="only-light" src="assets/shots/a01-main-light.webp" width="1278" height="960" alt="EasyNotes: a meeting-notes page with the topics pane and the header tools"><img class="only-dark" src="assets/shots/a02-main-dark.webp" width="1278" height="960" alt="EasyNotes in the dark theme"></div>
+  </div>
+</section>
+<div class="facts"><div class="wrap">
+  <div><b>Your notes, your folder</b><span>Plain files, synced by the app you already use</span></div>
+  <div><b>Backed up and verified</b><span>On your schedule, checked before it is kept</span></div>
+  <div><b>Always within reach</b><span>System tray, a global hotkey and stay on top</span></div>
+  <div><b>Works with your AI tools</b><span>Local MCP, scoped tokens, your rules</span></div>
+</div></div>
+
+<main class="docs">
+  <div class="wrap">
+    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation options</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#mcp">MCP setup</a></li><li><a href="#onenote">OneNote import</a></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">To-Do&rsquo;s and Reminders</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#transit">Transit</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Install from the Store</a></li></ul></nav>
+    <article class="doc">
+<!-- EasyNotes page body (v1) - content source for mk-en.py. Author: Satish Singhi -->
+<!-- ================= GET STARTED ================= -->
+<section id="intro" class="doc-sec" data-group="Get started">
+  <p class="kicker">Get started</p>
+  <h2>Introduction</h2>
+  <p>EasyNotes is a Windows desktop app for the notes you keep while you work: meeting actions, research, checklists, budgets and study notes, organised into topics. Topics hold sub-topics and pages, and every page is saved the moment you type &ndash; there is no Save button.</p>
+  <p>It lives in the system tray, comes to the front with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> and keeps the small things within reach: what you copied ten minutes ago, the to-do buried in yesterday's meeting notes, the snippet you need to carry between apps. Scheduled, verified backups protect it all, and an optional local MCP endpoint lets your AI tools work with your notes under rules you set.</p>
+  <div class="glance">
+    <div><b>No account</b><span>No registration, no sign-in, no licence check.</span></div>
+    <div><b>No telemetry</b><span>No analytics and no outbound connections from the app.</span></div>
+    <div><b>Your folders</b><span>Plain RTF, CSV and JSON files in a folder you choose &ndash; no EasyNotes cloud.</span></div>
+    <div><b>Local AI access</b><span>MCP is off by default and listens on 127.0.0.1 only.</span></div>
+  </div>
+  <figure class="shot themed"><img class="zoom only-light" src="assets/shots/a01-main-light.webp" width="1278" height="960" alt="A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top." loading="lazy" decoding="async"><img class="zoom only-dark" src="assets/shots/a02-main-dark.webp" width="1278" height="960" alt="A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top." loading="lazy" decoding="async"><figcaption>A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top.</figcaption></figure>
+</section>
+
+<section id="requirements" class="doc-sec">
+  <h2>System requirements</h2>
+  <table class="spec">
+    <tr><th>Windows</th><td>Windows 10 version 2004 (build 19041) or later, and Windows 11 (tested up to 24H2)</td></tr>
+    <tr><th>Processor</th><td>x64</td></tr>
+    <tr><th>Runtime</th><td>Nothing extra to install &ndash; the Microsoft Store package includes .NET 10</td></tr>
+    <tr><th>Permissions</th><td>A standard user account. EasyNotes never asks for administrator rights</td></tr>
+    <tr><th>Internet</th><td>Not needed. To use your notes on more than one PC, keep them in a folder that OneDrive, Google Drive or Dropbox syncs</td></tr>
+    <tr><th>OneNote import <em>(optional)</em></th><td>OneNote 2016 or the Microsoft&nbsp;365 OneNote desktop app, 32- or 64-bit. The OneNote for Windows&nbsp;10 app and OneNote on the web cannot be read</td></tr>
+    <tr><th>AI tools <em>(optional)</em></th><td>Any MCP client &ndash; for example Claude Desktop, Claude Code or Cursor</td></tr>
+    <tr><th>Language</th><td>English</td></tr>
+  </table>
+</section>
+
+<section id="install" class="doc-sec">
+  <h2>Installation options</h2>
+  <p>EasyNotes is free. Both options below install the same Microsoft Store package: per user, updated automatically, with a Start menu entry and Windows managing <em>Start at sign-in</em>.</p>
+  <div class="install">
+    <div class="inst-card">
+      <span class="inst-kind">Recommended</span>
+      <h3>Microsoft Store</h3>
+      <p>Search for EasyNotes in the Microsoft Store, or use the button below.</p>
+      <a class="store-btn is-placeholder" href="#get" aria-disabled="true" title="The Store listing link is added at publication">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
+        <span><small>Get it from</small>Microsoft Store</span>
+      </a>
+      <p class="ph-note">Placeholder &ndash; the Store link goes live when the listing is published.</p>
+    </div>
+    <div class="inst-card">
+      <span class="inst-kind">Command line</span>
+      <h3>winget</h3>
+      <p>Windows Package Manager installs the Store package from a terminal. It is part of App Installer on Windows&nbsp;10 1809+ and Windows&nbsp;11.</p>
+      <div class="code" data-copy><pre><span class="c-p">&gt;</span> winget install <span class="c-h">9NXXXXXXXXXX</span> -s msstore</pre><button class="copy" type="button" aria-label="Copy the command">Copy</button></div>
+      <p class="ph-note">Placeholder &ndash; <code>9NXXXXXXXXXX</code> becomes the Store product ID at publication.</p>
+    </div>
+  </div>
+  <h3 class="h3">Uninstalling</h3>
+  <p>Remove EasyNotes from <em>Settings &rsaquo; Apps</em> (or <code>winget uninstall</code>). Its preferences and logs are removed with it. Your notes folder and your backup folder are left exactly as they are &ndash; nothing you wrote is deleted.</p>
+  <div class="callout">
+    <b>For IT administrators</b>
+    <p>EasyNotes ships Group Policy (ADMX/ADML) templates that work with Intune and other MDMs. They can set a default, block or enforce: MCP and its rules, port and policy file, the session clipboard, scheduled backups, the backup folder, frequency and retention, and the notes folder. Managed controls show &ldquo;Managed by your organisation&rdquo; and cannot be changed by the user. An enforced MCP setting that cannot be read from a trusted file keeps MCP off.</p>
+  </div>
+</section>
+
+<section id="first-launch" class="doc-sec">
+  <h2>First launch</h2>
+  <p>The first time EasyNotes starts, a short splash leads into a seven-step setup. Every choice can be changed later from the gear in the header, and <em>Cancel</em> never leaves you stranded: if you stop early, your notes go to a safe local folder that you can change in <em>Settings &rsaquo; Storage</em>.</p>
+  <figure class="shot win"><img class="zoom" src="assets/shots/w01-splash.webp" width="880" height="660" alt="The first-launch splash. Let’s Go! opens the setup." loading="lazy" decoding="async"><figcaption>The first-launch splash. <em>Let&rsquo;s Go!</em> opens the setup.</figcaption></figure>
+  <ol class="steps">
+    <li><b>Welcome</b> &ndash; what EasyNotes does, in three cards.</li>
+    <li><b>Storage</b> &ndash; &ldquo;Do you already use EasyNotes on another PC?&rdquo; Pick up an existing synced folder, or start fresh in a folder you choose. See <a href="#user-data">User Data</a>.</li>
+    <li><b>Import</b> &ndash; optionally open the OneNote import straight after setup.</li>
+    <li><b>Backup</b> &ndash; automatic backups, the backup folder, frequency and retention.</li>
+    <li><b>Session Clipboard</b> &ndash; off unless you switch it on.</li>
+    <li><b>Appearance</b> &ndash; Follow Windows, Light or Dark, and optionally your Windows accent colour.</li>
+    <li><b>Windows</b> &ndash; Start at sign-in (minimised to the tray), the Start menu entry and the global hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>. All in your own user context &ndash; no admin rights, no stored password.</li>
+  </ol>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/w02-welcome.webp" width="900" height="720" alt="1 · Welcome" loading="lazy" decoding="async"><figcaption>1 &middot; Welcome</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w03-existing.webp" width="900" height="720" alt="2 · Storage – existing notes?" loading="lazy" decoding="async"><figcaption>2 &middot; Storage &ndash; existing notes?</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w04-storage-tiles.webp" width="900" height="720" alt="2 · Synced folders found on this PC" loading="lazy" decoding="async"><figcaption>2 &middot; Synced folders found on this PC</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w06-import.webp" width="900" height="720" alt="3 · Import" loading="lazy" decoding="async"><figcaption>3 &middot; Import</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w07-backup.webp" width="900" height="720" alt="4 · Backup" loading="lazy" decoding="async"><figcaption>4 &middot; Backup</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w08-clipboard.webp" width="900" height="720" alt="5 · Session Clipboard" loading="lazy" decoding="async"><figcaption>5 &middot; Session Clipboard</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w09-appearance.webp" width="900" height="720" alt="6 · Appearance" loading="lazy" decoding="async"><figcaption>6 &middot; Appearance</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/w10-windows.webp" width="900" height="720" alt="7 · Windows" loading="lazy" decoding="async"><figcaption>7 &middot; Windows</figcaption></figure></div>
+</section>
+
+<section id="user-data" class="doc-sec">
+  <h2>User Data path and recommendation</h2>
+  <p>EasyNotes keeps two folders apart: one for your notes, one for the app&rsquo;s own preferences and logs.</p>
+  <table class="spec">
+    <tr><th>User Data <em>(your notes)</em></th><td><code>index.json</code>, one file per page (<code>.rtf</code> for notes and checklists, <code>.csv</code> for spreadsheets), pictures in <code>pages\assets</code>, deleted items in <code>trash</code>, Transit and a copy of your reminders</td></tr>
+    <tr><th>App Data <em>(the app)</em></th><td>Preferences, the app and backup logs, the MCP audit log, notifications and backup history. <code>%LOCALAPPDATA%\EasyNotes</code>, or the package&rsquo;s own storage for the Store app</td></tr>
+    <tr><th>Temporary</th><td>The session clipboard and undo history, under App Data &ndash; deleted when EasyNotes exits</td></tr>
+  </table>
+  <div class="callout ok">
+    <b>Recommended: a folder that OneDrive, Google Drive or Dropbox syncs</b>
+    <p>A synced folder keeps a copy off the PC, so a drive failure doesn&rsquo;t take your notes with it, and makes them available on your other PCs. EasyNotes has no cloud of its own &ndash; it uses the sync app you already have.</p>
+  </div>
+  <p>During setup EasyNotes looks for the syncing locations on the PC and offers them as tiles:</p>
+  <ul class="ticks">
+    <li><b>OneDrive</b> &ndash; personal and work or school accounts.</li>
+    <li><b>Google Drive</b> &ndash; folders on this PC that Google Drive syncs. The streaming drive (G:) is left out: it holds cloud content, not folders on this PC.</li>
+    <li><b>Dropbox</b> &ndash; personal and business.</li>
+    <li><b>Other folder</b> &ndash; any local, offline or undetected location. EasyNotes warns when a folder is on this PC only.</li>
+  </ul>
+  <p>With one syncing location, <code>&lt;that folder&gt;\EasyNotes</code> is pre-filled. With several, nothing is pre-selected so you choose deliberately. With none, the default is <code>%USERPROFILE%\EasyNotes</code>. For OneDrive and Dropbox, setup also sets <em>Always keep on this device</em> on the folder, so your notes open instantly and work offline.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/w05-storage-synced.webp" width="900" height="720" alt="The confirmation for a OneDrive folder" loading="lazy" decoding="async"><figcaption>The confirmation for a OneDrive folder</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/s01-settings-storage.webp" width="900" height="920" alt="Settings › Storage, with the sync status of the current folder" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Storage, with the sync status of the current folder</figcaption></figure></div>
+  <h3 class="h3">Using EasyNotes on two PCs</h3>
+  <p>Point both PCs at the same synced folder. On the second PC, the Storage step finds it (&ldquo;Your EasyNotes data is already here&rdquo;) and carries on with every topic and page. Changes from both PCs are merged, and sync-conflict copies are merged automatically.</p>
+  <h3 class="h3">Changing the folder later</h3>
+  <p><em>Settings &rsaquo; Storage &rsaquo; Change&hellip;</em> offers a backup first (<em>Backup &amp; Proceed</em>), then EasyNotes opens the new folder. It does not move or copy notes, and nothing is deleted from the old folder &ndash; it is left exactly as it is.</p>
+</section>
+
+<section id="backup" class="doc-sec">
+  <h2>Backup: path, frequency and retention</h2>
+  <p>Backups are on by default. Your notes and preferences are zipped on the schedule you choose, verified, and old archives are tidied away.</p>
+  <table class="spec">
+    <tr><th>Folder</th><td><code>OneDrive\Documents\EasyNotes_Backup</code> when OneDrive is signed in, otherwise <code>Documents\EasyNotes_Backup</code>. Any folder outside your notes folder can be chosen</td></tr>
+    <tr><th>Frequency</th><td><b>Daily</b>, every 1&ndash;7 days (default: every day), or <b>Hourly</b>, every 2, 4 or 8 hours</td></tr>
+    <tr><th>Retention</th><td>1&ndash;90 days (default 30). Older archives are deleted at the next launch</td></tr>
+    <tr><th>File name</th><td><code>EasyNotes_Backup_MM-DD-YYYY-HH-MM.zip</code> &ndash; an existing archive is never overwritten</td></tr>
+    <tr><th>What&rsquo;s inside</th><td>The whole notes folder (including trash, Transit and reminders), your preferences, the app log and a manifest. Never the session clipboard</td></tr>
+  </table>
+  <p>Each archive is written as a partial file, re-opened, and checked entry by entry before it gets its final name. Backups run at launch when one is overdue and on schedule after that. If one fails, EasyNotes retries every 30 minutes and lights the bell in the header until a backup succeeds.</p>
+  <p>The folder hint tells you what the location protects against &ndash; for example &ldquo;Synced to OneDrive - copies also leave this PC&rdquo;, or &ldquo;On this PC only, same drive as your notes &ndash; protects against mistakes, not against losing this PC or its drive&rdquo;.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/w07-backup.webp" width="900" height="720" alt="The Backup step of the setup" loading="lazy" decoding="async"><figcaption>The Backup step of the setup</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/s02-settings-backup.webp" width="900" height="920" alt="Settings › Backup: manual backup, restore, status and history" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Backup: manual backup, restore, status and history</figcaption></figure></div>
+  <h3 class="h3">Back up now and restore</h3>
+  <p><em>Settings &rsaquo; Backup</em> has <em>Back up now</em>, the last 30 runs in <em>Backup history</em> and <em>Open backup log</em>. <em>Restore from backup&hellip;</em> checks the archive first, renames your current notes folder to <code>&hellip;_before-restore_&lt;date&gt;</code> &ndash; nothing is deleted &ndash; and reloads the restored notes. Preferences are not changed by a restore.</p>
+</section>
+
+<section id="mcp" class="doc-sec">
+  <h2>MCP setup</h2>
+  <p>The Model Context Protocol lets AI tools &ndash; Claude Desktop, Claude Code, Cursor and any other MCP client &ndash; read and write your notes through the running app. It is off by default, reachable from this PC only, and every client needs its own token. Every call is logged, and every write can be shown to you.</p>
+  <ol class="steps">
+    <li><b>Enable it.</b> Open <em>Settings &rsaquo; MCP</em> (or click the bot in the header) and switch on <em>Enable MCP integration</em>. EasyNotes starts a local endpoint on <code>http://127.0.0.1:47391/mcp</code> while it runs; the port can be changed.</li>
+    <li><b>Create a token for each client.</b> Name it, pick a scope and click <em>Create token</em>. The token is shown once &ndash; EasyNotes keeps only its hash.</li>
+    <li><b>Connect the client.</b> <em>Copy Claude Desktop config</em> puts a ready-made block on the clipboard; merge it into <code>claude_desktop_config.json</code> and restart Claude Desktop. <em>Copy Claude Code command</em> does the same for Claude Code.</li>
+    <li><b>Write your rules</b> (optional). Plain-language instructions that every AI tool receives the moment it connects.</li>
+  </ol>
+  <div class="code" data-copy><pre>{
+  <span class="c-k">"mcpServers"</span>: {
+    <span class="c-k">"easynotes"</span>: {
+      <span class="c-k">"command"</span>: <span class="c-s">"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\EasyNotes.exe"</span>,
+      <span class="c-k">"args"</span>: [<span class="c-s">"--mcp"</span>],
+      <span class="c-k">"env"</span>: { <span class="c-k">"EASYNOTES_MCP_TOKEN"</span>: <span class="c-s">"&lt;your token&gt;"</span> }
+    }
+  }
+}</pre><button class="copy" type="button" aria-label="Copy the config">Copy</button></div>
+  <p class="small">The config starts <code>EasyNotes.exe --mcp</code> as a stdio relay to the running app, and starts EasyNotes minimised if it isn&rsquo;t running. The token travels in an environment variable of that process, never on a command line. The copy button in EasyNotes fills in the exact path for your install.</p>
+  <table class="spec">
+    <tr><th>read</th><td>Look only &ndash; topics, pages, search, reminders, Transit, the session clipboard, backups and settings</td></tr>
+    <tr><th>write <em>(default)</em></th><td>Also create, change, append, move, rename and open pages and topics, set cells, add reminders, use Transit and the clipboard, run a backup</td></tr>
+    <tr><th>full</th><td>Also delete and clear. Deleted pages still go to the notes folder&rsquo;s trash</td></tr>
+  </table>
+  <h3 class="h3">Rules for AI tools</h3>
+  <p>Rules reach the AI when it connects, through the <code>get_rules</code> tool, at the top of every write tool&rsquo;s description and again after every write. Typical rules:</p>
+  <div class="rules"><p>1. Never read, change or delete anything under the topic &ldquo;Personal&rdquo;.</p><p>2. Never change my existing notes. Put your version on a new page right below the page you worked from, with the title prefixed &ldquo;Claude - &rdquo;.</p><p>3. Keep my headings and bullet style.</p></div>
+  <p class="small">Rules are requests to the AI, not locks: a tool can still ignore them. Token scopes are the hard limit, and every call &ndash; read or write &ndash; stays in the audit log.</p>
+  <figure class="shot win"><img class="zoom" src="assets/shots/s06-settings-mcp.webp" width="900" height="920" alt="Settings › MCP: the switch, port, write notifications, rules, tokens and the audit log." loading="lazy" decoding="async"><figcaption>Settings &rsaquo; MCP: the switch, port, write notifications, rules, tokens and the audit log.</figcaption></figure>
+  <details class="tools"><summary>All 46 MCP tools</summary>
+    <p><b>read (15)</b> get_rules, get_status, list_topics, list_pages, get_page, search, get_page_history, list_reminders, get_transit, list_clipboard, get_clipboard_entry, list_page_images, list_notifications, list_backups, get_settings</p>
+    <p><b>write (25)</b> open_page, show_dashboard, create_topic, rename_topic, move_topic, create_page, update_page, append_to_page, insert_into_page, replace_in_page, rename_page, move_page, undo_page, set_cell, create_reminder, complete_reminder, reschedule_reminder, append_to_transit, send_to_transit, copy_to_clipboard, paste_clipboard_entry, insert_image, insert_shape, mark_notifications_read, run_backup</p>
+    <p><b>full (6)</b> delete_topic, delete_page, delete_reminder, clear_transit, remove_clipboard_entry, remove_image</p>
+  </details>
+</section>
+
+<section id="onenote" class="doc-sec">
+  <h2>OneNote import</h2>
+  <p>Bring your OneNote notebooks across in one go. Start it from the import button on the Topics bar, with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>, by right-clicking empty space in the tree, or by ticking it during setup. It needs the OneNote desktop app (OneNote 2016 or Microsoft&nbsp;365).</p>
+  <table class="spec map">
+    <tr><th>OneNote notebook</th><td>&rarr; Topic</td></tr>
+    <tr><th>Section</th><td>&rarr; Sub-topic (a section in a section group is named &ldquo;Group &rsaquo; Section&rdquo;)</td></tr>
+    <tr><th>Page</th><td>&rarr; Page (sub-pages come across as ordinary pages)</td></tr>
+  </table>
+  <div class="two">
+    <div><h4>Comes across as it is</h4><ul class="ticks"><li>Text with its font, size, colour, highlight and emphasis</li><li>Bullets, numbering and indent levels</li><li>Tables with column widths and cell shading</li><li>Links, including links back into OneNote</li><li>Pictures, where they sat on the page</li></ul></div>
+    <div><h4>Changes on the way</h4><ul class="dash"><li>Handwriting and drawings become a picture of the page</li><li>Embedded files are copied to the page&rsquo;s assets and shown as links</li><li>Tags and to-do boxes become symbols (&#9744; &#9745; &#9733; &#9873;)</li><li>Audio, video, page history, author stamps and password-protected sections are not imported</li></ul></div>
+  </div>
+  <p>You see all of this before anything is read. Then you choose what to bring in: everything is ticked; untick what you would rather leave behind, or clear <em>Select all</em> and tick just the sections &ndash; or single pages, behind each section&rsquo;s arrow &ndash; that you want. OneNote is only read, never changed. Imported topics are added beside what you have; a repeat import creates a new topic. Anything that could not be converted is listed on an <em>Import report</em> page in each imported topic, so nothing goes missing quietly.</p>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/o01-onenote-accept.webp" width="620" height="660" alt="What comes across, before anything is read" loading="lazy" decoding="async"><figcaption>What comes across, before anything is read</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o02-onenote-picker.webp" width="640" height="620" alt="Choose what to import – notebooks, sections or single pages" loading="lazy" decoding="async"><figcaption>Choose what to import &ndash; notebooks, sections or single pages</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o03-onenote-finished.webp" width="460" height="238" alt="Import finished" loading="lazy" decoding="async"><figcaption>Import finished</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o04-onenote-report.webp" width="1278" height="960" alt="The imported topic with its Import report page" loading="lazy" decoding="async"><figcaption>The imported topic with its Import report page</figcaption></figure></div>
+</section>
+
+<!-- ================= USE EASYNOTES ================= -->
+<section id="features" class="doc-sec" data-group="Use EasyNotes">
+  <p class="kicker">Use EasyNotes</p>
+  <h2>Key features</h2>
+  <div class="fgrid">
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h5v4H4zM11 10h5v4h-5zM11 16h5v0"/><path d="M6.5 8v6H11M6.5 12H11"/></svg></i><b>Topics, three levels deep</b><span>Topic &rsaquo; Sub-topic &rsaquo; Child topic, with drag and drop and progress counts.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h7l3 3v11H5z"/><path d="M8 9h5M8 12h5M8 15h3"/></svg></i><b>Notes, spreadsheets, checklists</b><span>Rich text, a filterable grid with XLSX/CSV export, and tick-box lists.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l2 2v10H4z"/><path d="M7 4v4h6V4M7 16v-5h6v5"/></svg></i><b>Autosave, crash-safe</b><span>Saved as you type, written safely, deleted items kept in trash.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"/><path d="M13 13l4 4"/></svg></i><b>Search everything</b><span>Topic names, page titles and page contents, as you type.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 2h-13z"/><path d="M8.5 18a1.5 1.5 0 0 0 3 0"/></svg></i><b>Reminders and to-dos</b><span>Anchored to the text they belong to, with snoozable pop-ups.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="10" height="13" rx="2"/><path d="M8 3h4v2.5H8zM8 10h4M8 13h3"/></svg></i><b>Session clipboard</b><span>Everything you copy while EasyNotes runs &ndash; local, temporary, opt-in.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11M10 3l4 4-4 4M17 13H6M10 9l-4 4 4 4"/></svg></i><b>Transit and multi-select</b><span>Pick up to 15 pieces, in order, and carry them to any app.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3l6 3v5c0 3.5-2.6 5.6-6 6.5C6.6 16.6 4 14.5 4 11V6z"/><path d="M7.5 10.5l2 2 3.5-4"/></svg></i><b>Verified backups</b><span>Scheduled, checked, retained &ndash; and restorable from Settings.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15h8.5a3.5 3.5 0 0 0 .4-7A5 5 0 0 0 5.2 9 3 3 0 0 0 6 15z"/></svg></i><b>Sync-aware storage</b><span>Finds your OneDrive, Google Drive and Dropbox folders.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M7 13V7l4 6V7M14 7v6"/></svg></i><b>OneNote import</b><span>Notebooks, sections and pages, with a report of anything skipped.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="12" height="9" rx="3"/><path d="M10 4v3M8 11h.01M12 11h.01"/><circle cx="10" cy="3.5" r="1"/></svg></i><b>MCP for AI tools</b><span>Scoped tokens, your rules, an audit log. Off by default.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="10" rx="2"/><path d="M7 17h6M10 14v3M7 8l2 2 4-4"/></svg></i><b>Always within reach</b><span>Tray app, global hotkey, stay on top, world clocks, dark and dim.</span></div>
+  </div>
+</section>
+
+<section id="dashboard" class="doc-sec">
+  <h2>Dashboard</h2>
+  <p>The dashboard &ndash; <em>Quick View</em> &ndash; is your workspace at a glance. Open it from the first button in the header; it also opens at every launch while <em>Show at launch</em> is on.</p>
+  <ul class="ticks">
+    <li><b>Structure</b> and <b>Content</b> &ndash; how many topics, sub-topics, child topics, pages, spreadsheets, checklists and retained backups you have.</li>
+    <li><b>Storage &amp; Backup</b> &ndash; the User Data path, the backup path, the last successful backup and the next one.</li>
+    <li><b>Events</b> &ndash; a searchable list of what happened: pages, topics, backups, reminders and to-do changes.</li>
+    <li><b>To-do</b> &ndash; total, overdue and done, with reminder cards you can tick off, edit or jump to.</li>
+  </ul>
+  <figure class="shot "><img class="zoom" src="assets/shots/a03-dashboard.webp" width="1278" height="960" alt="Quick View on a working notebook: structure, content, storage and backup, events and the to-do list." loading="lazy" decoding="async"><figcaption>Quick View on a working notebook: structure, content, storage and backup, events and the to-do list.</figcaption></figure>
+</section>
+
+<section id="left-pane" class="doc-sec">
+  <h2>Left pane: hierarchy, pages, sheets and checklists</h2>
+  <h3 class="h3">Hierarchy</h3>
+  <p>Topics nest three levels deep: <b>Topic &rsaquo; Sub-topic &rsaquo; Child topic</b>. Drag a topic onto the middle of another to move it inside, or onto its top or bottom edge to place it beside. Drag pages to re-order them or move them to another topic. The <b>＋</b> on every topic row adds a page, a checklist or a sub-topic; <kbd>Ctrl</kbd>+<kbd>N</kbd> adds a page to the current topic and <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> a new topic.</p>
+  <h3 class="h3">Three kinds of page</h3>
+  <div class="ptypes">
+    <div><b>Notes</b><span>Free text with formatting, bullets and symbols, shapes and pictures. Pasted tables become clean aligned text.</span></div>
+    <div><b>Spreadsheet</b><span>A plain-value grid with type-ahead filters on every column, copy cell / row / column / all, and export to XLSX or CSV.</span></div>
+    <div><b>Checklist</b><span>A notes page that opens with a checklist named after the page: tick boxes, items and notes.</span></div>
+  </div>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a04-sheet.webp" width="1278" height="960" alt="A spreadsheet page with its toolbar" loading="lazy" decoding="async"><figcaption>A spreadsheet page with its toolbar</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a05-checklist.webp" width="1278" height="960" alt="A checklist page" loading="lazy" decoding="async"><figcaption>A checklist page</figcaption></figure></div>
+  <figure class="shot win"><img class="zoom" src="assets/shots/a10-new-page.webp" width="620" height="334" alt="New page: pick Notes, Spreadsheet or Checklist." loading="lazy" decoding="async"><figcaption>New page: pick Notes, Spreadsheet or Checklist.</figcaption></figure>
+  <h3 class="h3">Zoom and search</h3>
+  <p>The magnifier buttons above the tree make topic text larger or smaller in 10% steps; <kbd>Ctrl</kbd> + mouse wheel over the tree does it in 5% steps, from 100% to 150%. The search box (<kbd>Ctrl</kbd>+<kbd>K</kbd>) looks through topic names, page titles and page contents as you type, and marks pages that match in their text; <kbd>Esc</kbd> clears it.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a06-tree-zoom.webp" width="1278" height="960" alt="Topic text at a larger zoom" loading="lazy" decoding="async"><figcaption>Topic text at a larger zoom</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a07-search.webp" width="1278" height="960" alt="Searching for “BitLocker” across titles and content" loading="lazy" decoding="async"><figcaption>Searching for &ldquo;BitLocker&rdquo; across titles and content</figcaption></figure></div>
+  <h3 class="h3">Right-click options</h3>
+  <div class="menus">
+    <div><h4>On a topic</h4><ul class="menu"><li>&#10004; Mark as complete <small>ticks the topic and everything under it</small></li><li>&#128221; Add page&hellip;</li><li>&#9989; Add checklist&hellip;</li><li>&#128194; Add sub-topic&hellip; / Add child topic&hellip;</li><li>&#9999; Rename topic</li><li>&#128279; Copy path</li><li>&uarr; Move up &middot; &darr; Move down</li><li>&#8644; Move under&hellip;</li><li>&#128465; Delete topic <small>to the trash folder</small></li></ul></div>
+    <div><h4>On a page</h4><ul class="menu"><li>&#10004; Mark as complete</li><li>&#10133; Create new&hellip;</li><li>&#9999; Rename page</li><li>&#128279; Copy path <small>paste it into a note and <kbd>Ctrl</kbd>+Click to jump back</small></li><li>&uarr; Move up &middot; &darr; Move down</li><li>&#8644; Move to topic&hellip;</li><li>&#128465; Delete page</li></ul></div>
+    <div><h4>In a note</h4><ul class="menu"><li>&#9200; Set reminder on selection&hellip;</li><li>&#9745; Checklist &rsaquo; create, add to, copy</li><li>Cut &middot; Copy &middot; Paste &middot; Send to Transit</li><li>&#10697; Multi-select (up to 15)</li><li>Insert link&hellip; &middot; Copy hyperlink</li><li>&#128193; Insert file / folder path&hellip;</li><li>&#128203; Paste from clipboard&hellip;</li><li>&#128444; Insert image file&hellip;</li><li>&#128338; Insert Date &amp; Time</li><li>Clear formatting &middot; Copy all</li></ul></div>
+  </div>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/a08-topic-menu.webp" width="1278" height="960" alt="Right-click on a topic" loading="lazy" decoding="async"><figcaption>Right-click on a topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a09-page-menu.webp" width="1280" height="960" alt="Right-click on a page – Move to topic" loading="lazy" decoding="async"><figcaption>Right-click on a page &ndash; Move to topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a11-editor-menu.webp" width="1280" height="960" alt="Right-click on selected text in a note" loading="lazy" decoding="async"><figcaption>Right-click on selected text in a note</figcaption></figure></div>
+  <p>The note editor also has a format painter, bullets and numbering in several styles, indents, alignment, highlight and text colour, symbols, 40 vector shapes, floating pictures, a horizontal rule, <em>Find and Replace</em> (<kbd>Ctrl</kbd>+<kbd>H</kbd>) and <em>Replace selected</em>, and a per-page undo history.</p>
+</section>
+
+<section id="reminders" class="doc-sec">
+  <h2>To-Do&rsquo;s and Reminders</h2>
+  <p>A reminder belongs to the text it was set on. Select text in a note, right-click and choose <em>Set reminder on selection&hellip;</em>, or use <em>Set reminder on this item&hellip;</em> on a checklist item. If the text moves to another page, the reminder follows it; if it is deleted, the reminder is flagged &ldquo;Content not found&rdquo; rather than removed silently.</p>
+  <table class="spec">
+    <tr><th>After a period</th><td>In 1&ndash;365 days, 1&ndash;48 hours or 1&ndash;120 minutes</td></tr>
+    <tr><th>Exact time</th><td>A date and time; fires once</td></tr>
+    <tr><th>Recurring</th><td>A start date, then every N days, hours or minutes</td></tr>
+  </table>
+  <p>When a reminder is due, a pop-up rolls down over EasyNotes (or appears on its own when EasyNotes is hidden). Snooze it for minutes, hours or days &ndash; snoozing moves the pop-up, never the deadline &ndash; mark it complete, or switch the pop-up off for that reminder.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a12-set-reminder.webp" width="560" height="461" alt="Set reminder: after a period, exact time or recurring" loading="lazy" decoding="async"><figcaption>Set reminder: after a period, exact time or recurring</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a27-reminder-popup.webp" width="1278" height="960" alt="A due reminder, with snooze and Mark as Complete" loading="lazy" decoding="async"><figcaption>A due reminder, with snooze and Mark as Complete</figcaption></figure></div>
+  <p>The <b>to-do list</b> in the header shows every reminder with a count of open items: a summary of open, overdue and done, a search box, and on each row a tick box, <em>Edit the schedule</em>, <em>Go to content</em> and <em>Delete</em>. Overdue items and items whose text has gone come first. The dashboard carries the same list.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a13-todo.webp" width="1278" height="960" alt="The to-do list in the header, with search and Go to content." loading="lazy" decoding="async"><figcaption>The to-do list in the header, with search and Go to content.</figcaption></figure>
+</section>
+
+<section id="clipboard" class="doc-sec">
+  <h2>Session Clipboard</h2>
+  <p>Switch on the session clipboard and EasyNotes keeps a list of what you copy in any app while it runs &ndash; text, links, files and folders, pictures &ndash; so an earlier copy can be pasted back into a note. Up to 300 items.</p>
+  <ul class="ticks">
+    <li>Only while EasyNotes is running &ndash; the list starts empty every time.</li>
+    <li>Kept on this device only, in a temporary folder in your Windows profile &ndash; never in your notes folder, never synced, never in backups, and deleted when EasyNotes exits.</li>
+    <li>Copies that password managers and other apps mark as private are skipped.</li>
+    <li>Switching it off stops recording at once; <em>Clear all</em> removes what is there.</li>
+  </ul>
+  <p>Open the list from the header: click an item to paste it at the cursor, or use its buttons to copy it back to the Windows clipboard, paste it into the open note, park it in Transit or remove it. In a note, right-click &rsaquo; <em>Paste from clipboard&hellip;</em> lets you tick several items and paste them in the order you ticked them.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a14-clipboard.webp" width="1278" height="960" alt="The session clipboard in the header" loading="lazy" decoding="async"><figcaption>The session clipboard in the header</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a15-paste-dialog.webp" width="546" height="513" alt="Paste from session clipboard: tick, then Paste selected" loading="lazy" decoding="async"><figcaption>Paste from session clipboard: tick, then Paste selected</figcaption></figure></div>
+</section>
+
+<section id="transit" class="doc-sec">
+  <h2>Transit</h2>
+  <p>Transit is a parking pad for content on its way somewhere &ndash; to or from another app, or between notes. It opens from the header and closes with <kbd>Esc</kbd>, and it keeps pictures, links and formatting.</p>
+  <p>Send a selection with right-click &rsaquo; <em>Send to Transit</em>, send a session-clipboard item with its Transit button, or use <b>multi-select</b>: right-click &rsaquo; <em>Multi-select (up to 15)</em>, then drag over up to 15 separate pieces of a page. They are copied or sent in the order you picked them &ndash; with formatting for Word, Outlook, OneNote and Teams, and as plain text everywhere else.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a16-multiselect.webp" width="1278" height="960" alt="Multi-select: three pieces picked, in order" loading="lazy" decoding="async"><figcaption>Multi-select: three pieces picked, in order</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a17-transit.webp" width="1278" height="960" alt="The picks parked in Transit, ready to copy into another app" loading="lazy" decoding="async"><figcaption>The picks parked in Transit, ready to copy into another app</figcaption></figure></div>
+  <p class="small">Transit is stored with your notes, so it is kept between sessions, included in backups and synced along with your notes folder. <em>Clear</em> empties it.</p>
+</section>
+
+<section id="header" class="doc-sec">
+  <h2>Header options</h2>
+  <div class="hdr-anno"><img class="zoom" src="assets/shots/a23c-header.webp" width="638" height="52" alt="The EasyNotes header, left to right" loading="lazy" decoding="async"><div class="ruler" aria-hidden="true"><span style="left:9.09%">1</span><span style="left:16.77%">2</span><span style="left:22.73%">3</span><span style="left:30.41%">4</span><span style="left:36.36%">5</span><span style="left:42.48%">6</span><span style="left:49.84%">7</span><span style="left:55.80%">8</span><span style="left:61.76%">9</span><span style="left:67.71%">10</span><span style="left:73.67%">11</span></div></div>
+  <ol class="hdr-list">
+    <li><b>Dashboard</b> &ndash; Quick View.</li>
+    <li><b>Transit</b> &ndash; the parking pad.</li>
+    <li><b>MCP activity</b> &ndash; off, on or busy.</li>
+    <li><b>Session clipboard</b> &ndash; with a recording dot and count.</li>
+    <li><b>World clocks</b> &ndash; up to five regions.</li>
+    <li><b>To-do list</b> &ndash; open items.</li>
+    <li><b>Stay on top</b> &ndash; <kbd>Ctrl</kbd>+<kbd>T</kbd>.</li>
+    <li><b>Settings</b></li>
+    <li><b>Notifications</b> &ndash; events and backup status.</li>
+    <li><b>Dark theme</b></li>
+    <li><b>Dim</b></li>
+  </ol>
+  <h3 class="h3" id="h-mcp">MCP activity</h3>
+  <p>The bot shows the state of the MCP endpoint at a glance: dimmed when it is off, lit when it is on and listening, and glowing amber while an AI tool is using EasyNotes. Hover for the endpoint and the last call; click to open <em>Settings &rsaquo; MCP</em>. With <em>Notify me of every write</em> on, each change an AI tool makes arrives in the bell as &ldquo;AI &middot; &hellip;&rdquo; with the client, the tool and the page.</p>
+  <figure class="shot nat"><img class="zoom" src="assets/shots/a18c-mcp-on.webp" width="718" height="112" alt="On and listening – hover the bot for the endpoint." loading="lazy" decoding="async"><figcaption>On and listening &ndash; hover the bot for the endpoint.</figcaption></figure>
+  <figure class="shot nat"><img class="zoom" src="assets/shots/a19c-mcp-busy.webp" width="638" height="52" alt="Busy – the amber glow while an AI tool is working (here, just after it wrote a page)." loading="lazy" decoding="async"><figcaption>Busy &ndash; the amber glow while an AI tool is working (here, just after it wrote a page).</figcaption></figure>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a20-mcp-page.webp" width="1278" height="960" alt="A page written by an AI tool under the rules: a new “Claude - ” page right below the source" loading="lazy" decoding="async"><figcaption>A page written by an AI tool under the rules: a new &ldquo;Claude - &rdquo; page right below the source</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a21-notifications.webp" width="1278" height="960" alt="The writes, reported in Notifications" loading="lazy" decoding="async"><figcaption>The writes, reported in Notifications</figcaption></figure></div>
+  <h3 class="h3" id="h-todo">To-Do&rsquo;s dropdown</h3>
+  <p>The checklist icon carries the number of open items and opens the to-do list described under <a href="#reminders">To-Do&rsquo;s and Reminders</a>.</p>
+  <h3 class="h3" id="h-clock">World clock</h3>
+  <p>Tick up to five regions &ndash; US (EST), US (CST), US (PST), UK, Netherlands, Africa (JHB), Dubai, India, Singapore, Australia (SYD) &ndash; and their times appear in the header in 24-hour format. Click a clock to remove it.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a22-clocks.webp" width="1278" height="960" alt="World clocks: three regions ticked, shown in the header." loading="lazy" decoding="async"><figcaption>World clocks: three regions ticked, shown in the header.</figcaption></figure>
+  <h3 class="h3" id="h-top">Stay on top</h3>
+  <p>The pin keeps EasyNotes above other windows while you copy and paste between apps. <kbd>Ctrl</kbd>+<kbd>T</kbd> toggles it, and so does the tray menu.</p>
+  <h3 class="h3" id="h-dark">Dark theme</h3>
+  <p>The moon switches between the light workspace and a soft blue-grey dark theme. <em>Settings &rsaquo; Appearance</em> can also follow Windows and use your Windows accent colour.</p>
+  <h3 class="h3" id="h-dim">Dim</h3>
+  <p>Dim lays a warm tint over the light theme for long sessions or evening work. It applies to the light theme only &ndash; the dark theme is already easy on the eyes.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a25-dark-clocks.webp" width="1278" height="960" alt="Dark theme" loading="lazy" decoding="async"><figcaption>Dark theme</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a26-dim.webp" width="1278" height="960" alt="Dim on the light theme" loading="lazy" decoding="async"><figcaption>Dim on the light theme</figcaption></figure></div>
+  <h3 class="h3" id="h-settings">Settings</h3>
+  <p>The gear opens Settings &ndash; see below.</p>
+</section>
+
+<section id="settings" class="doc-sec">
+  <h2>Settings</h2>
+  <p>Six pages, each one click away from the rail. Everything chosen during setup can be changed here.</p>
+  <div class="tabs" role="tablist" aria-label="Settings pages"><button type="button" role="tab" aria-selected="true" aria-controls="tab-0" id="tb-0">Storage</button><button type="button" role="tab" aria-selected="false" aria-controls="tab-1" id="tb-1">Backup</button><button type="button" role="tab" aria-selected="false" aria-controls="tab-2" id="tb-2">Session Clipboard</button><button type="button" role="tab" aria-selected="false" aria-controls="tab-3" id="tb-3">Appearance</button><button type="button" role="tab" aria-selected="false" aria-controls="tab-4" id="tb-4">Windows</button><button type="button" role="tab" aria-selected="false" aria-controls="tab-5" id="tb-5">MCP</button></div><div class="tab-panel" role="tabpanel" id="tab-0" aria-labelledby="tb-0"><figure class="shot win"><img class="zoom" src="assets/shots/s01-settings-storage.webp" width="900" height="920" alt="Settings › Storage" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Storage</figcaption></figure></div><div class="tab-panel" role="tabpanel" id="tab-1" aria-labelledby="tb-1" hidden><figure class="shot win"><img class="zoom" src="assets/shots/s02-settings-backup.webp" width="900" height="920" alt="Settings › Backup" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Backup</figcaption></figure></div><div class="tab-panel" role="tabpanel" id="tab-2" aria-labelledby="tb-2" hidden><figure class="shot win"><img class="zoom" src="assets/shots/s03-settings-session-clipboard.webp" width="900" height="920" alt="Settings › Session Clipboard" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Session Clipboard</figcaption></figure></div><div class="tab-panel" role="tabpanel" id="tab-3" aria-labelledby="tb-3" hidden><figure class="shot win"><img class="zoom" src="assets/shots/s04-settings-appearance.webp" width="900" height="920" alt="Settings › Appearance" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Appearance</figcaption></figure></div><div class="tab-panel" role="tabpanel" id="tab-4" aria-labelledby="tb-4" hidden><figure class="shot win"><img class="zoom" src="assets/shots/s05-settings-windows.webp" width="900" height="920" alt="Settings › Windows" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Windows</figcaption></figure></div><div class="tab-panel" role="tabpanel" id="tab-5" aria-labelledby="tb-5" hidden><figure class="shot win"><img class="zoom" src="assets/shots/s06-settings-mcp.webp" width="900" height="920" alt="Settings › MCP" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; MCP</figcaption></figure></div>
+  <table class="spec">
+    <tr><th>Storage</th><td>User Data and App Data folders, with <em>Change&hellip;</em> and <em>Open</em>, and the sync status of the notes folder</td></tr>
+    <tr><th>Backup</th><td>Automatic backups (on), folder, Daily every 1 day / Hourly 2&ndash;8 h, keep 30 days (1&ndash;90), Back up now, Restore, backup log, status and history</td></tr>
+    <tr><th>Session Clipboard</th><td>Record the session clipboard (off for new installs)</td></tr>
+    <tr><th>Appearance</th><td>Follow Windows / Light / Dark; use my Windows accent colour (off)</td></tr>
+    <tr><th>Windows</th><td>Start at sign-in and start minimised to the tray (on); Start menu entry (the Store app adds one itself); global hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> (on)</td></tr>
+    <tr><th>MCP</th><td>Enable MCP integration (off), port 47391, notify me of every write (on), rules for AI tools, access tokens, audit log</td></tr>
+  </table>
+</section>
+
+<!-- ================= REFERENCE ================= -->
+<section id="shortcuts" class="doc-sec" data-group="Reference">
+  <p class="kicker">Reference</p>
+  <h2>Keyboard shortcuts</h2>
+  <table class="spec keys">
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd></th><td>Show or hide EasyNotes from any app</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></th><td>New page in the current topic / new topic</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>K</kbd></th><td>Search topics, pages and content</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd></th><td>Find in page / Find and Replace</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>T</kbd></th><td>Stay on top</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd></th><td>Import from OneNote</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>S</kbd></th><td>Save now (pages save as you type anyway)</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+Click</th><td>Open a link or a copied Topic &rsaquo; Page path</td></tr>
+    <tr><th><kbd>Esc</kbd> <kbd>Esc</kbd></th><td>Hide to the tray</td></tr>
+    <tr><th><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></th><td>Indent / outdent; move through a checklist</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Enter</kbd></th><td>Add a row to a spreadsheet</td></tr>
+  </table>
+</section>
+
+<section id="get" class="doc-sec get">
+  <div class="get-card">
+    <div>
+      <img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt="">
+      <h2>Install EasyNotes from the Microsoft Store</h2>
+      <p>Free, for Windows 10 (2004 or later) and Windows 11. No account, no telemetry.</p>
+    </div>
+    <div class="get-cta">
+      <a class="store-btn big is-placeholder" href="#get" aria-disabled="true" title="The Store listing link is added at publication"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span><small>Get it from</small>Microsoft Store</span></a>
+      <span class="ph-note">Placeholder &ndash; Store link and badge added at publication</span>
+    </div>
+  </div>
+</section>
+
+    </article>
+  </div>
+</main>
+
+<footer id="support">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="../#top"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg><span>Endpoint<b>Labz</b></span></a>
+      <p class="fine">Tools and automations for people who run the Microsoft endpoint estate. Built and maintained by Satish Singhi.</p>
+    </div>
+    <div><h5>Products</h5><ul><li><a href="#top">EasyNotes</a></li><li><a href="#first-launch">Getting started</a></li><li><a href="../#support">FAQ</a></li><li><a href="../#support">Privacy policy</a></li></ul></div>
+    <div><h5>Community Contributions</h5><ul><li><a href="../#tools">Tools</a></li><li><a href="../#scripts">Scripts &amp; Automations</a></li><li><a href="../#blogs">Blogs</a></li><li><a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div><h5>Support</h5><ul><li><a href="mailto:support@endpointlabz.com">support@endpointlabz.com</a></li><li><a href="../#support">Report an issue</a></li><li><a href="../#about">About</a></li><li><a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="wrap bottom">
+    <span>© 2026 EndpointLabz · Satish Singhi. All rights reserved.</span>
+    <span class="mono">Made in the UK</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button class="x" type="button" aria-label="Close">&#10005;</button>
+  <button class="prev" type="button" aria-label="Previous screenshot">&#8249;</button>
+  <button class="next" type="button" aria-label="Next screenshot">&#8250;</button>
+  <figure><img alt=""><video controls playsinline preload="none" hidden></video><figcaption></figcaption></figure>
+</div>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),saved=null;
+  try{saved=localStorage.getItem('elz-theme');}catch(e){}
+  function apply(t){root.setAttribute('data-theme',t);btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');}
+  apply(saved==='dark'?'dark':'light');
+  btn.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('elz-theme',t);}catch(e){}});
+})();
+(function(){
+  var nav=document.getElementById('nav'),btn=document.getElementById('menuBtn');
+  btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  nav.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+})();
+(function(){
+  var wrap=document.getElementById('sup'),btn=document.getElementById('supBtn'),pop=document.getElementById('supPop'),
+      cp=document.getElementById('supCopy'),mail=document.getElementById('supMail'),note=document.getElementById('supNote');
+  if(!wrap)return;
+  function open(o){pop.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false');if(!o){note.textContent='';cp.classList.remove('done');}}
+  btn.addEventListener('click',function(e){e.stopPropagation();open(pop.hidden);});
+  document.addEventListener('click',function(e){if(!pop.hidden&&!wrap.contains(e.target))open(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden){open(false);btn.focus();}});
+  function done(ok){cp.classList.toggle('done',ok);note.textContent=ok?'Copied to the clipboard':'Select the address and copy it';setTimeout(function(){cp.classList.remove('done');},1800);}
+  function fallback(){try{var r=document.createRange();r.selectNodeContents(mail);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);done(document.execCommand('copy'));}catch(e){done(false);}}
+  cp.addEventListener('click',function(){var t=mail.textContent.trim();
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true);},fallback);}else fallback();});
+})();
+(function(){
+  /* the Community / Products menus open on hover or focus - blur the picked item so the menu closes after the jump */
+  document.querySelectorAll('.dd-m a').forEach(function(a){a.addEventListener('click',function(){var d=a.closest('.dd');a.blur();d.classList.add('dd-x');
+    d.addEventListener('mouseleave',function f(){d.classList.remove('dd-x');d.removeEventListener('mouseleave',f);});});});
+  /* local preview only: a folder link needs index.html on file:// (the live site serves folders by their index) */
+  if(location.protocol==='file:'){document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');
+    if(/^(?![a-z]+:|#|\/)/i.test(h)){var i=h.indexOf('#'),p=i<0?h:h.slice(0,i),f=i<0?'':h.slice(i);if(p===''||/\/$/.test(p))a.setAttribute('href',p+'index.html'+f);}});}
+})();
+
+(function(){
+  // section index: highlight the section in view; on narrow screens the index folds into a button
+  var links=[].slice.call(document.querySelectorAll('.toc a')),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var secs=[].slice.call(document.querySelectorAll('.doc-sec,.doc .h3[id]'));
+  function on(){var y=window.scrollY+120,cur=null;secs.forEach(function(s){if(s.getBoundingClientRect().top+window.scrollY<=y)cur=s;});
+    links.forEach(function(a){a.classList.remove('on');});
+    if(cur){var a=map[cur.id];if(!a&&cur.closest)a=map[cur.closest('.doc-sec').id];if(a)a.classList.add('on');
+      var sec=cur.closest?cur.closest('.doc-sec'):null;if(sec&&map[sec.id]&&map[sec.id]!==a)map[sec.id].classList.add('on');}}
+  window.addEventListener('scroll',on,{passive:true});on();
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.toc-btn');
+  if(tb){tb.addEventListener('click',function(){var o=toc.classList.toggle('open');tb.setAttribute('aria-expanded',o?'true':'false');});
+    links.forEach(function(a){a.addEventListener('click',function(){toc.classList.remove('open');tb.setAttribute('aria-expanded','false');});});}
+})();
+(function(){
+  // copy buttons
+  document.querySelectorAll('.code .copy').forEach(function(b){b.addEventListener('click',function(){
+    var t=b.parentNode.querySelector('pre').innerText.replace(/^> /,'');
+    function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1400);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}else{done();}
+  });});
+})();
+(function(){
+  // settings tabs
+  var tabs=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
+  function sel(i){tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');t.tabIndex=j===i?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=j!==i;});}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(i);});t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){sel((i+1)%tabs.length);tabs[(i+1)%tabs.length].focus();}if(e.key==='ArrowLeft'){var k=(i+tabs.length-1)%tabs.length;sel(k);tabs[k].focus();}});});
+})();
+(function(){
+  // lightbox: every screenshot opens full size; arrows move through the screenshots of the same section
+  var lb=document.getElementById('lb'),im=lb.querySelector('img'),vid=lb.querySelector('video'),cap=lb.querySelector('figcaption'),list=[],idx=0,last=null;
+  function visible(e){return e.offsetParent!==null;}
+  function show(i){idx=(i+list.length)%list.length;var e=list[idx];im.src=e.currentSrc||e.src;im.alt=e.alt;var f=e.closest('figure');cap.innerHTML=f&&f.querySelector('figcaption')?f.querySelector('figcaption').innerHTML:e.alt;
+    lb.querySelector('.prev').hidden=lb.querySelector('.next').hidden=list.length<2;}
+  function open(e){last=document.activeElement;var sec=e.closest('.doc-sec')||document;list=[].slice.call(sec.querySelectorAll('img.zoom')).filter(visible);if(!list.length)list=[e];
+    vid.hidden=true;im.hidden=false;lb.classList.add('open');document.body.style.overflow='hidden';show(list.indexOf(e));lb.querySelector('.x').focus();}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';vid.pause();if(last)last.focus();}
+  document.addEventListener('click',function(ev){var e=ev.target.closest('img.zoom');if(e){open(e);}});
+  lb.querySelector('.x').addEventListener('click',close);
+  lb.querySelector('.prev').addEventListener('click',function(){show(idx-1);});
+  lb.querySelector('.next').addEventListener('click',function(){show(idx+1);});
+  lb.addEventListener('click',function(ev){if(ev.target===lb)close();});
+  document.addEventListener('keydown',function(ev){if(!lb.classList.contains('open'))return;if(ev.key==='Escape')close();if(ev.key==='ArrowRight'&&vid.hidden)show(idx+1);if(ev.key==='ArrowLeft'&&vid.hidden)show(idx-1);});
+  var pb=document.getElementById('playTour');
+  if(pb)pb.addEventListener('click',function(){last=pb;im.hidden=true;vid.hidden=false;cap.textContent='EasyNotes in six minutes - first launch, setup and a tour of the real app';
+    lb.querySelector('.prev').hidden=lb.querySelector('.next').hidden=true;lb.classList.add('open');document.body.style.overflow='hidden';
+    if(!vid.getAttribute('src'))vid.setAttribute('src','../assets/easynotes-demo.mp4');vid.currentTime=0;var p=vid.play();if(p&&p.catch)p.catch(function(){});lb.querySelector('.x').focus();});
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-37U04/Vzkz7ZtQBwVSESBJn5BtqIuj+yG7wvJ4FSzOo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://endpointlabz.com/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="EndpointLabz — tools and automations for the Microsoft endpoint estate. EasyNotes, MDM-ODA and platform automations by Satish Singhi.">
+<!-- EndpointLabz home page v4 · v18 · Author: Satish Singhi -->
+<title>EndpointLabz</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+/* EndpointLabz — home page v4 · Author: Satish Singhi */
+:root{
+  --bg:#F8FAFB; --bg-2:#EEF4F6; --surface:#FFFFFF; --line:#D9E3E7; --line-2:#C2D0D6;
+  --ink:#0F1B22; --ink-2:#3A4B53; --ink-3:#6B7C84;
+  --teal:#0F766E; --teal-2:#0B5C56; --teal-soft:#DDF1EE; --teal-glow:rgba(15,118,110,.18);
+  --gold:#F0C040; --gold-soft:#FBF0D3;
+  --ocean-a:#0F3B78; --ocean-b:#1B5FBF; --ocean-soft:#EAF0FA; --amber:#FFB020;
+  --hero-bg:linear-gradient(180deg,#EAF5F3 0%,#F8FAFB 70%);
+  --blob-a:rgba(20,184,166,.22); --blob-b:rgba(212,160,23,.16); --blob-c:rgba(59,111,216,.14);
+  /* ecosystem node colours: (ink, disc) */
+  --n-endpoints:#0F766E; --n-endpoints-bg:#D7EFEB;
+  --n-cloud:#2F6BD6;     --n-cloud-bg:#DFE9FB;
+  --n-identity:#6B4FC7;  --n-identity-bg:#E9E3FA;
+  --n-data:#4A5BA6;      --n-data-bg:#E2E6F5;
+  --n-productivity:#B7791F; --n-productivity-bg:#FBF0D3;
+  --n-connectivity:#0E7C9A; --n-connectivity-bg:#DBF1F6;
+  --n-security:#C0483D;  --n-security-bg:#FBE3DF;
+  --n-monitoring:#2F8A5B; --n-monitoring-bg:#DFF3E7;
+  --shadow:0 1px 2px rgba(15,27,34,.05),0 12px 32px -12px rgba(15,27,34,.14);
+  --r-s:8px; --r-m:14px; --r-l:22px;
+  --ff-display:"Sora",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-body:"Manrope",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--ff-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+img,svg{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--ff-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+@media (max-width:640px){.wrap{width:calc(100% - 32px)}}
+.mono{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.02em}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backdrop-filter:saturate(1.4) blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--ff-display);font-weight:700;font-size:17px;letter-spacing:-.02em}
+.brand svg{width:28px;height:28px}
+.brand span b{color:#E2AC25;font-weight:700}
+:root[data-theme="dark"] .brand span b{color:#F0C040}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.nav-links a{position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--teal);transition:right .25s ease}
+.nav-links a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,border-color .2s,box-shadow .2s;font-family:var(--ff-body)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 18px -6px var(--teal-glow)}
+.btn-primary:hover{background:var(--teal-2)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.btn-ocean{background:linear-gradient(90deg,var(--ocean-a),var(--ocean-b));color:#fff}
+.btn-ocean:hover{filter:brightness(1.08)}
+.nav .btn{padding:9px 16px}
+.theme-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,color .2s}
+.theme-btn:hover{border-color:var(--teal);color:var(--teal)}
+.theme-btn svg{width:17px;height:17px}
+.theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:block}:root[data-theme="dark"] .theme-btn .moon{display:none}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:10px;width:40px;height:40px;color:var(--ink);cursor:pointer}
+@media (max-width:860px){
+  .theme-btn{margin-left:auto}
+  .menu-btn{margin-left:0}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
+  .nav-links a::after{display:none}
+  .nav.open .nav-links{display:flex}
+  .nav .btn-primary{display:none}
+  .menu-btn{display:grid;place-items:center}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding-block:72px 64px;background:var(--hero-bg)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.hero::before{width:520px;height:520px;right:-120px;top:-160px;background:radial-gradient(circle,var(--blob-a),transparent 65%)}
+.hero::after{width:420px;height:420px;left:-140px;bottom:-200px;background:radial-gradient(circle,var(--blob-b),transparent 65%)}
+.hero .wrap{position:relative;z-index:1}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-weight:700;font-size:13.5px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--teal);border-radius:2px}
+.hero h1{font-size:clamp(38px,5vw,60px);line-height:1.04;font-weight:700;margin-top:18px;letter-spacing:-.025em}
+.hero .lead{margin-top:22px;font-size:18px;line-height:1.6;color:var(--ink-2);max-width:52ch}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero .fine{margin-top:22px;color:var(--ink-3);font-size:13.5px;display:flex;gap:18px;flex-wrap:wrap}
+.hero .fine span{display:inline-flex;align-items:center;gap:7px}
+.hero .fine svg{width:14px;height:14px;color:var(--teal)}
+.enter{opacity:0;transform:translateY(10px);animation:enter .7s cubic-bezier(.2,.7,.2,1) forwards}
+.enter:nth-child(2){animation-delay:.08s}.enter:nth-child(3){animation-delay:.16s}.enter:nth-child(4){animation-delay:.24s}.enter:nth-child(5){animation-delay:.32s}
+@keyframes enter{to{opacity:1;transform:none}}
+
+/* ecosystem ring */
+.eco{position:relative;max-width:560px;margin-inline:auto;width:100%}
+.eco svg{width:100%;height:auto;overflow:visible}
+.eco .orbit{fill:none;stroke:var(--line-2);stroke-width:1.2;stroke-dasharray:2 7;stroke-linecap:round}
+.eco .orbit-beat{fill:none;stroke:var(--teal);stroke-width:1.6;stroke-dasharray:2 7;stroke-linecap:round;opacity:0;animation:orbitbeat 2.6s ease-in-out infinite}
+@keyframes orbitbeat{0%,8%{opacity:0}14%{opacity:.5}22%{opacity:.06}30%{opacity:.4}48%,100%{opacity:0}}
+.eco .spoke{stroke:var(--line-2);stroke-width:1.2}
+.eco .beat{stroke:var(--teal);stroke-width:2;stroke-linecap:round;opacity:0;animation:beat 2.6s ease-in-out infinite}
+.eco .beat-glow{stroke:var(--teal);stroke-width:8;stroke-linecap:round;opacity:0;filter:blur(5px);animation:beatglow 2.6s ease-in-out infinite}
+@keyframes beat{0%,8%{opacity:0}14%{opacity:1}22%{opacity:.15}30%{opacity:.85}48%,100%{opacity:0}}
+@keyframes beatglow{0%,8%{opacity:0}14%{opacity:.6}22%{opacity:.08}30%{opacity:.5}48%,100%{opacity:0}}
+/* centre */
+.eco .core{fill:url(#coreg);stroke:var(--line-2);stroke-width:1.2;filter:url(#soft)}
+.eco .core-in{fill:none;stroke:#fff;stroke-opacity:.7;stroke-width:1.5}
+.eco .core-ring{fill:none;stroke:var(--teal);stroke-width:1.6;opacity:.35;transform-box:fill-box;transform-origin:center;animation:corebeat 2.6s ease-in-out infinite}
+@keyframes corebeat{0%,8%{opacity:.35;transform:scale(1)}14%{opacity:.95;transform:scale(1.05)}22%{opacity:.35;transform:scale(1)}30%{opacity:.8;transform:scale(1.035)}48%,100%{opacity:.35;transform:scale(1)}}
+.eco .lap-base{fill:url(#lapbase)}
+.eco .lap-lid{fill:#1E2B33;stroke:#0F1B22;stroke-width:1}
+.eco .lap-scr{fill:url(#lapscr)}
+.eco .lap-ui{stroke:#fff;stroke-opacity:.85;stroke-width:1.6;stroke-linecap:round}
+.eco .lap-bar{fill:#fff;fill-opacity:.9}
+.eco .person-h{fill:url(#skin)}
+.eco .person-b{fill:url(#shirt)}
+.eco .badge{fill:#F0C040;stroke:#fff;stroke-width:1.6}
+.eco .badge-ck{fill:none;stroke:#0F1B22;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.eco .live .lv-dot{fill:#7FE3FF;animation:lvdot 1.3s ease-in-out infinite}
+@keyframes lvdot{0%,100%{opacity:1}50%{opacity:.25}}
+.eco .live .lv-bar{fill:#fff;fill-opacity:.85;transform-box:fill-box;transform-origin:bottom;animation:lvbar 2.6s ease-in-out infinite}
+.eco .live .b1{animation-delay:0s}.eco .live .b2{animation-delay:-.6s}.eco .live .b3{animation-delay:-1.2s}.eco .live .b4{animation-delay:-1.8s}
+@keyframes lvbar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.eco .live .lv-line{fill:none;stroke:#F0C040;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:lvline 5.2s ease-in-out infinite}
+@keyframes lvline{0%{stroke-dashoffset:60}45%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+.eco .live .lv-tip{fill:#F0C040;animation:lvtip 5.2s ease-in-out infinite}
+@keyframes lvtip{0%,40%{opacity:0}48%,85%{opacity:1}100%{opacity:1}}
+.eco .live .lv-log{fill:#fff;animation:lvlog 3.9s steps(1) infinite}
+.eco .live .l1{animation-delay:0s}.eco .live .l2{animation-delay:-.65s}.eco .live .l3{animation-delay:-1.3s}.eco .live .l4{animation-delay:-1.95s}.eco .live .l5{animation-delay:-2.6s}.eco .live .l6{animation-delay:-3.25s}
+@keyframes lvlog{0%{fill-opacity:.9}33%{fill-opacity:.45}66%{fill-opacity:.25}100%{fill-opacity:.9}}
+@media (prefers-reduced-motion:reduce){.eco .live *{animation:none!important}.eco .live .lv-line{stroke-dashoffset:0}.eco .live .lv-tip{opacity:1}}
+/* nodes */
+.eco .node{--c:var(--teal);--cb:var(--teal-soft)}
+.eco .node .disc{fill:var(--cb);stroke:var(--c);stroke-width:1.2;stroke-opacity:.35;filter:url(#soft);animation:discbeat 2.6s ease-in-out infinite}
+.eco .node .disc-hi{fill:url(#hi);pointer-events:none}
+.eco .node .disc-in{fill:none;stroke:#fff;stroke-opacity:.6;stroke-width:1.2}
+@keyframes discbeat{0%,8%{stroke-opacity:.35}16%{stroke-opacity:1}24%{stroke-opacity:.35}32%{stroke-opacity:.9}50%,100%{stroke-opacity:.35}}
+.eco .ic{fill:none;stroke:var(--c);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.eco .ic .f{fill:var(--c);stroke:none;opacity:.28}
+.eco .ic .s{fill:var(--c);stroke:none}
+.eco .ic .w{stroke:#fff;fill:none}
+.eco .node text{font-family:var(--ff-body);font-weight:700;font-size:12.5px;fill:var(--ink-2);text-anchor:middle}
+.eco .n-provisioning{--c:var(--n-endpoints);--cb:var(--n-endpoints-bg)}
+.eco .n-productivity{--c:var(--n-cloud);--cb:var(--n-cloud-bg)}
+.eco .n-identity{--c:var(--n-identity);--cb:var(--n-identity-bg)}
+.eco .n-data{--c:var(--n-data);--cb:var(--n-data-bg)}
+.eco .n-detection{--c:var(--n-productivity);--cb:var(--n-productivity-bg)}
+.eco .n-connectivity{--c:var(--n-connectivity);--cb:var(--n-connectivity-bg)}
+.eco .n-threat{--c:var(--n-security);--cb:var(--n-security-bg)}
+.eco .n-dex{--c:var(--n-monitoring);--cb:var(--n-monitoring-bg)}
+/* bots at every spoke / inner-circle junction, glowing on the heartbeat */
+.eco .jbot .jglow{fill:var(--teal);opacity:0;filter:blur(6px);animation:jglow 2.6s ease-in-out infinite}
+@keyframes jglow{0%,8%{opacity:0}14%{opacity:.55}22%{opacity:.05}30%{opacity:.45}48%,100%{opacity:0}}
+.eco .jbot .head{fill:url(#bothead);stroke:var(--teal-2);stroke-width:1.2}
+.eco .jbot .visor{fill:#0E2A57}
+.eco .jbot .eye{fill:#7FE3FF;animation:jeye 2.6s ease-in-out infinite}
+@keyframes jeye{0%,8%{fill:#7FE3FF}14%{fill:#FFFFFF}22%{fill:#7FE3FF}30%{fill:#E6FBFF}48%,100%{fill:#7FE3FF}}
+.eco .jbot .ant{stroke:var(--teal-2);stroke-width:1.8;stroke-linecap:round}
+.eco .jbot .ant-l{fill:#F0C040;animation:jant 2.6s ease-in-out infinite}
+@keyframes jant{0%,8%{opacity:.5}14%{opacity:1}22%{opacity:.5}30%{opacity:1}48%,100%{opacity:.5}}
+.eco .jbot .ear{fill:var(--teal-2)}
+.eco .jbot .mouth{fill:none;stroke:#7FE3FF;stroke-width:1.6;stroke-linecap:round}
+@media (prefers-reduced-motion:reduce){.enter{animation:none;opacity:1;transform:none}.eco .beat,.eco .beat-glow,.eco .orbit-beat,.eco .core-ring,.eco .node .disc,.eco .jbot *{animation:none}.eco .beat{opacity:.5}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+
+/* ---------- proof strip ---------- */
+.proof{border-block:1px solid var(--line);background:var(--bg-2)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.proof div{padding:22px 20px 22px 0;border-left:1px solid var(--line);padding-left:20px}
+.proof div:first-child{border-left:0;padding-left:0}
+.proof b{display:block;font-family:var(--ff-display);font-size:26px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.proof span{color:var(--ink-3);font-size:13.5px}
+@media (max-width:760px){.proof .wrap{grid-template-columns:1fr 1fr}.proof div{border-left:0;padding-left:0}}
+
+/* ---------- sections ---------- */
+section.block{padding-block:88px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(28px,3.2vw,38px);font-weight:600;letter-spacing:-.02em}
+.sec-head p{color:var(--ink-2);max-width:56ch;margin-top:10px;font-size:16.5px}
+.sec-head a{white-space:nowrap;font-weight:700;color:var(--teal);display:inline-flex;align-items:center;gap:6px}
+.sec-head a svg{width:16px;height:16px;transition:transform .2s}
+.sec-head a:hover svg{transform:translateX(3px)}
+@media (max-width:700px){.sec-head{flex-direction:column;align-items:start}}
+
+/* ---------- EasyNotes product ---------- */
+.product{display:grid;grid-template-columns:1fr;gap:34px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:44px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.product::before{content:"";position:absolute;inset:auto -20% -60% auto;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--ocean-soft),transparent 65%);pointer-events:none}
+.product .pill{display:inline-flex;gap:8px;align-items:center;border-radius:999px;background:var(--ocean-soft);color:var(--ocean-b);font-weight:700;font-size:12.5px;padding:6px 12px}
+.product .pill i{width:7px;height:7px;border-radius:50%;background:var(--ocean-b)}
+.product h3{font-size:clamp(28px,3vw,36px);font-weight:700;margin-top:18px;display:flex;align-items:center;gap:14px}
+.product h3 svg{width:40px;height:40px;flex:none}
+.product .tag-line{color:var(--ink-2);font-size:17.5px;margin-top:12px;max-width:46ch}
+.feat{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 26px}
+.feat li{display:flex;gap:10px;align-items:start;font-size:15px;color:var(--ink-2);line-height:1.45}
+.feat li svg{width:18px;height:18px;flex:none;color:var(--ocean-b);margin-top:2px}
+.feat li b{color:var(--ink);font-weight:700}
+.product .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.product > .actions{margin-top:-6px}
+.product .actions small{color:var(--ink-3);font-size:13px}
+/* ---------- EasyNotes demo video (v16): recorded from the real app, full width under the description ---------- */
+.demo-wrap{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(15,59,120,.45);background:#121A30}
+.demo-video{display:block;width:100%;height:100%;object-fit:cover;background:#121A30}
+.demo-replay{position:absolute;right:14px;bottom:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(15,59,120,.55);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s;backdrop-filter:blur(6px)}
+.demo-replay svg{width:18px;height:18px}
+.demo-replay:hover,.demo-replay:focus-visible{opacity:1;transform:scale(1.06)}
+@media (max-width:900px){.feat{grid-template-columns:1fr}.demo-replay{opacity:.75}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}}
+@media (prefers-reduced-motion:reduce){.sp.play *{animation:none!important}}
+@media (max-width:900px){.product{padding:28px}}
+
+/* ---------- community ---------- */
+.community{background:var(--bg-2);border-block:1px solid var(--line)}
+.lab{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:28px;display:flex;flex-direction:column;gap:14px}
+.card.featured{padding:34px;position:relative;overflow:hidden}
+.card .kind{display:inline-flex;gap:8px;align-items:center;font-family:var(--ff-mono);font-size:12px;color:var(--teal);font-weight:500}
+.card h3{font-size:24px;font-weight:600}
+.card p{color:var(--ink-2);font-size:15.5px}
+.card .links{display:flex;gap:16px;flex-wrap:wrap;margin-top:auto;padding-top:10px;font-weight:700;font-size:14px}
+.card .links a{display:inline-flex;align-items:center;gap:7px;color:var(--teal)}
+.card .links a svg{width:15px;height:15px}
+.term{margin-top:8px;border-radius:10px;background:#0E1A1F;color:#CFE6E2;font-family:var(--ff-mono);font-size:12px;line-height:1.7;padding:14px 16px;overflow-x:auto;border:1px solid #1E3038}
+.term .c{color:#6C8F98}.term .k{color:#7FE0D4}.term .g{color:#F0C040}
+.term .cur{display:inline-block;width:7px;height:13px;background:#7FE0D4;vertical-align:-2px;margin-left:2px;animation:cur 1.1s steps(1) infinite}
+@keyframes cur{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.term .cur{animation:none}}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);padding:20px 22px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s}
+.tool:hover{border-color:var(--teal);transform:translateY(-2px)}
+.tool .os{font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-3)}
+.tool h4{font-size:16.5px;font-weight:600}
+.tool p{color:var(--ink-2);font-size:14px;line-height:1.5}
+@media (max-width:960px){.lab{grid-template-columns:1fr}.tools{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.tools{grid-template-columns:1fr}}
+
+/* ---------- writing ---------- */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.post{padding:24px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--surface);display:flex;flex-direction:column;gap:10px;transition:border-color .2s}
+.post:hover{border-color:var(--teal)}
+.post .where{font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-3)}
+.post h4{font-size:17px;font-weight:600;line-height:1.35}
+.post p{color:var(--ink-2);font-size:14.5px}
+.post .read{margin-top:auto;padding-top:6px;color:var(--teal);font-weight:700;font-size:14px}
+@media (max-width:900px){.posts{grid-template-columns:1fr}}
+
+/* ---------- about ---------- */
+.about{background:var(--bg-2);border-top:1px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start}
+.portrait{aspect-ratio:1;border-radius:var(--r-m);background:var(--surface);border:1px dashed var(--line-2);display:grid;place-items:center;color:var(--ink-3);font-family:var(--ff-mono);font-size:12px;text-align:center;padding:12px}
+.about h2{font-size:clamp(26px,3vw,34px);font-weight:600}
+.about p{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:66ch}
+.about .creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.about .creds span{font-family:var(--ff-mono);font-size:12px;border:1px solid var(--line-2);border-radius:6px;padding:5px 9px;color:var(--ink-2);background:var(--surface)}
+.about .social{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+.about .social a{display:inline-flex;gap:8px;align-items:center;font-weight:700;color:var(--teal)}
+.about .social a svg{width:16px;height:16px}
+@media (max-width:700px){.about .wrap{grid-template-columns:1fr}.portrait{width:160px}}
+
+/* ---------- footer ---------- */
+footer{padding-block:40px 32px;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h5{font-family:var(--ff-display);font-size:13px;font-weight:600;margin:0 0 12px;color:var(--ink)}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--ink-2)}
+footer ul a:hover{color:var(--teal)}
+footer .fine{color:var(--ink-3);font-size:13px;margin-top:12px;max-width:40ch}
+footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-3);font-size:13px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr 1fr}}
+
+/* ---------- v9: brand size, dropdown nav, hero aspects, breathing splash, MDM-ODA full width ---------- */
+.brand{font-size:24px;gap:11px}
+.brand svg{width:30px;height:30px}
+.nav-links{align-items:center}
+.dd{position:relative}
+.dd-t{display:inline-flex;align-items:center;gap:6px}
+.dd-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.dd-m{position:absolute;top:calc(100% + 10px);left:-14px;min-width:260px;padding:8px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;z-index:50}
+.dd-m::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd:hover .dd-m,.dd:focus-within .dd-m{opacity:1;visibility:visible;transform:none;transition:opacity .18s ease,transform .18s ease}
+.dd:hover .chev,.dd:focus-within .chev{transform:rotate(180deg)}
+.dd-m a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--ink)}
+.dd-m a::after{display:none}
+.dd-m a:hover,.dd-m a:focus-visible{background:var(--bg-2)}
+.dd-m b{display:block;font-weight:700;font-size:14.5px}
+.dd-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.dd-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.dd-ic svg{width:18px;height:18px}
+.dd-ic.en{background:var(--ocean-soft);color:var(--ocean-b)}
+.dd-ic.tl{background:var(--teal-soft);color:var(--teal)}
+.dd-ic.sc{background:var(--gold-soft);color:#9A6B00}
+:root[data-theme="dark"] .dd-ic.sc{color:var(--gold)}
+@media (max-width:860px){
+  .nav-links{align-items:stretch}
+  .dd{width:100%}
+  .dd-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .dd-t .chev{display:none}
+  .dd-m{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:none;padding:4px 0 6px 10px;min-width:0}
+  .dd-m::before{display:none}
+  .dd-m a{border-bottom:0;padding:8px 6px}
+}
+/* ---------- v18: support pop-over, app logo ---------- */
+.sup{position:relative;display:flex;align-items:center}
+.sup-t{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;position:relative}
+.sup-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.sup-t[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.sup-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:max-content;min-width:280px;padding:14px 14px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);z-index:60;text-align:left}
+.sup-pop[hidden]{display:none}
+.sup-h{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.sup-row{display:flex;align-items:center;gap:10px;margin-top:8px;padding:8px 8px 8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2)}
+.sup-mail{font-weight:700;font-size:15px;color:var(--ink);user-select:all;white-space:nowrap}
+.sup-copy{margin-left:auto;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
+.sup-copy:hover,.sup-copy:focus-visible{color:var(--teal);border-color:var(--teal)}
+.sup-copy svg{width:17px;height:17px}
+.sup-copy .ok{display:none;color:var(--teal)}
+.sup-copy.done .cp{display:none}
+.sup-copy.done .ok{display:block}
+.sup-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;min-height:1.2em}
+.en-logo{width:40px;height:40px;flex:none;border-radius:9px}
+@media (min-width:861px){.dd.dd-x .dd-m{opacity:0!important;visibility:hidden!important}.dd.dd-x .chev{transform:none!important}}
+.dd-ic.en{background:none}
+.dd-ic img{width:30px;height:30px;border-radius:7px}
+@media (max-width:860px){
+  .sup{width:100%;flex-direction:column;align-items:stretch}
+  .sup-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .sup-pop{position:static;transform:none;width:auto;min-width:0;margin:8px 0 6px;box-shadow:none}
+  .sup-mail{white-space:normal;word-break:break-all}
+}
+.hero h1{font-size:clamp(34px,4.1vw,52px);line-height:1.06}
+.hero .lead2{margin-top:14px;font-size:16px;line-height:1.6;color:var(--ink-2);max-width:56ch}
+.aspects{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px}
+.aspects li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--surface) 78%,transparent);border:1px solid var(--line);font-weight:600;font-size:14.5px;color:var(--ink)}
+.aspects i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+.aspects svg{width:17px;height:17px}
+.aspects .a-ops i{background:var(--n-endpoints-bg);color:var(--n-endpoints)}
+.aspects .a-prod i{background:var(--n-productivity-bg);color:var(--n-productivity)}
+.aspects .a-ux i{background:var(--n-monitoring-bg);color:var(--n-monitoring)}
+.aspects .a-sec i{background:var(--n-identity-bg);color:var(--n-identity)}
+@media (max-width:480px){.aspects{grid-template-columns:1fr}}
+/* EasyNotes section: the outer card border breathes in the app's blue */
+.product{border:1.5px solid rgba(83,155,245,.5);animation:enBreathe 3.6s ease-in-out infinite}
+@keyframes enBreathe{
+  0%,100%{border-color:rgba(83,155,245,.45);box-shadow:var(--shadow),0 0 0 0 rgba(27,95,191,0)}
+  50%{border-color:rgba(110,176,255,1);box-shadow:var(--shadow),0 0 0 3px rgba(83,155,245,.18),0 0 26px 2px rgba(27,95,191,.35)}
+}
+@media (prefers-reduced-motion:reduce){.product{animation:none;border-color:rgba(83,155,245,.8)}}
+/* LinkedIn mark: Font Awesome Free 6.7.2 brand icon, CC BY 4.0 (fontawesome.com/license/free), inlined */
+.li-logo{display:inline-block;width:16px;height:16px;flex:none;background:#0A66C2;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20448%20512%22%3E%3Cpath%20d=%22M416%2032H31.9C14.3%2032%200%2046.5%200%2064.3v383.4C0%20465.5%2014.3%20480%2031.9%20480H416c17.6%200%2032-14.5%2032-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4%20416H69V202.2h66.5V416zm-33.2-243c-21.3%200-38.5-17.3-38.5-38.5S80.9%2096%20102.2%2096c21.2%200%2038.5%2017.3%2038.5%2038.5%200%2021.3-17.2%2038.5-38.5%2038.5zm282.1%20243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6%200-39.9%2027-39.9%2054.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8%2030.6-34.5%2062.9-34.5%2067.2%200%2079.7%2044.3%2079.7%20101.9V416z%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20448%20512%22%3E%3Cpath%20d=%22M416%2032H31.9C14.3%2032%200%2046.5%200%2064.3v383.4C0%20465.5%2014.3%20480%2031.9%20480H416c17.6%200%2032-14.5%2032-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4%20416H69V202.2h66.5V416zm-33.2-243c-21.3%200-38.5-17.3-38.5-38.5S80.9%2096%20102.2%2096c21.2%200%2038.5%2017.3%2038.5%2038.5%200%2021.3-17.2%2038.5-38.5%2038.5zm282.1%20243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6%200-39.9%2027-39.9%2054.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8%2030.6-34.5%2062.9-34.5%2067.2%200%2079.7%2044.3%2079.7%20101.9V416z%22/%3E%3C/svg%3E") center/contain no-repeat}
+:root[data-theme="dark"] .li-logo{background:#5AA9F0}
+/* MDM-ODA: full width, text on top, tool preview below */
+.lab{grid-template-columns:1fr}
+.card.featured p{color:var(--ink-2);line-height:1.65}
+@media (max-width:960px){.card.featured{grid-template-columns:1fr}}
+.tools{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:620px){.tools{grid-template-columns:1fr}}
+@media (max-width:760px){footer .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+footer li a,footer h5{overflow-wrap:anywhere}
+
+/* ---------- MDM-ODA tool preview (v13): replica of the v0.81914 window, Operations pane auto-scrolls ---------- */
+.card.featured{grid-template-columns:1fr;gap:28px;align-items:stretch}
+.oda-wrap{position:relative;width:100%;aspect-ratio:1086/773;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -28px rgba(15,27,34,.45);background:#EEF3EE}
+.oda{position:absolute;left:0;top:0;width:1086px;height:773px;transform-origin:top left;background:#EEF3EE;color:#1F2937;font-family:"Segoe UI Variable Text","Segoe UI",var(--ff-body);font-size:13px;line-height:1.25;user-select:none;display:flex;flex-direction:column}
+.oda-title{height:30px;background:#F3F3F3;border-bottom:1px solid #E2E2E2;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 8px;font-size:12px;color:#333}
+.oda-ti{display:inline-flex;align-items:center;gap:8px}.oda-ti svg{width:16px;height:16px}.oda-ti em{font-style:normal;color:#F5C518;font-size:11px}
+.oda-win{font-size:13px;color:#444;letter-spacing:.5px}
+.oda-head{height:108px;background:linear-gradient(180deg,#0E8A0E,#0F7F13);display:flex;align-items:center;justify-content:space-between;padding:0 38px 0 30px;color:#fff}
+.oda-h1{font-size:19px;font-weight:700;color:#FFF200;letter-spacing:-.01em}.oda-h1 em{font-style:normal;font-size:15px;color:#FFD400}
+.oda-sub{font-size:12px;color:#C9F2C9;margin-top:6px}
+.oda-btns{display:flex;align-items:center;gap:10px}
+.oda-b{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 20px;border-radius:9px;font-weight:700;font-size:13px}
+.oda-connect{background:linear-gradient(180deg,#1E8FCF,#1466A6);color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.25)}
+.oda-disc{background:#1A7A1E;color:#5FBF63;border:1px solid #2E8F32;opacity:1}
+.oda-fb{background:#F5C518;color:#2B2B00;box-shadow:0 2px 4px rgba(0,0,0,.2)}.oda-fb svg{width:15px;height:15px}
+.oda-notes{width:22px;height:22px;color:#DDF5DD;margin-left:6px}
+.oda-author{height:28px;background:#EEF3EE;border-bottom:1px solid #DCE6DC;display:flex;align-items:center;justify-content:flex-end;gap:5px;padding-right:22px;font-size:12px;color:#444}.oda-author u{color:#1D4ED8}.oda-author svg{width:13px;height:13px;color:#1D4ED8}
+.oda-body{flex:1;display:flex;min-height:0;padding:10px 18px 10px 8px;gap:8px}
+.oda-left{width:238px;flex:none;display:flex;flex-direction:column;background:#EEF3EE}
+.oda-ops{font-size:11px;font-weight:700;letter-spacing:.02em;color:#1F2937;padding:4px 0 6px 20px}
+.oda-pane{position:relative;flex:1;min-height:0;overflow:hidden;padding-left:10px}
+.oda-list{display:flex;flex-direction:column;gap:6px;width:200px;will-change:transform}
+.oda-grp{display:flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 12px;border-radius:9px;background:#E3F0E3;border:1px solid #C6DEC6;color:#14532D;font-weight:700;font-size:13px;width:212px;box-sizing:border-box;margin-left:-6px}
+.oda-grp .oda-gi{font-size:14px}.oda-grp .oda-pm{margin-left:auto;font-weight:400;color:#14532D}
+.oda-grp2{margin-top:6px}
+.oda-tile{background:#fff;border:1px solid #CFE3CF;border-radius:8px;padding:8px 10px 7px 10px;display:grid;grid-template-columns:22px 1fr;column-gap:4px;box-sizing:border-box;box-shadow:0 1px 1px rgba(20,83,45,.06)}
+.oda-tile i{font-style:normal;font-size:13px;grid-row:1;line-height:1.3;font-family:"Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","Segoe UI",sans-serif}
+.oda-tile b{font-weight:600;font-size:12px;color:#1B5E20;grid-column:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oda-tile small{grid-column:2;font-size:10px;color:#14532D;margin-top:2px;white-space:nowrap;overflow:hidden}
+.oda-sb{position:absolute;right:0;top:0;bottom:0;width:12px;background:#F1F1F1;border-left:1px solid #E5E5E5}
+.oda-thumb{position:absolute;left:2px;right:2px;top:12px;height:150px;border-radius:4px;background:#BDBDBD}
+.oda-main{flex:1;background:#fff;border:1px solid #CFE3CF;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;box-shadow:inset 0 0 0 1px #F3F8F3}
+.oda-welcome{font-size:18px;font-weight:600;color:#1B7A1B}.oda-hint{font-size:13px;color:#4B5563}
+.oda-foot{height:33px;flex:none;background:#EEF3EE;border-top:1px solid #DCE6DC;display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 14px;font-size:9px;font-weight:700;color:#1F2937}
+.oda-foot i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#16A34A;margin-right:8px;vertical-align:middle}
+.oda-fr{font-weight:500;font-size:9.5px;color:#1F2937}
+.oda-wrap .oda-replay{position:absolute;right:14px;bottom:44px;z-index:3;background:rgba(20,83,45,.88);border:1px solid rgba(20,83,45,.9);color:#fff;border-radius:999px;padding:6px 12px;font:600 12px var(--ff-body);cursor:pointer}.oda-wrap .oda-replay:hover{background:rgba(20,83,45,1)}
+
+/* ---- MDM-ODA demo: panels, inputs, grids, cursor (mirrors the tool's Card/FieldLabel/InputBox/PrimaryBtn styles) ---- */
+.oda-main{align-items:stretch;justify-content:flex-start;overflow:hidden;padding:0}
+.oda-main .oda-welcome,.oda-main .oda-hint{align-self:center}.oda-main .oda-welcome{margin-top:auto}.oda-main .oda-hint{margin-bottom:auto}
+.oda-card{padding:16px 18px;display:flex;flex-direction:column;gap:8px;text-align:left;font-size:12px;color:#1A1F2E;height:100%;box-sizing:border-box;overflow:hidden}
+.oda-pt{font-size:15px;font-weight:600;color:#007A00}
+.oda-pd{font-size:11px;color:#5A6480;line-height:1.4;margin-bottom:4px}
+.oda-fl{font-size:10px;font-weight:700;color:#14532D;margin-top:2px}
+.oda-row{display:flex;gap:10px;align-items:flex-start}
+.oda-col{display:flex;flex-direction:column;gap:4px;min-width:0}
+.oda-area,.oda-inp{position:relative;background:#fff;border:1px solid #B0D0B0;border-radius:6px;padding:7px 10px;font-size:12px;color:#1A1F2E;white-space:pre-wrap;line-height:1.45;box-sizing:border-box;overflow:hidden;text-align:left}
+.oda-inp{height:32px;white-space:nowrap;display:flex;align-items:center;width:100%}
+.oda-area{width:100%}
+.oda-area.focus,.oda-inp.focus{border-color:#0A9396;box-shadow:0 0 0 2px rgba(10,147,150,.18)}
+.oda-ph{color:#9AA3B2}
+.oda-caret{display:none;width:1px;height:14px;background:#1A1F2E;vertical-align:-2px;margin-left:1px;animation:odaBlink 1s steps(1) infinite}
+.oda-area.focus .oda-caret,.oda-inp.focus .oda-caret{display:inline-block}
+@keyframes odaBlink{50%{opacity:0}}
+.oda-combo{display:inline-flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border:1px solid #B0D0B0;border-radius:6px;padding:0 8px 0 10px;height:32px;font-size:12px;color:#1A1F2E;box-sizing:border-box}
+.oda-combo b{font-weight:400;color:#5A6480}
+.oda-checks{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:2px 0}
+.oda-chk{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#1A1F2E}
+.oda-chk i{width:14px;height:14px;border:1px solid #6B8F6B;border-radius:3px;background:#fff;display:inline-block;position:relative;box-sizing:border-box}
+.oda-chk.on i{background:#007A00;border-color:#007A00}
+.oda-chk.on i::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.oda-btn{display:inline-flex;align-items:center;gap:6px;padding:0 14px;height:32px;border-radius:7px;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,#005F73,#0A9396);box-shadow:0 1px 2px rgba(0,0,0,.18);white-space:nowrap;transition:transform .08s}
+.oda-btn.small{height:32px;padding:0 14px}
+.oda-btn.outline{background:#D4EDDA;color:#1E7A4A;border:1px solid #22C55E;box-shadow:none;font-weight:600}
+.oda-btn.ghost{background:transparent;color:#4A7060;box-shadow:none;font-weight:600}
+.oda-btn.stop{background:linear-gradient(135deg,#B3261E,#DC2626)}
+.oda-btn.amber{background:linear-gradient(135deg,#B45B00,#F59E0B)}
+.oda-btn.pressed{transform:scale(.96);filter:brightness(.92)}
+.oda-suffix{font-size:12px;color:#5A6480;white-space:nowrap}
+.oda-sel{font-size:12px;color:#1A1F2E}.oda-sel .oda-id{font-family:Consolas,"Cascadia Mono",monospace;font-size:11px;color:#5A6480}
+.oda-note{font-size:11px;color:#5A6480}.oda-note.ok{color:#1E7A4A;font-weight:600}
+.oda-guard{font-size:11px;color:#B45B00;font-weight:600}
+.oda-prog{display:flex;align-items:center;gap:10px;font-size:12px;color:#1A5FA8;padding:6px 0}
+.oda-prog i{width:14px;height:14px;border:2px solid #C8DEF5;border-top-color:#1A5FA8;border-radius:50%;animation:odaSpin .8s linear infinite;flex:none}
+@keyframes odaSpin{to{transform:rotate(360deg)}}
+.oda-metrics{display:flex;gap:22px;font-size:12px;padding:4px 0}.oda-metrics div{display:flex;gap:6px}.oda-metrics span{color:#5A6480}.oda-metrics b{color:#007A00}
+.oda-box{border:1px solid #B0D0B0;border-radius:8px;padding:10px 12px;background:#F8FBF8;font-size:12px;line-height:1.5}
+.oda-box.ok{border-color:#5DC98B;background:#EEF9F2}.oda-box.warn{border-color:#F5A623;background:#FFF8EA}
+.oda-bt{font-weight:700;color:#14532D;margin-bottom:2px}.oda-bl .warn{color:#B45B00;font-weight:700}
+.oda-tb{display:flex;align-items:center;gap:6px;margin-top:2px}
+.oda-count{font-size:11px;font-weight:700;color:#007A00;margin-right:auto}
+.oda-filter{border:1px solid #B0D0B0;border-radius:6px;background:#fff;padding:4px 8px;font-size:11px;color:#9AA3B2;width:120px}
+.oda-mini{border:1px solid #B0D0B0;border-radius:6px;background:#fff;padding:4px 8px;font-size:11px;color:#14532D;font-weight:600}.oda-mini-x{background:#D4EDDA;border-color:#22C55E;color:#1E7A4A}
+.oda-grid{border:1px solid #B0D0B0;border-radius:6px;overflow:hidden;opacity:0;transition:opacity .3s;max-height:260px}
+.oda-grid.show{opacity:1}
+.oda-grid table{border-collapse:collapse;width:100%;font-size:11px;table-layout:auto;white-space:nowrap}
+.oda-grid th{background:#E8F5E9;color:#14532D;font-weight:600;text-align:left;padding:5px 8px;border-right:1px solid #C9D9C9;border-bottom:1px solid #555}
+.oda-grid td{padding:5px 8px;border-right:1px solid #E5EDE5;border-bottom:1px solid #E5EDE5;color:#1A1F2E}
+.oda-grid tr:nth-child(even) td{background:#F8FBF8}
+.oda-grid tbody tr{opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}.oda-grid tbody tr.in{opacity:1;transform:none}
+.oda-grid td.ok{color:#1E7A4A;font-weight:600}.oda-grid td.warn{color:#B45B00;font-weight:600}.oda-grid td.err{color:#C0392B;font-weight:600}
+.oda-tile.active{background:#E3F0E3;border-color:#007A00;box-shadow:0 0 0 1px #007A00 inset}
+.oda-connect.dim,.oda-disc.dim{opacity:.45}.oda-disc:not(.dim){background:linear-gradient(180deg,#B3261E,#DC2626);color:#fff;border-color:transparent}
+.oda-cur{position:absolute;left:640px;top:520px;width:20px;height:20px;z-index:5;pointer-events:none;transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),transform .1s;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.oda-cur svg{width:20px;height:20px;display:block}.oda-cur.down{transform:scale(.85)}
+@media (prefers-reduced-motion:reduce){.oda-cur,.oda-caret,.oda-prog i{animation:none}}
+</style>
+
+</head>
+<body>
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EndpointLabz home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg>
+      <span>Endpoint<b>Labz</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <div class="dd">
+        <a class="dd-t" href="#products" aria-haspopup="true">Products <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Products">
+          <a role="menuitem" href="easynotes/"><i class="dd-ic en"><img src="assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Microsoft Store · Free</small></span></a>
+        </div>
+      </div>
+      <div class="dd">
+        <a class="dd-t" href="#community" aria-haspopup="true">Community Contributions <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Community Contributions">
+          <a role="menuitem" href="#tools"><i class="dd-ic tl"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="11" rx="2"/><path d="M7 18h6M6 8l2 2-2 2M10 12h3"/></svg></i><span><b>Tools</b><small>MDM-ODA</small></span></a>
+          <a role="menuitem" href="#scripts"><i class="dd-ic sc"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4M11 4l-2 12"/></svg></i><span><b>Scripts &amp; Automations</b><small>Intune, Graph &amp; OS platform</small></span></a>
+        </div>
+      </div>
+      <a href="#blogs">Blogs</a>
+      <div class="sup" id="sup">
+        <button class="sup-t" id="supBtn" type="button" aria-expanded="false" aria-controls="supPop">Support <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
+        <div class="sup-pop" id="supPop" role="dialog" aria-label="Contact support" hidden>
+          <p class="sup-h">Email support</p>
+          <div class="sup-row">
+            <span class="sup-mail" id="supMail">support@endpointlabz.com</span>
+            <button class="sup-copy" id="supCopy" type="button" aria-label="Copy the email address" title="Copy">
+              <svg class="cp" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>
+              <svg class="ok" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+            </button>
+          </div>
+          <p class="sup-note" id="supNote" aria-live="polite"></p>
+        </div>
+      </div>
+      <a href="#about">About</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode" title="Light / dark">
+      <svg class="moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12.5A7 7 0 0 1 7.5 4a7 7 0 1 0 8.5 8.5z"/></svg>
+      <svg class="sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>
+    </button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg></button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow enter">Solving the unsolved</p>
+      <h1 class="enter">Building useful solutions with AI that work with AI</h1>
+      <p class="lead enter">EndpointLabz aims to support the Endpoint Management Community with Tools, Automations &amp; Solutions that enable the end users and IT professionals managing the endpoints to do more with less.</p>
+      <p class="lead2 enter">Every solution is built with the idea of enhancing one or more of the following aspects of Modern Workplace:</p>
+      <ul class="aspects enter" aria-label="Aspects of the modern workplace">
+        <li class="a-ops"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14a7 7 0 1 1 14 0"/><path d="M10 14l3.5-4.5"/><circle cx="10" cy="14" r="1.2" fill="currentColor"/></svg></i>Operational efficiency</li>
+        <li class="a-prod"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2L4 11h5l-1 7 7-9h-5z"/></svg></i>User Productivity</li>
+        <li class="a-ux"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 11.5c.8 1.2 1.8 1.8 3 1.8s2.2-.6 3-1.8"/><path d="M7.5 8h.01M12.5 8h.01"/></svg></i>User Experience</li>
+        <li class="a-sec"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l6 2.5v4.5c0 3.8-2.6 6.3-6 7.5-3.4-1.2-6-3.7-6-7.5V5z"/><path d="M7.5 10l1.8 1.8L12.8 8"/></svg></i>Security</li>
+      </ul>
+    </div>
+
+    <div class="eco" role="img" aria-label="The device and its user at the centre of the modern IT ecosystem: Provisioning, Connectivity, Identity and Authentication, Data, Productivity, Device Experience (DEX), Detection and Response, Threat Intelligence; an automation assistant sits at every junction">
+      <svg viewBox="30.5 25 509 509" aria-hidden="true">
+        <defs>
+          <filter id="soft" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0F1B22" flood-opacity=".12"/></filter>
+          <radialGradient id="hi" cx=".35" cy=".25" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="coreg" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="var(--bg-2)"/></radialGradient>
+          <linearGradient id="lapscr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14B8A6"/><stop offset="1" stop-color="#0B5C56"/></linearGradient>
+          <linearGradient id="lapbase" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6ECEF"/><stop offset="1" stop-color="#B9C6CC"/></linearGradient>
+          <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7C9A3"/><stop offset="1" stop-color="#E4A374"/></linearGradient>
+          <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BD6"/><stop offset="1" stop-color="#1B3F8F"/></linearGradient>
+          <linearGradient id="bothead" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C7EDE8"/></linearGradient>
+        </defs>
+        <line class="spoke" x1="280.0" y1="216.0" x2="280.0" y2="122.0"/><line class="spoke" x1="325.3" y1="234.7" x2="391.7" y2="168.3"/><line class="spoke" x1="344.0" y1="280.0" x2="438.0" y2="280.0"/><line class="spoke" x1="325.3" y1="325.3" x2="391.7" y2="391.7"/><line class="spoke" x1="280.0" y1="344.0" x2="280.0" y2="438.0"/><line class="spoke" x1="234.7" y1="325.3" x2="168.3" y2="391.7"/><line class="spoke" x1="216.0" y1="280.0" x2="122.0" y2="280.0"/><line class="spoke" x1="234.7" y1="234.7" x2="168.3" y2="168.3"/><line class="beat-glow" x1="280.0" y1="216.0" x2="280.0" y2="122.0"/><line class="beat" x1="280.0" y1="216.0" x2="280.0" y2="122.0"/><line class="beat-glow" x1="325.3" y1="234.7" x2="391.7" y2="168.3"/><line class="beat" x1="325.3" y1="234.7" x2="391.7" y2="168.3"/><line class="beat-glow" x1="344.0" y1="280.0" x2="438.0" y2="280.0"/><line class="beat" x1="344.0" y1="280.0" x2="438.0" y2="280.0"/><line class="beat-glow" x1="325.3" y1="325.3" x2="391.7" y2="391.7"/><line class="beat" x1="325.3" y1="325.3" x2="391.7" y2="391.7"/><line class="beat-glow" x1="280.0" y1="344.0" x2="280.0" y2="438.0"/><line class="beat" x1="280.0" y1="344.0" x2="280.0" y2="438.0"/><line class="beat-glow" x1="234.7" y1="325.3" x2="168.3" y2="391.7"/><line class="beat" x1="234.7" y1="325.3" x2="168.3" y2="391.7"/><line class="beat-glow" x1="216.0" y1="280.0" x2="122.0" y2="280.0"/><line class="beat" x1="216.0" y1="280.0" x2="122.0" y2="280.0"/><line class="beat-glow" x1="234.7" y1="234.7" x2="168.3" y2="168.3"/><line class="beat" x1="234.7" y1="234.7" x2="168.3" y2="168.3"/>
+        <circle class="orbit" cx="280" cy="280" r="190"/><circle class="orbit-beat" cx="280" cy="280" r="190"/>
+        <g>
+          <circle class="core-ring" cx="280" cy="280" r="64"/>
+          <circle class="core" cx="280" cy="280" r="52"/>
+          <circle class="core-in" cx="280" cy="280" r="46"/>
+          <g transform="translate(280,284) scale(.9) translate(-42,-37)" class="live">
+            <!-- laptop lid + screen -->
+            <path class="lap-lid" d="M8 4h68a3 3 0 0 1 3 3v58H5V7a3 3 0 0 1 3-3z"/>
+            <rect class="lap-scr" x="9" y="8" width="66" height="53" rx="2"/>
+            <!-- status row -->
+            <circle class="lv-dot" cx="15" cy="14" r="2"/>
+            <rect class="lap-bar" x="20" y="12.8" width="18" height="2.4" rx="1.2"/>
+            <rect class="lap-bar" x="60" y="12.8" width="10" height="2.4" rx="1.2" opacity=".55"/>
+            <!-- bars -->
+            <rect class="lv-bar b1" x="14" y="24" width="6" height="20" rx="1.5"/>
+            <rect class="lv-bar b2" x="23" y="24" width="6" height="20" rx="1.5"/>
+            <rect class="lv-bar b3" x="32" y="24" width="6" height="20" rx="1.5"/>
+            <rect class="lv-bar b4" x="41" y="24" width="6" height="20" rx="1.5"/>
+            <!-- trend line -->
+            <polyline class="lv-line" points="52,42 56,36 60,39 64,31 68,34 72,27"/>
+            <circle class="lv-tip" cx="72" cy="27" r="1.8"/>
+            <!-- log ticks -->
+            <rect class="lv-log l1" x="14" y="49" width="30" height="2" rx="1"/>
+            <rect class="lv-log l2" x="14" y="53" width="22" height="2" rx="1"/>
+            <rect class="lv-log l3" x="14" y="57" width="36" height="2" rx="1"/>
+            <rect class="lv-log l4" x="50" y="49" width="22" height="2" rx="1"/>
+            <rect class="lv-log l5" x="50" y="53" width="14" height="2" rx="1"/>
+            <rect class="lv-log l6" x="50" y="57" width="20" height="2" rx="1"/>
+            <!-- base -->
+            <path class="lap-base" d="M2 65h80a3 3 0 0 1 3 3v2H-1v-2a3 3 0 0 1 3-3z"/>
+            <rect x="32" y="66" width="20" height="1.8" rx=".9" fill="#0F1B22" opacity=".35"/>
+          </g>
+        </g>
+        <g class="node n-provisioning" transform="translate(280.0,90.0)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><path class="f" d="M4 10l8 3.5 8-3.5v9l-8 3.5-8-3.5z"/><path d="M4 10l8 3.5 8-3.5M4 10v9l8 3.5 8-3.5v-9M12 13.5V22"/><path d="M4 10l3-3 8 3.4M20 10l-3-3-8 3.4"/><path class="s" d="M12 1.5l2.6 2.6h-1.7V8h-1.8V4.1H9.4z"/></g><text y="-42">Provisioning</text></g><g class="node n-connectivity" transform="translate(414.4,145.6)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><path class="f" d="M2 9a14 14 0 0 1 20 0l-2.1 2.1a11 11 0 0 0-15.8 0z"/><path d="M2 9a14 14 0 0 1 20 0"/><path d="M5.5 12.5a9 9 0 0 1 13 0"/><path class="f" d="M9 16a4 4 0 0 1 6 0l-1.5 1.5a2 2 0 0 0-3 0z"/><path d="M9 16a4 4 0 0 1 6 0"/><circle class="s" cx="12" cy="19.6" r="2"/></g><text y="50">Connectivity</text></g><g class="node n-identity" transform="translate(470.0,280.0)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><circle class="f" cx="10" cy="8" r="3.6"/><circle cx="10" cy="8" r="3.6"/><path class="f" d="M3 20a7 7 0 0 1 12.2-4.7l-1.7 1.9A4.6 4.6 0 0 0 5.3 20z"/><path d="M3 20a7 7 0 0 1 11-5.7"/><circle class="s" cx="17.5" cy="17" r="5"/><path class="w" d="M15.3 17.1l1.6 1.5 2.8-3"/></g><text y="50">Identity &</text><text y="65">Authentication</text></g><g class="node n-data" transform="translate(414.4,414.4)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><ellipse class="s" cx="12" cy="6" rx="8" ry="3"/><path class="f" d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6c0 1.7-3.6 3-8 3S4 7.7 4 6z"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/><circle class="s" cx="8" cy="17.3" r="1"/></g><text y="50">Data</text></g><g class="node n-productivity" transform="translate(280.0,470.0)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><rect class="s" x="2.5" y="2.5" width="8.5" height="8.5" rx="2.6"/><rect class="f" x="13" y="2.5" width="8.5" height="8.5" rx="2.6"/><rect x="13" y="2.5" width="8.5" height="8.5" rx="2.6"/><rect class="f" x="2.5" y="13" width="8.5" height="8.5" rx="2.6"/><rect x="2.5" y="13" width="8.5" height="8.5" rx="2.6"/><rect class="s" x="13" y="13" width="8.5" height="8.5" rx="2.6"/><path class="w" d="M17.25 14.6l.9 1.9 1.9.9-1.9.9-.9 1.9-.9-1.9-1.9-.9 1.9-.9z" stroke-width="1.2" fill="#fff"/></g><text y="50">Productivity</text></g><g class="node n-dex" transform="translate(145.6,414.4)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><rect class="f" x="2.5" y="4" width="19" height="13" rx="2.5"/><rect x="2.5" y="4" width="19" height="13" rx="2.5"/><path d="M8.5 20.5h7M12 17v3.5"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" /><circle class="s" cx="9.5" cy="8.6" r="1.1"/><circle class="s" cx="14.5" cy="8.6" r="1.1"/><path d="M9.3 11.3q2.7 2.4 5.4 0" stroke-width="2"/></g><text y="50">DEX</text></g><g class="node n-detection" transform="translate(90.0,280.0)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><circle class="f" cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="9.5"/><path d="M4.5 12h3l2-4.5 3 9 2.5-6 1.5 1.5h3" stroke-width="2"/><circle class="s" cx="19" cy="6" r="2.4"/></g><text y="50">Detection &</text><text y="65">Response</text></g><g class="node n-threat" transform="translate(145.6,145.6)"><circle class="disc" r="30"/><circle class="disc-hi" r="30"/><circle class="disc-in" r="25.5"/><g class="ic" transform="translate(-14.4,-14.4) scale(1.2)"><path class="f" d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/><circle cx="12" cy="11" r="3.6"/><circle class="s" cx="12" cy="11" r="1.4"/><path d="M12 5.5v2M12 14.5v2M6.5 11h2M15.5 11h2"/></g><text y="50">Threat</text><text y="65">Intelligence</text></g>
+        <g class="jbot" transform="translate(280.0,216.0)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(325.3,234.7)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(344.0,280.0)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(325.3,325.3)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(280.0,344.0)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(234.7,325.3)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(216.0,280.0)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g><g class="jbot" transform="translate(234.7,234.7)"><circle class="jglow" r="13"/><g transform="translate(-9,-10) scale(.72)">
+            <line class="ant" x1="12.5" y1="4.5" x2="12.5" y2="1.5"/><circle class="ant-l" cx="12.5" cy=".5" r="1.8"/>
+            <rect class="ear" x="-.5" y="12" width="3" height="7" rx="1.5"/><rect class="ear" x="22.5" y="12" width="3" height="7" rx="1.5"/>
+            <rect class="head" x="2.5" y="6" width="20" height="19" rx="6"/>
+            <rect class="visor" x="5.5" y="10" width="14" height="10.5" rx="4"/>
+            <rect class="eye" x="8" y="12.7" width="3" height="4.8" rx="1.5"/><rect class="eye" x="14" y="12.7" width="3" height="4.8" rx="1.5"/>
+            <path class="mouth" d="M10.3 22.5q2.2 1.6 4.4 0"/></g></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="block" id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Products</h2>
+        <p>Software I build and maintain for everyday use. Designed with the same care as enterprise tooling, offered free.</p>
+      </div>
+      <a href="easynotes/">See the EasyNotes page <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+
+    <article class="product">
+      <div>
+        <span class="pill"><i></i>Windows 11</span>
+        <h3>
+          <img class="en-logo" src="assets/easynotes-logo.png" width="40" height="40" alt="">
+          EasyNotes
+        </h3>
+        <p class="tag-line">A digital platform to organize your thoughts, ideas and work, all in one place and with ease.</p>
+        <ul class="feat">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg><span><b>Fully local.</b> No internet, no registration, no sync, no telemetry.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h8M4 15h10"/></svg><span><b>Topics, sub-topics, pages.</b> Rich text, sheets and Checklists with autosave.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="10" height="13" rx="2"/><path d="M8 3h4v2.5H8zM8 10h4M8 13h3"/></svg><span><b>Session Clipboard.</b> Local cache of your Clipboard activity during the app session.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6l1.5 1.5L8 4.5M3.5 13l1.5 1.5L8 11.5M11 6h6M11 13h6"/></svg><span><b>Reminders and Checklists.</b> Easily create and keep track of To-Do's on the go.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-8 4 8M5.5 11h5"/><path d="M14 6v8"/></svg><span><b>Works with your AI tools.</b> Built-in MCP support, governed by rules you set.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l6 3v5c0 3.5-2.6 5.6-6 6.5C6.6 16.6 4 14.5 4 11V6z"/></svg><span><b>Backups.</b> Secure your notes with full control over the backup location, schedule and retention period.</span></li>
+        </ul>
+      </div>
+
+      <div class="demo-wrap">
+        <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-demo-poster.jpg" aria-label="EasyNotes demo - first launch, setup and a tour of the app">
+          <source src="assets/easynotes-demo.mp4" type="video/mp4">
+        </video>
+        <button class="demo-replay" id="enReplay" type="button" aria-label="Replay the demo" title="Replay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        </button>
+      </div>
+      <div class="actions">
+        <a class="btn btn-ocean" href="easynotes/#install">Get it from Microsoft Store</a>
+        <a class="btn btn-ghost" href="easynotes/#first-launch">Getting started guide</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section class="block community" id="community">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Community Contributions</h2>
+        <p>Open-source tools and scripts for IT professionals running Intune, Entra ID and modern-managed Windows and macOS. Free to use, fork and improve.</p>
+      </div>
+      <a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">All repositories on GitHub <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+
+    <div class="lab">
+      <article class="card featured" id="tools">
+        <div class="f-text">
+          <span class="kind">Open source · PowerShell 7 + WPF</span>
+          <h3>MDM-ODA — MDM On-Demand Actions</h3>
+          <p>Automate a huge variety of Entra &amp; Intune multi-stage manual tasks with Automation Workflows that include robust safeguards to prevent accidental actions.</p>
+          <p>This tool is for anyone who works with Users, Devices &amp; Groups. Workflows like Creating Groups, Adding Members and Setting the Owners with a few clicks on the same page or Running Remediation Scripts on a customized list of Users, Device Names or Serial Numbers are part of a very long list of actions this tool can perform.</p>
+          <div class="links">
+            <a href="https://github.com/satishsinghi-gh/mdm-oda" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.6 0 0 3.6 0 8c0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.2-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.2 0 3.1-1.9 3.8-3.7 4 .3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4C13.7 14.5 16 11.5 16 8c0-4.4-3.6-8-8-8z"/></svg>GitHub repository</a>
+            <a href="https://satishsinghi-gh.github.io/MDM-ODA/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 2h7l3 3v9H3z"/><path d="M6 8h4M6 11h3"/></svg>Documentation &amp; blog</a>
+          </div>
+        </div>
+        <div class="oda-wrap" role="img" aria-label="MDM On-Demand Actions window: the Operations pane scrolls through every Group Management and Device Management action">
+          <div class="oda" id="odaPreview">
+            <div class="oda-title"><span class="oda-ti"><svg viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="2" fill="#1F2937"/><path d="M3.5 5l3 3-3 3M8 11h4.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>MDM On-Demand Actions&nbsp; v0.81914&nbsp; <em>&#x26A1;</em></span><span class="oda-win">&#x2013;&nbsp;&nbsp;&nbsp;&nbsp;&#x2610;&nbsp;&nbsp;&nbsp;&nbsp;&#x2715;</span></div>
+            <div class="oda-head">
+              <div><div class="oda-h1">MDM On-Demand Actions&nbsp; v0.81914 <em>&#x26A1;</em></div><div class="oda-sub">Not connected</div></div>
+              <div class="oda-btns"><span class="oda-b oda-connect">Connect</span><span class="oda-b oda-disc dim">Disconnect</span><span class="oda-b oda-fb"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12.5v-9a1 1 0 011-1h9a1 1 0 011 1v6a1 1 0 01-1 1H6z"/><path d="M8 6.5l2-2 2 2M10 4.5v4"/></svg>Feedback</span><svg class="oda-notes" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="2" width="10" height="12" rx="1.5"/><path d="M5.5 5.5h5M5.5 8h5M5.5 10.5h3"/></svg></div>
+            </div>
+            <div class="oda-author">Author: <u>Satish Singhi</u> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6.5 9.5l3-3M7 5l1-1a2.2 2.2 0 013 3l-1 1M9 11l-1 1a2.2 2.2 0 01-3-3l1-1"/></svg></div>
+            <div class="oda-body">
+              <div class="oda-left">
+                <div class="oda-ops">OPERATIONS</div>
+                <div class="oda-pane">
+                  <div class="oda-list">
+                    <div class="oda-grp"><span class="oda-gi">&#x1F5C2;</span>Group Management<span class="oda-pm">&#x2013;</span></div>
+                    <div class="oda-tile"><i style="color:#0EA5E9">&#x1F50D;</i><b>Search Entra Objects</b><small>Users · Devices · Groups</small></div>
+<div class="oda-tile"><i style="color:#8B5CF6">&#x1F4CB;</i><b>List Group Members</b><small>Users · Devices · Groups</small></div>
+<div class="oda-tile"><i style="color:#D97706">&#x1F517;</i><b>Object Membership</b><small>Transitive group memberships</small></div>
+<div class="oda-tile"><i style="color:#7C3AED">&#x1F464;</i><b>Find Groups by Owners</b><small>Groups owned by specified UPNs</small></div>
+<div class="oda-tile"><i style="color:#22C55E">&#x2295;</i><b>Create Group</b><small>Security or M365</small></div>
+<div class="oda-tile"><i style="color:#3B82F6">&#x2295;</i><b>Add Members</b><small>Users · Groups · Devices</small></div>
+<div class="oda-tile"><i style="color:#EF4444">&#x2296;</i><b>Remove Members</b><small>Users · Groups · Devices</small></div>
+<div class="oda-tile"><i style="color:#F59E0B">&#x2191;</i><b>Export Members</b><small>To XLSX file</small></div>
+<div class="oda-tile"><i style="color:#8B5CF6">&#x26A1;</i><b>Set Dynamic Query</b><small>MembershipRule string</small></div>
+<div class="oda-tile"><i style="color:#F59E0B">&#x270F;</i><b>Rename Group</b><small>Change display name</small></div>
+<div class="oda-tile"><i style="color:#10B981">&#x1F464;</i><b>Get Group Owner</b><small>Query owner details for groups</small></div>
+<div class="oda-tile"><i style="color:#3B82F6">&#x2299;</i><b>Set Group Owner</b><small>Assign owner UPN(s)</small></div>
+<div class="oda-tile"><i style="color:#6366F1">&#x25A3;</i><b>Add User Devices</b><small>By UPN · Platform · Ownership</small></div>
+<div class="oda-tile"><i style="color:#0EA5E9">&#x2229;</i><b>Find Common Groups</b><small>Groups shared by all inputs</small></div>
+<div class="oda-tile"><i style="color:#7C3AED">&#x2296;</i><b>Find Distinct Groups</b><small>Groups unique to each input</small></div>
+<div class="oda-tile"><i style="color:#D97706">&#x21D4;</i><b>Compare Groups</b><small>Membership across groups</small></div>
+<div class="oda-tile"><i style="color:#DC2626">&#x1F5D1;</i><b>Remove Groups</b><small>Delete multiple Entra groups</small></div>
+<div class="oda-tile"><i style="color:#2563EB">&#x1F465;</i><b>User Direct Reports</b><small>List direct reports for users</small></div>
+                    <div class="oda-grp oda-grp2"><span class="oda-gi">&#x1F4BB;</span>Device Management<span class="oda-pm">&#x2013;</span></div>
+                    <div class="oda-tile"><i style="color:#7C3AED">&#x1F4CB;</i><b>Get Policy Info</b><small>Intune policy assignment report</small></div>
+<div class="oda-tile"><i style="color:#14B8A6">&#x2139;</i><b>Get Device Info</b><small>Entra + Intune combined report</small></div>
+<div class="oda-tile"><i style="color:#0891B2">&#x1F4E1;</i><b>Get Online Devices</b><small>Intune devices checked in recently</small></div>
+<div class="oda-tile"><i style="color:#7C3AED">&#x1F4E6;</i><b>Get App Info</b><small>Apps detected on managed devices</small></div>
+<div class="oda-tile"><i style="color:#DC2626">&#x1F512;</i><b>Missing BitLocker Keys</b><small>Devices missing OS drive recovery key</small></div>
+<div class="oda-tile"><i style="color:#0EA5E9">&#x1F4E4;</i><b>Policy Export</b><small>Export policies + settings to JSON</small></div>
+<div class="oda-tile"><i style="color:#16A34A">&#x1F4E5;</i><b>Policy Import</b><small>Recreate policies from JSON export</small></div>
+<div class="oda-tile"><i style="color:#9333EA">&#x1F50D;</i><b>Duplicate Policy Review</b><small>Find policies with identical settings</small></div>
+<div class="oda-tile"><i style="color:#DC2626">&#x1F5D1;</i><b>Policy Cleanup</b><small>Backup &amp; delete policies by name</small></div>
+<div class="oda-tile"><i style="color:#EA580C">&#x1F527;</i><b>Run Remediation</b><small>On-demand remediation (corp Windows)</small></div>
+<div class="oda-tile"><i style="color:#0891B2">&#x1F504;</i><b>Bulk Sync</b><small>Send sync to devices (all platforms)</small></div>
+<div class="oda-tile"><i style="color:#7C3AED">&#x1F4E5;</i><b>Bulk Autopilot Registration</b><small>Register hardware hashes from CSV</small></div>
+<div class="oda-tile"><i style="color:#0891B2">&#x2708;</i><b>Get Autopilot Status</b><small>Check Autopilot registration by input</small></div>
+<div class="oda-tile"><i style="color:#C0392B">&#x1F6EB;</i><b>Autopilot De-Registration</b><small>Remove devices from Autopilot (backup first)</small></div>
+<div class="oda-tile"><i style="color:#C0392B">&#x1F5D1;</i><b>Bulk Device Removal</b><small>Delete devices from Intune or Entra (guarded)</small></div>
+<div class="oda-tile"><i style="color:#B45B00">&#x1F464;</i><b>Remove Primary User</b><small>Remove Intune primary user (corporate only)</small></div>
+                  </div>
+                  <div class="oda-sb"><span class="oda-thumb"></span></div>
+                </div>
+              </div>
+              <div class="oda-main"><div class="oda-welcome">Welcome to MDM On-Demand Actions&nbsp; v0.81914</div><div class="oda-hint">Connect to Microsoft Graph, then select an operation from the left panel.</div></div>
+            </div>
+            <div class="oda-foot"><span><i></i>VERBOSE&nbsp; LOG</span><span class="oda-fr">Clear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ Show</span></div>
+          </div>
+          <button class="replay oda-replay" id="odaReplay" type="button">&#x21BB; Replay</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="tools" id="scripts">
+      <a class="tool" href="https://satishsinghi-gh.github.io/secureboot_deviceinsights/" target="_blank" rel="noopener">
+        <span class="os">Windows · Intune remediation</span>
+        <h4>Secure Boot Certificate Readiness</h4>
+        <p>A production-tested strategy for the Secure Boot Certificates Updates activity (2026) including guidance and automations for building the Telemetry Framework and translating the logs to meaningful, actionable insights.</p>
+      </a>
+      <a class="tool" href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">
+        <span class="os">Intune · Entra ID Shared Mode · Samsung Knox</span>
+        <h4>The perfect frontline solution with Intune, Entra ID Shared Mode and Samsung Knox</h4>
+        <p>Designing shared-device sign-in for frontline teams without compromising identity controls.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="block about" id="about">
+  <div class="wrap">
+    <div class="portrait">[Portrait photo]<br>Satish Singhi</div>
+    <div>
+      <h2>About me</h2>
+      <p>I keep organizations safe and productive in my capacity as a Digital Workplace Architect. My core areas of expertise are Endpoints and Identity.</p>
+      <div class="creds"><span>SC-100</span><span>SC-300</span><span>MS-500</span><span>MD-101</span><span>AZ-900</span><span>AI-900</span></div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener"><span class="li-logo" aria-hidden="true"></span>LinkedIn</a>
+        <a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 .5a7.5 7.5 0 00-2.4 14.6c.4.1.5-.2.5-.4v-1.4c-2.1.5-2.5-1-2.5-1-.3-.9-.8-1.1-.8-1.1-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.8.8 2.2.6.1-.5.3-.8.5-1-1.7-.2-3.4-.8-3.4-3.7 0-.8.3-1.5.8-2-.1-.2-.4-1 .1-2 0 0 .6-.2 2.1.8a7 7 0 013.8 0c1.4-1 2.1-.8 2.1-.8.4 1 .2 1.8.1 2 .5.5.8 1.2.8 2 0 2.9-1.8 3.5-3.4 3.7.3.2.5.7.5 1.4v2.1c0 .2.1.5.5.4A7.5 7.5 0 008 .5z"/></svg>GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="support">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg><span>Endpoint<b>Labz</b></span></a>
+      <p class="fine">Tools and automations for people who run the Microsoft endpoint estate. Built and maintained by Satish Singhi.</p>
+    </div>
+    <div><h5>Products</h5><ul><li><a href="easynotes/">EasyNotes</a></li><li><a href="easynotes/#first-launch">Getting started</a></li><li><a href="#support">FAQ</a></li><li><a href="#support">Privacy policy</a></li></ul></div>
+    <div><h5>Community Contributions</h5><ul><li><a href="#tools">Tools</a></li><li><a href="#scripts">Scripts &amp; Automations</a></li><li><a href="#blogs">Blogs</a></li><li><a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div><h5>Support</h5><ul><li><a href="mailto:support@endpointlabz.com">support@endpointlabz.com</a></li><li><a href="#support">Report an issue</a></li><li><a href="#about">About</a></li><li><a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="wrap bottom">
+    <span>© 2026 EndpointLabz · Satish Singhi. All rights reserved.</span>
+    <span class="mono">Made in the UK</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),saved=null;
+  try{saved=localStorage.getItem('elz-theme');}catch(e){}
+  function apply(t){root.setAttribute('data-theme',t);btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');}
+  apply(saved==='dark'?'dark':'light');
+  btn.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('elz-theme',t);}catch(e){}});
+})();
+(function(){
+  var nav=document.getElementById('nav'),btn=document.getElementById('menuBtn');
+  btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  nav.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+})();
+(function(){
+  var wrap=document.getElementById('sup'),btn=document.getElementById('supBtn'),pop=document.getElementById('supPop'),
+      cp=document.getElementById('supCopy'),mail=document.getElementById('supMail'),note=document.getElementById('supNote');
+  if(!wrap)return;
+  function open(o){pop.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false');if(!o){note.textContent='';cp.classList.remove('done');}}
+  btn.addEventListener('click',function(e){e.stopPropagation();open(pop.hidden);});
+  document.addEventListener('click',function(e){if(!pop.hidden&&!wrap.contains(e.target))open(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden){open(false);btn.focus();}});
+  function done(ok){cp.classList.toggle('done',ok);note.textContent=ok?'Copied to the clipboard':'Select the address and copy it';setTimeout(function(){cp.classList.remove('done');},1800);}
+  function fallback(){try{var r=document.createRange();r.selectNodeContents(mail);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);done(document.execCommand('copy'));}catch(e){done(false);}}
+  cp.addEventListener('click',function(){var t=mail.textContent.trim();
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true);},fallback);}else fallback();});
+})();
+(function(){
+  /* the Community / Products menus open on hover or focus - blur the picked item so the menu closes after the jump */
+  document.querySelectorAll('.dd-m a').forEach(function(a){a.addEventListener('click',function(){var d=a.closest('.dd');a.blur();d.classList.add('dd-x');
+    d.addEventListener('mouseleave',function f(){d.classList.remove('dd-x');d.removeEventListener('mouseleave',f);});});});
+  /* local preview only: a folder link needs index.html on file:// (the live site serves folders by their index) */
+  if(location.protocol==='file:'){document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');
+    if(/^(?![a-z]+:|#|\/)/i.test(h)){var i=h.indexOf('#'),p=i<0?h:h.slice(0,i),f=i<0?'':h.slice(i);if(p===''||/\/$/.test(p))a.setAttribute('href',p+'index.html'+f);}});}
+})();
+(function(){
+  var v=document.getElementById('enDemo'),btn=document.getElementById('enReplay');
+  if(!v)return;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function play(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  btn.addEventListener('click',function(){v.currentTime=0;play();});
+  if(reduced){v.removeAttribute('loop');return;}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)play();else v.pause();});},{threshold:.35}).observe(v);}else{play();}
+})();
+
+(function(){
+  var wrap=document.querySelector('.oda-wrap'),el=document.getElementById('odaPreview'),btn=document.getElementById('odaReplay');
+  if(!wrap||!el)return;
+  var main=el.querySelector('.oda-main'),list=el.querySelector('.oda-list'),thumb=el.querySelector('.oda-thumb'),pane=el.querySelector('.oda-pane');
+  var sub=el.querySelector('.oda-sub'),bConnect=el.querySelector('.oda-connect'),bDisc=el.querySelector('.oda-disc');
+  var welcome=main.innerHTML,scale=1,runId=0;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function fit(){scale=wrap.clientWidth/1086;el.style.transform='scale('+scale+')';}
+  fit(); new ResizeObserver(fit).observe(wrap);
+  var cur=document.createElement('div');cur.className='oda-cur';cur.innerHTML='<svg viewBox="0 0 20 20"><path d="M4 2l12 9-5 1 3 6-2.5 1-3-6-4 4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>';el.appendChild(cur);
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function h(cls,html,tag){var d=document.createElement(tag||'div');d.className=cls;if(html!=null)d.innerHTML=html;return d;}
+  function rel(e){var r=e.getBoundingClientRect(),b=el.getBoundingClientRect();return {x:(r.left-b.left)/scale,y:(r.top-b.top)/scale,w:r.width/scale,h:r.height/scale};}
+  function moveTo(e,dx,dy){var p=rel(e);cur.style.left=(p.x+(dx==null?p.w/2:dx))+'px';cur.style.top=(p.y+(dy==null?p.h/2:dy))+'px';}
+  function G(id){return function(){return id===runId;};}
+  /* ---- panel builders (mirror the tool's Card / FieldLabel / InputBox / PrimaryBtn styles) ---- */
+  function panel(title,desc){main.innerHTML='';var c=h('oda-card');c.appendChild(h('oda-pt',esc(title)));if(desc)c.appendChild(h('oda-pd',esc(desc)));main.appendChild(c);return c;}
+  function label(c,t){var l=h('oda-fl',esc(t));c.appendChild(l);return l;}
+  function area(c,ph,height){var a=h('oda-area');a.style.height=(height||70)+'px';a.innerHTML='<span class="oda-ph">'+esc(ph||'')+'</span><span class="oda-txt"></span><i class="oda-caret"></i>';c.appendChild(a);return a;}
+  function input(c,ph,val,w){var a=h('oda-inp');if(w)a.style.width=w+'px';a.innerHTML='<span class="oda-ph">'+esc(ph||'')+'</span><span class="oda-txt">'+esc(val||'')+'</span><i class="oda-caret"></i>';c.appendChild(a);return a;}
+  function combo(c,val,w){var a=h('oda-combo','<span>'+esc(val)+'</span><b>&#x25BE;</b>');if(w)a.style.width=w+'px';c.appendChild(a);return a;}
+  function checks(c,items){var r=h('oda-checks');items.forEach(function(t){r.appendChild(h('oda-chk','<i></i>'+esc(t),'label'));});c.appendChild(r);return r;}
+  function row(c,cls){var r=h('oda-row'+(cls?' '+cls:''));c.appendChild(r);return r;}
+  function button(c,t,cls){var b=h('oda-btn '+(cls||'primary'),t,'span');c.appendChild(b);return b;}
+  function note(c,t,cls){var n=h('oda-note'+(cls?' '+cls:''),esc(t));c.appendChild(n);return n;}
+  function progress(c,msg){var p=h('oda-prog','<i></i><span>'+esc(msg)+'</span>');c.appendChild(p);return p;}
+  function grid(c,cols,rows,maxH){var g=h('oda-grid');if(maxH)g.style.maxHeight=maxH+'px';var t='<table><thead><tr>'+cols.map(function(x){return '<th>'+esc(x)+'</th>';}).join('')+'</tr></thead><tbody>';rows.forEach(function(r){t+='<tr>'+r.map(function(v){var s=String(v),cl='';if(/^(Success|Registered|Yes|Compliant|Created|Added|Removed|Exported|Imported|OK|Found)/.test(s))cl='ok';else if(/^(Skipped|Not registered|No$|CAUTION|Non-Compliant|Warning)/.test(s))cl='warn';else if(/^(Failed|Error)/.test(s))cl='err';return '<td'+(cl?' class="'+cl+'"':'')+'>'+esc(s)+'</td>';}).join('')+'</tr>';});t+='</tbody></table>';g.innerHTML=t;c.appendChild(g);return g;}
+  function toolbar(c,count){var t=h('oda-tb','<span class="oda-count">'+esc(count)+'</span><span class="oda-filter">keyword filter...</span><span class="oda-mini">&#x1F50D; Filter</span><span class="oda-mini">Copy Value</span><span class="oda-mini">Copy Row</span><span class="oda-mini">Copy All</span><span class="oda-mini oda-mini-x">Export XLSX</span>');c.appendChild(t);return t;}
+  function box(c,title,lines,cls){var b=h('oda-box'+(cls?' '+cls:''));b.innerHTML='<div class="oda-bt">'+esc(title)+'</div>'+lines.map(function(l){return '<div class="oda-bl">'+l+'</div>';}).join('');c.appendChild(b);return b;}
+  /* ---- actions ---- */
+  async function type(a,text,ok,cps){var ph=a.querySelector('.oda-ph'),t=a.querySelector('.oda-txt');a.classList.add('focus');ph.style.display='none';var per=cps||18;for(var i=0;i<text.length;i++){if(!ok())return;t.textContent+=text[i];await sleep(text[i]==='\n'?120:per);}await sleep(250);a.classList.remove('focus');}
+  async function click(e,ok,hold){if(!ok())return;moveTo(e);await sleep(560);if(!ok())return;cur.classList.add('down');e.classList.add('pressed');await sleep(140);cur.classList.remove('down');e.classList.remove('pressed');await sleep(hold==null?220:hold);}
+  async function tick(chk,ok){await click(chk,ok,60);chk.classList.add('on');await sleep(200);}
+  async function pick(cb,val,ok){await click(cb,ok,80);var m=h('oda-menu');['(current)'].forEach(function(){});cb.querySelector('span').textContent=val;await sleep(260);}
+  async function reveal(g,ok,per){var rows=g.querySelectorAll('tbody tr');g.classList.add('show');for(var i=0;i<rows.length;i++){if(!ok())return;rows[i].classList.add('in');await sleep(per||110);}}
+  async function work(c,msg,ms,ok){var p=progress(c,msg);await sleep(ms);if(!ok())return;p.remove();}
+  function selectTile(name){var tiles=list.querySelectorAll('.oda-tile'),t=null;tiles.forEach(function(x){x.classList.remove('active');if(x.querySelector('b').textContent===name)t=x;});if(!t)return;t.classList.add('active');var y=Math.max(0,Math.min(1412,t.offsetTop-90));scrollList(y,1100);return t;}
+  function scrollList(y,ms){list.style.transition='transform '+ms+'ms ease-in-out';thumb.style.transition='transform '+ms+'ms ease-in-out';list.style.transform='translateY('+(-y)+'px)';thumb.style.transform='translateY('+(y*356/1412)+'px)';}
+  function connected(on){if(on){sub.innerHTML='Connected &#xB7; sso-admin@endpointlabz.com &#xB7; EndpointLabz';bConnect.classList.add('dim');bDisc.classList.remove('dim');}else{sub.textContent='Not connected';bConnect.classList.remove('dim');bDisc.classList.add('dim');}}
+  var U='@endpointlabz.com';
+  /* ================= scenes ================= */
+  async function sIntro(ok){main.innerHTML=welcome;connected(false);list.querySelectorAll('.oda-tile').forEach(function(x){x.classList.remove('active');});scrollList(0,0);cur.style.left='640px';cur.style.top='520px';await sleep(1200);if(!ok())return;
+    scrollList(1412,17000);await sleep(18200);if(!ok())return;await sleep(1500);if(!ok())return;scrollList(0,1500);await sleep(1700);if(!ok())return;
+    await click(bConnect,ok);await sleep(400);connected(true);await sleep(900);}
+  async function sSearch(ok){selectTile('Search Entra Objects');await sleep(900);if(!ok())return;
+    var c=panel('Search Entra Objects','Search for Users, Devices, Security Groups and M365 Groups. Accepts bulk input: UPN, Device Name, Device ID, Group Name, or Group ID - one per line.');
+    label(c,'SEARCH INPUT  -  one entry per line *');var r=row(c);var a=area(r,'One entry per line: UPN, Device Name, Device ID, Group Name, or Group ID',96);a.style.flex='1';var b=button(r,'&#x1F50D; Search');b.style.alignSelf='flex-start';
+    label(c,'OBJECT TYPE FILTER  (none checked = all types)');var ck=checks(c,['Users','Get Manager','Devices','Security Groups','M365 Groups','Exact Match only']);
+    await sleep(500);await type(a,'priya.nair'+U+'\nELZ-LT-0142\nSG-Finance-Users\n5CG2341J7K\nM365-Project-Atlas\ntom.walker'+U,ok,16);if(!ok())return;
+    await click(b,ok);await work(c,'Searching Entra ID...',1400,ok);if(!ok())return;
+    toolbar(c,'6 objects found');var g=grid(c,['Object Name','Details','Object Type'],[
+      ['Priya Nair','priya.nair'+U+' · Finance · London · Enabled','User'],
+      ['ELZ-LT-0142','Windows 11 24H2 · HP EliteBook 840 G10 · Entra joined · Owner: priya.nair'+U,'Device'],
+      ['SG-Finance-Users','Security · Assigned · 148 members · 2 owners','Security Group'],
+      ['ELZ-LT-0207','Serial 5CG2341J7K · Windows 11 · Intune enrolled · Compliant','Device'],
+      ['M365-Project-Atlas','Microsoft 365 · Dynamic · 36 members · Sensitivity: Confidential','M365 Group'],
+      ['Tom Walker','tom.walker'+U+' · Field Services · Manchester · Enabled','User']]);
+    await reveal(g,ok);await sleep(2600);}
+  async function sCreate(ok){selectTile('Create Group');await sleep(900);if(!ok())return;
+    var c=panel('Create Group','');c.querySelector('.oda-pt').style.marginBottom='8px';
+    var r1=row(c);var c1=h('oda-col');r1.appendChild(c1);label(c1,'GROUP TYPE');var cbT=combo(c1,'Security',150);var c2=h('oda-col');c2.style.flex='1';r1.appendChild(c2);label(c2,'DISPLAY NAME *');var nm=input(c2,'e.g. SG-Marketing-All');var c3=h('oda-col');c3.style.flex='1';r1.appendChild(c3);label(c3,'GROUP EMAIL ADDRESS *');var mr=row(c3);mr.style.alignItems='center';var mn=input(mr,'mail-nickname (local part only)');mn.style.flex='1';mr.appendChild(h('oda-suffix','@endpointlabz.com','span'));
+    var r2=row(c);var d1=h('oda-col');d1.style.flex='1';r2.appendChild(d1);label(d1,'INITIAL OWNER UPNs (optional  -  one per line)');var ow=area(d1,'owner1@domain.com\nowner2@domain.com',52);var d2=h('oda-col');d2.style.flex='1.4';r2.appendChild(d2);label(d2,'INITIAL MEMBERS (optional  -  one per line, UPNs / Group names or IDs / Device names or IDs)');var mb=area(d2,'user@domain.com\nGroupName or GroupObjectID\nDeviceName or DeviceObjectID',52);
+    var r3=row(c);var e1=h('oda-col');e1.style.flex='1';r3.appendChild(e1);label(e1,'DESCRIPTION');var ds=input(e1,'Optional description');var e2=h('oda-col');r3.appendChild(e2);label(e2,'ADMINISTRATIVE UNIT (optional)');combo(e2,'(None)',170);
+    var br=row(c);var bv=button(br,'Validate &amp; Preview &#x2192;');
+    await sleep(400);await type(nm,'SG-Marketing-Devices',ok,26);if(!ok())return;await type(mn,'sg-marketing-devices',ok,20);if(!ok())return;
+    await type(ow,'aisha.khan'+U+'\nluis.ortega'+U,ok,14);if(!ok())return;
+    await type(mb,'priya.nair'+U+'\nmei.chen'+U+'\nSG-Marketing-Users\nELZ-LT-0142\nELZ-LT-0207',ok,12);if(!ok())return;
+    await type(ds,'Marketing team devices for app targeting',ok,14);if(!ok())return;
+    await click(bv,ok);await work(c,'Validating owners and members in Entra ID...',1300,ok);if(!ok())return;
+    var bx=box(c,'Review the summary below before proceeding.',['<b>Security group</b> SG-Marketing-Devices &#xB7; sg-marketing-devices@endpointlabz.com','<b>2 owners</b> resolved &#xB7; <b>5 members</b> resolved: 2 users, 1 group, 2 devices &#xB7; 0 unresolved'],'ok');
+    var br2=row(c);var bc=button(br2,'&#x2295; Create Group');button(br2,'Cancel','ghost');
+    await sleep(900);await click(bc,ok);await work(c,'Creating group, adding members and owners...',1500,ok);if(!ok())return;
+    bx.remove();br2.remove();toolbar(c,'Group created');var g=grid(c,['Step','Object','Result'],[['Create group','SG-Marketing-Devices','Created · 8f2c…41ab'],['Add owner','aisha.khan'+U,'Added'],['Add owner','luis.ortega'+U,'Added'],['Add member','priya.nair'+U,'Added'],['Add member','SG-Marketing-Users','Added (group)'],['Add member','ELZ-LT-0142','Added (device)']]);
+    await reveal(g,ok,90);await sleep(2400);}
+  async function sOwners(ok){selectTile('Find Groups by Owners');await sleep(900);if(!ok())return;
+    var c=panel('Find Groups by Owners','Enter owner UPNs (one per line) to find all groups they own. Leave the list blank to find every group that has no owner.');
+    label(c,'OWNER UPNs  -  one per line');var r=row(c);var a=area(r,'user@domain.com',72);a.style.flex='1';var b=button(r,'&#x25B6;  Find Groups');b.style.alignSelf='flex-start';
+    await sleep(600);moveTo(a);await sleep(700);if(!ok())return;await click(b,ok);await work(c,'Resolving owners...',1400,ok);if(!ok())return;
+    toolbar(c,'7 groups without an owner');var g=grid(c,['Owner','Group Name','Group ID','Group Type','Membership Type','Member Count'],[
+      ['(no owner)','SG-Legacy-Printers','3b1e…9c2a','Security','Assigned','12'],['(no owner)','SG-Kiosk-Devices','7a90…d114','Security','Assigned','41'],['(no owner)','M365-Atlas-Archive','c4f2…08be','Microsoft 365','Assigned','9'],['(no owner)','Dyn-AllWindows','1d77…6e03','Security','Dynamic','2,318'],['(no owner)','SG-Pilot-Ring1','e8a1…2c55','Security','Assigned','60'],['(no owner)','SG-VPN-Contractors','52b3…7f90','Security','Assigned','27'],['(no owner)','M365-Sales-EMEA','9e04…b3c1','Microsoft 365','Dynamic','184']]);
+    await reveal(g,ok);await sleep(2600);}
+  async function sUserDevices(ok){selectTile('Add User Devices');await sleep(900);if(!ok())return;
+    var c=panel('Add User Devices to Group','');c.querySelector('.oda-pt').style.marginBottom='8px';
+    label(c,'TARGET GROUP');var r=row(c);r.style.alignItems='center';var gs=input(r,'Type group name, paste Object ID, or enter display name');gs.style.flex='1';var bs=button(r,'Search','small');button(r,'Use as ID','outline');
+    var sel=h('oda-sel','Selected: <b>—</b>');c.appendChild(sel);
+    var r2=row(c);var c1=h('oda-col');c1.style.flex='1';r2.appendChild(c1);label(c1,'USER UPNs  -  one per line (devices owned by these users will be evaluated)');var a=area(c1,'user1@domain.com\nuser2@domain.com',66);
+    var c2=h('oda-col');c2.style.flex='1';r2.appendChild(c2);label(c2,'DEVICE PLATFORM FILTER  -  only devices matching a checked platform will be added');var ck=checks(c2,['Windows','Android','iOS','macOS']);label(c2,'DEVICE OWNERSHIP FILTER');var cbO=combo(c2,'All ownership types',190);label(c2,'INTUNE ENROLLMENT FILTER');var ck2=checks(c2,['Intune enrolled devices only']);
+    var br=row(c);var bv=button(br,'Validate &amp; Preview &#x2192;');
+    await sleep(400);await type(gs,'SG-Marketing-Devices',ok,22);if(!ok())return;await click(bs,ok);await sleep(500);sel.innerHTML='Selected: <b>SG-Marketing-Devices</b> &nbsp;<span class="oda-id">8f2c41ab-6d0e-4b7f-9a13-2e7c0d5f41ab</span>';
+    await type(a,'priya.nair'+U+'\ntom.walker'+U+'\nmei.chen'+U,ok,14);if(!ok())return;
+    var cks=ck.querySelectorAll('.oda-chk');await tick(cks[0],ok);await tick(cks[2],ok);if(!ok())return;await pick(cbO,'Company only',ok);await tick(ck2.querySelector('.oda-chk'),ok);if(!ok())return;
+    await click(bv,ok);await work(c,'Resolving registered devices for 3 users...',1400,ok);if(!ok())return;
+    var g=grid(c,['User','Device','Platform','Ownership','Intune','Action'],[['priya.nair'+U,'ELZ-LT-0142','Windows','Company','Enrolled','Add'],['priya.nair'+U,'ELZ-IP-0093','iOS','Company','Enrolled','Add'],['tom.walker'+U,'ELZ-LT-0207','Windows','Company','Enrolled','Add'],['tom.walker'+U,'Toms-Pixel-8','Android','Personal','Enrolled','Skipped (platform, ownership)'],['mei.chen'+U,'ELZ-LT-0311','Windows','Company','Enrolled','Add'],['mei.chen'+U,'ELZ-MB-0018','macOS','Company','Not enrolled','Skipped (not enrolled)']],150);
+    await reveal(g,ok,90);if(!ok())return;var br2=row(c);var ba=button(br2,'&#x2295; Add 4 Devices');button(br2,'Cancel','ghost');await sleep(800);await click(ba,ok);await work(c,'Adding 4 devices to SG-Marketing-Devices...',1100,ok);if(!ok())return;br2.remove();box(c,'Done',['<b>4 devices added</b> to SG-Marketing-Devices &#xB7; 2 skipped by filters &#xB7; 0 failed'],'ok');await sleep(2300);}
+  async function sDeviceInfo(ok){selectTile('Get Device Info');await sleep(900);if(!ok())return;
+    var c=panel('Get Device Info','Fetches combined Entra and Intune device data and exports to XLSX.');
+    var r=row(c);var c1=h('oda-col');r.appendChild(c1);label(c1,'INPUT TYPE');var cb=combo(c1,'User UPNs (resolve owned devices)',230);var c2=h('oda-col');c2.style.flex='1';r.appendChild(c2);label(c2,'USER UPNs  -  one per line');var a=area(c2,'user@domain.com',62);
+    label(c,'FILTERS');var fr=row(c);fr.style.alignItems='center';var ck=checks(fr,['Windows','Android','iOS','macOS']);fr.appendChild(h('oda-suffix','Compliance:','span'));combo(fr,'All',90);var ck2=checks(fr,['Intune Enrolled only']);
+    var br=row(c);var b=button(br,'&#x25B6;  Get Device Info');button(br,'&#x25B6;  Get All Device Info','outline');
+    await sleep(400);await type(a,'priya.nair'+U+'\ntom.walker'+U+'\nsam.okafor'+U,ok,14);if(!ok())return;await click(b,ok);
+    var m=h('oda-metrics','<div><span>Total Devices:</span><b id="odaM1">5</b></div><div><span>Devices Processed:</span><b id="odaM2">0</b></div><div><span>Devices Remaining:</span><b id="odaM3">5</b></div><div><span>Estimated Time Remaining:</span><b id="odaM4">Calculating...</b></div>');c.appendChild(m);var p=progress(c,'Resolving devices...');
+    for(var i=1;i<=5;i++){await sleep(330);if(!ok())return;m.querySelector('#odaM2').textContent=i;m.querySelector('#odaM3').textContent=5-i;m.querySelector('#odaM4').textContent=(5-i)+' s';p.querySelector('span').textContent='Querying Intune and Entra for device '+i+' of 5...';}
+    await sleep(300);if(!ok())return;p.remove();m.remove();toolbar(c,'5 devices');
+    var g=grid(c,['Device Name','Join Type','Entra OS','Intune OS Version','Intune Check-In','OEM','Model','Serial Number','Compliance State','Primary User UPN','User Job Title','AP Group Tag'],[
+      ['ELZ-LT-0142','AzureAd','Windows','10.0.26100.4652','Today 08:41','HP','EliteBook 840 G10','5CG2341J7K','Compliant','priya.nair'+U,'Finance Analyst','UK-Corp'],
+      ['ELZ-IP-0093','Registered','iOS','18.6.2','Today 07:55','Apple','iPhone 15','F2LX1A0BQ6','Compliant','priya.nair'+U,'Finance Analyst','—'],
+      ['ELZ-LT-0207','AzureAd','Windows','10.0.26100.4652','Yesterday 18:12','Lenovo','ThinkPad T14 Gen 5','PF4R2M7Q','Compliant','tom.walker'+U,'Field Engineer','UK-Field'],
+      ['ELZ-LT-0288','AzureAd','Windows','10.0.22631.5768','3 days ago','Dell','Latitude 5450','7K2QF94','Non-Compliant','sam.okafor'+U,'Sales Executive','UK-Corp'],
+      ['ELZ-MB-0044','Registered','macOS','15.6.1','Today 09:03','Apple','MacBook Air (M3)','C02ZK9ABMD6T','Compliant','sam.okafor'+U,'Sales Executive','—']],170);
+    await reveal(g,ok,120);await sleep(2800);}
+  async function sPolicy(ok){selectTile('Policy Export');await sleep(900);if(!ok())return;
+    var c=panel('Policy Export','Export Intune policies and their underlying settings to portable JSON files (no assignments). Files are always saved locally; Blob options also upload to an Azure Storage container.');
+    var r=row(c);var c1=h('oda-col');c1.style.flex='1';r.appendChild(c1);label(c1,'POLICY NAME  (comma-separated keywords - blank for all)');var nf=input(c1,'');var c2=h('oda-col');r.appendChild(c2);label(c2,'POLICY TYPE');var ct=combo(c2,'(All types)',180);var c3=h('oda-col');r.appendChild(c3);label(c3,'OS PLATFORM');var cp=combo(c3,'(All platforms)',140);
+    var br=row(c);button(br,'&#x25B6;  Export Selected (Local)','outline');var b=button(br,'&#x25B6;  Export All (Local)');button(br,'&#x2601;  Export Selected (Blob)','outline');button(br,'&#x2601;  Export All (Blob)','outline');
+    await sleep(500);await pick(cp,'Windows',ok);if(!ok())return;await click(b,ok);await work(c,'Exporting 14 policies to C:\\MDM-ODA\\Exports\\2026-09-27_1042\\ ...',1700,ok);if(!ok())return;
+    toolbar(c,'14 policies exported');var g=grid(c,['Policy Name','Type','Status','File','Warnings'],[['Win11 - BitLocker Baseline','Settings Catalog','Exported','Win11_-_BitLocker_Baseline.json','—'],['Win11 - Defender AV','Settings Catalog','Exported','Win11_-_Defender_AV.json','—'],['Win11 - Compliance Standard','Compliance Policy','Exported','Win11_-_Compliance_Standard.json','—'],['Corp Wi-Fi (EAP-TLS)','Device Configuration','Exported','Corp_Wi-Fi_EAP-TLS.json','—'],['Autopilot - UK-Corp','Autopilot Profile','Exported','Autopilot_-_UK-Corp.json','—'],['Detect-BitLocker-Escrow','Detection/Remediation Script','Exported','Detect-BitLocker-Escrow.json','—'],['ASR Rules - Standard','Settings Catalog','Exported','ASR_Rules_-_Standard.json','1 setting deprecated']],150);
+    await reveal(g,ok,80);await sleep(1800);if(!ok())return;
+    selectTile('Policy Import');await sleep(900);if(!ok())return;
+    c=panel('Policy Import','Recreate policies from JSON export files into the signed-in tenant. Every import previews the planned changes first, then creates each policy as a NEW object with an "(Imported)" suffix - existing policies are never modified.');
+    var r2=row(c);var d1=h('oda-col');d1.style.flex='1';r2.appendChild(d1);label(d1,'POLICY NAME  (comma-separated keywords - blank for all)');var nf2=input(d1,'');var d2=h('oda-col');r2.appendChild(d2);label(d2,'POLICY TYPE');combo(d2,'(All types)',180);var d3=h('oda-col');r2.appendChild(d3);label(d3,'OS PLATFORM');combo(d3,'(All platforms)',140);
+    var br2=row(c);button(br2,'&#x25B6;  Import Selected (Local)','outline');var bi=button(br2,'&#x25B6;  Import All (Local)');button(br2,'&#x2601;  Import Selected (Blob)','outline');button(br2,'&#x2601;  Import All (Blob)','outline');
+    await sleep(400);await type(nf2,'BitLocker, Defender',ok,22);if(!ok())return;await click(bi,ok);await work(c,'Parsing 14 export files, 2 match the filters...',1100,ok);if(!ok())return;
+    var bx=box(c,'Review before import',['<b>2 policies</b> will be created as new objects with an "(Imported)" suffix &#xB7; 0 existing policies modified &#xB7; no assignments'],'warn');var br3=row(c);var bc=button(br3,'Import 2 Policies');button(br3,'Cancel','ghost');await sleep(900);await click(bc,ok);await work(c,'Creating policies...',1200,ok);if(!ok())return;bx.remove();br3.remove();
+    toolbar(c,'2 policies imported');var g2=grid(c,['Source Name','Type','Created As','Result','Warnings'],[['Win11 - BitLocker Baseline','Settings Catalog','Win11 - BitLocker Baseline (Imported)','Imported','—'],['Win11 - Defender AV','Settings Catalog','Win11 - Defender AV (Imported)','Imported','—']]);await reveal(g2,ok);await sleep(2400);}
+  async function sRemediation(ok){selectTile('Run Remediation');await sleep(900);if(!ok())return;
+    var c=panel('Run Remediation','Runs a detection/remediation script on-demand against the devices you list. For safety this operation targets COMPANY-owned WINDOWS devices only - personal or non-Windows devices are resolved but automatically skipped.');
+    label(c,'SELECT YOUR SCRIPT');var r=row(c);r.style.alignItems='center';var sf=input(r,'',null,200);button(r,'Reload','outline');var cs=combo(r,'— pick a script —',330);
+    var r2=row(c);var c1=h('oda-col');r2.appendChild(c1);label(c1,'INPUT TYPE');var ci=combo(c1,'UPN (resolve user\'s devices)',210);var c2=h('oda-col');c2.style.flex='1';r2.appendChild(c2);var lb=label(c2,'UPNs  -  one per line');var a=area(c2,'',60);
+    var br=row(c);br.style.alignItems='center';var b=button(br,'&#x25B6;  Run Remediation');br.appendChild(h('oda-guard','Safeguard: company-owned Windows devices only. Others are skipped.','span'));
+    await sleep(400);await type(sf,'bitlocker',ok,26);if(!ok())return;await pick(cs,'Detect-BitLocker-Escrow (Windows 10 and later)',ok);await pick(ci,'Device Name',ok);lb.textContent='DEVICE NAMES  -  one per line';await type(a,'ELZ-LT-0142\nELZ-LT-0207\nELZ-LT-0288\nELZ-MB-0044',ok,20);if(!ok())return;
+    await click(b,ok);await work(c,'Resolving 4 devices and triggering the remediation...',1500,ok);if(!ok())return;
+    toolbar(c,'4 devices · 3 triggered · 1 skipped');var g=grid(c,['Device','OS','Ownership','User','Result'],[['ELZ-LT-0142','Windows 11','Company','priya.nair'+U,'Success - remediation queued'],['ELZ-LT-0207','Windows 11','Company','tom.walker'+U,'Success - remediation queued'],['ELZ-LT-0288','Windows 11','Company','sam.okafor'+U,'Success - remediation queued'],['ELZ-MB-0044','macOS 15','Company','sam.okafor'+U,'Skipped - not Windows']]);
+    await reveal(g,ok);await sleep(2600);}
+  async function sAutopilot(ok){selectTile('Bulk Autopilot Registration');await sleep(900);if(!ok())return;
+    var c=panel('Bulk Autopilot Registration','Registers devices to Windows Autopilot in bulk from hardware hash CSV files. The tool validates every row, flags serials already registered, shows a confirmation summary, and only registers after you confirm.');
+    label(c,'GROUP TAG  (applied to devices without a CSV Group Tag)');var gt=input(c,'',null,220);
+    var br=row(c);var bl=button(br,'&#x1F4C2;  Upload from this PC','outline');button(br,'&#x2601;  Upload from Blob','outline');button(br,'&#x1F4CB;  Attach Mapping','outline');var bg=button(br,'&#x25B6;  Bulk Register');
+    var st=note(c,'No hash files selected yet - use Upload from this PC or Upload from Blob, then click Bulk Register.');
+    await sleep(400);await type(gt,'UK-Corp',ok,30);if(!ok())return;await click(bl,ok);await sleep(500);if(!ok())return;st.textContent='3 hash files staged (48 rows): Batch-2026-09-A.csv, Batch-2026-09-B.csv, Batch-2026-09-C.csv';st.classList.add('ok');await sleep(700);
+    await click(bg,ok);await work(c,'Validating 48 rows against Autopilot...',1400,ok);if(!ok())return;
+    var bx=box(c,'Review the summary below before proceeding.',['<b>48 serials</b> parsed &#xB7; <b>46 new</b> &#xB7; <b>2 already registered</b> (UK-Field) will be skipped &#xB7; Group Tag UK-Corp applied to 41 rows without a tag'],'warn');var br2=row(c);var bc=button(br2,'Register 46 Devices');button(br2,'Cancel','ghost');await sleep(900);await click(bc,ok);await work(c,'Importing hardware hashes...',1600,ok);if(!ok())return;bx.remove();br2.remove();
+    toolbar(c,'46 registered · 2 skipped');var g=grid(c,['Serial Number','Source File','Group Tag','Result'],[['5CG2419T8M','Batch-2026-09-A.csv','UK-Corp','Registered'],['5CG2419T9C','Batch-2026-09-A.csv','UK-Corp','Registered'],['PF4R3K1D','Batch-2026-09-B.csv','UK-Field (CSV)','Registered'],['PF4R3K2H','Batch-2026-09-B.csv','UK-Corp','Registered'],['7K2QG55','Batch-2026-09-C.csv','UK-Corp','Registered'],['5CG2341J7K','Batch-2026-09-C.csv','UK-Field','Skipped - already registered']],150);await reveal(g,ok,80);await sleep(2200);if(!ok())return;
+    selectTile('Autopilot De-Registration');await sleep(900);if(!ok())return;
+    c=panel('Autopilot De-Registration','Removes devices from Windows Autopilot (the Autopilot identity only - Intune enrollment and the Entra device object are never touched). A full device property backup is written BEFORE anything is removed - if the backup fails, nothing is de-registered.');
+    var r=row(c);var d1=h('oda-col');r.appendChild(d1);label(d1,'INPUT TYPE');var ci=combo(d1,'Device serial numbers',200);var d2=h('oda-col');d2.style.flex='1';r.appendChild(d2);label(d2,'SERIAL NUMBERS  -  one per line');var a=area(d2,'',62);var d3=h('oda-col');r.appendChild(d3);label(d3,'BACKUP TARGET');var cb=combo(d3,'Local folder',160);
+    var br3=row(c);var bd=button(br3,'&#x1F6EB;  De-Register Devices','stop');
+    await sleep(400);await type(a,'5CG1998R2L\n5CG1998R4P\nPF2X0C7A',ok,22);if(!ok())return;await click(bd,ok);await work(c,'Backing up device properties to C:\\MDM-ODA\\Backups\\AP-Dereg_2026-09-27.xlsx ...',1500,ok);if(!ok())return;
+    var bx2=box(c,'Backup written. Review before removal.',['<b>3 devices</b> found in Autopilot &#xB7; 2 not enrolled in Intune (safe) &#xB7; <span class="warn">1 still enrolled - CAUTION</span>'],'warn');var br4=row(c);var bc2=button(br4,'De-Register 3 Devices','stop');button(br4,'Cancel','ghost');await sleep(900);await click(bc2,ok);await work(c,'Removing Autopilot identities...',1200,ok);if(!ok())return;bx2.remove();br4.remove();
+    toolbar(c,'3 de-registered');var g2=grid(c,['Serial Number','Device Name','Intune Enrolled','Backup','Result'],[['5CG1998R2L','ELZ-LT-0071','No','Yes','Removed from Autopilot'],['5CG1998R4P','ELZ-LT-0073','No','Yes','Removed from Autopilot'],['PF2X0C7A','ELZ-LT-0102','CAUTION - Yes','Yes','Removed from Autopilot']]);await reveal(g2,ok);await sleep(2400);}
+  async function sApStatus(ok){selectTile('Get Autopilot Status');await sleep(900);if(!ok())return;
+    var c=panel('Get Autopilot Status','Checks Windows Autopilot registration status for the devices you specify. The tool queries Autopilot directly, so devices registered but not yet enrolled in Intune are still reported.');
+    var r=row(c);var d1=h('oda-col');r.appendChild(d1);label(d1,'INPUT TYPE');var ci=combo(d1,'Serial Number',180);var d2=h('oda-col');d2.style.flex='1';r.appendChild(d2);label(d2,'SERIAL NUMBERS  -  one per line');var a=area(d2,'',72);
+    var br=row(c);var b=button(br,'&#x2708;  Get Autopilot Status');
+    await sleep(400);await type(a,'5CG2419T8M\n5CG2341J7K\nPF4R2M7Q\n7K2QF94\nC02ZK9ABMD6T',ok,20);if(!ok())return;await click(b,ok);await work(c,'Querying Autopilot...',1300,ok);if(!ok())return;
+    toolbar(c,'5 serials checked');var g=grid(c,['Input','Serial Number','Device Name','Autopilot Registered','Group Tag','Intune Enrolled'],[['5CG2419T8M','5CG2419T8M','—','Registered','UK-Corp','No (awaiting first boot)'],['5CG2341J7K','5CG2341J7K','ELZ-LT-0142','Registered','UK-Field','Yes'],['PF4R2M7Q','PF4R2M7Q','ELZ-LT-0207','Registered','UK-Field','Yes'],['7K2QF94','7K2QF94','ELZ-LT-0288','Registered','UK-Corp','Yes'],['C02ZK9ABMD6T','C02ZK9ABMD6T','ELZ-MB-0044','Not registered (macOS)','—','Yes']]);
+    await reveal(g,ok);await sleep(2600);}
+  async function sPrimaryUser(ok){selectTile('Remove Primary User');await sleep(900);if(!ok())return;
+    var c=panel('Remove Primary User','Removes the Intune primary user from the input devices (Intune-only - the Entra device object and its registered owners are never touched). Scope is pre-applied: Corporate-owned, Intune-enrolled devices only. The execution summary is written BEFORE any change.');
+    var r=row(c);var d1=h('oda-col');r.appendChild(d1);label(d1,'INPUT TYPE');var ci=combo(d1,'Device serial numbers',200);var d2=h('oda-col');d2.style.flex='1';r.appendChild(d2);label(d2,'SERIAL NUMBERS  -  one per line');var a=area(d2,'',76);var d3=h('oda-col');r.appendChild(d3);label(d3,'EXECUTION SUMMARY (CSV) *');combo(d3,'Local folder',150);
+    label(c,'FILTERS');var ck=checks(c,['Windows','Android','iOS','macOS']);note(c,'Platform: leave all unchecked for all  |  Ownership + enrollment pre-applied: Corporate-owned, Intune-enrolled only');
+    var br=row(c);var b=button(br,'&#x1F464;  Remove Primary User','amber');
+    await sleep(400);await type(a,'5CG2341J7K\nPF4R2M7Q\n7K2QF94\nF2LX1A0BQ6',ok,22);if(!ok())return;await tick(ck.querySelector('.oda-chk'),ok);if(!ok())return;await click(b,ok);await work(c,'Writing execution summary to C:\\MDM-ODA\\Summaries\\RPU_2026-09-27.csv ...',1300,ok);if(!ok())return;
+    var bx=box(c,'Summary written. Review before proceeding.',['<b>3 corporate Windows devices</b> in scope &#xB7; 1 skipped (iOS, platform filter) &#xB7; Entra owners untouched'],'warn');var br2=row(c);var bc=button(br2,'Remove on 3 Devices','amber');button(br2,'Cancel','ghost');await sleep(900);await click(bc,ok);await work(c,'Removing primary users in Intune...',1200,ok);if(!ok())return;bx.remove();br2.remove();
+    toolbar(c,'3 updated · 1 skipped');var g=grid(c,['Device Name','Entra Device ID','UPN','Serial Number','Action Status'],[['ELZ-LT-0142','a91c…3f7e','priya.nair'+U,'5CG2341J7K','Removed'],['ELZ-LT-0207','04de…b8a2','tom.walker'+U,'PF4R2M7Q','Removed'],['ELZ-LT-0288','7c55…e019','sam.okafor'+U,'7K2QF94','Removed'],['ELZ-IP-0093','e3a8…1c40','priya.nair'+U,'F2LX1A0BQ6','Skipped - platform filter']]);
+    await reveal(g,ok);await sleep(3000);}
+  var scenes=[sIntro,sSearch,sCreate,sOwners,sUserDevices,sDeviceInfo,sPolicy,sRemediation,sAutopilot,sApStatus,sPrimaryUser];
+  async function run(){var my=++runId,ok=G(my);el.classList.add('play');while(ok()){for(var i=0;i<scenes.length;i++){if(!ok())return;await scenes[i](ok);}if(!ok())return;await sleep(1500);}}
+  btn.addEventListener('click',run);
+  if(reduced){return;}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){run();io.disconnect();}},{threshold:.3});io.observe(wrap);}else{run();}
+})();
+</script>
+
+</body>
+</html>
