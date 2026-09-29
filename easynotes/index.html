@@ -7,12 +7,12 @@
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with a session clipboard, Transit, reminders, verified backups, OneNote import and an optional local MCP endpoint for AI tools. Free, no account, no telemetry.">
-<!-- EndpointLabz - EasyNotes page v2 · Author: Satish Singhi -->
+<!-- EndpointLabz - EasyNotes page v3 · Author: Satish Singhi -->
 <title>EasyNotes · EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
-/* EndpointLabz - EasyNotes page v2 · Author: Satish Singhi */
+/* EndpointLabz - EasyNotes page v3 · Author: Satish Singhi */
 :root{
   --bg:#F8FAFB; --bg-2:#EEF4F6; --surface:#FFFFFF; --line:#D9E3E7; --line-2:#C2D0D6;
   --ink:#0F1B22; --ink-2:#3A4B53; --ink-3:#6B7C84;
@@ -179,10 +179,10 @@ footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line)
 .sup-copy.done .cp{display:none}
 .sup-copy.done .ok{display:block}
 .sup-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;min-height:1.2em}
-.en-logo{width:40px;height:40px;flex:none;border-radius:9px}
+.en-logo{width:40px;height:40px;flex:none}
 @media (min-width:861px){.dd.dd-x .dd-m{opacity:0!important;visibility:hidden!important}.dd.dd-x .chev{transform:none!important}}
 .dd-ic.en{background:none}
-.dd-ic img{width:30px;height:30px;border-radius:7px}
+.dd-ic img{width:30px;height:30px}
 @media (max-width:860px){
   .sup{width:100%;flex-direction:column;align-items:stretch}
   .sup-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
@@ -200,7 +200,6 @@ body{overflow-x:hidden}
 .crumbs a:hover{color:var(--teal)}
 .en-title{display:flex;align-items:center;gap:16px;margin-top:18px}
 .en-title svg,.en-title .app-logo{width:60px;height:60px;flex:none;filter:drop-shadow(0 8px 18px rgba(15,59,120,.28))}
-.en-title .app-logo{border-radius:13px}
 .en-title h1{font-size:clamp(40px,5vw,60px);line-height:1;font-weight:700;letter-spacing:-.03em}
 .tagline{font-family:"Caveat",cursive;font-size:30px;color:var(--ocean-b);margin-top:10px;line-height:1.1}
 :root[data-theme="dark"] .tagline{color:#8DB6F5}
@@ -345,7 +344,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 .get{border-top:0}
 .get-card{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;border-radius:18px;padding:32px 34px;background:linear-gradient(120deg,var(--ocean-a),var(--ocean-b));color:#fff;box-shadow:0 30px 60px -30px rgba(15,59,120,.6)}
 .get-card svg,.get-card .app-logo{width:54px;height:54px;margin-bottom:12px}
-.get-card .app-logo{display:block;border-radius:12px}
+.get-card .app-logo{display:block}
 .get-card h2{color:#fff;margin-bottom:6px}
 .get-card p{color:#DCE8FB;margin:0}
 .get-card .store-btn{background:#fff;color:#0F1B22;border-color:#fff}
@@ -404,13 +403,12 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
           <a role="menuitem" href="../#scripts"><i class="dd-ic sc"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4M11 4l-2 12"/></svg></i><span><b>Scripts &amp; Automations</b><small>Intune, Graph &amp; OS platform</small></span></a>
         </div>
       </div>
-      <a href="../#blogs">Blogs</a>
       <div class="sup" id="sup">
-        <button class="sup-t" id="supBtn" type="button" aria-expanded="false" aria-controls="supPop">Support <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
-        <div class="sup-pop" id="supPop" role="dialog" aria-label="Contact support" hidden>
-          <p class="sup-h">Email support</p>
+        <button class="sup-t" id="supBtn" type="button" aria-expanded="false" aria-controls="supPop">Contact <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
+        <div class="sup-pop" id="supPop" role="dialog" aria-label="Contact" hidden>
+          <p class="sup-h">Email</p>
           <div class="sup-row">
-            <span class="sup-mail" id="supMail">support@endpointlabz.com</span>
+            <span class="sup-mail" id="supMail">hello@endpointlabz.com</span>
             <button class="sup-copy" id="supCopy" type="button" aria-label="Copy the email address" title="Copy">
               <svg class="cp" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>
               <svg class="ok" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
@@ -815,8 +813,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <p class="fine">Tools and automations for people who run the Microsoft endpoint estate. Built and maintained by Satish Singhi.</p>
     </div>
     <div><h5>Products</h5><ul><li><a href="#top">EasyNotes</a></li><li><a href="#first-launch">Getting started</a></li><li><a href="../#support">FAQ</a></li><li><a href="../#support">Privacy policy</a></li></ul></div>
-    <div><h5>Community Contributions</h5><ul><li><a href="../#tools">Tools</a></li><li><a href="../#scripts">Scripts &amp; Automations</a></li><li><a href="../#blogs">Blogs</a></li><li><a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">GitHub</a></li></ul></div>
-    <div><h5>Support</h5><ul><li><a href="mailto:support@endpointlabz.com">support@endpointlabz.com</a></li><li><a href="../#support">Report an issue</a></li><li><a href="../#about">About</a></li><li><a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+    <div><h5>Community Contributions</h5><ul><li><a href="../#tools">Tools</a></li><li><a href="../#scripts">Scripts &amp; Automations</a></li><li><a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div><h5>Contact</h5><ul><li><a href="mailto:hello@endpointlabz.com">hello@endpointlabz.com</a></li><li><a href="../#support">Report an issue</a></li><li><a href="../#about">About</a></li><li><a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
   </div>
   <div class="wrap bottom">
     <span>© 2026 EndpointLabz · Satish Singhi. All rights reserved.</span>
