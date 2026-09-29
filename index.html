@@ -7,7 +7,7 @@
 <link rel="canonical" href="https://endpointlabz.com/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="EndpointLabz — tools and automations for the Microsoft endpoint estate. EasyNotes, MDM-ODA and platform automations by Satish Singhi.">
-<!-- EndpointLabz home page v4 · v19 · Author: Satish Singhi -->
+<!-- EndpointLabz home page v4 · v20 · Author: Satish Singhi -->
 <title>EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -374,17 +374,44 @@ footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line)
   .sup-pop{position:static;transform:none;width:auto;min-width:0;margin:8px 0 6px;box-shadow:none}
   .sup-mail{white-space:normal;word-break:break-all}
 }
+
+/* ---------- v20: hero outcomes - what every solution raises / reduces (option H) ---------- */
+.outcomes{margin-top:24px;max-width:580px}
+.opt{display:block;position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.opt ul{list-style:none;margin:0;padding:0}
+.opt .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none}
+.opt .ic svg{width:15px;height:15px}
+.opt .ar svg{width:14px;height:14px;display:block}
+.opt .up .ar{animation:bobU 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+.opt .down .ar{animation:bobD 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+@keyframes bobU{0%,100%{transform:translateY(1.5px)}50%{transform:translateY(-2.5px)}}
+@keyframes bobD{0%,100%{transform:translateY(-1.5px)}50%{transform:translateY(2.5px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+:root{--upc:#0F766E;--upc2:#14B8A6;--ups:#DDF1EE;--dnc:#1B5FBF;--dnc2:#3B82F6;--dns:#EAF0FA}
+:root[data-theme="dark"]{--upc:#2BB3A6;--upc2:#5ED0C5;--ups:#123B38;--dnc:#7FA8F0;--dnc2:#3B82F6;--dns:#16263F}
+/* H - momentum cards */
+.oh-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:12px}
+.oh-card{position:relative;overflow:hidden;border-radius:18px;padding:16px 14px 12px;color:#fff;box-shadow:0 22px 44px -22px rgba(15,27,34,.55)}
+.oh-card.up{background:linear-gradient(135deg,#0B5C56 0%,#0F766E 55%,#14B8A6 130%)}
+.oh-card.down{background:linear-gradient(135deg,#0F3B78 0%,#1B5FBF 60%,#3B82F6 130%)}
+.oh-big{position:absolute;right:-18px;bottom:-22px;width:150px;height:150px;color:#fff;opacity:.10;pointer-events:none}
+.oh-big svg{width:100%;height:100%;display:block}
+.oh-card.up .oh-big{animation:floatU 3.2s ease-in-out infinite} .oh-card.down .oh-big{animation:floatD 3.2s ease-in-out infinite}
+@keyframes floatU{0%,100%{transform:translateY(4px)}50%{transform:translateY(-6px)}}
+@keyframes floatD{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
+.oh-shine{position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);transform:translateX(-60%);animation:shine 5s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes shine{0%{transform:translateX(-60%)}35%,100%{transform:translateX(60%)}}
+.oh-card ul{position:relative}
+.oh-card li{display:flex;align-items:center;gap:10px;padding:6px 0;font-weight:600;font-size:14px;border-top:1px solid rgba(255,255,255,.14);animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.25s + var(--i)*.08s)}
+.oh-card li:first-child{border-top:0;padding-top:0}
+.oh-card li span{flex:1}
+.oh-card .ic{background:rgba(255,255,255,.16);color:#fff}
+.oh-card .ar{color:#fff;opacity:.9}
+@media (max-width:560px){.oh-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.opt *{animation:none!important}}
 .hero h1{font-size:clamp(34px,4.1vw,52px);line-height:1.06}
-.hero .lead2{margin-top:14px;font-size:16px;line-height:1.6;color:var(--ink-2);max-width:56ch}
-.aspects{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px}
-.aspects li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--surface) 78%,transparent);border:1px solid var(--line);font-weight:600;font-size:14.5px;color:var(--ink)}
-.aspects i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
-.aspects svg{width:17px;height:17px}
-.aspects .a-ops i{background:var(--n-endpoints-bg);color:var(--n-endpoints)}
-.aspects .a-prod i{background:var(--n-productivity-bg);color:var(--n-productivity)}
-.aspects .a-ux i{background:var(--n-monitoring-bg);color:var(--n-monitoring)}
-.aspects .a-sec i{background:var(--n-identity-bg);color:var(--n-identity)}
-@media (max-width:480px){.aspects{grid-template-columns:1fr}}
 /* EasyNotes section: the outer card border breathes in the app's blue */
 .product{border:1.5px solid rgba(83,155,245,.5);animation:enBreathe 3.6s ease-in-out infinite}
 @keyframes enBreathe{
@@ -557,13 +584,14 @@ footer li a,footer h5{overflow-wrap:anywhere}
       <p class="eyebrow enter">Solving the unsolved</p>
       <h1 class="enter">Building useful solutions with AI that work with AI</h1>
       <p class="lead enter">EndpointLabz aims to support the Endpoint Management Community with Tools, Automations &amp; Solutions that enable the end users and IT professionals managing the endpoints to do more with less.</p>
-      <p class="lead2 enter">Every solution is built with the idea of enhancing one or more of the following aspects of Modern Workplace:</p>
-      <ul class="aspects enter" aria-label="Aspects of the modern workplace">
-        <li class="a-ops"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14a7 7 0 1 1 14 0"/><path d="M10 14l3.5-4.5"/><circle cx="10" cy="14" r="1.2" fill="currentColor"/></svg></i>Operational efficiency</li>
-        <li class="a-prod"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2L4 11h5l-1 7 7-9h-5z"/></svg></i>User Productivity</li>
-        <li class="a-ux"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 11.5c.8 1.2 1.8 1.8 3 1.8s2.2-.6 3-1.8"/><path d="M7.5 8h.01M12.5 8h.01"/></svg></i>User Experience</li>
-        <li class="a-sec"><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l6 2.5v4.5c0 3.8-2.6 6.3-6 7.5-3.4-1.2-6-3.7-6-7.5V5z"/><path d="M7.5 10l1.8 1.8L12.8 8"/></svg></i>Security</li>
-      </ul>
+      <div class="outcomes enter" id="outcomes">
+<div class="opt o-h" data-o="H" role="img" aria-label="What every solution raises and reduces"><span class="sr">Every solution raises Security, Operational Efficiency, Productivity, Resilience and User Experience, and reduces Risk, Cost, Drift and Effort.</span>
+  <div class="oh-grid">
+    <section class="oh-card up"><span class="oh-big"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M32 6l22 24h-13v28H23V30H10z"/></svg></span><span class="oh-shine"></span><ul><li style="--i:0"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5l6 2.5v4.5c0 3.8-2.6 6.3-6 7.5-3.4-1.2-6-3.7-6-7.5V5z"/><path d="M7.5 10l1.8 1.8L12.8 8"/></svg></i><span>Security</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15.5V4.5"/><path d="M5.5 9L10 4.5 14.5 9"/></svg></b></li><li style="--i:1"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14a7 7 0 1 1 14 0"/><path d="M10 14l3.5-4.5"/><circle cx="10" cy="14" r="1.2" fill="currentColor"/></svg></i><span>Operational Efficiency</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15.5V4.5"/><path d="M5.5 9L10 4.5 14.5 9"/></svg></b></li><li style="--i:2"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2L4 11h5l-1 7 7-9h-5z"/></svg></i><span>Productivity</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15.5V4.5"/><path d="M5.5 9L10 4.5 14.5 9"/></svg></b></li><li style="--i:3"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.2 8.5A6 6 0 0 1 15 6.2"/><path d="M15.5 2.8v3.8h-3.8"/><path d="M15.8 11.5A6 6 0 0 1 5 13.8"/><path d="M4.5 17.2v-3.8h3.8"/></svg></i><span>Resilience</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15.5V4.5"/><path d="M5.5 9L10 4.5 14.5 9"/></svg></b></li><li style="--i:4"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M7 11.5c.8 1.2 1.8 1.8 3 1.8s2.2-.6 3-1.8"/><path d="M7.5 8h.01M12.5 8h.01"/></svg></i><span>User Experience</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15.5V4.5"/><path d="M5.5 9L10 4.5 14.5 9"/></svg></b></li></ul></section>
+    <section class="oh-card down"><span class="oh-big"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M32 58L10 34h13V6h18v28h13z"/></svg></span><span class="oh-shine"></span><ul><li style="--i:0"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3l7.5 13.5h-15z"/><path d="M10 8.2v3.6"/><path d="M10 14.3h.01"/></svg></i><span>Risk</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4.5v11"/><path d="M5.5 11L10 15.5 14.5 11"/></svg></b></li><li style="--i:1"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M12.4 7.4a2.3 2.3 0 0 0-4.2 1.3v4.6"/><path d="M7 13.3h6"/><path d="M7 10.6h3.8"/></svg></i><span>Cost</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4.5v11"/><path d="M5.5 11L10 15.5 14.5 11"/></svg></b></li><li style="--i:2"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16h14" stroke-dasharray="1.6 2.4"/><path d="M3 16c4.5 0 6-8.5 12.8-10.6"/><path d="M12.6 4.4l3.4 1-1.2 3.3"/></svg></i><span>Drift</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4.5v11"/><path d="M5.5 11L10 15.5 14.5 11"/></svg></b></li><li style="--i:3"><i class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8M6 17h8"/><path d="M7 3c0 4 6 4 6 7s-6 3-6 7"/><path d="M13 3c0 4-6 4-6 7s6 3 6 7"/></svg></i><span>Effort</span><b class="ar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4.5v11"/><path d="M5.5 11L10 15.5 14.5 11"/></svg></b></li></ul></section>
+  </div>
+</div>
+      </div>
     </div>
 
     <div class="eco" role="img" aria-label="The device and its user at the centre of the modern IT ecosystem: Provisioning, Connectivity, Identity and Authentication, Data, Productivity, Device Experience (DEX), Detection and Response, Threat Intelligence; an automation assistant sits at every junction">
