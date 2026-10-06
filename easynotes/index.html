@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-fDTeN6keB5X2hTK2YyUXVzEuaej3KL3w8/hPxQD1iXE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-4GegvvbiF67mTNZ4bad5mqPGhDJ0BxOwFnQRhQtaUeM='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with a session clipboard, Transit, reminders, verified backups, OneNote import and an optional local MCP endpoint for AI tools. Free, no account, no telemetry.">
-<!-- EndpointLabz - EasyNotes page v3 · Author: Satish Singhi -->
+<meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with pictures, shapes and icons, import from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for AI tools. Version 1.0 - free, no registration, no subscription, works offline, MCP supported.">
+<!-- EndpointLabz - EasyNotes page v5 (version 1.0, build 207) · Author: Satish Singhi -->
 <title>EasyNotes · EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
-/* EndpointLabz - EasyNotes page v3 · Author: Satish Singhi */
+/* EndpointLabz - EasyNotes page v5 · Author: Satish Singhi */
 :root{
   --bg:#F8FAFB; --bg-2:#EEF4F6; --surface:#FFFFFF; --line:#D9E3E7; --line-2:#C2D0D6;
   --ink:#0F1B22; --ink-2:#3A4B53; --ink-3:#6B7C84;
@@ -190,6 +190,43 @@ footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line)
   .sup-mail{white-space:normal;word-break:break-all}
 }
 
+/* ---------- v20: hero outcomes - what every solution raises / reduces (option H) ---------- */
+.outcomes{margin-top:24px;max-width:580px}
+.opt{display:block;position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.opt ul{list-style:none;margin:0;padding:0}
+.opt .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none}
+.opt .ic svg{width:15px;height:15px}
+.opt .ar svg{width:14px;height:14px;display:block}
+.opt .up .ar{animation:bobU 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+.opt .down .ar{animation:bobD 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+@keyframes bobU{0%,100%{transform:translateY(1.5px)}50%{transform:translateY(-2.5px)}}
+@keyframes bobD{0%,100%{transform:translateY(-1.5px)}50%{transform:translateY(2.5px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+:root{--upc:#0F766E;--upc2:#14B8A6;--ups:#DDF1EE;--dnc:#1B5FBF;--dnc2:#3B82F6;--dns:#EAF0FA}
+:root[data-theme="dark"]{--upc:#2BB3A6;--upc2:#5ED0C5;--ups:#123B38;--dnc:#7FA8F0;--dnc2:#3B82F6;--dns:#16263F}
+/* H - momentum cards */
+.oh-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:12px}
+.oh-card{position:relative;overflow:hidden;border-radius:18px;padding:16px 14px 12px;color:#fff;box-shadow:0 22px 44px -22px rgba(15,27,34,.55)}
+.oh-card.up{background:linear-gradient(135deg,#0B5C56 0%,#0F766E 55%,#14B8A6 130%)}
+.oh-card.down{background:linear-gradient(135deg,#0F3B78 0%,#1B5FBF 60%,#3B82F6 130%)}
+.oh-big{position:absolute;right:-18px;bottom:-22px;width:150px;height:150px;color:#fff;opacity:.10;pointer-events:none}
+.oh-big svg{width:100%;height:100%;display:block}
+.oh-card.up .oh-big{animation:floatU 3.2s ease-in-out infinite} .oh-card.down .oh-big{animation:floatD 3.2s ease-in-out infinite}
+@keyframes floatU{0%,100%{transform:translateY(4px)}50%{transform:translateY(-6px)}}
+@keyframes floatD{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
+.oh-shine{position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);transform:translateX(-60%);animation:shine 5s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes shine{0%{transform:translateX(-60%)}35%,100%{transform:translateX(60%)}}
+.oh-card ul{position:relative}
+.oh-card li{display:flex;align-items:center;gap:10px;padding:6px 0;font-weight:600;font-size:14px;border-top:1px solid rgba(255,255,255,.14);animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.25s + var(--i)*.08s)}
+.oh-card li:first-child{border-top:0;padding-top:0}
+.oh-card li span{flex:1}
+.oh-card .ic{background:rgba(255,255,255,.16);color:#fff}
+.oh-card .ar{color:#fff;opacity:.9}
+@media (max-width:560px){.oh-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.opt *{animation:none!important}}
+
 
 /* ---------- EasyNotes page (v1) ---------- */
 body{overflow-x:hidden}
@@ -266,7 +303,7 @@ ol.steps{counter-reset:s;list-style:none;padding-left:0}
 ol.steps li{counter-increment:s;position:relative;padding-left:40px;margin:10px 0}
 ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-b);font:700 13px/26px var(--ff-display);text-align:center}
 :root[data-theme="dark"] ol.steps li::before{color:#8DB6F5}
-.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 6px}
+.glance{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0 6px}
 .glance div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
 .glance b{display:block;font-family:var(--ff-display);font-size:15px}
 .glance span{font-size:13.5px;color:var(--ink-3);line-height:1.45;display:block;margin-top:4px}
@@ -296,6 +333,20 @@ table.keys th{width:38%;white-space:nowrap}
 .code .copy:hover{border-color:#7FE0D4;color:#fff}
 .rules{border:1px dashed var(--line-2);border-radius:10px;padding:12px 16px;background:var(--surface);margin:8px 0 12px}
 .rules p{margin:3px 0;font-family:var(--ff-mono);font-size:13px;color:var(--ink)}
+/* v5: the MCP function table and the install 'coming soon' card */
+.tbl-scroll{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:12px}
+table.mcp-tools{width:100%;border-collapse:collapse;font-size:14.5px}
+table.mcp-tools th,table.mcp-tools td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
+table.mcp-tools thead th{font-family:var(--ff-display);font-size:13px;letter-spacing:.02em;color:var(--ink);background:var(--surface)}
+table.mcp-tools tr.grp th{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--surface);padding-top:14px}
+table.mcp-tools td:first-child{white-space:nowrap;width:1%}
+table.mcp-tools td code{font-size:13px}
+table.mcp-tools td{color:var(--ink-2)}
+table.mcp-tools tbody tr:last-child td{border-bottom:0}
+.soon-card{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:22px 24px;background:var(--surface);margin:18px 0 22px;display:flex;flex-direction:column;gap:8px}
+.soon-card h3{font-size:22px;font-weight:600}
+.soon-card p{margin:0}
+.soon{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;border:1px dashed var(--teal);color:var(--teal);font-weight:700;font-size:15px}
 details.tools{border:1px solid var(--line);border-radius:10px;padding:0 16px;margin:14px 0;background:var(--surface)}
 details.tools summary{cursor:pointer;padding:12px 0;font-weight:700;color:var(--ink)}
 details.tools p{font-family:var(--ff-mono);font-size:12.5px;line-height:1.75}
@@ -330,6 +381,13 @@ figure.shot figcaption{font-size:13.5px;color:var(--ink-3);padding:10px 14px;bor
 .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .pair figure.shot,.gallery figure.shot{margin:8px 0 12px}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:14px 0 8px;align-items:start}
+.tuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0 6px}
+figure.tut{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.tut video{display:block;width:100%;height:auto;aspect-ratio:4/3;background:#0B1418}
+figure.tut figcaption{padding:12px 14px 14px;border-top:1px solid var(--line)}
+figure.tut b{display:block;font-family:var(--ff-display);font-size:15px;color:var(--ink)}
+figure.tut b small{font-family:var(--ff-mono);font-weight:500;font-size:11.5px;color:var(--ink-3);margin-left:6px}
+figure.tut span{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.5;margin-top:4px}
 .ph-shot{aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--bg-2) 0 12px,var(--surface) 12px 24px);color:var(--ink-3);font-family:var(--ff-mono);font-size:12px}
 .hdr-anno{position:relative;width:640px;max-width:100%;margin:10px 0 28px;border:1px solid var(--line);border-radius:12px;overflow:visible;background:var(--surface)}
 .hdr-anno img{width:100%;height:auto;border-radius:11px 11px 0 0;cursor:zoom-in}
@@ -350,6 +408,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 .get-card .store-btn{background:#fff;color:#0F1B22;border-color:#fff}
 .get-card .ph-note{color:#C7DBFF}
 .get-cta{display:flex;flex-direction:column;align-items:flex-start}
+.get-cta .btn-get{display:inline-flex;align-items:center;padding:12px 22px;border-radius:999px;background:#fff;color:#0F3B78;font-weight:700;text-decoration:none;border:1px solid #fff;transition:transform .2s}
+.get-cta .btn-get:hover,.get-cta .btn-get:focus-visible{transform:translateY(-1px)}
 /* lightbox and video */
 .lb{position:fixed;inset:0;z-index:100;background:rgba(8,14,18,.86);display:none;align-items:center;justify-content:center;padding:28px}
 .lb.open{display:flex}
@@ -368,11 +428,17 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   .toc.open>ul{display:block}
   .toc-btn{display:flex;width:100%;justify-content:space-between;align-items:center;font:700 14px var(--ff-body);background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;color:var(--ink);cursor:pointer}
   .glance{grid-template-columns:1fr 1fr}
+
   .fgrid,.menus,.ptypes{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
+  table.mcp-tools thead{display:none}
+  table.mcp-tools tr{display:block;border-bottom:1px solid var(--line)}
+  table.mcp-tools td,table.mcp-tools th{display:block;border:0;width:auto}
+  table.mcp-tools td:first-child{padding-bottom:2px}
+  table.mcp-tools td:last-child{padding-top:2px}
   .facts .wrap{grid-template-columns:1fr 1fr}.facts div{border-left:0;padding-left:0}
-  .install,.two,.pair,.glance,.fgrid,.menus,.ptypes{grid-template-columns:minmax(0,1fr)}
+  .install,.two,.pair,.glance,.fgrid,.menus,.ptypes,.tuts{grid-template-columns:minmax(0,1fr)}
   ol.hdr-list{columns:1}
   table.spec th{width:38%}
   table.keys th{white-space:normal}
@@ -393,7 +459,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <div class="dd">
         <a class="dd-t" href="../#products" aria-haspopup="true">Products <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
         <div class="dd-m" role="menu" aria-label="Products">
-          <a role="menuitem" href="#top"><i class="dd-ic en"><img src="../assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Microsoft Store · Free</small></span></a>
+          <a role="menuitem" href="#top"><i class="dd-ic en"><img src="../assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Version 1.0 · Free</small></span></a>
         </div>
       </div>
       <div class="dd">
@@ -433,41 +499,43 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <p class="crumbs"><a href="../">Home</a><span>/</span><a href="../#products">Products</a><span>/</span><span>EasyNotes</span></p>
       <div class="en-title"><img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt=""><h1>EasyNotes</h1></div>
       <p class="tagline">Productivity starts with organizing</p>
-      <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; with a session clipboard, Transit, reminders, verified backups, OneNote import and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
-      <div class="pillrow"><span>Free</span><span>Windows 10 (2004+) &amp; 11</span><span>x64</span><span>No account &middot; no telemetry</span></div>
+      <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; pictures, shapes and icons on the page, documents imported from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
+      <div class="pillrow"><span>Version 1.0</span><span>Free for all</span><span>Windows 10 (2004+) &amp; 11</span><span>No registration &middot; no subscription</span><span>Works offline</span><span>MCP supported</span></div>
       <div class="hero-cta">
-        <a class="store-btn is-placeholder" href="#install" aria-disabled="true" title="The Store listing link is added at publication"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span><small>Get it from</small>Microsoft Store</span></a>
-        <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch the 6-minute tour</button>
+        <a class="soon" href="#install">Coming soon</a>
+        <button class="btn btn-ghost btn-play" id="playFilm" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>90-second film</button>
+        <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>The full tour</button>
       </div>
     </div>
-    <div class="hero-shot"><img class="only-light" src="assets/shots/a01-main-light.webp" width="1278" height="960" alt="EasyNotes: a meeting-notes page with the topics pane and the header tools"><img class="only-dark" src="assets/shots/a02-main-dark.webp" width="1278" height="960" alt="EasyNotes in the dark theme"></div>
+    <div class="hero-shot"><img class="only-light" src="assets/shots/a01-main-light.webp" width="1600" height="1000" alt="EasyNotes: a meeting-notes page with the topics pane and the header tools"><img class="only-dark" src="assets/shots/a02-main-dark.webp" width="1600" height="1000" alt="EasyNotes in the dark theme"></div>
   </div>
 </section>
 <div class="facts"><div class="wrap">
   <div><b>Your notes, your folder</b><span>Plain files, synced by the app you already use</span></div>
   <div><b>Backed up and verified</b><span>On your schedule, checked before it is kept</span></div>
   <div><b>Always within reach</b><span>System tray, a global hotkey and stay on top</span></div>
-  <div><b>Works with your AI tools</b><span>Local MCP, scoped tokens, your rules</span></div>
+  <div><b>MCP supported</b><span>48 functions, scoped tokens, your rules</span></div>
 </div></div>
 
 <main class="docs">
   <div class="wrap">
-    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation options</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#mcp">MCP setup</a></li><li><a href="#onenote">OneNote import</a></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">To-Do&rsquo;s and Reminders</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#transit">Transit</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Install from the Store</a></li></ul></nav>
+    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
     <article class="doc">
-<!-- EasyNotes page body (v1) - content source for mk-en.py. Author: Satish Singhi -->
+<!-- EasyNotes page body (v5 - version 1.0, build 207: reminders menu, page zoom, MCP function table, install "coming soon") - content source for mk-en.py. Author: Satish Singhi -->
 <!-- ================= GET STARTED ================= -->
 <section id="intro" class="doc-sec" data-group="Get started">
   <p class="kicker">Get started</p>
   <h2>Introduction</h2>
-  <p>EasyNotes is a Windows desktop app for the notes you keep while you work: meeting actions, research, checklists, budgets and study notes, organised into topics. Topics hold sub-topics and pages, and every page is saved the moment you type &ndash; there is no Save button.</p>
-  <p>It lives in the system tray, comes to the front with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> and keeps the small things within reach: what you copied ten minutes ago, the to-do buried in yesterday's meeting notes, the snippet you need to carry between apps. Scheduled, verified backups protect it all, and an optional local MCP endpoint lets your AI tools work with your notes under rules you set.</p>
+  <p>EasyNotes is a Windows desktop app for the notes you keep while you work: meeting actions, specs, interview notes, checklists, trackers and research, organised into topics. A topic holds sub-topics and pages; a page is made of blocks &ndash; headings, lists, tables, checklists, callouts, pictures, shapes, code &ndash; and is saved the moment you type. There is no Save button.</p>
+  <p>It lives in the system tray, comes to the front with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> and keeps the small things within reach: the twenty pages you touched last, what you copied ten minutes ago, the to-do buried in yesterday&rsquo;s notes, the pieces you need to carry between apps. It imports the documents you already have &ndash; Word, PDF, Excel, PowerPoint, web pages, OneNote &ndash; exports to PDF, Word, Markdown and HTML, backs everything up on a schedule, and gives your AI tools a local, rule-bound way in.</p>
   <div class="glance">
-    <div><b>No account</b><span>No registration, no sign-in, no licence check.</span></div>
-    <div><b>No telemetry</b><span>No analytics and no outbound connections from the app.</span></div>
-    <div><b>Your folders</b><span>Plain RTF, CSV and JSON files in a folder you choose &ndash; no EasyNotes cloud.</span></div>
-    <div><b>Local AI access</b><span>MCP is off by default and listens on 127.0.0.1 only.</span></div>
+    <div><b>Free for all</b><span>Every feature, free, on Windows 10 and 11.</span></div>
+    <div><b>No registration</b><span>No account, no sign-in, no licence check.</span></div>
+    <div><b>No subscription</b><span>Nothing to renew and nothing to pay.</span></div>
+    <div><b>Works offline</b><span>Plain files in a folder you choose. No EasyNotes cloud, no telemetry.</span></div>
+    <div><b>MCP supported</b><span>AI tools work with your notes through a local endpoint &ndash; off by default.</span></div>
   </div>
-  <figure class="shot themed"><img class="zoom only-light" src="assets/shots/a01-main-light.webp" width="1278" height="960" alt="A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top." loading="lazy" decoding="async"><img class="zoom only-dark" src="assets/shots/a02-main-dark.webp" width="1278" height="960" alt="A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top." loading="lazy" decoding="async"><figcaption>A meeting-notes page in the light and dark themes. Topics on the left, the page on the right, the header tools along the top.</figcaption></figure>
+  <figure class="shot themed"><img class="zoom only-light" src="assets/shots/a01-main-light.webp" width="1600" height="1000" alt="A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company." loading="lazy" decoding="async"><img class="zoom only-dark" src="assets/shots/a02-main-dark.webp" width="1600" height="1000" alt="A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company." loading="lazy" decoding="async"><figcaption>A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company.</figcaption></figure>
 </section>
 
 <section id="requirements" class="doc-sec">
@@ -475,9 +543,10 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <table class="spec">
     <tr><th>Windows</th><td>Windows 10 version 2004 (build 19041) or later, and Windows 11 (tested up to 24H2)</td></tr>
     <tr><th>Processor</th><td>x64</td></tr>
-    <tr><th>Runtime</th><td>Nothing extra to install &ndash; the Microsoft Store package includes .NET 10</td></tr>
+    <tr><th>Runtime</th><td>Nothing extra to install &ndash; EasyNotes includes .NET 10. The page editor uses the Microsoft Edge WebView2 Runtime, which is part of Windows 11 and of Windows 10 installations that have Microsoft Edge</td></tr>
     <tr><th>Permissions</th><td>A standard user account. EasyNotes never asks for administrator rights</td></tr>
     <tr><th>Internet</th><td>Not needed. To use your notes on more than one PC, keep them in a folder that OneDrive, Google Drive or Dropbox syncs</td></tr>
+    <tr><th>Importing documents</th><td>Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, CSV / TSV and web pages (.html) need no other software &ndash; EasyNotes reads the files itself</td></tr>
     <tr><th>OneNote import <em>(optional)</em></th><td>OneNote 2016 or the Microsoft&nbsp;365 OneNote desktop app, 32- or 64-bit. The OneNote for Windows&nbsp;10 app and OneNote on the web cannot be read</td></tr>
     <tr><th>AI tools <em>(optional)</em></th><td>Any MCP client &ndash; for example Claude Desktop, Claude Code or Cursor</td></tr>
     <tr><th>Language</th><td>English</td></tr>
@@ -485,29 +554,13 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 </section>
 
 <section id="install" class="doc-sec">
-  <h2>Installation options</h2>
-  <p>EasyNotes is free. Both options below install the same Microsoft Store package: per user, updated automatically, with a Start menu entry and Windows managing <em>Start at sign-in</em>.</p>
-  <div class="install">
-    <div class="inst-card">
-      <span class="inst-kind">Recommended</span>
-      <h3>Microsoft Store</h3>
-      <p>Search for EasyNotes in the Microsoft Store, or use the button below.</p>
-      <a class="store-btn is-placeholder" href="#get" aria-disabled="true" title="The Store listing link is added at publication">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
-        <span><small>Get it from</small>Microsoft Store</span>
-      </a>
-      <p class="ph-note">Placeholder &ndash; the Store link goes live when the listing is published.</p>
-    </div>
-    <div class="inst-card">
-      <span class="inst-kind">Command line</span>
-      <h3>winget</h3>
-      <p>Windows Package Manager installs the Store package from a terminal. It is part of App Installer on Windows&nbsp;10 1809+ and Windows&nbsp;11.</p>
-      <div class="code" data-copy><pre><span class="c-p">&gt;</span> winget install <span class="c-h">9NXXXXXXXXXX</span> -s msstore</pre><button class="copy" type="button" aria-label="Copy the command">Copy</button></div>
-      <p class="ph-note">Placeholder &ndash; <code>9NXXXXXXXXXX</code> becomes the Store product ID at publication.</p>
-    </div>
+  <h2>Installation</h2>
+  <div class="soon-card">
+    <span class="inst-kind">Version 1.0</span>
+    <h3>Coming soon</h3>
+    <p>EasyNotes 1.0 is being prepared for release. How to install it &ndash; and how to keep it up to date &ndash; will be published here on release day. It will be free, with nothing to register and nothing to subscribe to.</p>
+    <p class="small">Until then, the <a href="#tutorials">tutorials</a> and the rest of this guide show the app exactly as it will ship.</p>
   </div>
-  <h3 class="h3">Uninstalling</h3>
-  <p>Remove EasyNotes from <em>Settings &rsaquo; Apps</em> (or <code>winget uninstall</code>). Its preferences and logs are removed with it. Your notes folder and your backup folder are left exactly as they are &ndash; nothing you wrote is deleted.</p>
   <div class="callout">
     <b>For IT administrators</b>
     <p>EasyNotes ships Group Policy (ADMX/ADML) templates that work with Intune and other MDMs. They can set a default, block or enforce: MCP and its rules, port and policy file, the session clipboard, scheduled backups, the backup folder, frequency and retention, and the notes folder. Managed controls show &ldquo;Managed by your organisation&rdquo; and cannot be changed by the user. An enforced MCP setting that cannot be read from a trusted file keeps MCP off.</p>
@@ -534,8 +587,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <h2>User Data path and recommendation</h2>
   <p>EasyNotes keeps two folders apart: one for your notes, one for the app&rsquo;s own preferences and logs.</p>
   <table class="spec">
-    <tr><th>User Data <em>(your notes)</em></th><td><code>index.json</code>, one file per page (<code>.rtf</code> for notes and checklists, <code>.csv</code> for spreadsheets), pictures in <code>pages\assets</code>, deleted items in <code>trash</code>, Transit and a copy of your reminders</td></tr>
-    <tr><th>App Data <em>(the app)</em></th><td>Preferences, the app and backup logs, the MCP audit log, notifications and backup history. <code>%LOCALAPPDATA%\EasyNotes</code>, or the package&rsquo;s own storage for the Store app</td></tr>
+    <tr><th>User Data <em>(your notes)</em></th><td><code>index.json</code> (topics and page list), one file per page &ndash; <code>pages\&lt;id&gt;.page.json</code> for a page, <code>.csv</code> for a spreadsheet &ndash; its pictures, videos, PDFs and attached files in <code>pages\assets</code>, Transit in <code>scribble</code>, deleted items in <code>trash</code>, and a copy of your reminders</td></tr>
+    <tr><th>App Data <em>(the app)</em></th><td>Preferences, the app and backup logs, the MCP audit log, notifications and backup history. <code>%LOCALAPPDATA%\EasyNotes</code>, or the package&rsquo;s own storage when EasyNotes is installed as a package</td></tr>
     <tr><th>Temporary</th><td>The session clipboard and undo history, under App Data &ndash; deleted when EasyNotes exits</td></tr>
   </table>
   <div class="callout ok">
@@ -565,13 +618,42 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
     <tr><th>Frequency</th><td><b>Daily</b>, every 1&ndash;7 days (default: every day), or <b>Hourly</b>, every 2, 4 or 8 hours</td></tr>
     <tr><th>Retention</th><td>1&ndash;90 days (default 30). Older archives are deleted at the next launch</td></tr>
     <tr><th>File name</th><td><code>EasyNotes_Backup_MM-DD-YYYY-HH-MM.zip</code> &ndash; an existing archive is never overwritten</td></tr>
-    <tr><th>What&rsquo;s inside</th><td>The whole notes folder (including trash, Transit and reminders), your preferences, the app log and a manifest. Never the session clipboard</td></tr>
+    <tr><th>What&rsquo;s inside</th><td>The whole notes folder (including media, trash, Transit and reminders), your preferences, the app log and a manifest. Never the session clipboard</td></tr>
   </table>
   <p>Each archive is written as a partial file, re-opened, and checked entry by entry before it gets its final name. Backups run at launch when one is overdue and on schedule after that. If one fails, EasyNotes retries every 30 minutes and lights the bell in the header until a backup succeeds.</p>
   <p>The folder hint tells you what the location protects against &ndash; for example &ldquo;Synced to OneDrive - copies also leave this PC&rdquo;, or &ldquo;On this PC only, same drive as your notes &ndash; protects against mistakes, not against losing this PC or its drive&rdquo;.</p>
   <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/w07-backup.webp" width="900" height="720" alt="The Backup step of the setup" loading="lazy" decoding="async"><figcaption>The Backup step of the setup</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/s02-settings-backup.webp" width="900" height="920" alt="Settings › Backup: manual backup, restore, status and history" loading="lazy" decoding="async"><figcaption>Settings &rsaquo; Backup: manual backup, restore, status and history</figcaption></figure></div>
   <h3 class="h3">Back up now and restore</h3>
   <p><em>Settings &rsaquo; Backup</em> has <em>Back up now</em>, the last 30 runs in <em>Backup history</em> and <em>Open backup log</em>. <em>Restore from backup&hellip;</em> checks the archive first, renames your current notes folder to <code>&hellip;_before-restore_&lt;date&gt;</code> &ndash; nothing is deleted &ndash; and reloads the restored notes. Preferences are not changed by a restore.</p>
+</section>
+
+<section id="import" class="doc-sec">
+  <h2>Import documents and OneNote</h2>
+  <p>Bring in what you already have. The green <em>Import</em> tile above the topic tree (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>) opens a menu: <em>Any document</em>, PDF, Word, Excel workbook / CSV, PowerPoint, web page, or OneNote notebooks. The same <em>Import a document</em> is the fourth tile of the New page dialog (<kbd>Ctrl</kbd>+<kbd>N</kbd>) and sits on every topic&rsquo;s <b>＋</b> and right-click menu, where the topic is already chosen.</p>
+  <ol class="steps">
+    <li><b>Pick the files</b> &ndash; several at once is fine, of mixed types.</li>
+    <li><b>Pick the topic</b> &ndash; every parent, sub-topic and child topic is listed; type to filter, or make a <em>New topic&hellip;</em> on the spot.</li>
+    <li><b>Watch it land</b> &ndash; a progress card shows each file; the first page opens when the import is done. Problems (a file that could not be read, an old <code>.doc</code> / <code>.xls</code> / <code>.ppt</code>) are shown in a dialog; routine notes, such as a hidden worksheet skipped, go to the bell.</li>
+  </ol>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a13-import-menu.webp" width="1600" height="1000" alt="The Import menu" loading="lazy" decoding="async"><figcaption>The Import menu</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a14-topic-picker.webp" width="564" height="534" alt="Choose the topic – or create one" loading="lazy" decoding="async"><figcaption>Choose the topic &ndash; or create one</figcaption></figure></div>
+  <table class="spec map">
+    <tr><th>Word <em>(.docx)</em></th><td>Headings (Title, Heading 1&ndash;3), bold / italic / underline / strike / highlight / colour / links, bullet and numbered lists with their levels, tick boxes, tables (header row kept), pictures, code in a monospace font, quotes; page breaks become sections. Text boxes, comments and footnotes are not brought across</td></tr>
+    <tr><th>PDF</th><td>The PDF stays viewable at the top of the page. Below it every PDF page is its own section: a &ldquo;Page N&rdquo; heading, the text as paragraphs (large text as headings, bullet and numbered lines as lists) and the embedded pictures. Scanned pages have no text to lift out; drawn charts stay in the PDF block</td></tr>
+    <tr><th>Excel <em>(.xlsx)</em>, CSV, TSV</th><td>Every visible worksheet with content becomes a Spreadsheet page named &ldquo;workbook - worksheet&rdquo; (one worksheet: the workbook&rsquo;s name). Cells arrive as Excel shows them &ndash; dates, booleans, numbers, the results of formulas. Hidden and empty worksheets are skipped and noted. A CSV or TSV file becomes one Spreadsheet</td></tr>
+    <tr><th>PowerPoint <em>(.pptx)</em></th><td>One page per deck. Every slide is its own section &ndash; &ldquo;Slide N - title&rdquo;, the slide&rsquo;s text and bullets by level, tables, pictures, and the speaker notes as a note callout. Hidden slides are skipped. Charts and SmartArt are not brought across (noted)</td></tr>
+    <tr><th>Web page <em>(.html, .htm)</em></th><td>A saved page, including Word&rsquo;s &ldquo;Web page&rdquo; format: headings, formatting, links, lists, tick boxes, tables, code, quotes, and pictures saved with the page or embedded in it. Pictures still on the web are left as links &ndash; nothing is fetched</td></tr>
+    <tr><th>Limits</th><td>Files up to 200 MB; worksheets up to 20,000 rows &times; 256 columns; PDFs up to 300 pages of text</td></tr>
+  </table>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/a15-imported-word.webp" width="1600" height="1000" alt="A Word document after import – headings, lists and the table" loading="lazy" decoding="async"><figcaption>A Word document after import &ndash; headings, lists and the table</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a16-imported-pdf.webp" width="1600" height="1000" alt="A PDF: the viewer at the top, the lifted-out text below" loading="lazy" decoding="async"><figcaption>A PDF: the viewer at the top, the lifted-out text below</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a17-imported-ppt.webp" width="1600" height="1000" alt="A PowerPoint deck – a section per slide, speaker notes as a callout" loading="lazy" decoding="async"><figcaption>A PowerPoint deck &ndash; a section per slide, speaker notes as a callout</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a47-sheet-tenants.webp" width="1600" height="1000" alt="One worksheet of an Excel workbook as a Spreadsheet page" loading="lazy" decoding="async"><figcaption>One worksheet of an Excel workbook as a Spreadsheet page</figcaption></figure></div>
+  <p>The original files are never changed. An AI tool can run the same import with the <code>import_document</code> MCP tool.</p>
+  <h3 class="h3" id="onenote">OneNote notebooks</h3>
+  <p>Choose <em>OneNote notebooks&hellip;</em> from the Import menu (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>), or tick it during setup. It needs the OneNote desktop app (OneNote 2016 or Microsoft&nbsp;365): a notebook becomes a topic, a section a sub-topic (a section in a section group is named &ldquo;Group &rsaquo; Section&rdquo;), a page a page.</p>
+  <div class="two">
+    <div><h4>Comes across as it is</h4><ul class="ticks"><li>Text with its font, size, colour, highlight and emphasis</li><li>Bullets, numbering and indent levels</li><li>Tables with column widths and cell shading</li><li>Links, including links back into OneNote</li><li>Pictures as picture blocks; to-do tags as real tick boxes</li></ul></div>
+    <div><h4>Changes on the way</h4><ul class="dash"><li>Handwriting and drawings become a picture of the page</li><li>Inserted files become file, PDF or video blocks with the file in the page&rsquo;s media</li><li>Other tags become symbols (&#9733; &#9873;)</li><li>Audio, page history, author stamps and password-protected sections are not imported</li></ul></div>
+  </div>
+  <p>You see all of this before anything is read. Then you choose what to bring in: everything is ticked; untick what you would rather leave behind, or clear <em>Select all</em> and tick just the sections &ndash; or single pages, behind each section&rsquo;s arrow. OneNote is only read, never changed. Anything that could not be converted is listed on an <em>Import report</em> page in each imported topic, so nothing goes missing quietly.</p>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/o01-onenote-accept.webp" width="620" height="660" alt="What comes across, before anything is read" loading="lazy" decoding="async"><figcaption>What comes across, before anything is read</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o02-onenote-picker.webp" width="640" height="620" alt="Choose what to import – notebooks, sections or single pages" loading="lazy" decoding="async"><figcaption>Choose what to import &ndash; notebooks, sections or single pages</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o03-onenote-finished.webp" width="460" height="238" alt="Import finished" loading="lazy" decoding="async"><figcaption>Import finished</figcaption></figure></div>
 </section>
 
 <section id="mcp" class="doc-sec">
@@ -586,44 +668,82 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <div class="code" data-copy><pre>{
   <span class="c-k">"mcpServers"</span>: {
     <span class="c-k">"easynotes"</span>: {
-      <span class="c-k">"command"</span>: <span class="c-s">"%LOCALAPPDATA%\\Microsoft\\WindowsApps\\EasyNotes.exe"</span>,
+      <span class="c-k">"command"</span>: <span class="c-s">"&lt;path to&gt;\\EasyNotes.exe"</span>,
       <span class="c-k">"args"</span>: [<span class="c-s">"--mcp"</span>],
       <span class="c-k">"env"</span>: { <span class="c-k">"EASYNOTES_MCP_TOKEN"</span>: <span class="c-s">"&lt;your token&gt;"</span> }
     }
   }
 }</pre><button class="copy" type="button" aria-label="Copy the config">Copy</button></div>
-  <p class="small">The config starts <code>EasyNotes.exe --mcp</code> as a stdio relay to the running app, and starts EasyNotes minimised if it isn&rsquo;t running. The token travels in an environment variable of that process, never on a command line. The copy button in EasyNotes fills in the exact path for your install.</p>
+  <p class="small">The config starts <code>EasyNotes.exe --mcp</code> as a stdio relay to the running app, and starts EasyNotes minimised if it isn&rsquo;t running. The token travels in an environment variable of that process, never on a command line. <em>Copy Claude Desktop config</em> in EasyNotes fills in the exact path for your install.</p>
   <table class="spec">
-    <tr><th>read</th><td>Look only &ndash; topics, pages, search, reminders, Transit, the session clipboard, backups and settings</td></tr>
-    <tr><th>write <em>(default)</em></th><td>Also create, change, append, move, rename and open pages and topics, set cells, add reminders, use Transit and the clipboard, run a backup</td></tr>
+    <tr><th>read</th><td>Look only &ndash; topics, pages, search, backlinks, page history, reminders, Transit, the session clipboard, backups and settings</td></tr>
+    <tr><th>write <em>(default)</em></th><td>Also create, change, append, move, rename and open pages and topics, import documents, set cells, add reminders, insert pictures and shapes, use Transit and the clipboard, run a backup</td></tr>
     <tr><th>full</th><td>Also delete and clear. Deleted pages still go to the notes folder&rsquo;s trash</td></tr>
   </table>
   <h3 class="h3">Rules for AI tools</h3>
-  <p>Rules reach the AI when it connects, through the <code>get_rules</code> tool, at the top of every write tool&rsquo;s description and again after every write. Typical rules:</p>
-  <div class="rules"><p>1. Never read, change or delete anything under the topic &ldquo;Personal&rdquo;.</p><p>2. Never change my existing notes. Put your version on a new page right below the page you worked from, with the title prefixed &ldquo;Claude - &rdquo;.</p><p>3. Keep my headings and bullet style.</p></div>
+  <p>Rules reach the AI when it connects, through the <code>get_rules</code> tool, at the top of every write tool&rsquo;s description and again after every write. The rules used by the workspace on this page:</p>
+  <div class="rules"><p>1. Never read, change or delete anything under the topic &ldquo;Personal&rdquo;.</p><p>2. Never change my existing pages. Put your version on a new page right below the page you worked from, with the title prefixed &ldquo;Claude - &rdquo;.</p><p>3. Keep my headings and bullet style; British English.</p></div>
   <p class="small">Rules are requests to the AI, not locks: a tool can still ignore them. Token scopes are the hard limit, and every call &ndash; read or write &ndash; stays in the audit log.</p>
   <figure class="shot win"><img class="zoom" src="assets/shots/s06-settings-mcp.webp" width="900" height="920" alt="Settings › MCP: the switch, port, write notifications, rules, tokens and the audit log." loading="lazy" decoding="async"><figcaption>Settings &rsaquo; MCP: the switch, port, write notifications, rules, tokens and the audit log.</figcaption></figure>
-  <details class="tools"><summary>All 46 MCP tools</summary>
-    <p><b>read (15)</b> get_rules, get_status, list_topics, list_pages, get_page, search, get_page_history, list_reminders, get_transit, list_clipboard, get_clipboard_entry, list_page_images, list_notifications, list_backups, get_settings</p>
-    <p><b>write (25)</b> open_page, show_dashboard, create_topic, rename_topic, move_topic, create_page, update_page, append_to_page, insert_into_page, replace_in_page, rename_page, move_page, undo_page, set_cell, create_reminder, complete_reminder, reschedule_reminder, append_to_transit, send_to_transit, copy_to_clipboard, paste_clipboard_entry, insert_image, insert_shape, mark_notifications_read, run_backup</p>
-    <p><b>full (6)</b> delete_topic, delete_page, delete_reminder, clear_transit, remove_clipboard_entry, remove_image</p>
-  </details>
-</section>
-
-<section id="onenote" class="doc-sec">
-  <h2>OneNote import</h2>
-  <p>Bring your OneNote notebooks across in one go. Start it from the import button on the Topics bar, with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>, by right-clicking empty space in the tree, or by ticking it during setup. It needs the OneNote desktop app (OneNote 2016 or Microsoft&nbsp;365).</p>
-  <table class="spec map">
-    <tr><th>OneNote notebook</th><td>&rarr; Topic</td></tr>
-    <tr><th>Section</th><td>&rarr; Sub-topic (a section in a section group is named &ldquo;Group &rsaquo; Section&rdquo;)</td></tr>
-    <tr><th>Page</th><td>&rarr; Page (sub-pages come across as ordinary pages)</td></tr>
-  </table>
-  <div class="two">
-    <div><h4>Comes across as it is</h4><ul class="ticks"><li>Text with its font, size, colour, highlight and emphasis</li><li>Bullets, numbering and indent levels</li><li>Tables with column widths and cell shading</li><li>Links, including links back into OneNote</li><li>Pictures, where they sat on the page</li></ul></div>
-    <div><h4>Changes on the way</h4><ul class="dash"><li>Handwriting and drawings become a picture of the page</li><li>Embedded files are copied to the page&rsquo;s assets and shown as links</li><li>Tags and to-do boxes become symbols (&#9744; &#9745; &#9733; &#9873;)</li><li>Audio, video, page history, author stamps and password-protected sections are not imported</li></ul></div>
-  </div>
-  <p>You see all of this before anything is read. Then you choose what to bring in: everything is ticked; untick what you would rather leave behind, or clear <em>Select all</em> and tick just the sections &ndash; or single pages, behind each section&rsquo;s arrow &ndash; that you want. OneNote is only read, never changed. Imported topics are added beside what you have; a repeat import creates a new topic. Anything that could not be converted is listed on an <em>Import report</em> page in each imported topic, so nothing goes missing quietly.</p>
-  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/o01-onenote-accept.webp" width="620" height="660" alt="What comes across, before anything is read" loading="lazy" decoding="async"><figcaption>What comes across, before anything is read</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o02-onenote-picker.webp" width="640" height="620" alt="Choose what to import – notebooks, sections or single pages" loading="lazy" decoding="async"><figcaption>Choose what to import &ndash; notebooks, sections or single pages</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o03-onenote-finished.webp" width="460" height="238" alt="Import finished" loading="lazy" decoding="async"><figcaption>Import finished</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/o04-onenote-report.webp" width="1278" height="960" alt="The imported topic with its Import report page" loading="lazy" decoding="async"><figcaption>The imported topic with its Import report page</figcaption></figure></div>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a40-mcp-page.webp" width="1600" height="1000" alt="A page written by Claude Desktop under the rules: a new “Claude - ” page right below the source" loading="lazy" decoding="async"><figcaption>A page written by Claude Desktop under the rules: a new &ldquo;Claude - &rdquo; page right below the source</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a41-notifications.webp" width="1600" height="1000" alt="The write, reported in Notifications with the client, the tool and the page" loading="lazy" decoding="async"><figcaption>The write, reported in Notifications with the client, the tool and the page</figcaption></figure></div>
+  <h3 class="h3" id="mcp-tools">Built-in MCP functions</h3>
+  <p>EasyNotes offers 48 functions to MCP clients. A token&rsquo;s scope decides which ones the client sees: <em>read</em> gets the first group, <em>write</em> the first two, <em>full</em> all three.</p>
+  <div class="tbl-scroll"><table class="mcp-tools">
+    <thead><tr><th>Function</th><th>Short description</th></tr></thead>
+    <tbody>
+    <tr class="grp"><th colspan="2">Read &ndash; look only (16)</th></tr>
+    <tr><td><code>get_rules</code></td><td>Your rules for AI tools &ndash; read before the first write</td></tr>
+    <tr><td><code>get_status</code></td><td>App version, data folder, counts of topics, pages, sheets and reminders, the open page, backup state</td></tr>
+    <tr><td><code>list_topics</code></td><td>The topic tree with ids and paths, optionally with each topic&rsquo;s pages</td></tr>
+    <tr><td><code>list_pages</code></td><td>Every page with its type, topic path and dates; filter by topic, type or title</td></tr>
+    <tr><td><code>get_page</code></td><td>Read a page as Markdown, plain text or blocks, a sheet as rows &ndash; with its media and reminders</td></tr>
+    <tr><td><code>search</code></td><td>Full-text search across titles and content, with a snippet for each hit</td></tr>
+    <tr><td><code>get_page_history</code></td><td>The undo steps recorded for a page this session</td></tr>
+    <tr><td><code>list_backlinks</code></td><td>The pages that link to a page</td></tr>
+    <tr><td><code>list_reminders</code></td><td>To-dos: pending, overdue, completed or missing</td></tr>
+    <tr><td><code>get_transit</code></td><td>Read the Transit pad</td></tr>
+    <tr><td><code>list_clipboard</code></td><td>What the session clipboard has recorded: text, links, files, pictures</td></tr>
+    <tr><td><code>get_clipboard_entry</code></td><td>One session-clipboard entry in full (text, or a picture as PNG)</td></tr>
+    <tr><td><code>list_page_images</code></td><td>The pictures and other media on a page, with their file paths</td></tr>
+    <tr><td><code>list_notifications</code></td><td>The bell&rsquo;s notifications</td></tr>
+    <tr><td><code>list_backups</code></td><td>Backup archives, newest first, and the schedule</td></tr>
+    <tr><td><code>get_settings</code></td><td>The settings a client needs &ndash; fonts, theme, clocks, backup, data folder. No secrets</td></tr>
+    <tr class="grp"><th colspan="2">Write (26)</th></tr>
+    <tr><td><code>open_page</code></td><td>Show a page in the window, optionally with text selected on it</td></tr>
+    <tr><td><code>show_dashboard</code></td><td>Switch the window to the Dashboard</td></tr>
+    <tr><td><code>create_topic</code></td><td>Create a topic, sub-topic or child topic</td></tr>
+    <tr><td><code>rename_topic</code></td><td>Rename a topic</td></tr>
+    <tr><td><code>move_topic</code></td><td>Move a topic under another parent or to another position</td></tr>
+    <tr><td><code>import_document</code></td><td>Import a PDF, Word, PowerPoint, web page, Excel or CSV file into a topic</td></tr>
+    <tr><td><code>create_page</code></td><td>Create a page (Markdown), a spreadsheet (rows) or a checklist page</td></tr>
+    <tr><td><code>update_page</code></td><td>Replace a page&rsquo;s content &ndash; the old version stays in its undo history</td></tr>
+    <tr><td><code>append_to_page</code></td><td>Add Markdown or rows to the end of a page</td></tr>
+    <tr><td><code>insert_into_page</code></td><td>Insert Markdown at the start, the end, under a heading or after a given line</td></tr>
+    <tr><td><code>replace_in_page</code></td><td>Find and replace text on a page, keeping its formatting</td></tr>
+    <tr><td><code>rename_page</code></td><td>Rename a page</td></tr>
+    <tr><td><code>move_page</code></td><td>Move a page to another topic or position</td></tr>
+    <tr><td><code>undo_page</code></td><td>Step a page back (or forward) through its session history</td></tr>
+    <tr><td><code>set_cell</code></td><td>Set one cell of a spreadsheet</td></tr>
+    <tr><td><code>create_reminder</code></td><td>Create a reminder on text in a page &ndash; exact time, after a period, or recurring</td></tr>
+    <tr><td><code>complete_reminder</code></td><td>Tick or untick a to-do</td></tr>
+    <tr><td><code>reschedule_reminder</code></td><td>Change when a to-do is due, and its title</td></tr>
+    <tr><td><code>append_to_transit</code></td><td>Park Markdown content in Transit</td></tr>
+    <tr><td><code>send_to_transit</code></td><td>Copy a page, or part of it, into Transit with its formatting and pictures</td></tr>
+    <tr><td><code>copy_to_clipboard</code></td><td>Put text on the Windows clipboard</td></tr>
+    <tr><td><code>paste_clipboard_entry</code></td><td>Paste a session-clipboard entry at the end of a page</td></tr>
+    <tr><td><code>insert_image</code></td><td>Add a picture to a page from a file or image data</td></tr>
+    <tr><td><code>insert_shape</code></td><td>Draw a shape on a page, optionally with text inside</td></tr>
+    <tr><td><code>mark_notifications_read</code></td><td>Mark every notification as read</td></tr>
+    <tr><td><code>run_backup</code></td><td>Take a backup now</td></tr>
+    <tr class="grp"><th colspan="2">Full &ndash; also delete (6)</th></tr>
+    <tr><td><code>delete_topic</code></td><td>Delete a topic and everything under it (to the trash folder)</td></tr>
+    <tr><td><code>delete_page</code></td><td>Delete a page (to the trash folder)</td></tr>
+    <tr><td><code>delete_reminder</code></td><td>Remove a to-do</td></tr>
+    <tr><td><code>clear_transit</code></td><td>Empty the Transit pad</td></tr>
+    <tr><td><code>remove_clipboard_entry</code></td><td>Remove one session-clipboard entry, or all of them</td></tr>
+    <tr><td><code>remove_image</code></td><td>Remove a picture or other media from a page (to the trash folder)</td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <!-- ================= USE EASYNOTES ================= -->
@@ -631,19 +751,68 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <p class="kicker">Use EasyNotes</p>
   <h2>Key features</h2>
   <div class="fgrid">
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h5v4H4zM11 10h5v4h-5zM11 16h5v0"/><path d="M6.5 8v6H11M6.5 12H11"/></svg></i><b>Topics, three levels deep</b><span>Topic &rsaquo; Sub-topic &rsaquo; Child topic, with drag and drop and progress counts.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h7l3 3v11H5z"/><path d="M8 9h5M8 12h5M8 15h3"/></svg></i><b>Notes, spreadsheets, checklists</b><span>Rich text, a filterable grid with XLSX/CSV export, and tick-box lists.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l2 2v10H4z"/><path d="M7 4v4h6V4M7 16v-5h6v5"/></svg></i><b>Autosave, crash-safe</b><span>Saved as you type, written safely, deleted items kept in trash.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"/><path d="M13 13l4 4"/></svg></i><b>Search everything</b><span>Topic names, page titles and page contents, as you type.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 2h-13z"/><path d="M8.5 18a1.5 1.5 0 0 0 3 0"/></svg></i><b>Reminders and to-dos</b><span>Anchored to the text they belong to, with snoozable pop-ups.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h5v4H4zM11 10h5v4h-5zM11 16h5v0"/><path d="M6.5 8v6H11M6.5 12H11"/></svg></i><b>Topics, three levels deep</b><span>Topic &rsaquo; Sub-topic &rsaquo; Child topic, drag and drop, Recent Work, search as you type.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h7l3 3v11H5z"/><path d="M8 9h5M8 12h5M8 15h3"/></svg></i><b>A block editor</b><span>Headings, lists, tables, callouts, code, pictures side by side, 179 shapes, 1,850 icons, page links.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9M6.5 8.5L10 12l3.5-3.5"/><path d="M4 13v3h12v-3"/></svg></i><b>Import what you have</b><span>Word, PDF, Excel / CSV, PowerPoint, web pages and OneNote notebooks &ndash; into any topic.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l2 2v10H4z"/><path d="M7 4v4h6V4M7 16v-5h6v5"/></svg></i><b>Autosave, crash-safe</b><span>Saved as you type, written safely, deleted items kept in trash, undo across the session.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 2h-13z"/><path d="M8.5 18a1.5 1.5 0 0 0 3 0"/></svg></i><b>Checklists, reminders, to-dos</b><span>Nested checklists; a reminder on any text &ndash; two clicks to set, one to get back to it.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11M10 3l4 4-4 4M17 13H6M10 9l-4 4 4 4"/></svg></i><b>Multi-select and Transit</b><span>Pick up to 15 pieces of a page &ndash; words, pictures, shapes, blocks &ndash; and carry them anywhere.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12V3M6.5 6.5L10 3l3.5 3.5"/><path d="M4 13v3h12v-3"/></svg></i><b>Print and export</b><span>PDF, Word, web page, Markdown and plain text &ndash; pictures, shapes and icons included.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="10" height="13" rx="2"/><path d="M8 3h4v2.5H8zM8 10h4M8 13h3"/></svg></i><b>Session clipboard</b><span>Everything you copy while EasyNotes runs &ndash; local, temporary, opt-in.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11M10 3l4 4-4 4M17 13H6M10 9l-4 4 4 4"/></svg></i><b>Transit and multi-select</b><span>Pick up to 15 pieces, in order, and carry them to any app.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3l6 3v5c0 3.5-2.6 5.6-6 6.5C6.6 16.6 4 14.5 4 11V6z"/><path d="M7.5 10.5l2 2 3.5-4"/></svg></i><b>Verified backups</b><span>Scheduled, checked, retained &ndash; and restorable from Settings.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15h8.5a3.5 3.5 0 0 0 .4-7A5 5 0 0 0 5.2 9 3 3 0 0 0 6 15z"/></svg></i><b>Sync-aware storage</b><span>Finds your OneDrive, Google Drive and Dropbox folders.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M7 13V7l4 6V7M14 7v6"/></svg></i><b>OneNote import</b><span>Notebooks, sections and pages, with a report of anything skipped.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="12" height="9" rx="3"/><path d="M10 4v3M8 11h.01M12 11h.01"/><circle cx="10" cy="3.5" r="1"/></svg></i><b>MCP for AI tools</b><span>Scoped tokens, your rules, an audit log. Off by default.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="12" height="9" rx="3"/><path d="M10 4v3M8 11h.01M12 11h.01"/><circle cx="10" cy="3.5" r="1"/></svg></i><b>MCP supported</b><span>48 built-in functions, scoped tokens, your rules, an audit log. Off by default.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="10" rx="2"/><path d="M7 17h6M10 14v3M7 8l2 2 4-4"/></svg></i><b>Always within reach</b><span>Tray app, global hotkey, stay on top, world clocks, dark and dim.</span></div>
   </div>
+</section>
+
+<section id="tutorials" class="doc-sec">
+  <h2>Tutorials</h2>
+  <p>Eight short, silent videos recorded from the real app (version 1.0) &ndash; each one a few minutes, with on-screen captions. For the whole story in one go, <a href="#top" data-play="tour">watch the tour</a>. The workspace belongs to Priya, a product manager launching version 2.3 of &ldquo;Halcyon Assist&rdquo;, an AI copilot for support teams. Everything in it is fictional.</p>
+  <div class="tuts"><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut1-getting-started-poster.jpg" width="1280" height="960" aria-label="Getting started"><source src="assets/tut/tut1-getting-started.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut1-getting-started.vtt" srclang="en" label="English"></video><figcaption><b>1. Getting started <small>2:16</small></b><span>Topics, pages and Recent Work; page zoom; the tiles above the tree; search; a new page with Markdown shortcuts; autosave.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut2-writing-poster.jpg" width="1280" height="960" aria-label="Writing a page"><source src="assets/tut/tut2-writing.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut2-writing.vtt" srclang="en" label="English"></video><figcaption><b>2. Writing a page <small>2:14</small></b><span>The toolbar, bold and highlight, the &ldquo;/&rdquo; menu with a callout and a table, a checklist block, a date stamp and an @page link.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut3-pictures-shapes-poster.jpg" width="1280" height="960" aria-label="Pictures, shapes and icons"><source src="assets/tut/tut3-pictures-shapes.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut3-pictures-shapes.vtt" srclang="en" label="English"></video><figcaption><b>3. Pictures, shapes and icons <small>1:34</small></b><span>Pictures side by side, a sticky-note shape with text, fill and outline, moving it to another paragraph, and an icon in the line.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut4-import-poster.jpg" width="1280" height="960" aria-label="Importing documents"><source src="assets/tut/tut4-import.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut4-import.vtt" srclang="en" label="English"></video><figcaption><b>4. Importing documents <small>1:33</small></b><span>A Word file becomes a page, an Excel workbook a spreadsheet, a PowerPoint deck one section per slide &ndash; and where OneNote fits in.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut5-multiselect-transit-poster.jpg" width="1280" height="960" aria-label="Multi-select and Transit"><source src="assets/tut/tut5-multiselect-transit.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut5-multiselect-transit.vtt" srclang="en" label="English"></video><figcaption><b>5. Multi-select and Transit <small>0:55</small></b><span>Pick words, a picture and a paragraph together, drop a pick, send the lot to Transit and bring it into another page.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut6-reminders-poster.jpg" width="1280" height="960" aria-label="Checklists, reminders and to-dos"><source src="assets/tut/tut6-reminders.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut6-reminders.vtt" srclang="en" label="English"></video><figcaption><b>6. Checklists, reminders and to-dos <small>1:36</small></b><span>Tick items, the checklist&rsquo;s right-click menu, create a reminder on an item and manage it, one on a sentence, the to-do list, the dashboard and a pop-up.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut7-export-themes-poster.jpg" width="1280" height="960" aria-label="Export, print and the header"><source src="assets/tut/tut7-export-themes.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut7-export-themes.vtt" srclang="en" label="English"></video><figcaption><b>7. Export, print and the header <small>1:24</small></b><span>Print and export, dark and dim, stay on top, world clocks, the session clipboard, Settings and backups.</span></figcaption></figure><figure class="tut"><video controls playsinline preload="none" poster="assets/tut/tut8-mcp-poster.jpg" width="1280" height="960" aria-label="MCP: Claude Desktop and EasyNotes"><source src="assets/tut/tut8-mcp.mp4" type="video/mp4"><track kind="captions" src="assets/tut/tut8-mcp.vtt" srclang="en" label="English"></video><figcaption><b>8. MCP: Claude Desktop and EasyNotes <small>1:02</small></b><span>Switch MCP on, paste the token into Claude Desktop, set the rules, and watch an AI assistant read a page and write a new one.</span></figcaption></figure></div>
+</section>
+
+<section id="editor" class="doc-sec">
+  <h2>The page editor</h2>
+  <p>A page is a flowing document made of blocks. Click anywhere and type; click in the empty space below the text and the caret goes there, indented to where you clicked. The toolbar along the top has the formatting group on the left and the coloured tools on the right.</p>
+  <figure class="shot nat"><img class="zoom" src="assets/shots/a31-toolbar.webp" width="1269" height="70" alt="The toolbar: format painter, bold / italic / underline / strike, font and size, bullets and numbering, indent, alignment, highlight and colour – then clear formatting, symbols, icons, shapes, checklist, divider, Insert, find and replace, Transit, multi-select, links, clipboard, date and time, copy page, print and export." loading="lazy" decoding="async"><figcaption>The toolbar: format painter, bold / italic / underline / strike, font and size, bullets and numbering, indent, alignment, highlight and colour &ndash; then clear formatting, symbols, icons, shapes, checklist, divider, Insert, find and replace, Transit, multi-select, links, clipboard, date and time, copy page, print and export.</figcaption></figure>
+  <h3 class="h3" id="ed-zoom">Page zoom</h3>
+  <p>Every page, spreadsheet and checklist zooms from 50% to 200% in 10% steps: the slider in the middle of the row under the header (with <b>&minus;</b> and <b>+</b>; click the percentage to go back to 100%), or <kbd>Ctrl</kbd> + mouse wheel over the page. The zoom is remembered; the topic tree keeps its own text size.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a51-page-zoom.webp" width="1600" height="1000" alt="A page at 130%, with the zoom slider under the header." loading="lazy" decoding="async"><figcaption>A page at 130%, with the zoom slider under the header.</figcaption></figure>
+  <h3 class="h3" id="ed-blocks">Blocks and the &ldquo;/&rdquo; menu</h3>
+  <p>Type <code>/</code> on an empty line (or use <em>Insert</em>) for every block: Text, Heading 1&ndash;3, Bulleted list, Numbered list, To-do list, Checklist, Toggle, Quote, Callout, Date &amp; time, Icon, Link to a page, Table of contents, Divider, Image, Pictures side by side, Video, Audio, PDF, File, Table, Code block. Markdown shortcuts work as you type: <code># </code> for a heading, <code>- </code> for a list, <code>1. </code> for numbering, <code>&gt; </code> for a quote.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a18-slash-menu.webp" width="1600" height="1000" alt="The “/” menu" loading="lazy" decoding="async"><figcaption>The &ldquo;/&rdquo; menu</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a19-insert-menu.webp" width="1600" height="1000" alt="The Insert menu" loading="lazy" decoding="async"><figcaption>The Insert menu</figcaption></figure></div>
+  <h3 class="h3" id="ed-format">Formatting</h3>
+  <p>Select text for bold, italic, underline, strikethrough, font and size, highlight and text colour; the format painter copies all of it onto the next thing you select. Bullets come in nine list styles and twenty symbol bullets &ndash; real lists, so they nest with <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd>. Symbols and colour emoji live behind the &Omega; button, with search and a recently-used row. <kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd> keep working after you leave a page and come back &ndash; the history lasts the whole session.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a22-symbols.webp" width="1600" height="1000" alt="Symbols and emoji" loading="lazy" decoding="async"><figcaption>Symbols and emoji</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a23-editor-menu.webp" width="1600" height="1000" alt="Right-click on selected text: reminder, checklist, Transit, links, clipboard, date, multi-select, find" loading="lazy" decoding="async"><figcaption>Right-click on selected text: reminder, checklist, Transit, links, clipboard, date, multi-select, find</figcaption></figure></div>
+  <h3 class="h3" id="ed-sections">Sections and the block handle</h3>
+  <p>Point at a line and a handle appears to its left: <b>＋</b> adds a line below and opens the <code>/</code> menu; the dotted grip works on the <em>section</em> the line is in &ndash; the run of blocks with no gap, or single blank lines, between them (two blank lines separate sections). Hover it to see the section framed; click it to select the whole section; drag it to move the section, with a blue line showing where it will land. <kbd>Ctrl</kbd> while dropping copies; <kbd>Shift</kbd> moves just that line. An imported deck arrives as one section per slide, so a whole slide moves in one drag.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a49-section-frame.webp" width="1600" height="1000" alt="Pointing at the grip frames the section it belongs to." loading="lazy" decoding="async"><figcaption>Pointing at the grip frames the section it belongs to.</figcaption></figure>
+  <h3 class="h3" id="ed-pictures">Pictures, side by side</h3>
+  <p>Paste a picture, drop one from Explorer, or use Insert &rsaquo; Image. Click a picture to select it and drag a corner to resize. Right-click a picture &rsaquo; <em>Put side by side with the picture next to it</em> makes a row of two to four pictures; drag the bar between them to change the split; <em>Stack the pictures</em> undoes it. Text and pictures select together, so copying a paragraph takes its pictures with it.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a06-pictures.webp" width="1600" height="1000" alt="Two rows of pictures side by side in a monthly metrics review." loading="lazy" decoding="async"><figcaption>Two rows of pictures side by side in a monthly metrics review.</figcaption></figure>
+  <h3 class="h3" id="ed-shapes">Shapes</h3>
+  <p><em>Draw a shape</em> opens a catalogue of 179 shapes in seven groups &ndash; Basic, Arrows, Flowchart (the standard set), Callouts, IT (servers, routers, firewalls, users, locks, clouds&hellip;), Diagram (actor, class, state, swimlane&hellip;) and Marks &ndash; with a search box. Pick one, then drag on the page where it should go; a click gives its natural size. Click the outline to select it: drag to move, corner grips to resize (<kbd>Shift</kbd> keeps the proportions), arrow keys nudge. The shape bar sets outline colour, fill, line weight and text size; double-click (or just type) to write inside it.</p>
+  <p>A shape belongs to the paragraph it was drawn on &ndash; it moves, copies, prints and undoes with it, and the paragraph makes room so words never hide under it. Drop a shape on the upper half of a block and it anchors there with the words below it; drop it on the lower half and it gets a paragraph of its own after that block.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a20-shapes-picker.webp" width="1600" height="1000" alt="The shape catalogue with its search box" loading="lazy" decoding="async"><figcaption>The shape catalogue with its search box</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a07-shapes-page.webp" width="1600" height="1000" alt="A customer journey drawn with shapes on a discovery page" loading="lazy" decoding="async"><figcaption>A customer journey drawn with shapes on a discovery page</figcaption></figure></div>
+  <h3 class="h3" id="ed-icons">Icons</h3>
+  <p><em>Insert an icon</em>, <code>/icon</code> or right-click &rsaquo; <em>Insert icon&hellip;</em> opens about 1,850 line icons, searchable by everyday words (warning, done, user, cloud, shield, deadline&hellip;). An icon sits in the line like a character &ndash; it takes the text colour and size, plus its own scale (1&times;&ndash;4&times;). Select one and open the picker again to swap, recolour or resize it.</p>
+  <figure class="shot win"><img class="zoom" src="assets/shots/a21-icon-picker.webp" width="1600" height="1000" alt="The icon picker." loading="lazy" decoding="async"><figcaption>The icon picker.</figcaption></figure>
+  <h3 class="h3" id="ed-links">Page links, backlinks and contents</h3>
+  <p>Type <code>@</code> and part of a page&rsquo;s name, then <kbd>Enter</kbd>: a page chip that opens the page with a click and follows renames and moves. Under every page, <em>Linked from N pages</em> lists the pages that link to it. <em>Table of contents</em> (<code>/toc</code>) keeps a live list of the page&rsquo;s headings. Web links, <code>\\server\share</code> and <code>C:\</code> paths, and &ldquo;Topic &rsaquo; Page&rdquo; paths become links too (<kbd>Ctrl</kbd>+click); folders open in Explorer, documents with their app &ndash; anything that could run is only shown in Explorer, never started.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a48-page-link.webp" width="1600" height="1000" alt="Typing @ to link a page" loading="lazy" decoding="async"><figcaption>Typing @ to link a page</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a34-backlinks.webp" width="1600" height="1000" alt="“Linked from” at the foot of a page" loading="lazy" decoding="async"><figcaption>&ldquo;Linked from&rdquo; at the foot of a page</figcaption></figure></div>
+  <h3 class="h3" id="ed-find">Find and replace, date and time</h3>
+  <p><kbd>Ctrl</kbd>+<kbd>F</kbd> opens a find bar in the page (count, next / previous, match case, whole word); <kbd>Ctrl</kbd>+<kbd>H</kbd> adds Replace, Replace all (one undo) and Replace selected. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> (or <code>/date</code>) stamps the date and time.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a33-find-replace.webp" width="1600" height="1000" alt="Find and replace inside a page." loading="lazy" decoding="async"><figcaption>Find and replace inside a page.</figcaption></figure>
+  <h3 class="h3" id="ed-export">Print and export</h3>
+  <p>The printer button (<kbd>Ctrl</kbd>+<kbd>P</kbd>) prints the page with a header (title, topic, date), or exports it: <b>PDF</b>, <b>Word</b> (.rtf), a one-file <b>web page</b> (pictures embedded), <b>Markdown</b> (with a media folder for the pictures) or <b>plain text</b>. Icons and shapes are printed; toolbars, menus and reminder bells are not. Printing always uses the light colours, whatever theme is on screen.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a32-export-menu.webp" width="1600" height="1000" alt="Print or export." loading="lazy" decoding="async"><figcaption>Print or export.</figcaption></figure>
+</section>
+
+<section id="sheets" class="doc-sec">
+  <h2>Spreadsheets</h2>
+  <p>A Spreadsheet page is a plain-value grid: type-ahead filters on every column, sort by clicking a caption, rename columns in place, insert and delete rows and columns, fill down (<kbd>Ctrl</kbd>+<kbd>D</kbd>), paste one value onto a selection, move rows with <kbd>Alt</kbd>+<kbd>&uarr;</kbd> / <kbd>&darr;</kbd>, copy a cell, a row, a column or the whole sheet, and export to XLSX or CSV. Imported workbooks arrive one worksheet per page.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a04-sheet.webp" width="1600" height="1000" alt="A weekly KPI tracker imported from Excel." loading="lazy" decoding="async"><figcaption>A weekly KPI tracker imported from Excel.</figcaption></figure>
 </section>
 
 <section id="dashboard" class="doc-sec">
@@ -652,75 +821,85 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <ul class="ticks">
     <li><b>Structure</b> and <b>Content</b> &ndash; how many topics, sub-topics, child topics, pages, spreadsheets, checklists and retained backups you have.</li>
     <li><b>Storage &amp; Backup</b> &ndash; the User Data path, the backup path, the last successful backup and the next one.</li>
-    <li><b>Events</b> &ndash; a searchable list of what happened: pages, topics, backups, reminders and to-do changes.</li>
+    <li><b>Events</b> &ndash; a searchable list of what happened: pages, topics, imports, backups, reminders and to-do changes.</li>
     <li><b>To-do</b> &ndash; total, overdue and done, with reminder cards you can tick off, edit or jump to.</li>
   </ul>
-  <figure class="shot "><img class="zoom" src="assets/shots/a03-dashboard.webp" width="1278" height="960" alt="Quick View on a working notebook: structure, content, storage and backup, events and the to-do list." loading="lazy" decoding="async"><figcaption>Quick View on a working notebook: structure, content, storage and backup, events and the to-do list.</figcaption></figure>
+  <figure class="shot "><img class="zoom" src="assets/shots/a03-dashboard.webp" width="1600" height="1000" alt="Quick View on the product manager’s workspace: structure, content, storage and backup, events and the to-do list." loading="lazy" decoding="async"><figcaption>Quick View on the product manager&rsquo;s workspace: structure, content, storage and backup, events and the to-do list.</figcaption></figure>
 </section>
 
 <section id="left-pane" class="doc-sec">
-  <h2>Left pane: hierarchy, pages, sheets and checklists</h2>
+  <h2>Left pane: hierarchy, Recent Work, pages and search</h2>
+  <h3 class="h3">The row above the tree</h3>
+  <p>Five tiles: <b>New topic</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>), <b>Import</b>, <b>smaller</b> and <b>larger</b> topic text (10% steps from 100% to 150%; <kbd>Ctrl</kbd> + mouse wheel over the tree does 5% steps), and <b>Collapse all</b> / expand all.</p>
+  <h3 class="h3">Recent Work</h3>
+  <p>The section at the top of the tree lists the twenty pages created or changed most recently, newest first, with the time. About five rows are visible and the list scrolls; the header folds it away and remembers that.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a30-recent-work.webp" width="318" height="560" alt="Recent Work and the tiles" loading="lazy" decoding="async"><figcaption>Recent Work and the tiles</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a46-collapsed.webp" width="318" height="420" alt="The tree collapsed" loading="lazy" decoding="async"><figcaption>The tree collapsed</figcaption></figure></div>
   <h3 class="h3">Hierarchy</h3>
-  <p>Topics nest three levels deep: <b>Topic &rsaquo; Sub-topic &rsaquo; Child topic</b>. Drag a topic onto the middle of another to move it inside, or onto its top or bottom edge to place it beside. Drag pages to re-order them or move them to another topic. The <b>＋</b> on every topic row adds a page, a checklist or a sub-topic; <kbd>Ctrl</kbd>+<kbd>N</kbd> adds a page to the current topic and <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> a new topic.</p>
-  <h3 class="h3">Three kinds of page</h3>
+  <p>Topics nest three levels deep: <b>Topic &rsaquo; Sub-topic &rsaquo; Child topic</b>. Drag a topic onto the middle of another to move it inside, or onto its top or bottom edge to place it beside. Drag pages to re-order them or move them to another topic. The <b>＋</b> on every topic row adds a page, a spreadsheet, a checklist, an imported document or a sub-topic; <kbd>Ctrl</kbd>+<kbd>N</kbd> adds a page to the current topic while the tree or the search box has the focus (inside a page, use the row&rsquo;s <b>＋</b>).</p>
   <div class="ptypes">
-    <div><b>Notes</b><span>Free text with formatting, bullets and symbols, shapes and pictures. Pasted tables become clean aligned text.</span></div>
-    <div><b>Spreadsheet</b><span>A plain-value grid with type-ahead filters on every column, copy cell / row / column / all, and export to XLSX or CSV.</span></div>
-    <div><b>Checklist</b><span>A notes page that opens with a checklist named after the page: tick boxes, items and notes.</span></div>
+    <div><b>Page</b><span>Blocks: headings, lists, to-dos, callouts, tables, code, shapes, pictures, video, audio and PDF.</span></div>
+    <div><b>Spreadsheet</b><span>A plain-value grid with type-ahead filters on every column, copy cell / row / column / all, export to XLSX or CSV.</span></div>
+    <div><b>Checklist</b><span>A page that opens with a checklist named after the page: tick boxes, items and notes, with reminders.</span></div>
   </div>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a04-sheet.webp" width="1278" height="960" alt="A spreadsheet page with its toolbar" loading="lazy" decoding="async"><figcaption>A spreadsheet page with its toolbar</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a05-checklist.webp" width="1278" height="960" alt="A checklist page" loading="lazy" decoding="async"><figcaption>A checklist page</figcaption></figure></div>
-  <figure class="shot win"><img class="zoom" src="assets/shots/a10-new-page.webp" width="620" height="334" alt="New page: pick Notes, Spreadsheet or Checklist." loading="lazy" decoding="async"><figcaption>New page: pick Notes, Spreadsheet or Checklist.</figcaption></figure>
+  <figure class="shot win"><img class="zoom" src="assets/shots/a12-new-page.webp" width="764" height="366" alt="New page: Page, Spreadsheet, Checklist – or import a document." loading="lazy" decoding="async"><figcaption>New page: Page, Spreadsheet, Checklist &ndash; or import a document.</figcaption></figure>
   <h3 class="h3">Zoom and search</h3>
-  <p>The magnifier buttons above the tree make topic text larger or smaller in 10% steps; <kbd>Ctrl</kbd> + mouse wheel over the tree does it in 5% steps, from 100% to 150%. The search box (<kbd>Ctrl</kbd>+<kbd>K</kbd>) looks through topic names, page titles and page contents as you type, and marks pages that match in their text; <kbd>Esc</kbd> clears it.</p>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a06-tree-zoom.webp" width="1278" height="960" alt="Topic text at a larger zoom" loading="lazy" decoding="async"><figcaption>Topic text at a larger zoom</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a07-search.webp" width="1278" height="960" alt="Searching for “BitLocker” across titles and content" loading="lazy" decoding="async"><figcaption>Searching for &ldquo;BitLocker&rdquo; across titles and content</figcaption></figure></div>
+  <p>The search box (<kbd>Ctrl</kbd>+<kbd>K</kbd>) looks through topic names, page titles and page contents as you type, and marks pages that match in their text; <kbd>Esc</kbd> clears it.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a08-tree-zoom.webp" width="1600" height="1000" alt="Topic text at a larger zoom" loading="lazy" decoding="async"><figcaption>Topic text at a larger zoom</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a09-search.webp" width="1600" height="1000" alt="Searching for “latency” across titles and content" loading="lazy" decoding="async"><figcaption>Searching for &ldquo;latency&rdquo; across titles and content</figcaption></figure></div>
   <h3 class="h3">Right-click options</h3>
   <div class="menus">
-    <div><h4>On a topic</h4><ul class="menu"><li>&#10004; Mark as complete <small>ticks the topic and everything under it</small></li><li>&#128221; Add page&hellip;</li><li>&#9989; Add checklist&hellip;</li><li>&#128194; Add sub-topic&hellip; / Add child topic&hellip;</li><li>&#9999; Rename topic</li><li>&#128279; Copy path</li><li>&uarr; Move up &middot; &darr; Move down</li><li>&#8644; Move under&hellip;</li><li>&#128465; Delete topic <small>to the trash folder</small></li></ul></div>
-    <div><h4>On a page</h4><ul class="menu"><li>&#10004; Mark as complete</li><li>&#10133; Create new&hellip;</li><li>&#9999; Rename page</li><li>&#128279; Copy path <small>paste it into a note and <kbd>Ctrl</kbd>+Click to jump back</small></li><li>&uarr; Move up &middot; &darr; Move down</li><li>&#8644; Move to topic&hellip;</li><li>&#128465; Delete page</li></ul></div>
-    <div><h4>In a note</h4><ul class="menu"><li>&#9200; Set reminder on selection&hellip;</li><li>&#9745; Checklist &rsaquo; create, add to, copy</li><li>Cut &middot; Copy &middot; Paste &middot; Send to Transit</li><li>&#10697; Multi-select (up to 15)</li><li>Insert link&hellip; &middot; Copy hyperlink</li><li>&#128193; Insert file / folder path&hellip;</li><li>&#128203; Paste from clipboard&hellip;</li><li>&#128444; Insert image file&hellip;</li><li>&#128338; Insert Date &amp; Time</li><li>Clear formatting &middot; Copy all</li></ul></div>
+    <div><h4>On a topic</h4><ul class="menu"><li>&#10004; Mark as complete <small>ticks the topic and everything under it</small></li><li>&#128221; Add page&hellip; / checklist&hellip; / spreadsheet&hellip;</li><li>&#128229; Import a document &rsaquo; <small>PDF, Word, Excel / CSV, PowerPoint, web page</small></li><li>&#128194; Add sub-topic&hellip; / Add child topic&hellip;</li><li>&#9999; Rename topic</li><li>&#128279; Copy path</li><li>&uarr; Move up &middot; &darr; Move down &middot; &#8644; Move under&hellip;</li><li>&#128465; Delete topic <small>to the trash folder</small></li></ul></div>
+    <div><h4>On a page</h4><ul class="menu"><li>&#10004; Mark as complete</li><li>&#10133; Create new&hellip;</li><li>&#9734; Add to Favourites &middot; Colour tag</li><li>&#9999; Rename page</li><li>&#128279; Copy path <small>paste it into a page and <kbd>Ctrl</kbd>+click to jump back</small></li><li>&uarr; Move up &middot; &darr; Move down &middot; &#8644; Move to topic&hellip;</li><li>&#128465; Delete page</li></ul></div>
+    <div><h4>In a page</h4><ul class="menu"><li>&#9200; Create reminder&hellip; <small>on the selection, the checklist or one item &ndash; or Manage reminder&hellip; when one is set</small></li><li>&#9745; Create checklist / Create checklist from selection</li><li>&#128444; Put side by side &middot; Stack the pictures</li><li>Undo &middot; Redo &middot; Cut &middot; Copy &middot; Paste &middot; Paste as plain text</li><li>&#128228; Send to Transit</li><li>Open link &middot; Copy hyperlink &middot; Copy path &middot; Insert file / folder path&hellip;</li><li>&#128203; Paste from clipboard&hellip;</li><li>&#128444; Insert image file&hellip; &middot; Insert icon&hellip;</li><li>&#128338; Insert Date &amp; Time</li><li>Clear formatting &middot; Multi-select &middot; Find and replace &middot; Copy all</li></ul></div>
   </div>
-  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/a08-topic-menu.webp" width="1278" height="960" alt="Right-click on a topic" loading="lazy" decoding="async"><figcaption>Right-click on a topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a09-page-menu.webp" width="1280" height="960" alt="Right-click on a page – Move to topic" loading="lazy" decoding="async"><figcaption>Right-click on a page &ndash; Move to topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a11-editor-menu.webp" width="1280" height="960" alt="Right-click on selected text in a note" loading="lazy" decoding="async"><figcaption>Right-click on selected text in a note</figcaption></figure></div>
-  <p>The note editor also has a format painter, bullets and numbering in several styles, indents, alignment, highlight and text colour, symbols, 40 vector shapes, floating pictures, a horizontal rule, <em>Find and Replace</em> (<kbd>Ctrl</kbd>+<kbd>H</kbd>) and <em>Replace selected</em>, and a per-page undo history.</p>
+  <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/a10-topic-menu.webp" width="1600" height="1000" alt="Right-click on a topic" loading="lazy" decoding="async"><figcaption>Right-click on a topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a11-page-menu.webp" width="1600" height="1000" alt="Right-click on a page – Move to topic" loading="lazy" decoding="async"><figcaption>Right-click on a page &ndash; Move to topic</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a25-checklist-menu.webp" width="1600" height="1000" alt="Right-click inside a checklist: a short menu with its reminders at the top" loading="lazy" decoding="async"><figcaption>Right-click inside a checklist: a short menu with its reminders at the top</figcaption></figure></div>
 </section>
 
 <section id="reminders" class="doc-sec">
-  <h2>To-Do&rsquo;s and Reminders</h2>
-  <p>A reminder belongs to the text it was set on. Select text in a note, right-click and choose <em>Set reminder on selection&hellip;</em>, or use <em>Set reminder on this item&hellip;</em> on a checklist item. If the text moves to another page, the reminder follows it; if it is deleted, the reminder is flagged &ldquo;Content not found&rdquo; rather than removed silently.</p>
+  <h2>Checklists, to-dos and reminders</h2>
+  <h3 class="h3">Checklists</h3>
+  <p>A checklist block has a title across the top and rows of <em>tick box &middot; item &middot; notes</em>, up to 100 rows. Create one from the toolbar, the <code>/</code> menu or right-click &rsaquo; <em>Create checklist</em> (with text selected: <em>Create checklist from selection</em>, one item per line). <kbd>Enter</kbd> adds a row, <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> walk the cells, the arrow keys move through and out of it, <kbd>Ctrl</kbd>+<kbd>Enter</kbd> or a click ticks a box, <kbd>Backspace</kbd> in an empty row removes it. Items nest three levels deep (<kbd>Tab</kbd> at the start of an item, or <kbd>Ctrl</kbd>+<kbd>]</kbd> / <kbd>Ctrl</kbd>+<kbd>[</kbd>); ticking an item ticks its sub-items. Right-click inside a checklist for a short menu: its reminders first, then add, tick, indent or remove an item, copy or delete the checklist. A checklist copies into Word, Outlook, OneNote and Teams as a table with its boxes.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a05-checklist.webp" width="1600" height="1000" alt="A launch checklist with nested items and a reminder on its title" loading="lazy" decoding="async"><figcaption>A launch checklist with nested items and a reminder on its title</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a52-create-checklist.webp" width="1600" height="1000" alt="Right-click on a page: Create checklist" loading="lazy" decoding="async"><figcaption>Right-click on a page: Create checklist</figcaption></figure></div>
+  <h3 class="h3">Reminders</h3>
+  <p>A reminder belongs to the text it was set on, and it takes two clicks to set: right-click, <em>Create reminder&hellip;</em>. Select text in a page first for a reminder on that text; in a checklist, <em>Create reminder&hellip;</em> points at the whole checklist (named after its title) and <em>Create reminder on this item&hellip;</em> at one item. Once a reminder is set, the same right-click offers <em>Manage reminder&hellip;</em> &ndash; one click back to its schedule. The text is marked with a dotted underline in its state colour; if the text moves to another page the reminder follows it, and if it is deleted the reminder is flagged &ldquo;Content not found&rdquo; rather than removed silently.</p>
   <table class="spec">
     <tr><th>After a period</th><td>In 1&ndash;365 days, 1&ndash;48 hours or 1&ndash;120 minutes</td></tr>
     <tr><th>Exact time</th><td>A date and time; fires once</td></tr>
     <tr><th>Recurring</th><td>A start date, then every N days, hours or minutes</td></tr>
   </table>
   <p>When a reminder is due, a pop-up rolls down over EasyNotes (or appears on its own when EasyNotes is hidden). Snooze it for minutes, hours or days &ndash; snoozing moves the pop-up, never the deadline &ndash; mark it complete, or switch the pop-up off for that reminder.</p>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a12-set-reminder.webp" width="560" height="461" alt="Set reminder: after a period, exact time or recurring" loading="lazy" decoding="async"><figcaption>Set reminder: after a period, exact time or recurring</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a27-reminder-popup.webp" width="1278" height="960" alt="A due reminder, with snooze and Mark as Complete" loading="lazy" decoding="async"><figcaption>A due reminder, with snooze and Mark as Complete</figcaption></figure></div>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a24-set-reminder.webp" width="564" height="465" alt="Create reminder: after a period, exact time or recurring" loading="lazy" decoding="async"><figcaption>Create reminder: after a period, exact time or recurring</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a50-reminder-popup.webp" width="1600" height="1000" alt="A due reminder, with snooze and Mark as Complete" loading="lazy" decoding="async"><figcaption>A due reminder, with snooze and Mark as Complete</figcaption></figure></div>
   <p>The <b>to-do list</b> in the header shows every reminder with a count of open items: a summary of open, overdue and done, a search box, and on each row a tick box, <em>Edit the schedule</em>, <em>Go to content</em> and <em>Delete</em>. Overdue items and items whose text has gone come first. The dashboard carries the same list.</p>
-  <figure class="shot "><img class="zoom" src="assets/shots/a13-todo.webp" width="1278" height="960" alt="The to-do list in the header, with search and Go to content." loading="lazy" decoding="async"><figcaption>The to-do list in the header, with search and Go to content.</figcaption></figure>
+  <figure class="shot "><img class="zoom" src="assets/shots/a27-todo.webp" width="1600" height="1000" alt="The to-do list in the header, with search and Go to content." loading="lazy" decoding="async"><figcaption>The to-do list in the header, with search and Go to content.</figcaption></figure>
+</section>
+
+<section id="transit" class="doc-sec">
+  <h2>Multi-select and Transit</h2>
+  <h3 class="h3">Multi-select</h3>
+  <p>Switch it on from the toolbar, the right-click menu or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>, then pick up to 15 separate pieces of a page, in the order you want them: drag over words inside any paragraph, table cell, checklist item, callout or code block; click a picture, a shape, a rule, a contents block, an icon or a page link; click a block&rsquo;s grip for the whole block; <kbd>Ctrl</kbd>+click words for the whole line. Each pick gets a number. Click a picked piece again to drop it, click its number badge, or use <em>Undo pick</em>; <em>Clear</em> drops them all and <em>Done</em> (<kbd>Esc</kbd>) leaves the mode. Every pick keeps what it held when picked, so later edits never change what you copy.</p>
+  <p>The bar then offers <em>Copy</em> (<kbd>Ctrl</kbd>+<kbd>C</kbd> or <kbd>Enter</kbd> &ndash; stacked in pick order, with formatting for Word, Outlook, OneNote and Teams and as plain text everywhere else), <em>Transit</em>, <em>Checklist</em> (one item per picked line), <em>Paint</em> (the loaded format painter onto every pick) and <em>Replace</em> every pick with some words, in one undo.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a28-multiselect.webp" width="1600" height="1000" alt="Three picks on a metrics page: a sentence, a chart and a whole line, numbered in the order they were picked." loading="lazy" decoding="async"><figcaption>Three picks on a metrics page: a sentence, a chart and a whole line, numbered in the order they were picked.</figcaption></figure>
+  <h3 class="h3">Transit</h3>
+  <p>Transit is a parking pad for content on its way somewhere &ndash; to or from another app, or between pages. It opens from the header and closes with <kbd>Esc</kbd>, and it is a page itself: pictures, shapes, checklists, links and undo all work there. Send a selection with right-click &rsaquo; <em>Send to Transit</em>, send the multi-select picks with the bar&rsquo;s Transit button, or send a session-clipboard item with its Transit button. A part of a list or table arrives as a proper list or table; pictures are copied into Transit&rsquo;s own media, so they stay put if the page changes.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a29-transit.webp" width="1600" height="1000" alt="The picks parked in Transit, ready to copy into another app or another page." loading="lazy" decoding="async"><figcaption>The picks parked in Transit, ready to copy into another app or another page.</figcaption></figure>
+  <p class="small">Transit is stored with your notes, so it is kept between sessions, included in backups and synced along with your notes folder. <em>Clear</em> empties it.</p>
 </section>
 
 <section id="clipboard" class="doc-sec">
   <h2>Session Clipboard</h2>
-  <p>Switch on the session clipboard and EasyNotes keeps a list of what you copy in any app while it runs &ndash; text, links, files and folders, pictures &ndash; so an earlier copy can be pasted back into a note. Up to 300 items.</p>
+  <p>Switch on the session clipboard and EasyNotes keeps a list of what you copy in any app while it runs &ndash; text, links, files and folders, pictures &ndash; so an earlier copy can be pasted back into a page. Up to 300 items.</p>
   <ul class="ticks">
     <li>Only while EasyNotes is running &ndash; the list starts empty every time.</li>
     <li>Kept on this device only, in a temporary folder in your Windows profile &ndash; never in your notes folder, never synced, never in backups, and deleted when EasyNotes exits.</li>
     <li>Copies that password managers and other apps mark as private are skipped.</li>
     <li>Switching it off stops recording at once; <em>Clear all</em> removes what is there.</li>
   </ul>
-  <p>Open the list from the header: click an item to paste it at the cursor, or use its buttons to copy it back to the Windows clipboard, paste it into the open note, park it in Transit or remove it. In a note, right-click &rsaquo; <em>Paste from clipboard&hellip;</em> lets you tick several items and paste them in the order you ticked them.</p>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a14-clipboard.webp" width="1278" height="960" alt="The session clipboard in the header" loading="lazy" decoding="async"><figcaption>The session clipboard in the header</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a15-paste-dialog.webp" width="546" height="513" alt="Paste from session clipboard: tick, then Paste selected" loading="lazy" decoding="async"><figcaption>Paste from session clipboard: tick, then Paste selected</figcaption></figure></div>
-</section>
-
-<section id="transit" class="doc-sec">
-  <h2>Transit</h2>
-  <p>Transit is a parking pad for content on its way somewhere &ndash; to or from another app, or between notes. It opens from the header and closes with <kbd>Esc</kbd>, and it keeps pictures, links and formatting.</p>
-  <p>Send a selection with right-click &rsaquo; <em>Send to Transit</em>, send a session-clipboard item with its Transit button, or use <b>multi-select</b>: right-click &rsaquo; <em>Multi-select (up to 15)</em>, then drag over up to 15 separate pieces of a page. They are copied or sent in the order you picked them &ndash; with formatting for Word, Outlook, OneNote and Teams, and as plain text everywhere else.</p>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a16-multiselect.webp" width="1278" height="960" alt="Multi-select: three pieces picked, in order" loading="lazy" decoding="async"><figcaption>Multi-select: three pieces picked, in order</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a17-transit.webp" width="1278" height="960" alt="The picks parked in Transit, ready to copy into another app" loading="lazy" decoding="async"><figcaption>The picks parked in Transit, ready to copy into another app</figcaption></figure></div>
-  <p class="small">Transit is stored with your notes, so it is kept between sessions, included in backups and synced along with your notes folder. <em>Clear</em> empties it.</p>
+  <p>Open the list from the header: click an item to paste it at the caret, or use its buttons to copy it back to the Windows clipboard, paste it into the open page (or into Transit while it is open), park it in Transit or remove it. In a page, right-click &rsaquo; <em>Paste from clipboard&hellip;</em> lets you tick several items and paste them in the order you ticked them.</p>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a36-clipboard.webp" width="1600" height="1000" alt="The session clipboard in the header" loading="lazy" decoding="async"><figcaption>The session clipboard in the header</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a37-paste-dialog.webp" width="564" height="524" alt="Paste from session clipboard: tick, then Paste selected" loading="lazy" decoding="async"><figcaption>Paste from session clipboard: tick, then Paste selected</figcaption></figure></div>
 </section>
 
 <section id="header" class="doc-sec">
   <h2>Header options</h2>
-  <div class="hdr-anno"><img class="zoom" src="assets/shots/a23c-header.webp" width="638" height="52" alt="The EasyNotes header, left to right" loading="lazy" decoding="async"><div class="ruler" aria-hidden="true"><span style="left:9.09%">1</span><span style="left:16.77%">2</span><span style="left:22.73%">3</span><span style="left:30.41%">4</span><span style="left:36.36%">5</span><span style="left:42.48%">6</span><span style="left:49.84%">7</span><span style="left:55.80%">8</span><span style="left:61.76%">9</span><span style="left:67.71%">10</span><span style="left:73.67%">11</span></div></div>
+  <div class="hdr-anno"><img class="zoom" src="assets/shots/a35c-header.webp" width="640" height="52" alt="The EasyNotes header, left to right" loading="lazy" decoding="async"><div class="ruler" aria-hidden="true"><span style="left:9.22%">1</span><span style="left:16.88%">2</span><span style="left:22.81%">3</span><span style="left:30.78%">4</span><span style="left:36.41%">5</span><span style="left:42.66%">6</span><span style="left:50.00%">7</span><span style="left:55.94%">8</span><span style="left:61.88%">9</span><span style="left:67.81%">10</span><span style="left:73.75%">11</span></div></div>
   <ol class="hdr-list">
     <li><b>Dashboard</b> &ndash; Quick View.</li>
     <li><b>Transit</b> &ndash; the parking pad.</li>
@@ -736,21 +915,19 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   </ol>
   <h3 class="h3" id="h-mcp">MCP activity</h3>
   <p>The bot shows the state of the MCP endpoint at a glance: dimmed when it is off, lit when it is on and listening, and glowing amber while an AI tool is using EasyNotes. Hover for the endpoint and the last call; click to open <em>Settings &rsaquo; MCP</em>. With <em>Notify me of every write</em> on, each change an AI tool makes arrives in the bell as &ldquo;AI &middot; &hellip;&rdquo; with the client, the tool and the page.</p>
-  <figure class="shot nat"><img class="zoom" src="assets/shots/a18c-mcp-on.webp" width="718" height="112" alt="On and listening – hover the bot for the endpoint." loading="lazy" decoding="async"><figcaption>On and listening &ndash; hover the bot for the endpoint.</figcaption></figure>
-  <figure class="shot nat"><img class="zoom" src="assets/shots/a19c-mcp-busy.webp" width="638" height="52" alt="Busy – the amber glow while an AI tool is working (here, just after it wrote a page)." loading="lazy" decoding="async"><figcaption>Busy &ndash; the amber glow while an AI tool is working (here, just after it wrote a page).</figcaption></figure>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a20-mcp-page.webp" width="1278" height="960" alt="A page written by an AI tool under the rules: a new “Claude - ” page right below the source" loading="lazy" decoding="async"><figcaption>A page written by an AI tool under the rules: a new &ldquo;Claude - &rdquo; page right below the source</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a21-notifications.webp" width="1278" height="960" alt="The writes, reported in Notifications" loading="lazy" decoding="async"><figcaption>The writes, reported in Notifications</figcaption></figure></div>
+  <figure class="shot nat"><img class="zoom" src="assets/shots/a38-mcp-on.webp" width="1600" height="1000" alt="On and listening – hover the bot for the endpoint." loading="lazy" decoding="async"><figcaption>On and listening &ndash; hover the bot for the endpoint.</figcaption></figure>
   <h3 class="h3" id="h-todo">To-Do&rsquo;s dropdown</h3>
-  <p>The checklist icon carries the number of open items and opens the to-do list described under <a href="#reminders">To-Do&rsquo;s and Reminders</a>.</p>
+  <p>The checklist icon carries the number of open items and opens the to-do list described under <a href="#reminders">Checklists, to-dos and reminders</a>.</p>
   <h3 class="h3" id="h-clock">World clock</h3>
   <p>Tick up to five regions &ndash; US (EST), US (CST), US (PST), UK, Netherlands, Africa (JHB), Dubai, India, Singapore, Australia (SYD) &ndash; and their times appear in the header in 24-hour format. Click a clock to remove it.</p>
-  <figure class="shot "><img class="zoom" src="assets/shots/a22-clocks.webp" width="1278" height="960" alt="World clocks: three regions ticked, shown in the header." loading="lazy" decoding="async"><figcaption>World clocks: three regions ticked, shown in the header.</figcaption></figure>
+  <figure class="shot "><img class="zoom" src="assets/shots/a42-clocks.webp" width="1600" height="1000" alt="World clocks: three regions ticked, shown in the header." loading="lazy" decoding="async"><figcaption>World clocks: three regions ticked, shown in the header.</figcaption></figure>
   <h3 class="h3" id="h-top">Stay on top</h3>
   <p>The pin keeps EasyNotes above other windows while you copy and paste between apps. <kbd>Ctrl</kbd>+<kbd>T</kbd> toggles it, and so does the tray menu.</p>
   <h3 class="h3" id="h-dark">Dark theme</h3>
-  <p>The moon switches between the light workspace and a soft blue-grey dark theme. <em>Settings &rsaquo; Appearance</em> can also follow Windows and use your Windows accent colour.</p>
+  <p>The moon switches between the light workspace and a soft blue-grey dark theme. <em>Settings &rsaquo; Appearance</em> can also follow Windows and use your Windows accent colour. Printing and PDF export always use the light colours.</p>
   <h3 class="h3" id="h-dim">Dim</h3>
   <p>Dim lays a warm tint over the light theme for long sessions or evening work. It applies to the light theme only &ndash; the dark theme is already easy on the eyes.</p>
-  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a25-dark-clocks.webp" width="1278" height="960" alt="Dark theme" loading="lazy" decoding="async"><figcaption>Dark theme</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a26-dim.webp" width="1278" height="960" alt="Dim on the light theme" loading="lazy" decoding="async"><figcaption>Dim on the light theme</figcaption></figure></div>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a44-dark-clocks.webp" width="1600" height="1000" alt="Dark theme" loading="lazy" decoding="async"><figcaption>Dark theme</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a45-dim.webp" width="1600" height="1000" alt="Dim on the light theme" loading="lazy" decoding="async"><figcaption>Dim on the light theme</figcaption></figure></div>
   <h3 class="h3" id="h-settings">Settings</h3>
   <p>The gear opens Settings &ndash; see below.</p>
 </section>
@@ -763,8 +940,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
     <tr><th>Storage</th><td>User Data and App Data folders, with <em>Change&hellip;</em> and <em>Open</em>, and the sync status of the notes folder</td></tr>
     <tr><th>Backup</th><td>Automatic backups (on), folder, Daily every 1 day / Hourly 2&ndash;8 h, keep 30 days (1&ndash;90), Back up now, Restore, backup log, status and history</td></tr>
     <tr><th>Session Clipboard</th><td>Record the session clipboard (off for new installs)</td></tr>
-    <tr><th>Appearance</th><td>Follow Windows / Light / Dark; use my Windows accent colour (off)</td></tr>
-    <tr><th>Windows</th><td>Start at sign-in and start minimised to the tray (on); Start menu entry (the Store app adds one itself); global hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> (on)</td></tr>
+    <tr><th>Appearance</th><td>Follow Windows / Light / Dark; use my Windows accent colour (off); centred page column (off &ndash; pages use the full width)</td></tr>
+    <tr><th>Windows</th><td>Start at sign-in and start minimised to the tray (on); Start menu entry (a packaged install adds one itself); global hotkey <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> (on)</td></tr>
     <tr><th>MCP</th><td>Enable MCP integration (off), port 47391, notify me of every write (on), rules for AI tools, access tokens, audit log</td></tr>
   </table>
 </section>
@@ -775,16 +952,24 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <h2>Keyboard shortcuts</h2>
   <table class="spec keys">
     <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd></th><td>Show or hide EasyNotes from any app</td></tr>
-    <tr><th><kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></th><td>New page in the current topic / new topic</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>N</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></th><td>New page in the current topic / new topic (with the tree or the search box focused)</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd></th><td>Import a document / import from OneNote</td></tr>
     <tr><th><kbd>Ctrl</kbd>+<kbd>K</kbd></th><td>Search topics, pages and content</td></tr>
-    <tr><th><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd></th><td>Find in page / Find and Replace</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd></th><td>Find in page / Find and replace</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>B</kbd> &middot; <kbd>I</kbd> &middot; <kbd>U</kbd> &middot; <kbd>Shift</kbd>+<kbd>S</kbd></th><td>Bold, italic, underline, strikethrough</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></th><td>Heading 1 / 2 / 3</td></tr>
+    <tr><th><kbd>/</kbd> on an empty line &middot; <kbd>@</kbd></th><td>The block menu &middot; link to a page</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></th><td>Multi-select on / off (<kbd>Enter</kbd> copies the picks, <kbd>Esc</kbd> leaves)</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></th><td>Insert the date and time</td></tr>
+    <tr><th><kbd>Ctrl</kbd> + mouse wheel</th><td>Zoom the page, spreadsheet or checklist (over the tree: the topic text size)</td></tr>
+    <tr><th><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> &middot; <kbd>Ctrl</kbd>+<kbd>]</kbd> / <kbd>[</kbd></th><td>Indent / outdent a list or a checklist item; move through checklist cells</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Enter</kbd></th><td>Tick a checklist item; add a row to a spreadsheet</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>P</kbd></th><td>Print or export the page</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></th><td>Undo / redo &ndash; for the whole session, across pages</td></tr>
     <tr><th><kbd>Ctrl</kbd>+<kbd>T</kbd></th><td>Stay on top</td></tr>
-    <tr><th><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd></th><td>Import from OneNote</td></tr>
     <tr><th><kbd>Ctrl</kbd>+<kbd>S</kbd></th><td>Save now (pages save as you type anyway)</td></tr>
-    <tr><th><kbd>Ctrl</kbd>+Click</th><td>Open a link or a copied Topic &rsaquo; Page path</td></tr>
+    <tr><th><kbd>Ctrl</kbd>+Click</th><td>Open a link, a path or a copied Topic &rsaquo; Page path; in multi-select, pick the whole line</td></tr>
     <tr><th><kbd>Esc</kbd> <kbd>Esc</kbd></th><td>Hide to the tray</td></tr>
-    <tr><th><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></th><td>Indent / outdent; move through a checklist</td></tr>
-    <tr><th><kbd>Ctrl</kbd>+<kbd>Enter</kbd></th><td>Add a row to a spreadsheet</td></tr>
   </table>
 </section>
 
@@ -792,12 +977,11 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <div class="get-card">
     <div>
       <img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt="">
-      <h2>Install EasyNotes from the Microsoft Store</h2>
-      <p>Free, for Windows 10 (2004 or later) and Windows 11. No account, no telemetry.</p>
+      <h2>EasyNotes 1.0 &ndash; coming soon</h2>
+      <p>Free for Windows 10 (2004 or later) and Windows 11. No registration, no subscription, works offline &ndash; and MCP supported.</p>
     </div>
     <div class="get-cta">
-      <a class="store-btn big is-placeholder" href="#get" aria-disabled="true" title="The Store listing link is added at publication"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span><small>Get it from</small>Microsoft Store</span></a>
-      <span class="ph-note">Placeholder &ndash; Store link and badge added at publication</span>
+      <a class="btn-get" href="#tutorials">Watch the tutorials</a>
     </div>
   </div>
 </section>
@@ -906,10 +1090,14 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   lb.querySelector('.next').addEventListener('click',function(){show(idx+1);});
   lb.addEventListener('click',function(ev){if(ev.target===lb)close();});
   document.addEventListener('keydown',function(ev){if(!lb.classList.contains('open'))return;if(ev.key==='Escape')close();if(ev.key==='ArrowRight'&&vid.hidden)show(idx+1);if(ev.key==='ArrowLeft'&&vid.hidden)show(idx-1);});
-  var pb=document.getElementById('playTour');
-  if(pb)pb.addEventListener('click',function(){last=pb;im.hidden=true;vid.hidden=false;cap.textContent='EasyNotes in six minutes - first launch, setup and a tour of the real app';
+  function playVid(trigger,src,caption){last=trigger;im.hidden=true;vid.hidden=false;cap.textContent=caption;
     lb.querySelector('.prev').hidden=lb.querySelector('.next').hidden=true;lb.classList.add('open');document.body.style.overflow='hidden';
-    if(!vid.getAttribute('src'))vid.setAttribute('src','../assets/easynotes-demo.mp4');vid.currentTime=0;var p=vid.play();if(p&&p.catch)p.catch(function(){});lb.querySelector('.x').focus();});
+    if(vid.getAttribute('src')!==src)vid.setAttribute('src',src);vid.currentTime=0;var p=vid.play();if(p&&p.catch)p.catch(function(){});lb.querySelector('.x').focus();}
+  var TOUR=['../assets/easynotes-tour.mp4','EasyNotes 1.0 - a tour of the real app, recorded on a product manager\'s workspace (with music)'];
+  var FILM=['../assets/easynotes-film.mp4','EasyNotes 1.0 - the 90-second film'];
+  var pb=document.getElementById('playTour'); if(pb)pb.addEventListener('click',function(){playVid(pb,TOUR[0],TOUR[1]);});
+  var pf=document.getElementById('playFilm'); if(pf)pf.addEventListener('click',function(){playVid(pf,FILM[0],FILM[1]);});
+  document.querySelectorAll('[data-play="tour"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();playVid(a,TOUR[0],TOUR[1]);});});
 })();
 
 </script>

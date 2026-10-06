@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-37U04/Vzkz7ZtQBwVSESBJn5BtqIuj+yG7wvJ4FSzOo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-jJWTdi19SP5xspp9Jto1l3HcsrfIZ8P91vXF6u/cQAc='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="EndpointLabz — tools and automations for the Microsoft endpoint estate. EasyNotes, MDM-ODA and platform automations by Satish Singhi.">
-<!-- EndpointLabz home page v4 · v20 · Author: Satish Singhi -->
+<!-- EndpointLabz home page v4 · v22 (EasyNotes 1.0 launch film, Prompt 439) · Author: Satish Singhi -->
 <title>EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -249,12 +249,16 @@ section.block{padding-block:88px}
 .product > .actions{margin-top:-6px}
 .product .actions small{color:var(--ink-3);font-size:13px}
 /* ---------- EasyNotes demo video (v16): recorded from the real app, full width under the description ---------- */
-.demo-wrap{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(15,59,120,.45);background:#121A30}
+.demo-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(15,59,120,.45);background:#121A30}
 .demo-video{display:block;width:100%;height:100%;object-fit:cover;background:#121A30}
 .demo-replay{position:absolute;right:14px;bottom:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(15,59,120,.55);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s;backdrop-filter:blur(6px)}
 .demo-replay svg{width:18px;height:18px}
 .demo-replay:hover,.demo-replay:focus-visible{opacity:1;transform:scale(1.06)}
-@media (max-width:900px){.feat{grid-template-columns:1fr}.demo-replay{opacity:.75}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}}
+.demo-sound{position:absolute;right:60px;bottom:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(15,59,120,.55);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s;backdrop-filter:blur(6px)}
+.demo-sound svg{width:18px;height:18px}.demo-sound .ic-on{display:none}.demo-sound[aria-pressed="true"] .ic-on{display:block}.demo-sound[aria-pressed="true"] .ic-off{display:none}
+.demo-sound:hover,.demo-sound:focus-visible,.demo-sound[aria-pressed="true"]{opacity:1}.demo-sound:hover{transform:scale(1.06)}
+.btn.is-soon{cursor:default}
+@media (max-width:900px){.feat{grid-template-columns:1fr}.demo-replay,.demo-sound{opacity:.75}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}}
 @media (prefers-reduced-motion:reduce){.sp.play *{animation:none!important}}
 @media (max-width:900px){.product{padding:28px}}
 
@@ -543,7 +547,7 @@ footer li a,footer h5{overflow-wrap:anywhere}
       <div class="dd">
         <a class="dd-t" href="#products" aria-haspopup="true">Products <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
         <div class="dd-m" role="menu" aria-label="Products">
-          <a role="menuitem" href="easynotes/"><i class="dd-ic en"><img src="assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Microsoft Store · Free</small></span></a>
+          <a role="menuitem" href="easynotes/"><i class="dd-ic en"><img src="assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Version 1.0 · Free</small></span></a>
         </div>
       </div>
       <div class="dd">
@@ -708,32 +712,38 @@ footer li a,footer h5{overflow-wrap:anywhere}
 
     <article class="product">
       <div>
-        <span class="pill"><i></i>Windows 11</span>
+        <span class="pill"><i></i>Version 1.0 &middot; Windows 10 &amp; 11</span>
         <h3>
           <img class="en-logo" src="assets/easynotes-logo.png" width="40" height="40" alt="">
           EasyNotes
         </h3>
         <p class="tag-line">Free for everyone</p>
         <ul class="feat">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg><span><b>Fully local.</b> No internet, registration or subscription needed.</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h8M4 15h10"/></svg><span><b>Topics, sub-topics, pages.</b> Rich text, sheets and Checklists with autosave.</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="10" height="13" rx="2"/><path d="M8 3h4v2.5H8zM8 10h4M8 13h3"/></svg><span><b>Session Clipboard.</b> Local cache of your Clipboard activity during the app session.</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6l1.5 1.5L8 4.5M3.5 13l1.5 1.5L8 11.5M11 6h6M11 13h6"/></svg><span><b>Reminders and Checklists.</b> Easily create and keep track of To-Do's on the go.</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-8 4 8M5.5 11h5"/><path d="M14 6v8"/></svg><span><b>Works with your AI tools.</b> Built-in MCP support, governed by rules you set.</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l6 3v5c0 3.5-2.6 5.6-6 6.5C6.6 16.6 4 14.5 4 11V6z"/></svg><span><b>Backups.</b> Secure your notes with full control over the backup location, schedule and retention period.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg><span><b>Free, offline, yours.</b> No registration, no subscription, no internet needed &ndash; your notes are plain files in a folder you choose.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 10h8M4 15h10"/></svg><span><b>Topics, sub-topics, pages.</b> Rich pages, spreadsheets and checklists with autosave, undo across the session and a dashboard.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 12l4-4 3 3 2-2 5 5"/><circle cx="13.5" cy="7.5" r="1.3"/></svg><span><b>Pictures, shapes and icons.</b> Side-by-side pictures, 179 shapes that live with your paragraphs, 1,850 line icons.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v9M6.5 8.5L10 12l3.5-3.5"/><path d="M4 13v3h12v-3"/></svg><span><b>Import what you have.</b> Word, PDF, Excel / CSV, PowerPoint, web pages and OneNote notebooks &ndash; into any topic.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="10" height="13" rx="2"/><path d="M8 3h4v2.5H8zM8 10h4M8 13h3"/></svg><span><b>Session Clipboard and Transit.</b> Everything you copy while the app runs; multi-select pieces of a page and carry them anywhere.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6l1.5 1.5L8 4.5M3.5 13l1.5 1.5L8 11.5M11 6h6M11 13h6"/></svg><span><b>Reminders and checklists.</b> A reminder on any text &ndash; two clicks to set, one to get back to it &ndash; and a to-do list in the header.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l4-8 4 8M5.5 11h5"/><path d="M14 6v8"/></svg><span><b>MCP supported.</b> Your AI tools work with your notes through a local endpoint: 48 tools, scoped tokens and rules you set. Off by default.</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l6 3v5c0 3.5-2.6 5.6-6 6.5C6.6 16.6 4 14.5 4 11V6z"/></svg><span><b>Verified backups.</b> Your location, schedule and retention &ndash; every backup checked before it is kept.</span></li>
         </ul>
       </div>
 
       <div class="demo-wrap">
-        <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-demo-poster.jpg" aria-label="EasyNotes demo - first launch, setup and a tour of the app">
-          <source src="assets/easynotes-demo.mp4" type="video/mp4">
+        <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-film-poster.jpg" aria-label="EasyNotes 1.0 - a 90-second film of the app, with music (muted until you turn the sound on)">
+          <source src="assets/easynotes-film.mp4" type="video/mp4" media="(min-width: 901px)">
+          <source src="assets/easynotes-film-720p.mp4" type="video/mp4">
         </video>
+        <button class="demo-sound" id="enSound" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on">
+          <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+        </button>
         <button class="demo-replay" id="enReplay" type="button" aria-label="Replay the demo" title="Replay">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
         </button>
       </div>
       <div class="actions">
-        <a class="btn btn-ocean" href="easynotes/#install">Get it from Microsoft Store</a>
+        <a class="btn btn-ocean is-soon" href="easynotes/#install">Version 1.0 &ndash; coming soon</a>
         <a class="btn btn-ghost" href="easynotes/#first-launch">Getting started guide</a>
       </div>
     </article>
@@ -913,7 +923,7 @@ footer li a,footer h5{overflow-wrap:anywhere}
   if(!v)return;
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   function play(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
-  btn.addEventListener('click',function(){v.currentTime=0;play();});
+  btn.addEventListener('click',function(){v.currentTime=0;play();}); var snd=document.getElementById('enSound'); if(snd)snd.addEventListener('click',function(){var on=v.muted; v.muted=!on; snd.setAttribute('aria-pressed',on?'true':'false'); snd.setAttribute('aria-label',on?'Turn the sound off':'Turn the sound on'); snd.title=on?'Sound off':'Sound on'; if(on)play();});
   if(reduced){v.removeAttribute('loop');return;}
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)play();else v.pause();});},{threshold:.35}).observe(v);}else{play();}
 })();
