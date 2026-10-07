@@ -533,6 +533,14 @@ footer li a,footer h5{overflow-wrap:anywhere}
 .oda-cur svg{width:20px;height:20px;display:block}.oda-cur.down{transform:scale(.85)}
 @media (prefers-reduced-motion:reduce){.oda-cur,.oda-caret,.oda-prog i{animation:none}}
 
+/* v24 (Prompt 445): the film band - wider than the text column, light, quiet */
+.film-band{margin-top:36px;padding:34px 0 8px;background:linear-gradient(180deg,transparent,var(--ocean-soft) 18%,var(--ocean-soft) 82%,transparent)}
+.film-band-in{width:min(1360px,100% - 48px);margin-inline:auto}
+.film-band-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:0 4px 16px}
+.film-band-head h3{font-size:clamp(22px,calc(2.2vw / var(--zf)),28px);font-weight:700;letter-spacing:-.015em}
+.film-band-head p{color:var(--ink-2);font-size:15.5px;max-width:72ch}
+.film-band .demo-wrap{border-radius:16px;box-shadow:0 30px 80px -30px rgba(15,59,120,.5)}
+@media (max-width:900px){.film-band{padding-top:24px}.film-band .demo-wrap{margin:0;width:100%;border-radius:10px}.film-band-in{width:calc(100% - 24px)}}
 /* v5.2: 125% is the new 100% on screens 1280 px and wider (CSS zoom = browser zoom; vw / vh corrected by --zf) */
 :root{--zf:1}
 @media (min-width:1280px){html{zoom:1.25}:root{--zf:1.25}}
@@ -734,23 +742,32 @@ footer li a,footer h5{overflow-wrap:anywhere}
         </ul>
       </div>
 
-      <div class="demo-wrap">
-        <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-film-poster.jpg" aria-label="EasyNotes 1.0 - a 90-second film of the app, with music (muted until you turn the sound on)">
-          <source src="assets/easynotes-film.mp4" type="video/mp4" media="(min-width: 901px)">
-          <source src="assets/easynotes-film-720p.mp4" type="video/mp4">
-        </video>
-        <button class="demo-sound" id="enSound" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on">
-          <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-        </button>
-        <button class="demo-replay" id="enReplay" type="button" aria-label="Replay the demo" title="Replay">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-        </button>
-      </div>
       <div class="actions">
         <a class="btn btn-ocean is-soon" href="easynotes/#install">Version 1.0 &ndash; coming soon</a>
         <a class="btn btn-ghost" href="easynotes/#first-launch">Getting started guide</a>
       </div>
     </article>
+  </div>
+  <!-- v24 (Prompt 445): the film gets its own full-width band under the card - big enough that nothing needs zooming -->
+  <div class="film-band" aria-labelledby="filmBandTitle">
+    <div class="film-band-in">
+      <div class="film-band-head">
+        <h3 id="filmBandTitle">See EasyNotes at work</h3>
+        <p>Three minutes, real app, real clicks &ndash; dashboard, session clipboard, reminders, your AI via MCP, import &amp; export, Transit.</p>
+      </div>
+    <div class="demo-wrap">
+      <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-film-poster.jpg" aria-label="EasyNotes 1.0 - a three-minute film of the app, with music (muted until you turn the sound on)">
+        <source src="assets/easynotes-film.mp4" type="video/mp4" media="(min-width: 901px)">
+        <source src="assets/easynotes-film-720p.mp4" type="video/mp4">
+      </video>
+      <button class="demo-sound" id="enSound" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on">
+        <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <button class="demo-replay" id="enReplay" type="button" aria-label="Replay the demo" title="Replay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      </button>
+    </div>
+    </div>
   </div>
 </section>
 
