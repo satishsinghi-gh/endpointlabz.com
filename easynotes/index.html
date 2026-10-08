@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-JGHgoHi+aVYfibwVVpWdGdA/KBoN58cl25o3Rdh1Ygo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-s1NF8F+Je4uY/Pj7fMEjResXmqpBXrm2e4K1q0qWoHQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -433,6 +433,20 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 .lb img,.lb video{max-width:100%;max-height:calc(calc(100vh / var(--zf)) - 110px);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff}
 .lb video{background:#121A30}
 .lb figcaption{color:#DCE6EA;font-size:14px;text-align:center;max-width:80ch}
+/* v5.5 (Prompt 453): the film / tour controls sit under the video, never over it */
+.lb-bar{display:none;width:min(1400px,100%);align-items:center;gap:14px}
+.lb.vid .lb-bar{display:flex}
+.lb-seek{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.lb-seek input{flex:1;min-width:0;height:4px;accent-color:#6CC8D8;cursor:pointer}
+.lb-seek span{font-size:12.5px;color:#DCE6EA;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lb-btns{display:flex;gap:8px}
+.lb .lb-btn{position:static;width:40px;height:40px;display:grid;place-items:center;font-size:0}
+.lb .lb-btn svg{width:18px;height:18px}
+.lb .lb-btn[aria-pressed="true"]{background:#fff;color:#0F3B78}
+.lb .lb-btn .ic-on,.lb .lb-btn .ic-pause{display:none}
+.lb .lb-btn[aria-pressed="true"] .ic-on,.lb .lb-btn[data-playing="true"] .ic-pause{display:block}
+.lb .lb-btn[aria-pressed="true"] .ic-off,.lb .lb-btn[data-playing="true"] .ic-play{display:none}
+.lb img,.lb.vid video{max-height:calc(calc(100vh / var(--zf)) - 170px)}
 .lb button{position:absolute;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
 .lb button:hover{background:rgba(255,255,255,.22)}
 .lb .x{top:18px;right:18px}.lb .prev{left:18px;top:50%}.lb .next{right:18px;top:50%}
@@ -541,7 +555,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 
 <main class="docs">
   <div class="wrap">
-    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
+    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#code">Code pages</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
     <article class="doc">
 <!-- EasyNotes page body (v5 - version 1.0, build 207: reminders menu, page zoom, MCP function table, install "coming soon") - content source for mk-en.py. Author: Satish Singhi -->
 <!-- ================= GET STARTED ================= -->
@@ -651,7 +665,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 
 <section id="import" class="doc-sec">
   <h2>Import documents and OneNote</h2>
-  <p>Bring in what you already have. The green <em>Import</em> tile above the topic tree (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>) opens a menu: <em>Any document</em>, PDF, Word, Excel workbook / CSV, PowerPoint, web page, or OneNote notebooks. The same <em>Import a document</em> is the fourth tile of the New page dialog (<kbd>Ctrl</kbd>+<kbd>N</kbd>) and sits on every topic&rsquo;s <b>＋</b> and right-click menu, where the topic is already chosen.</p>
+  <p>Bring in what you already have. The green <em>Import</em> tile above the topic tree (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>) opens a menu: <em>Any document</em>, PDF, Word, Excel workbook / CSV, PowerPoint, web page, code file, or OneNote notebooks. The same <em>Import a document</em> is the fourth tile of the New page dialog (<kbd>Ctrl</kbd>+<kbd>N</kbd>) and sits on every topic&rsquo;s <b>＋</b> and right-click menu, where the topic is already chosen.</p>
   <ol class="steps">
     <li><b>Pick the files</b> &ndash; several at once is fine, of mixed types.</li>
     <li><b>Pick the topic</b> &ndash; every parent, sub-topic and child topic is listed; type to filter, or make a <em>New topic&hellip;</em> on the spot.</li>
@@ -664,7 +678,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
     <tr><th>Excel <em>(.xlsx)</em>, CSV, TSV</th><td>Every visible worksheet with content becomes a Spreadsheet page named &ldquo;workbook - worksheet&rdquo; (one worksheet: the workbook&rsquo;s name). Cells arrive as Excel shows them &ndash; dates, booleans, numbers, the results of formulas. Hidden and empty worksheets are skipped and noted. A CSV or TSV file becomes one Spreadsheet</td></tr>
     <tr><th>PowerPoint <em>(.pptx)</em></th><td>One page per deck. Every slide is its own section &ndash; &ldquo;Slide N - title&rdquo;, the slide&rsquo;s text and bullets by level, tables, pictures, and the speaker notes as a note callout. Hidden slides are skipped. Charts and SmartArt are not brought across (noted)</td></tr>
     <tr><th>Web page <em>(.html, .htm)</em></th><td>A saved page, including Word&rsquo;s &ldquo;Web page&rdquo; format: headings, formatting, links, lists, tick boxes, tables, code, quotes, and pictures saved with the page or embedded in it. Pictures still on the web are left as links &ndash; nothing is fetched</td></tr>
-    <tr><th>Limits</th><td>Files up to 200 MB; worksheets up to 20,000 rows &times; 256 columns; PDFs up to 300 pages of text</td></tr>
+    <tr><th>Code <em>(.ps1, .sh, .py, .json, .xml, .ini, .yaml, .sql, .cs &hellip;)</em></th><td>Each file becomes a Code page in the language its extension says (some 60 extensions; a file with no extension such as a Dockerfile is recognised too). The text arrives exactly as it is, BOM-aware. A <code>.html</code> is a web page unless <em>Code file&hellip;</em> is the entry you chose</td></tr>
+    <tr><th>Limits</th><td>Files up to 200 MB (code files 20 MB); worksheets up to 20,000 rows &times; 256 columns; PDFs up to 300 pages of text</td></tr>
   </table>
   <div class="gallery"><figure class="shot "><img class="zoom" src="assets/shots/a15-imported-word.webp" width="1600" height="1000" alt="A Word document after import – headings, lists and the table" loading="lazy" decoding="async"><figcaption>A Word document after import &ndash; headings, lists and the table</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a16-imported-pdf.webp" width="1600" height="1000" alt="A PDF: the viewer at the top, the lifted-out text below" loading="lazy" decoding="async"><figcaption>A PDF: the viewer at the top, the lifted-out text below</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a17-imported-ppt.webp" width="1600" height="1000" alt="A PowerPoint deck – a section per slide, speaker notes as a callout" loading="lazy" decoding="async"><figcaption>A PowerPoint deck &ndash; a section per slide, speaker notes as a callout</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a47-sheet-tenants.webp" width="1600" height="1000" alt="One worksheet of an Excel workbook as a Spreadsheet page" loading="lazy" decoding="async"><figcaption>One worksheet of an Excel workbook as a Spreadsheet page</figcaption></figure></div>
   <p>The original files are never changed. An AI tool can run the same import with the <code>import_document</code> MCP tool.</p>
@@ -718,7 +733,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
     <tr><td><code>get_status</code></td><td>App version, data folder, counts of topics, pages, sheets and reminders, the open page, backup state</td></tr>
     <tr><td><code>list_topics</code></td><td>The topic tree with ids and paths, optionally with each topic&rsquo;s pages</td></tr>
     <tr><td><code>list_pages</code></td><td>Every page with its type, topic path and dates; filter by topic, type or title</td></tr>
-    <tr><td><code>get_page</code></td><td>Read a page as Markdown, plain text or blocks, a sheet as rows &ndash; with its media and reminders</td></tr>
+    <tr><td><code>get_page</code></td><td>Read a page as Markdown, plain text or blocks, a sheet as rows, a code page as its text &ndash; with its media and reminders</td></tr>
     <tr><td><code>search</code></td><td>Full-text search across titles and content, with a snippet for each hit</td></tr>
     <tr><td><code>get_page_history</code></td><td>The undo steps recorded for a page this session</td></tr>
     <tr><td><code>list_backlinks</code></td><td>The pages that link to a page</td></tr>
@@ -737,7 +752,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
     <tr><td><code>rename_topic</code></td><td>Rename a topic</td></tr>
     <tr><td><code>move_topic</code></td><td>Move a topic under another parent or to another position</td></tr>
     <tr><td><code>import_document</code></td><td>Import a PDF, Word, PowerPoint, web page, Excel or CSV file into a topic</td></tr>
-    <tr><td><code>create_page</code></td><td>Create a page (Markdown), a spreadsheet (rows) or a checklist page</td></tr>
+    <tr><td><code>create_page</code></td><td>Create a page (Markdown), a spreadsheet (rows), a checklist page or a code page (type <code>code</code>, with its language)</td></tr>
     <tr><td><code>update_page</code></td><td>Replace a page&rsquo;s content &ndash; the old version stays in its undo history</td></tr>
     <tr><td><code>append_to_page</code></td><td>Add Markdown or rows to the end of a page</td></tr>
     <tr><td><code>insert_into_page</code></td><td>Insert Markdown at the start, the end, under a heading or after a given line</td></tr>
@@ -775,7 +790,8 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <div class="fgrid">
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h5v4H4zM11 10h5v4h-5zM11 16h5v0"/><path d="M6.5 8v6H11M6.5 12H11"/></svg></i><b>Topics, three levels deep</b><span>Topic &rsaquo; Sub-topic &rsaquo; Child topic, drag and drop, Recent Work, search as you type.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h7l3 3v11H5z"/><path d="M8 9h5M8 12h5M8 15h3"/></svg></i><b>A block editor</b><span>Headings, lists, tables, callouts, code, pictures side by side, 179 shapes, 1,850 icons, page links.</span></div>
-    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9M6.5 8.5L10 12l3.5-3.5"/><path d="M4 13v3h12v-3"/></svg></i><b>Import what you have</b><span>Word, PDF, Excel / CSV, PowerPoint, web pages and OneNote notebooks &ndash; into any topic.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4M11.5 4l-3 12"/></svg></i><b>A code editor</b><span>Monaco, the open-source editor, built in: PowerShell, Bash, Python, JSON, XML and 35 more &ndash; find &amp; replace, folding, format, export as a code file.</span></div>
+    <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9M6.5 8.5L10 12l3.5-3.5"/><path d="M4 13v3h12v-3"/></svg></i><b>Import what you have</b><span>Word, PDF, Excel / CSV, PowerPoint, web pages, code files and OneNote notebooks &ndash; into any topic.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l2 2v10H4z"/><path d="M7 4v4h6V4M7 16v-5h6v5"/></svg></i><b>Autosave, crash-safe</b><span>Saved as you type, written safely, deleted items kept in trash, undo across the session.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 2h-13z"/><path d="M8.5 18a1.5 1.5 0 0 0 3 0"/></svg></i><b>Checklists, reminders, to-dos</b><span>Nested checklists; a reminder on any text &ndash; two clicks to set, one to get back to it.</span></div>
     <div><i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11M10 3l4 4-4 4M17 13H6M10 9l-4 4 4 4"/></svg></i><b>Multi-select and Transit</b><span>Pick up to 15 pieces of a page &ndash; words, pictures, shapes, blocks &ndash; and carry them anywhere.</span></div>
@@ -835,6 +851,22 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <h2>Spreadsheets</h2>
   <p>A Spreadsheet page is a plain-value grid: type-ahead filters on every column, sort by clicking a caption, rename columns in place, insert and delete rows and columns, fill down (<kbd>Ctrl</kbd>+<kbd>D</kbd>), paste one value onto a selection, move rows with <kbd>Alt</kbd>+<kbd>&uarr;</kbd> / <kbd>&darr;</kbd>, copy a cell, a row, a column or the whole sheet, and export to XLSX or CSV. Imported workbooks arrive one worksheet per page.</p>
   <figure class="shot "><img class="zoom" src="assets/shots/a04-sheet.webp" width="1600" height="1000" alt="A weekly KPI tracker imported from Excel." loading="lazy" decoding="async"><figcaption>A weekly KPI tracker imported from Excel.</figcaption></figure>
+</section>
+
+<section id="code" class="doc-sec">
+  <h2>Code pages</h2>
+  <p>A <b>Code</b> page is Monaco (the open-source code editor), bundled offline inside EasyNotes and run in the same locked-down sandbox as the page editor: no network, nothing on disk to tamper with, and nothing in a code page is ever executed &ndash; a <code>.ps1</code> is text and stays text. Pick <em>Code</em> on the New page dialog (or <em>Code&hellip;</em> on a topic&rsquo;s <b>＋</b> menu), choose a language or leave it on <em>Detect automatically</em>: paste a script and the colours follow.</p>
+  <figure class="shot "><img class="zoom" src="assets/shots/a52-code-light.webp" width="1600" height="1000" alt="A PowerShell page: the language box, the coder’s toolbar, the minimap and the status strip." loading="lazy" decoding="async"><figcaption>A PowerShell page: the language box, the coder&rsquo;s toolbar, the minimap and the status strip.</figcaption></figure>
+  <ul class="ticks">
+    <li><b>39 languages</b> with syntax colours &ndash; PowerShell, Bash, Batch, Python, JSON, XML, HTML, CSS, JavaScript, TypeScript, INI, YAML, Markdown, SQL, C#, C / C++, Java, Kotlin, Swift, Go, Rust, Ruby, PHP, Perl, Lua, R, Dart, Scala, F#, VB, Dockerfile, GraphQL, Bicep, Terraform, Azure CLI, Protobuf and plain text. Detected from what you type or paste; change it any time from the toolbar or the status strip.</li>
+    <li><b>A real code editor&rsquo;s editing</b> &ndash; find and replace (<kbd>Ctrl</kbd>+<kbd>H</kbd>), go to line, multi-cursor (<kbd>Alt</kbd>+click, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd>), bracket pair colours and guides, folding, sticky scroll, word highlight, word-based suggestions, JSON validation, the command palette (<kbd>F1</kbd>).</li>
+    <li><b>The toolbar</b> &ndash; undo / redo, find, replace, go to line, outdent / indent, line comment, <em>Format</em> (JSON, HTML and CSS fully; XML too; other languages re-indented and trimmed), a <em>Lines</em> menu (move, duplicate, delete, join, sort A&ndash;Z / Z&ndash;A, remove duplicates, UPPER / lower, trim trailing whitespace, select all occurrences, fold / unfold all), toggles for word wrap, minimap, line numbers and whitespace, and the coloured group every page has: send to Transit (as a code block in the page&rsquo;s language), a reminder on the selection, paste from the session clipboard, a date &amp; time stamp written as a comment, copy the page, Export.</li>
+    <li><b>The status strip</b> &ndash; line and column, lines and characters, indentation (click to change), CRLF / LF (click to switch), UTF-8, the language.</li>
+    <li><b>Export as Code</b> &ndash; one entry; the Save dialog opens with the page&rsquo;s language first in <em>Save as type</em> and every other format after it. UTF-8 (a PowerShell file with non-ASCII text gets a BOM, for Windows PowerShell 5.1).</li>
+    <li><b>Everything a page has</b> &ndash; search finds the code, reminders anchor on it, the session clipboard pastes into it, exports leave an event on the dashboard, and AI tools read and write it over MCP (<code>create_page</code> with type <code>code</code>, <code>get_page</code>, <code>update_page</code>, <code>append_to_page</code>).</li>
+  </ul>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a54-code-export-menu.webp" width="1600" height="1000" alt="Export as Code – every format in the Save dialog" loading="lazy" decoding="async"><figcaption>Export as Code &ndash; every format in the Save dialog</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a56-newpage-code.webp" width="1600" height="1000" alt="The New page dialog: Code, with the language left on detect" loading="lazy" decoding="async"><figcaption>The New page dialog: Code, with the language left on detect</figcaption></figure></div>
+  <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a55-code-lines-menu.webp" width="1600" height="1000" alt="The Lines menu – move, duplicate, sort, comment, fold" loading="lazy" decoding="async"><figcaption>The Lines menu &ndash; move, duplicate, sort, comment, fold</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a53-code-dark.webp" width="1600" height="1000" alt="The same page on the dark theme" loading="lazy" decoding="async"><figcaption>The same page on the dark theme</figcaption></figure></div>
 </section>
 
 <section id="dashboard" class="doc-sec">
@@ -1032,7 +1064,16 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <button class="x" type="button" aria-label="Close">&#10005;</button>
   <button class="prev" type="button" aria-label="Previous screenshot">&#8249;</button>
   <button class="next" type="button" aria-label="Next screenshot">&#8250;</button>
-  <figure><img alt=""><video controls playsinline preload="none" hidden></video><figcaption></figcaption></figure>
+  <figure><img alt=""><video playsinline preload="none" hidden></video>
+    <div class="lb-bar">
+      <div class="lb-seek"><input id="lbSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position in the video"><span id="lbTime">0:00 / 0:00</span></div>
+      <div class="lb-btns">
+        <button class="lb-btn" id="lbSound" type="button" aria-pressed="true" aria-label="Turn the sound off" title="Sound off"><svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg></button>
+        <button class="lb-btn" id="lbPause" type="button" data-playing="false" aria-label="Pause" title="Pause"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="lb-btn" id="lbReplay" type="button" aria-label="Replay" title="Replay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
+      </div>
+    </div>
+    <figcaption></figcaption></figure>
 </div>
 <script>
 (function(){
@@ -1119,15 +1160,28 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   function show(i){idx=(i+list.length)%list.length;var e=list[idx];im.src=e.currentSrc||e.src;im.alt=e.alt;var f=e.closest('figure');cap.innerHTML=f&&f.querySelector('figcaption')?f.querySelector('figcaption').innerHTML:e.alt;
     lb.querySelector('.prev').hidden=lb.querySelector('.next').hidden=list.length<2;}
   function open(e){last=document.activeElement;var sec=e.closest('.doc-sec')||document;list=[].slice.call(sec.querySelectorAll('img.zoom')).filter(visible);if(!list.length)list=[e];
-    vid.hidden=true;im.hidden=false;lb.classList.add('open');document.body.style.overflow='hidden';show(list.indexOf(e));lb.querySelector('.x').focus();}
-  function close(){lb.classList.remove('open');document.body.style.overflow='';vid.pause();if(last)last.focus();}
+    vid.hidden=true;im.hidden=false;lb.classList.remove('vid');lb.classList.add('open');document.body.style.overflow='hidden';show(list.indexOf(e));lb.querySelector('.x').focus();}
+  function close(){lb.classList.remove('open');lb.classList.remove('vid');document.body.style.overflow='';vid.pause();if(last)last.focus();}
+  // v5.5: the video's own controls - sound, pause / play, replay and a seek bar - in a row under the picture
+  var seek=document.getElementById('lbSeek'),tm=document.getElementById('lbTime'),snd=document.getElementById('lbSound'),pp=document.getElementById('lbPause'),rp=document.getElementById('lbReplay'),seeking=false;
+  function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
+  function setPP(){var on=!vid.paused&&!vid.ended;pp.setAttribute('data-playing',on?'true':'false');pp.setAttribute('aria-label',on?'Pause':'Play');pp.title=on?'Pause':'Play';}
+  vid.addEventListener('play',setPP);vid.addEventListener('pause',setPP);vid.addEventListener('ended',setPP);
+  vid.addEventListener('loadedmetadata',function(){tm.textContent=fmt(0)+' / '+fmt(vid.duration);});
+  vid.addEventListener('timeupdate',function(){if(seeking||!vid.duration)return;seek.value=Math.round(vid.currentTime/vid.duration*1000);tm.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration);});
+  seek.addEventListener('input',function(){seeking=true;if(vid.duration)tm.textContent=fmt(seek.value/1000*vid.duration)+' / '+fmt(vid.duration);});
+  seek.addEventListener('change',function(){if(vid.duration)vid.currentTime=seek.value/1000*vid.duration;seeking=false;});
+  pp.addEventListener('click',function(){if(vid.paused){var p=vid.play();if(p&&p.catch)p.catch(function(){});}else vid.pause();});
+  rp.addEventListener('click',function(){vid.currentTime=0;var p=vid.play();if(p&&p.catch)p.catch(function(){});});
+  snd.addEventListener('click',function(){var on=vid.muted;vid.muted=!on;snd.setAttribute('aria-pressed',on?'true':'false');snd.setAttribute('aria-label',on?'Turn the sound off':'Turn the sound on');snd.title=on?'Sound off':'Sound on';});
+  vid.addEventListener('click',function(){pp.click();});
   document.addEventListener('click',function(ev){var e=ev.target.closest('img.zoom');if(e){open(e);}});
   lb.querySelector('.x').addEventListener('click',close);
   lb.querySelector('.prev').addEventListener('click',function(){show(idx-1);});
   lb.querySelector('.next').addEventListener('click',function(){show(idx+1);});
   lb.addEventListener('click',function(ev){if(ev.target===lb)close();});
   document.addEventListener('keydown',function(ev){if(!lb.classList.contains('open'))return;if(ev.key==='Escape')close();if(ev.key==='ArrowRight'&&vid.hidden)show(idx+1);if(ev.key==='ArrowLeft'&&vid.hidden)show(idx-1);});
-  function playVid(trigger,src,caption){last=trigger;im.hidden=true;vid.hidden=false;cap.textContent=caption;
+  function playVid(trigger,src,caption){last=trigger;im.hidden=true;vid.hidden=false;lb.classList.add('vid');cap.textContent=caption;seek.value=0;vid.muted=false;snd.setAttribute('aria-pressed','true');snd.setAttribute('aria-label','Turn the sound off');snd.title='Sound off';
     lb.querySelector('.prev').hidden=lb.querySelector('.next').hidden=true;lb.classList.add('open');document.body.style.overflow='hidden';
     if(vid.getAttribute('src')!==src)vid.setAttribute('src',src);vid.currentTime=0;var p=vid.play();if(p&&p.catch)p.catch(function(){});lb.querySelector('.x').focus();}
   var TOUR=['../assets/easynotes-tour.mp4','EasyNotes 1.0 - a tour of the real app, recorded on a product manager\'s workspace (with music)'];

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-jJWTdi19SP5xspp9Jto1l3HcsrfIZ8P91vXF6u/cQAc='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-izT71UuYTpRzgMNa749onT5XEO9WIQciLGEus2f0CrM='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -251,12 +251,20 @@ section.block{padding-block:88px}
 /* ---------- EasyNotes demo video (v16): recorded from the real app, full width under the description ---------- */
 .demo-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(15,59,120,.45);background:#121A30}
 .demo-video{display:block;width:100%;height:100%;object-fit:cover;background:#121A30}
-.demo-replay{position:absolute;right:14px;bottom:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(15,59,120,.55);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s;backdrop-filter:blur(6px)}
-.demo-replay svg{width:18px;height:18px}
-.demo-replay:hover,.demo-replay:focus-visible{opacity:1;transform:scale(1.06)}
-.demo-sound{position:absolute;right:60px;bottom:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(15,59,120,.55);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s;backdrop-filter:blur(6px)}
-.demo-sound svg{width:18px;height:18px}.demo-sound .ic-on{display:none}.demo-sound[aria-pressed="true"] .ic-on{display:block}.demo-sound[aria-pressed="true"] .ic-off{display:none}
-.demo-sound:hover,.demo-sound:focus-visible,.demo-sound[aria-pressed="true"]{opacity:1}.demo-sound:hover{transform:scale(1.06)}
+/* v5.5 (Prompt 453): the controls sit in a row UNDER the video, never over it - sound, pause / play, replay, and a slim seek bar */
+.demo-bar{display:flex;align-items:center;gap:14px;margin:12px 2px 0}
+.demo-seek{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.demo-seek input{flex:1;min-width:0;height:4px;accent-color:var(--ocean);cursor:pointer}
+.demo-seek span{font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.demo-btns{display:flex;gap:8px}
+.demo-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ocean);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.demo-btn svg{width:18px;height:18px}
+.demo-btn:hover,.demo-btn:focus-visible{background:var(--ocean-soft);border-color:var(--ocean);transform:translateY(-1px)}
+.demo-btn[aria-pressed="true"]{background:var(--ocean);border-color:var(--ocean);color:#fff}
+.demo-btn .ic-on,.demo-btn .ic-pause{display:none}
+.demo-btn[aria-pressed="true"] .ic-on,.demo-btn[data-playing="true"] .ic-pause{display:block}
+.demo-btn[aria-pressed="true"] .ic-off,.demo-btn[data-playing="true"] .ic-play{display:none}
+@media (max-width:900px){.feat{grid-template-columns:1fr}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}.demo-bar{margin-top:10px}.demo-seek span{display:none}}
 .btn.is-soon{cursor:default}
 @media (max-width:900px){.feat{grid-template-columns:1fr}.demo-replay,.demo-sound{opacity:.75}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}}
 @media (prefers-reduced-motion:reduce){.sp.play *{animation:none!important}}
@@ -753,19 +761,27 @@ footer li a,footer h5{overflow-wrap:anywhere}
     <div class="film-band-in">
       <div class="film-band-head">
         <h3 id="filmBandTitle">See EasyNotes at work</h3>
-        <p>Three minutes, real app, real clicks &ndash; dashboard, session clipboard, reminders, your AI via MCP, import &amp; export, Transit.</p>
+        <p>Three minutes, real app, real clicks &ndash; dashboard, session clipboard, reminders, your AI via MCP, import &amp; export, the Code Editor, Transit.</p>
       </div>
     <div class="demo-wrap">
       <video id="enDemo" class="demo-video" muted playsinline loop preload="metadata" poster="assets/easynotes-film-poster.jpg" aria-label="EasyNotes 1.0 - a three-minute film of the app, with music (muted until you turn the sound on)">
         <source src="assets/easynotes-film.mp4" type="video/mp4" media="(min-width: 901px)">
         <source src="assets/easynotes-film-720p.mp4" type="video/mp4">
       </video>
-      <button class="demo-sound" id="enSound" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on">
-        <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-      </button>
-      <button class="demo-replay" id="enReplay" type="button" aria-label="Replay the demo" title="Replay">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-      </button>
+    </div>
+    <div class="demo-bar">
+      <div class="demo-seek"><input id="enSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position in the film"><span id="enTime">0:00 / 3:14</span></div>
+      <div class="demo-btns">
+        <button class="demo-btn" id="enSound" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on">
+          <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg><svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+        </button>
+        <button class="demo-btn" id="enPause" type="button" data-playing="false" aria-label="Pause" title="Pause">
+          <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="demo-btn" id="enReplay" type="button" aria-label="Replay the film" title="Replay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        </button>
+      </div>
     </div>
     </div>
   </div>
@@ -940,13 +956,23 @@ footer li a,footer h5{overflow-wrap:anywhere}
     if(/^(?![a-z]+:|#|\/)/i.test(h)){var i=h.indexOf('#'),p=i<0?h:h.slice(0,i),f=i<0?'':h.slice(i);if(p===''||/\/$/.test(p))a.setAttribute('href',p+'index.html'+f);}});}
 })();
 (function(){
-  var v=document.getElementById('enDemo'),btn=document.getElementById('enReplay');
+  var v=document.getElementById('enDemo'),btn=document.getElementById('enReplay'),snd=document.getElementById('enSound'),pp=document.getElementById('enPause'),seek=document.getElementById('enSeek'),tm=document.getElementById('enTime');
   if(!v)return;
-  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches,userPaused=false,seeking=false;
+  function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
   function play(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
-  btn.addEventListener('click',function(){v.currentTime=0;play();}); var snd=document.getElementById('enSound'); if(snd)snd.addEventListener('click',function(){var on=v.muted; v.muted=!on; snd.setAttribute('aria-pressed',on?'true':'false'); snd.setAttribute('aria-label',on?'Turn the sound off':'Turn the sound on'); snd.title=on?'Sound off':'Sound on'; if(on)play();});
-  if(reduced){v.removeAttribute('loop');return;}
-  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)play();else v.pause();});},{threshold:.35}).observe(v);}else{play();}
+  function setPP(){var on=!v.paused&&!v.ended;pp.setAttribute('data-playing',on?'true':'false');pp.setAttribute('aria-label',on?'Pause':'Play');pp.title=on?'Pause':'Play';}
+  v.addEventListener('play',setPP);v.addEventListener('pause',setPP);v.addEventListener('ended',setPP);
+  v.addEventListener('loadedmetadata',function(){tm.textContent=fmt(0)+' / '+fmt(v.duration);});
+  v.addEventListener('timeupdate',function(){if(seeking||!v.duration)return;seek.value=Math.round(v.currentTime/v.duration*1000);tm.textContent=fmt(v.currentTime)+' / '+fmt(v.duration);});
+  seek.addEventListener('input',function(){seeking=true;if(v.duration){var t=seek.value/1000*v.duration;tm.textContent=fmt(t)+' / '+fmt(v.duration);}});
+  seek.addEventListener('change',function(){if(v.duration)v.currentTime=seek.value/1000*v.duration;seeking=false;});
+  btn.addEventListener('click',function(){userPaused=false;v.currentTime=0;play();});
+  pp.addEventListener('click',function(){if(v.paused){userPaused=false;play();}else{userPaused=true;v.pause();}});
+  snd.addEventListener('click',function(){var on=v.muted;v.muted=!on;snd.setAttribute('aria-pressed',on?'true':'false');snd.setAttribute('aria-label',on?'Turn the sound off':'Turn the sound on');snd.title=on?'Sound off':'Sound on';if(on&&!userPaused)play();});
+  if(reduced){v.removeAttribute('loop');setPP();return;}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!userPaused)play();}else v.pause();});},{threshold:.35}).observe(v);}else{play();}
+  setPP();
 })();
 
 (function(){
