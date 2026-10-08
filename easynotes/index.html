@@ -7,7 +7,7 @@
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with pictures, shapes and icons, import from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for AI tools. Version 1.0 - free, no registration, no subscription, works offline, MCP supported.">
-<!-- EndpointLabz - EasyNotes page v5.9 (version 1.0, build 217; feature reel; 125% default size on wide screens) · Author: Satish Singhi -->
+<!-- EndpointLabz - EasyNotes page v5.10 (version 1.0, build 218; feature reel; 125% default size on wide screens) · Author: Satish Singhi -->
 <title>EasyNotes · EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -459,9 +459,10 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 .lb-seek input{flex:1;min-width:0;height:4px;accent-color:#6CC8D8;cursor:pointer}
 .lb-seek span{font-size:12.5px;color:#DCE6EA;font-variant-numeric:tabular-nums;white-space:nowrap}
 .lb-btns{display:flex;gap:8px}
-.lb .lb-btn{position:static;width:40px;height:40px;display:grid;place-items:center;font-size:0}
+.lb .lb-btn{position:static;width:42px;height:42px;display:grid;place-items:center;font-size:0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px -12px rgba(0,0,0,.7)}
+.lb .lb-btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.12))}
 .lb .lb-btn svg{width:18px;height:18px}
-.lb .lb-btn[aria-pressed="true"]{background:#fff;color:#0F3B78}
+/* v5.10: the sound button looks like the others when on - the icon shows the state (Prompt 483) */
 .lb .lb-btn .ic-on,.lb .lb-btn .ic-pause{display:none}
 .lb .lb-btn[aria-pressed="true"] .ic-on,.lb .lb-btn[data-playing="true"] .ic-pause{display:block}
 .lb .lb-btn[aria-pressed="true"] .ic-off,.lb .lb-btn[data-playing="true"] .ic-play{display:none}
