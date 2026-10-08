@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-s1NF8F+Je4uY/Pj7fMEjResXmqpBXrm2e4K1q0qWoHQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-6A39xKDtLsvGn1NbN0tilgVt13wrX8LbAFf42vZeO7U='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="EasyNotes for Windows - notes, spreadsheets and checklists organised into topics, with pictures, shapes and icons, import from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for AI tools. Version 1.0 - free, no registration, no subscription, works offline, MCP supported.">
-<!-- EndpointLabz - EasyNotes page v5.2 (version 1.0, build 207; 125% default size on wide screens) · Author: Satish Singhi -->
+<!-- EndpointLabz - EasyNotes page v5.9 (version 1.0, build 217; feature reel; 125% default size on wide screens) · Author: Satish Singhi -->
 <title>EasyNotes · EndpointLabz</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -243,7 +243,8 @@ body{overflow-x:hidden}
 .en-hero .lead{margin-top:18px;font-size:17.5px;line-height:1.62;color:var(--ink-2);max-width:54ch}
 .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .pillrow span{font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.win-glyph{width:19px;height:19px;flex:none}
 .store-btn{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 14px;border-radius:12px;background:#111;color:#fff;border:1px solid #111;font-weight:700;line-height:1.05;transition:transform .15s,box-shadow .2s}
 :root[data-theme="dark"] .store-btn{background:#F4F7F8;color:#0B1418;border-color:#F4F7F8}
 .store-btn svg{width:26px;height:26px}
@@ -345,18 +346,36 @@ table.keys th{width:38%;white-space:nowrap}
 .code .c-p{color:#5E7F87}.code .c-h{color:#F0C040}.code .c-k{color:#7FE0D4}.code .c-s{color:#F2C58A}
 .code .copy{position:absolute;top:8px;right:8px;font:700 11.5px var(--ff-body);color:#CFE6E2;background:#17282F;border:1px solid #2A4049;border-radius:7px;padding:5px 9px;cursor:pointer}
 .code .copy:hover{border-color:#7FE0D4;color:#fff}
-.rules{border:1px dashed var(--line-2);border-radius:10px;padding:12px 16px;background:var(--surface);margin:8px 0 12px}
+.rules{border:1px dashed var(--line-2);border-radius:10px;padding:12px 16px;background:var(--surface);margin:8px 0 12px;position:relative}
+/* v5.8: the rules are an example (Prompt 477); the any-client MCP guide (Prompts 478-480); the intro cards (Prompt 473) */
+.rules-tag{position:absolute;top:-10px;right:14px;font:600 10.5px var(--ff-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:3px 9px}
+.mcp-note{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:14px 18px;background:var(--teal-soft);color:var(--ink-2);margin:14px 0 6px;max-width:74ch;line-height:1.55}
+.mcp-note b{color:var(--ink)}
+.doc h4{margin-top:18px}
+.glance a{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface);text-decoration:none;color:inherit;font-weight:400;transition:border-color .2s,transform .2s}
+.glance a:hover,.glance a:focus-visible{border-color:var(--teal);transform:translateY(-1px)}
+.glance a b{display:block;font-family:var(--ff-display);font-size:15px;color:var(--ink)}
+.glance a b::after{content:" \2192";color:var(--teal)}
+.glance a span{font-size:13.5px;color:var(--ink-3);line-height:1.45;display:block;margin-top:4px}
+.glance .g-soon .win-glyph{width:28px;height:28px;color:var(--teal);margin-top:6px}
 .rules p{margin:3px 0;font-family:var(--ff-mono);font-size:13px;color:var(--ink)}
 /* v5: the MCP function table and the install 'coming soon' card */
 .tbl-scroll{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:12px}
 table.mcp-tools{width:100%;border-collapse:collapse;font-size:14.5px}
+table.mcp-clients{width:100%;border-collapse:collapse;font-size:14.5px}
 table.mcp-tools th,table.mcp-tools td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
+table.mcp-clients th,table.mcp-clients td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
 table.mcp-tools thead th{font-family:var(--ff-display);font-size:13px;letter-spacing:.02em;color:var(--ink);background:var(--surface)}
+table.mcp-clients thead th{font-family:var(--ff-display);font-size:13px;letter-spacing:.02em;color:var(--ink);background:var(--surface)}
 table.mcp-tools tr.grp th{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--surface);padding-top:14px}
 table.mcp-tools td:first-child{white-space:nowrap;width:1%}
 table.mcp-tools td code{font-size:13px}
+table.mcp-clients td code{font-size:12.5px}
+.code.wrapcode pre{white-space:pre-wrap;word-break:break-word;padding-right:84px}
 table.mcp-tools td{color:var(--ink-2)}
+table.mcp-clients td{color:var(--ink-2)}
 table.mcp-tools tbody tr:last-child td{border-bottom:0}
+table.mcp-clients tbody tr:last-child td{border-bottom:0}
 .soon-card{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:22px 24px;background:var(--surface);margin:18px 0 22px;display:flex;flex-direction:column;gap:8px}
 .soon-card h3{font-size:22px;font-weight:600}
 .soon-card p{margin:0}
@@ -478,6 +497,104 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   .get-card{padding:24px}
 }
 
+:root{--a-sheet:#FFFFFF;--a-line:#DCE5EA;--a-text:#C9D5DB;--a-text-2:#AFC0C8;--a-shadow:rgba(15,27,34,.10);--amber:#FFB020}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--a-sheet:#1A2930;--a-line:#2A3C44;--a-text:#34484F;--a-text-2:#44595F;--a-shadow:rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--a-sheet:#1A2930;--a-line:#2A3C44;--a-text:#34484F;--a-text-2:#44595F;--a-shadow:rgba(0,0,0,.35)}
+/* ================= the reel ================= */
+.rl-reel{position:relative;border-bottom:1px solid var(--line);background:var(--bg-2);padding:22px 0 20px;overflow:hidden}
+.rl-reel-view{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+.rl-reel-track{display:flex;gap:16px;width:max-content;padding:4px 0 6px;will-change:transform}
+.rl-reel.rl-glide .rl-reel-track{animation:rl-reel-glide var(--reel-dur,90s) linear infinite}
+.rl-reel.rl-glide:hover .rl-reel-track,.rl-reel.rl-glide:focus-within .rl-reel-track,.rl-reel.rl-paused .rl-reel-track{animation-play-state:paused}
+@keyframes rl-reel-glide{to{transform:translateX(calc(-1 * var(--reel-shift,50%)))}}
+.rl-reel.rl-step .rl-reel-track{transition:transform .8s cubic-bezier(.65,0,.35,1)}
+
+.rl-tile{flex:0 0 auto;width:252px;margin:0;border-radius:16px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(15,27,34,.04),0 14px 30px -22px rgba(15,27,34,.35);overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.rl-tile:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 45%,var(--line));
+  box-shadow:0 1px 2px rgba(15,27,34,.04),0 22px 40px -22px color-mix(in srgb,var(--c) 55%,transparent)}
+.rl-art{position:relative;height:132px;background:
+   radial-gradient(120% 90% at 85% 0%,color-mix(in srgb,var(--c) 22%,transparent) 0%,transparent 60%),
+   linear-gradient(180deg,var(--cb),color-mix(in srgb,var(--cb) 55%,var(--surface)));
+  border-bottom:1px solid color-mix(in srgb,var(--c) 14%,var(--line))}
+.rl-art svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rl-tile figcaption{padding:12px 16px 14px;display:flex;flex-direction:column;gap:2px}
+.rl-tile b{font:600 15px/1.25 var(--ff-display);letter-spacing:-.005em;color:var(--ink)}
+.rl-tile figcaption span{font-size:13px;line-height:1.35;color:var(--ink-3)}
+
+.rl-reel-ctl{position:absolute;right:20px;bottom:10px;z-index:2;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;opacity:.0;transition:opacity .25s}
+.rl-reel:hover .rl-reel-ctl,.rl-reel-ctl:focus-visible,.rl-reel.rl-paused .rl-reel-ctl{opacity:1}
+.rl-reel-ctl:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.rl-reel-ctl svg{width:12px;height:12px}
+.rl-reel-ctl .rl-i-play{display:none}.rl-reel.rl-paused .rl-reel-ctl .rl-i-play{display:block}.rl-reel.rl-paused .rl-reel-ctl .rl-i-pause{display:none}
+
+/* ---- shared art pieces ---- */
+.rl-s-sheet{fill:var(--a-sheet)}
+.rl-s-card{fill:var(--a-sheet);stroke:var(--a-line);stroke-width:1}
+.rl-s-shadow{filter:drop-shadow(0 6px 10px var(--a-shadow))}
+.rl-t1{fill:var(--a-text)}.rl-t2{fill:var(--a-text-2)}
+.rl-acc{fill:var(--c)}.rl-acc-s{stroke:var(--c)}.rl-acc-soft{fill:color-mix(in srgb,var(--c) 22%,var(--a-sheet))}
+.rl-mono{font-family:var(--ff-mono);font-weight:600}
+.rl-ink{fill:var(--ink-2)}
+
+/* ---- per-art motion (all loop; staggered so the reel never pulses in sync) ---- */
+@keyframes rl-grow{0%,8%{transform:scaleX(0)}38%,82%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+.rl-g-line{transform-box:fill-box;transform-origin:left center;animation:rl-grow 7s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes rl-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.rl-caret{animation:rl-blink 1.05s steps(1) infinite}
+@keyframes rl-cellmove{0%,12%{transform:translate(0,0)}25%,37%{transform:translate(40px,0)}50%,62%{transform:translate(40px,15px)}75%,87%{transform:translate(80px,15px)}100%{transform:translate(0,0)}}
+.rl-cell-hi{animation:rl-cellmove 8s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes rl-draw{0%,10%{stroke-dashoffset:20}24%,86%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+.rl-tick{stroke-dasharray:20;stroke-dashoffset:20;animation:rl-draw 6s ease-in-out infinite}
+@keyframes rl-boxfill{0%,10%{fill:var(--a-sheet)}22%,86%{fill:var(--c)}100%{fill:var(--a-sheet)}}
+.rl-cbox{animation:rl-boxfill 6s ease-in-out infinite}
+@keyframes rl-bar{0%,10%{transform:scaleX(.08)}90%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.rl-progress{transform-box:fill-box;transform-origin:left;animation:rl-bar 6s ease-in-out infinite}
+@keyframes rl-type{0%,6%{transform:scaleX(0)}30%,84%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:.0}}
+.rl-typed{transform-box:fill-box;transform-origin:left;animation:rl-type 6.5s steps(9) infinite}
+@keyframes rl-flow{0%{offset-distance:0%;opacity:0}12%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.rl-dot{animation:rl-flow 2.4s linear infinite}
+@keyframes rl-ring{0%{r:16;opacity:.55}100%{r:30;opacity:0}}
+.rl-pulse{animation:rl-ring 2s ease-out infinite}
+@keyframes rl-lift{0%,30%{transform:translate(0,0) rotate(0)}45%,70%{transform:translate(26px,-10px) rotate(4deg)}85%,100%{transform:translate(0,0) rotate(0)}}
+.rl-lift{transform-box:fill-box;transform-origin:center;animation:rl-lift 5.5s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes rl-swing{0%,55%,100%{transform:rotate(0)}62%{transform:rotate(14deg)}69%{transform:rotate(-11deg)}76%{transform:rotate(7deg)}83%{transform:rotate(-3deg)}}
+.rl-bell{transform-box:fill-box;transform-origin:50% 8%;animation:rl-swing 4.5s ease-in-out infinite}
+@keyframes rl-toast{0%,50%{transform:translateX(60px);opacity:0}62%,92%{transform:translateX(0);opacity:1}100%{transform:translateX(0);opacity:0}}
+.rl-toast{animation:rl-toast 4.5s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes rl-pick{0%{opacity:0;transform:scale(.4)}12%,88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.rl-pick{transform-box:fill-box;transform-origin:center;opacity:0;animation:rl-pick 6s cubic-bezier(.2,.9,.3,1.3) infinite}
+@keyframes rl-hl{0%{opacity:0}10%,88%{opacity:1}100%{opacity:0}}
+.rl-hl{opacity:0;animation:rl-hl 6s ease infinite}
+@keyframes rl-drop{0%,6%{transform:translateY(-34px);opacity:0}22%,80%{transform:translateY(0);opacity:1}92%,100%{transform:translateX(70px);opacity:0}}
+.rl-drop{animation:rl-drop 6.4s cubic-bezier(.3,.9,.3,1) infinite}
+@keyframes rl-spin{to{transform:rotate(360deg)}}
+.rl-hand-m{transform-box:view-box;animation:rl-spin 6s linear infinite}
+.rl-hand-h{transform-box:view-box;animation:rl-spin 72s linear infinite}
+.rl-orbit{transform-box:fill-box;transform-origin:center;animation:rl-spin 3.2s linear infinite}
+@keyframes rl-pop{0%,40%{transform:scale(0)}52%{transform:scale(1.15)}58%,92%{transform:scale(1)}100%{transform:scale(0)}}
+.rl-pop{transform-box:fill-box;transform-origin:center;animation:rl-pop 4.8s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes rl-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.rl-nudge{animation:rl-nudge 1.6s ease-in-out infinite}
+@keyframes rl-rise{0%{transform:translateY(0)}50%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.rl-float{animation:rl-rise 3.6s ease-in-out infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .rl-reel-track{animation:none!important;transition:none!important}
+  .rl-reel-view{overflow-x:auto;scroll-snap-type:x mandatory}
+  .rl-tile{scroll-snap-align:start}
+  .rl-art *{animation:none!important}
+  .rl-hl,.rl-pick{opacity:1}
+  .rl-reel-ctl{display:none}
+}
+
+.rl-reel-track{padding-right:16px}
+@keyframes rl-reel-glide{to{transform:translateX(-50%)}}
+
 
 /* v5.2: 125% is the new 100% on screens 1280 px and wider (CSS zoom = browser zoom; vw / vh corrected by --zf) */
 :root{--zf:1}
@@ -536,26 +653,219 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <div class="en-title"><img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt=""><h1>EasyNotes</h1></div>
       <p class="tagline">Productivity starts with organizing</p>
       <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; pictures, shapes and icons on the page, documents imported from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
-      <div class="pillrow"><span>Version 1.0</span><span>Free for all</span><span>Windows 10 (2004+) &amp; 11</span><span>No registration &middot; no subscription</span><span>Works offline</span><span>MCP supported</span></div>
       <div class="hero-cta">
-        <a class="soon" href="#install">Coming soon</a>
+        <a class="soon" href="#install">Coming soon to <svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Windows 10 and 11"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></a>
         <button class="btn btn-ghost btn-play" id="playFilm" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>3-minute film</button>
         <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>The full tour</button>
       </div>
     </div>
-    <div class="hero-shot"><img class="only-light" src="assets/shots/a01-main-light.webp" width="1600" height="1000" alt="EasyNotes: a meeting-notes page with the topics pane and the header tools"><img class="only-dark" src="assets/shots/a02-main-dark.webp" width="1600" height="1000" alt="EasyNotes in the dark theme"></div>
+    <div class="hero-shot"><img class="" src="assets/shots/w01-splash-216.webp" width="880" height="660" alt="The EasyNotes splash screen: the app icon and name, &quot;Productivity starts with organizing&quot; on a note card, and Let&#x27;s Go!"></div>
   </div>
 </section>
-<div class="facts"><div class="wrap">
-  <div><b>Your notes, your folder</b><span>Plain files, synced by the app you already use</span></div>
-  <div><b>Backed up and verified</b><span>On your schedule, checked before it is kept</span></div>
-  <div><b>Always within reach</b><span>System tray, a global hotkey and stay on top</span></div>
-  <div><b>MCP supported</b><span>48 functions, scoped tokens, your rules</span></div>
-</div></div>
+<section class="rl-reel rl-glide" aria-label="What EasyNotes does" aria-roledescription="carousel">
+  <div class="rl-reel-view"><div class="rl-reel-track" id="rl-track">
+
+  <!-- 1 PAGES -->
+  <figure class="rl-tile" style="--c:var(--n-cloud);--cb:var(--n-cloud-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="38" y="16" width="176" height="104" rx="9" class="rl-s-sheet"/></g>
+    <rect x="52" y="28" width="66" height="7" rx="3.5" class="rl-acc"/>
+    <rect x="52" y="42" width="140" height="4" rx="2" class="rl-t1 rl-g-line"/>
+    <rect x="52" y="51" width="118" height="4" rx="2" class="rl-t1 rl-g-line" style="animation-delay:.25s"/>
+    <rect x="171" y="49" width="1.6" height="8" class="rl-acc rl-caret"/>
+    <g transform="translate(52 64)"><rect width="62" height="42" rx="5" class="rl-acc-soft"/>
+      <circle cx="47" cy="12" r="5" fill="var(--amber)"/><path d="M4 38 L22 18 L34 30 L42 23 L58 38Z" class="rl-acc" opacity=".75"/></g>
+    <g transform="translate(124 64)"><rect width="66" height="4" rx="2" class="rl-t2"/><rect y="9" width="56" height="4" rx="2" class="rl-t2"/><rect y="18" width="62" height="4" rx="2" class="rl-t2"/></g>
+    <g transform="translate(170 88)"><g class="rl-float"><path d="M0 0 h34 v22 l-10 10 h-24z" fill="#FFD66B"/><path d="M34 22 l-10 10 v-10z" fill="#E8B23A"/>
+      <rect x="5" y="7" width="20" height="3" rx="1.5" fill="#B58410" opacity=".55"/><rect x="5" y="14" width="14" height="3" rx="1.5" fill="#B58410" opacity=".55"/></g></g>
+  </svg></div><figcaption><b>Pages</b><span>Blocks, pictures, shapes</span></figcaption></figure>
+
+  <!-- 2 SHEETS -->
+  <figure class="rl-tile" style="--c:var(--n-monitoring);--cb:var(--n-monitoring-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="36" y="18" width="180" height="98" rx="9" class="rl-s-sheet"/></g>
+    <clipPath id="rl-sh-clip"><rect x="36" y="18" width="180" height="98" rx="9"/></clipPath>
+    <g clip-path="url(#rl-sh-clip)">
+      <rect x="36" y="18" width="180" height="17" class="rl-acc"/>
+      <g fill="#fff" opacity=".9"><rect x="46" y="24" width="22" height="5" rx="2.5"/><rect x="86" y="24" width="26" height="5" rx="2.5"/><rect x="126" y="24" width="18" height="5" rx="2.5"/><rect x="166" y="24" width="24" height="5" rx="2.5"/></g>
+      <path d="M114 23.5h7l-2.6 3.2v3.3l-1.8-1v-2.3z" fill="#fff"/>
+      <g stroke="var(--a-line)" stroke-width="1"><path d="M76 35v81M116 35v81M156 35v81"/><path d="M36 50h180M36 65h180M36 80h180M36 95h180"/></g>
+      <rect x="36" y="50" width="180" height="15" class="rl-acc-soft" opacity=".55"/>
+      <g class="rl-t1"><rect x="44" y="40" width="22" height="4" rx="2"/><rect x="44" y="55" width="18" height="4" rx="2"/><rect x="44" y="70" width="24" height="4" rx="2"/><rect x="44" y="85" width="16" height="4" rx="2"/><rect x="44" y="100" width="21" height="4" rx="2"/></g>
+      <g class="rl-t2"><rect x="92" y="40" width="16" height="4" rx="2"/><rect x="88" y="55" width="20" height="4" rx="2"/><rect x="94" y="70" width="14" height="4" rx="2"/><rect x="90" y="85" width="18" height="4" rx="2"/><rect x="92" y="100" width="16" height="4" rx="2"/></g>
+      <g><rect x="124" y="40" width="26" height="4" rx="2" class="rl-acc" opacity=".8"/><rect x="124" y="55" width="18" height="4" rx="2" class="rl-acc" opacity=".8"/><rect x="124" y="70" width="29" height="4" rx="2" class="rl-acc" opacity=".8"/><rect x="124" y="85" width="12" height="4" rx="2" class="rl-acc" opacity=".8"/><rect x="124" y="100" width="22" height="4" rx="2" class="rl-acc" opacity=".8"/></g>
+      <g class="rl-t1"><rect x="170" y="40" width="20" height="4" rx="2"/><rect x="166" y="55" width="26" height="4" rx="2"/><rect x="172" y="70" width="18" height="4" rx="2"/><rect x="168" y="85" width="22" height="4" rx="2"/><rect x="170" y="100" width="20" height="4" rx="2"/></g>
+      <rect x="37" y="36" width="38" height="13" rx="2" fill="none" stroke="var(--c)" stroke-width="2" class="rl-cell-hi"/>
+    </g>
+  </svg></div><figcaption><b>Sheets</b><span>Filter every column</span></figcaption></figure>
+
+  <!-- 3 CHECKLISTS -->
+  <figure class="rl-tile" style="--c:var(--n-endpoints);--cb:var(--n-endpoints-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="44" y="14" width="164" height="106" rx="9" class="rl-s-sheet"/></g>
+    <rect x="58" y="25" width="70" height="7" rx="3.5" class="rl-acc"/>
+    <g><rect x="58" y="42" width="11" height="11" rx="3" class="rl-cbox" stroke="var(--c)" stroke-width="1.6"/><path d="M60.5 47.5l2.6 2.6 4.6-5.2" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="rl-tick"/>
+      <rect x="76" y="45" width="66" height="4" rx="2" class="rl-t1"/><rect x="152" y="45" width="40" height="4" rx="2" class="rl-t2"/></g>
+    <g><rect x="72" y="60" width="11" height="11" rx="3" class="rl-cbox" stroke="var(--c)" stroke-width="1.6" style="animation-delay:.6s"/><path d="M74.5 65.5l2.6 2.6 4.6-5.2" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="rl-tick" style="animation-delay:.6s"/>
+      <rect x="90" y="63" width="52" height="4" rx="2" class="rl-t1"/><rect x="152" y="63" width="30" height="4" rx="2" class="rl-t2"/></g>
+    <g><rect x="72" y="78" width="11" height="11" rx="3" class="rl-cbox" stroke="var(--c)" stroke-width="1.6" style="animation-delay:1.2s"/><path d="M74.5 83.5l2.6 2.6 4.6-5.2" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="rl-tick" style="animation-delay:1.2s"/>
+      <rect x="90" y="81" width="44" height="4" rx="2" class="rl-t1"/><rect x="152" y="81" width="36" height="4" rx="2" class="rl-t2"/></g>
+    <g><rect x="58" y="96" width="11" height="11" rx="3" fill="var(--a-sheet)" stroke="var(--line-2)" stroke-width="1.6"/>
+      <rect x="76" y="99" width="58" height="4" rx="2" class="rl-t1"/>
+      <g class="rl-float" style="animation-delay:.8s"><circle cx="186" cy="101" r="8" class="rl-acc-soft"/><path d="M182.5 103.5h7l-1-1.4v-2.6a2.5 2.5 0 0 0-5 0v2.6zM185 105h2" fill="none" stroke="var(--c)" stroke-width="1.3" stroke-linecap="round"/></g></g>
+    <rect x="58" y="113" width="134" height="2.5" rx="1.25" class="rl-t1" opacity=".6"/><rect x="58" y="113" width="134" height="2.5" rx="1.25" class="rl-acc rl-progress"/>
+  </svg></div><figcaption><b>Checklists</b><span>Nested, ticked, reminded</span></figcaption></figure>
+
+  <!-- 4 CODE -->
+  <figure class="rl-tile" style="--c:var(--n-identity);--cb:var(--n-identity-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="34" y="16" width="184" height="102" rx="9" fill="#111A2B"/></g>
+    <rect x="34" y="16" width="184" height="16" rx="9" fill="#18233A"/><rect x="34" y="26" width="184" height="6" fill="#18233A"/>
+    <circle cx="45" cy="24" r="2.6" fill="#F08A7E"/><circle cx="53" cy="24" r="2.6" fill="#E4B63A"/><circle cx="61" cy="24" r="2.6" fill="#6FD39A"/>
+    <rect x="178" y="20" width="32" height="9" rx="4.5" fill="#2A3557"/><text x="194" y="27" text-anchor="middle" class="rl-mono" font-size="6.5" fill="#B39CF2">PS1</text>
+    <g fill="#3B4766"><rect x="42" y="40" width="6" height="3" rx="1.5"/><rect x="42" y="50" width="6" height="3" rx="1.5"/><rect x="42" y="60" width="6" height="3" rx="1.5"/><rect x="42" y="70" width="6" height="3" rx="1.5"/><rect x="42" y="80" width="6" height="3" rx="1.5"/><rect x="42" y="90" width="6" height="3" rx="1.5"/><rect x="42" y="100" width="6" height="3" rx="1.5"/></g>
+    <g class="rl-typed"><rect x="56" y="39" width="26" height="5" rx="2.5" fill="#B39CF2"/><rect x="86" y="39" width="38" height="5" rx="2.5" fill="#7FA8F0"/><rect x="128" y="39" width="14" height="5" rx="2.5" fill="#E8EEF0" opacity=".6"/></g>
+    <g class="rl-typed" style="animation-delay:.5s"><rect x="64" y="49" width="20" height="5" rx="2.5" fill="#5ED0C5"/><rect x="88" y="49" width="46" height="5" rx="2.5" fill="#E4B63A"/></g>
+    <g class="rl-typed" style="animation-delay:1s"><rect x="64" y="59" width="34" height="5" rx="2.5" fill="#7FA8F0"/><rect x="102" y="59" width="22" height="5" rx="2.5" fill="#F08A7E"/><rect x="128" y="59" width="30" height="5" rx="2.5" fill="#E8EEF0" opacity=".45"/></g>
+    <g class="rl-typed" style="animation-delay:1.5s"><rect x="72" y="69" width="42" height="5" rx="2.5" fill="#B39CF2"/><rect x="118" y="69" width="18" height="5" rx="2.5" fill="#6FD39A"/></g>
+    <g class="rl-typed" style="animation-delay:2s"><rect x="64" y="79" width="16" height="5" rx="2.5" fill="#5ED0C5"/><rect x="84" y="79" width="54" height="5" rx="2.5" fill="#E4B63A" opacity=".85"/></g>
+    <g class="rl-typed" style="animation-delay:2.5s"><rect x="56" y="89" width="10" height="5" rx="2.5" fill="#E8EEF0" opacity=".6"/></g>
+    <rect x="68" y="98" width="1.6" height="8" fill="#E8EEF0" class="rl-caret"/>
+    <rect x="196" y="38" width="14" height="70" rx="3" fill="#18233A"/><g fill="#B39CF2" opacity=".5"><rect x="199" y="42" width="8" height="1.6"/><rect x="199" y="46" width="6" height="1.6"/><rect x="199" y="50" width="8" height="1.6"/><rect x="199" y="54" width="5" height="1.6"/><rect x="199" y="58" width="7" height="1.6"/></g>
+  </svg></div><figcaption><b>Code</b><span>Monaco, 40 languages</span></figcaption></figure>
+
+  <!-- 5 MCP -->
+  <figure class="rl-tile" style="--c:var(--n-connectivity);--cb:var(--n-connectivity-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <path id="rl-mcp-path" d="M88 64 C 112 40, 140 40, 164 64" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-dasharray="3 4" opacity=".55"/>
+    <path id="rl-mcp-path-b" d="M164 72 C 140 96, 112 96, 88 72" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-dasharray="3 4" opacity=".35"/>
+    <circle r="3.2" class="rl-acc rl-dot" style="offset-path:path('M88 64 C 112 40, 140 40, 164 64')"/>
+    <circle r="3.2" class="rl-acc rl-dot" style="offset-path:path('M88 64 C 112 40, 140 40, 164 64');animation-delay:1.2s"/>
+    <circle r="3.2" class="rl-acc rl-dot" style="offset-path:path('M164 72 C 140 96, 112 96, 88 72');animation-delay:.6s;opacity:.7"/>
+    <!-- the assistant -->
+    <g class="rl-float"><g class="rl-s-shadow"><rect x="34" y="40" width="54" height="50" rx="14" class="rl-s-sheet"/></g>
+      <rect x="44" y="54" width="34" height="20" rx="8" class="rl-acc"/><circle cx="54" cy="64" r="3" fill="#fff"/><circle cx="68" cy="64" r="3" fill="#fff"/>
+      <path d="M61 40 v-8" stroke="var(--c)" stroke-width="2"/><circle cx="61" cy="30" r="3" class="rl-acc"/>
+      <rect x="48" y="80" width="26" height="3" rx="1.5" class="rl-t1"/></g>
+    <!-- EasyNotes, active-use ring -->
+    <circle cx="190" cy="68" r="16" fill="none" stroke="var(--c)" stroke-width="2" class="rl-pulse"/>
+    <g class="rl-s-shadow"><rect x="166" y="44" width="48" height="48" rx="13" fill="#1B5FBF"/></g>
+    <path d="M180 56h18M180 68h14M180 80h18M180 56v24" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M200 74l6-6" stroke="#FFD66B" stroke-width="3" stroke-linecap="round"/>
+    <!-- the rules -->
+    <g transform="translate(110 100)"><rect width="32" height="18" rx="5" class="rl-s-card"/><path d="M8 9.5l2.6 2.6 4.6-5.2" fill="none" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="7.5" width="9" height="3" rx="1.5" class="rl-t2"/></g>
+  </svg></div><figcaption><b>MCP</b><span>Your AI tools, your rules</span></figcaption></figure>
+
+  <!-- 6 SESSION CLIPBOARD -->
+  <figure class="rl-tile" style="--c:var(--n-productivity);--cb:var(--n-productivity-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g transform="rotate(-8 112 70)"><g class="rl-s-shadow"><rect x="70" y="36" width="96" height="62" rx="8" class="rl-s-sheet"/></g>
+      <rect x="80" y="46" width="44" height="30" rx="4" class="rl-acc-soft"/><path d="M82 74 L96 60 L106 68 L112 62 L122 74Z" class="rl-acc" opacity=".7"/></g>
+    <g transform="rotate(4 140 66)"><g class="rl-s-shadow"><rect x="88" y="32" width="100" height="60" rx="8" class="rl-s-sheet"/></g>
+      <circle cx="104" cy="50" r="7" class="rl-acc-soft"/><path d="M101 50h6M104 47v6" stroke="var(--c)" stroke-width="1.6" stroke-linecap="round" transform="rotate(45 104 50)"/>
+      <rect x="116" y="47" width="58" height="4" rx="2" class="rl-acc" opacity=".8"/><rect x="98" y="64" width="76" height="4" rx="2" class="rl-t1"/><rect x="98" y="73" width="54" height="4" rx="2" class="rl-t1"/></g>
+    <g class="rl-lift"><g class="rl-s-shadow"><rect x="58" y="44" width="104" height="62" rx="8" class="rl-s-sheet" stroke="var(--c)" stroke-width="1.5"/></g>
+      <rect x="70" y="56" width="72" height="4.5" rx="2.25" class="rl-ink" opacity=".55"/><rect x="70" y="66" width="80" height="4" rx="2" class="rl-t1"/><rect x="70" y="75" width="60" height="4" rx="2" class="rl-t1"/>
+      <rect x="70" y="88" width="30" height="10" rx="5" class="rl-acc"/><text x="85" y="95.5" text-anchor="middle" class="rl-mono" font-size="6.5" fill="#fff">PASTE</text></g>
+    <g transform="translate(184 26)"><rect width="34" height="40" rx="6" class="rl-s-card"/><rect x="11" y="-4" width="12" height="8" rx="3" class="rl-acc"/>
+      <rect x="7" y="13" width="20" height="3" rx="1.5" class="rl-t2"/><rect x="7" y="20" width="16" height="3" rx="1.5" class="rl-t2"/><rect x="7" y="27" width="20" height="3" rx="1.5" class="rl-t2"/></g>
+  </svg></div><figcaption><b>Session clipboard</b><span>Copied once? Two clicks back</span></figcaption></figure>
+
+  <!-- 7 REMINDERS -->
+  <figure class="rl-tile" style="--c:var(--n-security);--cb:var(--n-security-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="30" y="22" width="132" height="90" rx="9" class="rl-s-sheet"/></g>
+    <rect x="42" y="34" width="56" height="6" rx="3" class="rl-t2"/>
+    <rect x="42" y="48" width="100" height="4" rx="2" class="rl-t1"/>
+    <rect x="42" y="58" width="78" height="4" rx="2" class="rl-ink" opacity=".5"/><path d="M42 66 h78" stroke="var(--c)" stroke-width="1.6" stroke-dasharray="2 2.5"/>
+    <g transform="translate(124 54)"><circle r="6" class="rl-acc"/><path d="M-2.4 1.6h4.8l-.8-1v-1.8a1.6 1.6 0 0 0-3.2 0v1.8zM-.8 2.8h1.6" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round"/></g>
+    <rect x="42" y="74" width="92" height="4" rx="2" class="rl-t1"/><rect x="42" y="84" width="64" height="4" rx="2" class="rl-t1"/>
+    <g class="rl-bell" ><path d="M44 104 c0-9 4-14 10-14 s10 5 10 14 l3 3 h-26z" class="rl-acc" transform="translate(150 -76) scale(1.15)"/><circle cx="212" cy="49" r="2.6" class="rl-acc"/></g>
+    <g class="rl-toast"><g class="rl-s-shadow"><rect x="148" y="64" width="86" height="46" rx="9" class="rl-s-sheet" stroke="var(--c)" stroke-width="1.2"/></g>
+      <circle cx="162" cy="78" r="6" class="rl-acc-soft"/><path d="M162 74.5v3.8l2.4 1.6" fill="none" stroke="var(--c)" stroke-width="1.4" stroke-linecap="round"/>
+      <rect x="174" y="75" width="50" height="4.5" rx="2.25" class="rl-ink" opacity=".6"/>
+      <rect x="156" y="92" width="32" height="10" rx="5" class="rl-acc"/><rect x="192" y="92" width="34" height="10" rx="5" class="rl-acc-soft"/></g>
+  </svg></div><figcaption><b>Reminders</b><span>On a page, an item or a sentence</span></figcaption></figure>
+
+  <!-- 8 MULTI-SELECT -->
+  <figure class="rl-tile" style="--c:var(--n-cloud);--cb:var(--n-cloud-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="34" y="18" width="184" height="98" rx="9" class="rl-s-sheet"/></g>
+    <rect x="46" y="30" width="150" height="4" rx="2" class="rl-t1"/>
+    <rect x="68" y="27" width="56" height="10" rx="3" class="rl-acc-soft rl-hl" style="animation-delay:.3s"/>
+    <rect x="46" y="44" width="160" height="4" rx="2" class="rl-t1"/><rect x="46" y="54" width="120" height="4" rx="2" class="rl-t1"/>
+    <g transform="translate(46 64)"><rect width="56" height="38" rx="5" class="rl-acc-soft"/><path d="M4 34 L18 20 L28 28 L36 22 L52 34Z" class="rl-acc" opacity=".6"/></g>
+    <rect x="44" y="62" width="60" height="42" rx="7" fill="none" stroke="var(--c)" stroke-width="2" class="rl-hl" style="animation-delay:1.1s"/>
+    <rect x="112" y="68" width="94" height="4" rx="2" class="rl-t1"/><rect x="112" y="78" width="80" height="4" rx="2" class="rl-t1"/>
+    <rect x="108" y="75" width="88" height="10" rx="3" class="rl-acc-soft rl-hl" style="animation-delay:1.9s"/>
+    <rect x="112" y="78" width="80" height="4" rx="2" class="rl-acc" opacity=".55"/>
+    <rect x="112" y="92" width="70" height="4" rx="2" class="rl-t1"/>
+    <g class="rl-pick" style="animation-delay:.3s"><circle cx="124" cy="25" r="7" class="rl-acc"/><text x="124" y="27.6" text-anchor="middle" class="rl-mono" font-size="8" fill="#fff">1</text></g>
+    <g class="rl-pick" style="animation-delay:1.1s"><circle cx="104" cy="62" r="7" class="rl-acc"/><text x="104" y="64.6" text-anchor="middle" class="rl-mono" font-size="8" fill="#fff">2</text></g>
+    <g class="rl-pick" style="animation-delay:1.9s"><circle cx="196" cy="73" r="7" class="rl-acc"/><text x="196" y="75.6" text-anchor="middle" class="rl-mono" font-size="8" fill="#fff">3</text></g>
+  </svg></div><figcaption><b>Multi-select</b><span>Pick up to 15, copy in order</span></figcaption></figure>
+
+  <!-- 9 IMPORT / EXPORT -->
+  <figure class="rl-tile" style="--c:var(--n-data);--cb:var(--n-data-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g font-size="6.5" class="rl-mono">
+      <g transform="translate(26 18)"><path d="M0 0h20l8 8v22h-28z" fill="#2F6BD6"/><path d="M20 0v8h8z" fill="#fff" opacity=".45"/><text x="14" y="23" text-anchor="middle" fill="#fff">DOCX</text></g>
+      <g transform="translate(26 52)"><path d="M0 0h20l8 8v22h-28z" fill="#C0483D"/><path d="M20 0v8h8z" fill="#fff" opacity=".45"/><text x="14" y="23" text-anchor="middle" fill="#fff">PDF</text></g>
+      <g transform="translate(26 86)"><path d="M0 0h20l8 8v22h-28z" fill="#2F8A5B"/><path d="M20 0v8h8z" fill="#fff" opacity=".45"/><text x="14" y="23" text-anchor="middle" fill="#fff">XLSX</text></g>
+    </g>
+    <g fill="none" stroke="var(--c)" stroke-width="1.5" stroke-dasharray="3 3.5" opacity=".5"><path d="M58 33 C 76 33, 80 56, 96 60"/><path d="M58 67 H 96"/><path d="M58 101 C 76 101, 80 78, 96 74"/></g>
+    <circle r="2.8" class="rl-acc rl-dot" style="offset-path:path('M58 33 C 76 33, 80 56, 96 60')"/>
+    <circle r="2.8" class="rl-acc rl-dot" style="offset-path:path('M58 67 H 96');animation-delay:.8s"/>
+    <circle r="2.8" class="rl-acc rl-dot" style="offset-path:path('M58 101 C 76 101, 80 78, 96 74');animation-delay:1.6s"/>
+    <g class="rl-s-shadow"><rect x="98" y="26" width="72" height="84" rx="8" class="rl-s-sheet"/></g>
+    <rect x="108" y="36" width="34" height="6" rx="3" class="rl-acc"/><rect x="108" y="48" width="52" height="3.5" rx="1.75" class="rl-t1"/><rect x="108" y="56" width="44" height="3.5" rx="1.75" class="rl-t1"/>
+    <rect x="108" y="66" width="52" height="22" rx="3" class="rl-acc-soft"/><g stroke="var(--a-sheet)" stroke-width="1"><path d="M108 73.5h52M108 81h52M125 66v22M143 66v22"/></g>
+    <rect x="108" y="94" width="48" height="3.5" rx="1.75" class="rl-t1"/>
+    <g class="rl-nudge"><path d="M178 68 h20" stroke="var(--c)" stroke-width="2.2" stroke-linecap="round"/><path d="M193 62.5 l6 5.5 -6 5.5" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g transform="translate(206 53)" class="rl-mono" font-size="6.5"><path d="M0 0h16l6 6v20h-22z" class="rl-acc"/><path d="M16 0v6h6z" fill="#fff" opacity=".45"/><text x="11" y="18" text-anchor="middle" fill="#fff">PDF</text></g>
+  </svg></div><figcaption><b>Import and export</b><span>Word, PDF, Excel, PowerPoint</span></figcaption></figure>
+
+  <!-- 10 TRANSIT -->
+  <figure class="rl-tile" style="--c:var(--n-endpoints);--cb:var(--n-endpoints-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-s-shadow"><rect x="40" y="38" width="120" height="78" rx="12" class="rl-s-sheet"/></g>
+    <rect x="48" y="46" width="104" height="62" rx="8" fill="none" stroke="var(--c)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6"/>
+    <rect x="40" y="28" width="58" height="14" rx="7" class="rl-acc"/><text x="69" y="37.6" text-anchor="middle" class="rl-mono" font-size="7" fill="#fff">TRANSIT</text>
+    <g class="rl-drop"><rect x="58" y="54" width="70" height="5" rx="2.5" class="rl-ink" opacity=".5"/><rect x="58" y="63" width="54" height="4" rx="2" class="rl-t1"/></g>
+    <g class="rl-drop" style="animation-delay:.5s"><rect x="58" y="74" width="34" height="24" rx="4" class="rl-acc-soft"/><path d="M60 96 L70 85 L77 91 L82 87 L90 96Z" class="rl-acc" opacity=".7"/></g>
+    <g class="rl-drop" style="animation-delay:1s"><path d="M100 76h30v16l-7 7h-23z" fill="#FFD66B"/><path d="M130 92l-7 7v-7z" fill="#E8B23A"/></g>
+    <g class="rl-nudge"><path d="M168 76 h18" stroke="var(--c)" stroke-width="2.2" stroke-linecap="round"/><path d="M181 70.5 l6 5.5 -6 5.5" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g class="rl-s-shadow"><rect x="194" y="46" width="40" height="62" rx="7" class="rl-s-sheet"/></g>
+    <rect x="201" y="54" width="22" height="4" rx="2" class="rl-acc"/><rect x="201" y="63" width="26" height="3" rx="1.5" class="rl-t1"/><rect x="201" y="70" width="20" height="3" rx="1.5" class="rl-t1"/><rect x="201" y="78" width="26" height="14" rx="3" class="rl-acc-soft"/><rect x="201" y="97" width="18" height="3" rx="1.5" class="rl-t1"/>
+  </svg></div><figcaption><b>Transit</b><span>Gather now, place later</span></figcaption></figure>
+
+  <!-- 11 WORLD CLOCKS -->
+  <figure class="rl-tile" style="--c:var(--n-productivity);--cb:var(--n-productivity-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <defs><g id="rl-clk"><circle r="24" class="rl-s-sheet" stroke="var(--a-line)"/>
+      <g stroke="var(--a-text-2)" stroke-width="1.6" stroke-linecap="round"><path d="M0 -20v4M0 20v-4M-20 0h4M20 0h-4"/></g>
+      <circle r="2.4" class="rl-acc"/></g></defs>
+    <g class="rl-s-shadow"><use href="#rl-clk" x="66" y="62"/></g>
+    <g transform="translate(66 62)"><path d="M0 0v-12" stroke="var(--ink-2)" stroke-width="2.6" stroke-linecap="round" class="rl-hand-h" style="transform-origin:0 0;rotate:300deg"/><path d="M0 0v-17" stroke="var(--c)" stroke-width="1.8" stroke-linecap="round" class="rl-hand-m" style="transform-origin:0 0"/></g>
+    <g class="rl-s-shadow"><use href="#rl-clk" x="126" y="62"/></g>
+    <g transform="translate(126 62)"><path d="M0 0v-12" stroke="var(--ink-2)" stroke-width="2.6" stroke-linecap="round" class="rl-hand-h" style="transform-origin:0 0;rotate:150deg"/><path d="M0 0v-17" stroke="var(--c)" stroke-width="1.8" stroke-linecap="round" class="rl-hand-m" style="transform-origin:0 0;animation-delay:-2s"/></g>
+    <g class="rl-s-shadow"><use href="#rl-clk" x="186" y="62"/></g>
+    <g transform="translate(186 62)"><path d="M0 0v-12" stroke="var(--ink-2)" stroke-width="2.6" stroke-linecap="round" class="rl-hand-h" style="transform-origin:0 0;rotate:60deg"/><path d="M0 0v-17" stroke="var(--c)" stroke-width="1.8" stroke-linecap="round" class="rl-hand-m" style="transform-origin:0 0;animation-delay:-4s"/></g>
+    <g class="rl-mono" font-size="8" text-anchor="middle" fill="var(--ink-3)"><text x="66" y="104">LON</text><text x="126" y="104">NYC</text><text x="186" y="104">SGP</text></g>
+    <circle cx="86" cy="42" r="5" fill="#FFD66B"/><path d="M203 38a6 6 0 1 0 6 8 5 5 0 0 1 -6 -8z" fill="var(--ink-3)"/>
+  </svg></div><figcaption><b>World clocks</b><span>Every team's time, in the header</span></figcaption></figure>
+
+  <!-- 12 BACKUP -->
+  <figure class="rl-tile" style="--c:var(--n-monitoring);--cb:var(--n-monitoring-bg)"><div class="rl-art"><svg viewBox="0 0 252 132" aria-hidden="true">
+    <g class="rl-orbit"><circle cx="126" cy="62" r="40" fill="none" stroke="var(--c)" stroke-width="2" stroke-dasharray="190 62" stroke-linecap="round" opacity=".6"/>
+      <path d="M160 40 l6 -1 -1 6" fill="none" stroke="var(--c)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/></g>
+    <g class="rl-s-shadow"><rect x="102" y="40" width="48" height="12" rx="4" class="rl-s-sheet"/><rect x="104" y="52" width="44" height="34" rx="4" class="rl-s-sheet"/></g>
+    <rect x="102" y="40" width="48" height="12" rx="4" class="rl-acc"/><rect x="118" y="44.5" width="16" height="3" rx="1.5" fill="#fff" opacity=".8"/>
+    <rect x="110" y="60" width="32" height="3.5" rx="1.75" class="rl-t1"/><rect x="110" y="68" width="24" height="3.5" rx="1.75" class="rl-t1"/><rect x="110" y="76" width="28" height="3.5" rx="1.75" class="rl-t1"/>
+    <g class="rl-pop"><circle cx="150" cy="84" r="10" class="rl-acc"/><path d="M145.5 84.2l3 3 5.5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g transform="translate(64 114)"><path d="M0 0h124" stroke="var(--a-line)" stroke-width="2" stroke-linecap="round"/>
+      <g class="rl-acc"><circle cx="8" r="3.5"/><circle cx="44" r="3.5"/><circle cx="80" r="3.5"/></g><circle cx="116" r="3.5" fill="var(--a-sheet)" stroke="var(--c)" stroke-width="1.6"/></g>
+  </svg></div><figcaption><b>Backup</b><span>Scheduled, verified, restorable</span></figcaption></figure>
+
+  </div></div>
+  <button class="rl-reel-ctl" type="button" aria-label="Pause the feature reel" aria-pressed="false">
+    <svg class="rl-i-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9" rx="1" fill="currentColor"/><rect x="7.4" y="1.5" width="2.6" height="9" rx="1" fill="currentColor"/></svg>
+    <svg class="rl-i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>
+  </button>
+</section>
 
 <main class="docs">
   <div class="wrap">
-    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#code">Code pages</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
+    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-clients">The same three values, in every tool</a></li><li><a href="#mcp-scopes">Token scopes</a></li><li><a href="#mcp-rules">Rules for AI tools</a></li><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#code">Code pages</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
     <article class="doc">
 <!-- EasyNotes page body (v5 - version 1.0, build 207: reminders menu, page zoom, MCP function table, install "coming soon") - content source for mk-en.py. Author: Satish Singhi -->
 <!-- ================= GET STARTED ================= -->
@@ -565,11 +875,11 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <p>EasyNotes is a Windows desktop app for the notes you keep while you work: meeting actions, specs, interview notes, checklists, trackers and research, organised into topics. A topic holds sub-topics and pages; a page is made of blocks &ndash; headings, lists, tables, checklists, callouts, pictures, shapes, code &ndash; and is saved the moment you type. There is no Save button.</p>
   <p>It lives in the system tray, comes to the front with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> and keeps the small things within reach: the twenty pages you touched last, what you copied ten minutes ago, the to-do buried in yesterday&rsquo;s notes, the pieces you need to carry between apps. It imports the documents you already have &ndash; Word, PDF, Excel, PowerPoint, web pages, OneNote &ndash; exports to PDF, Word, Markdown and HTML, backs everything up on a schedule, and gives your AI tools a local, rule-bound way in.</p>
   <div class="glance">
-    <div><b>Free for all</b><span>Every feature, free, on Windows 10 and 11.</span></div>
-    <div><b>No registration</b><span>No account, no sign-in, no licence check.</span></div>
-    <div><b>No subscription</b><span>Nothing to renew and nothing to pay.</span></div>
-    <div><b>Works offline</b><span>Plain files in a folder you choose. No EasyNotes cloud, no telemetry.</span></div>
-    <div><b>MCP supported</b><span>AI tools work with your notes through a local endpoint &ndash; off by default.</span></div>
+    <div><b>Free for all</b><span>Productivity shouldn&rsquo;t come at a cost.</span></div>
+    <div class="g-soon"><b>Coming soon</b><span><svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Windows 10 and 11"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></span></div>
+    <div><b>Works offline</b><span>No registration or subscription required.</span></div>
+    <div><b>MCP support</b><span>Let your AI tools work with you on your terms.</span></div>
+    <a href="#features"><b>Comprehensive feature list</b><span>Practical features that meet your granular needs.</span></a>
   </div>
   <figure class="shot themed"><img class="zoom only-light" src="assets/shots/a01-main-light.webp" width="1600" height="1000" alt="A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company." loading="lazy" decoding="async"><img class="zoom only-dark" src="assets/shots/a02-main-dark.webp" width="1600" height="1000" alt="A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company." loading="lazy" decoding="async"><figcaption>A product requirements page in the light and dark themes: topics and Recent Work on the left, the page with its contents block, callout and table on the right, the toolbar along the top. The workspace shown throughout this page belongs to a product manager at a fictional company.</figcaption></figure>
 </section>
@@ -695,13 +1005,34 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 
 <section id="mcp" class="doc-sec">
   <h2>MCP setup</h2>
-  <p>The Model Context Protocol lets AI tools &ndash; Claude Desktop, Claude Code, Cursor and any other MCP client &ndash; read and write your notes through the running app. It is off by default, reachable from this PC only, and every client needs its own token. Every call is logged, and every write can be shown to you.</p>
+  <p>The Model Context Protocol lets AI tools &ndash; Claude Desktop, Claude Code, OpenAI Codex, GitHub Copilot in VS Code, Cursor and any other MCP client &ndash; read and write your notes through the running app. It is off by default, reachable from this PC only, and every client needs its own token. Every call is logged, and every write can be shown to you.</p>
+  <div class="mcp-note"><b>One setup, any AI tool.</b> The steps below use <b>Claude Desktop</b> as the worked example. The same settings work in every MCP client: each one needs the same three values &ndash; only the file they go in differs (see the table under the steps).</div>
   <ol class="steps">
     <li><b>Enable it.</b> Open <em>Settings &rsaquo; MCP</em> (or click the bot in the header) and switch on <em>Enable MCP integration</em>. EasyNotes starts a local endpoint on <code>http://127.0.0.1:47391/mcp</code> while it runs; the port can be changed.</li>
-    <li><b>Create a token for each client.</b> Name it, pick a scope and click <em>Create token</em>. The token is shown once &ndash; EasyNotes keeps only its hash.</li>
-    <li><b>Connect the client.</b> <em>Copy Claude Desktop config</em> puts a ready-made block on the clipboard; merge it into <code>claude_desktop_config.json</code> and restart Claude Desktop. <em>Copy Claude Code command</em> does the same for Claude Code.</li>
-    <li><b>Write your rules</b> (optional). Plain-language instructions that every AI tool receives the moment it connects.</li>
+    <li><b>Create a token for each client.</b> Name it, pick a scope and click <em>Create token</em>. The token is shown once &ndash; EasyNotes keeps only its hash. Give each tool the smallest scope it needs: <em>read</em> is enough for questions and summaries.</li>
+    <li><b>Copy the config.</b> Under <em>Connect an AI tool</em>, click <em>Copy</em>. The block holds the standard config with EasyNotes&rsquo; exact path and the new token &ndash; masked on screen, copied in full. Most AI tools read this format; the few that use another are in the table below. A copy that holds a token is kept out of Windows clipboard history and the cloud clipboard.</li>
+    <li><b>Paste it and restart the tool.</b> For Claude Desktop: <em>Settings &rsaquo; Developer &rsaquo; Edit Config</em> opens <code>claude_desktop_config.json</code>; paste the block (if the file already has <code>"mcpServers"</code>, add only the <code>"easynotes"</code> entry inside it), save, quit Claude Desktop from the tray icon and start it again.</li>
+    <li><b>Check it.</b> Ask the tool to read your EasyNotes rules. It calls <code>get_rules</code>, and the call appears in the audit log.</li>
+    <li><b>Write your rules</b> (optional). Plain-language instructions that every AI tool receives the moment it connects &ndash; see <a href="#mcp-rules">Rules for AI tools</a>.</li>
   </ol>
+  <h3 class="h3" id="mcp-clients">The same three values, in every tool</h3>
+  <table class="spec">
+    <tr><th>command</th><td>The full path of <code>EasyNotes.exe</code> &ndash; the config in <em>Settings &rsaquo; MCP</em> has the exact path of your install</td></tr>
+    <tr><th>args</th><td><code>--mcp</code> &ndash; EasyNotes runs as a small stdio relay to the running app, and starts it minimised if it isn&rsquo;t running</td></tr>
+    <tr><th>env</th><td><code>EASYNOTES_MCP_TOKEN</code> = your token &ndash; it travels in an environment variable of that process, never on its command line</td></tr>
+  </table>
+  <div class="tbl-scroll"><table class="mcp-clients">
+    <thead><tr><th>AI tool</th><th>Where the config goes</th><th>Format</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Desktop</td><td><code>%APPDATA%\<wbr>Claude\<wbr>claude_desktop_config.json</code> (<em>Settings &rsaquo; Developer &rsaquo; Edit Config</em>)</td><td>JSON, <code>"mcpServers"</code></td></tr>
+      <tr><td>Claude Code</td><td>One command in a terminal, for every project</td><td><code>claude mcp add</code></td></tr>
+      <tr><td>OpenAI Codex (CLI and IDE extension)</td><td><code>%USERPROFILE%\<wbr>.codex\<wbr>config.toml</code></td><td>TOML, <code>[mcp_servers.easynotes]</code></td></tr>
+      <tr><td>GitHub Copilot in VS Code</td><td>Your user <code>mcp.json</code> (<em>MCP: Open User Configuration</em>)</td><td>JSON, <code>"servers"</code> &ndash; the token is asked for once and kept in VS Code&rsquo;s secret storage</td></tr>
+      <tr><td>Cursor</td><td><code>%USERPROFILE%\<wbr>.cursor\<wbr>mcp.json</code></td><td>JSON, <code>"mcpServers"</code></td></tr>
+      <tr><td>Any other MCP client</td><td>Where its documentation says (often <code>mcp.json</code>)</td><td>Usually JSON, <code>"mcpServers"</code></td></tr>
+    </tbody>
+  </table></div>
+  <h4>Claude Desktop, Cursor and most clients &ndash; JSON</h4>
   <div class="code" data-copy><pre>{
   <span class="c-k">"mcpServers"</span>: {
     <span class="c-k">"easynotes"</span>: {
@@ -710,16 +1041,45 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <span class="c-k">"env"</span>: { <span class="c-k">"EASYNOTES_MCP_TOKEN"</span>: <span class="c-s">"&lt;your token&gt;"</span> }
     }
   }
-}</pre><button class="copy" type="button" aria-label="Copy the config">Copy</button></div>
-  <p class="small">The config starts <code>EasyNotes.exe --mcp</code> as a stdio relay to the running app, and starts EasyNotes minimised if it isn&rsquo;t running. The token travels in an environment variable of that process, never on a command line. <em>Copy Claude Desktop config</em> in EasyNotes fills in the exact path for your install.</p>
+}</pre><button class="copy" type="button" aria-label="Copy the JSON config">Copy</button></div>
+  <h4>GitHub Copilot in VS Code &ndash; the token stays out of the file</h4>
+  <div class="code" data-copy><pre>{
+  <span class="c-k">"inputs"</span>: [
+    {
+      <span class="c-k">"type"</span>: <span class="c-s">"promptString"</span>,
+      <span class="c-k">"id"</span>: <span class="c-s">"easynotes-token"</span>,
+      <span class="c-k">"description"</span>: <span class="c-s">"EasyNotes MCP token"</span>,
+      <span class="c-k">"password"</span>: true
+    }
+  ],
+  <span class="c-k">"servers"</span>: {
+    <span class="c-k">"easynotes"</span>: {
+      <span class="c-k">"type"</span>: <span class="c-s">"stdio"</span>,
+      <span class="c-k">"command"</span>: <span class="c-s">"&lt;path to&gt;\\EasyNotes.exe"</span>,
+      <span class="c-k">"args"</span>: [<span class="c-s">"--mcp"</span>],
+      <span class="c-k">"env"</span>: { <span class="c-k">"EASYNOTES_MCP_TOKEN"</span>: <span class="c-s">"${input:easynotes-token}"</span> }
+    }
+  }
+}</pre><button class="copy" type="button" aria-label="Copy the VS Code config">Copy</button></div>
+  <h4>OpenAI Codex &ndash; TOML</h4>
+  <div class="code" data-copy><pre><span class="c-k">[mcp_servers.easynotes]</span>
+command = <span class="c-s">'&lt;path to&gt;\EasyNotes.exe'</span>
+args = [<span class="c-s">'--mcp'</span>]
+env = { EASYNOTES_MCP_TOKEN = <span class="c-s">'&lt;your token&gt;'</span> }</pre><button class="copy" type="button" aria-label="Copy the Codex config">Copy</button></div>
+  <h4>Claude Code &ndash; one command</h4>
+  <div class="code wrapcode" data-copy><pre>claude mcp add --env EASYNOTES_MCP_TOKEN=&lt;your token&gt; --transport stdio --scope user easynotes -- <span class="c-s">"&lt;path to&gt;\EasyNotes.exe"</span> --mcp</pre><button class="copy" type="button" aria-label="Copy the Claude Code command">Copy</button></div>
+  <figure class="shot win"><img class="zoom" src="assets/shots/s07-settings-mcp-connect.webp" width="900" height="920" alt="Settings › MCP › Connect an AI tool: the standard config, ready to copy – a new token is masked on screen and copied in full." loading="lazy" decoding="async"><figcaption>Settings &rsaquo; MCP &rsaquo; Connect an AI tool: the standard config, ready to copy &ndash; a new token is masked on screen and copied in full.</figcaption></figure>
+  <p class="small"><b>Keep tokens safe.</b> Claude Desktop, Claude Code, Codex and Cursor keep the token as plain text in a file in your user profile &ndash; VS Code keeps it in its own secret storage. Never commit a config that holds a token to a repository, give each tool its own token with the smallest scope, and revoke a token in <em>Settings &rsaquo; MCP</em> the moment a tool no longer needs it. If a tool reports that EasyNotes rejected the access token, create a new token and copy the config again from <em>Settings &rsaquo; MCP</em>. Changing the port needs no change in any tool: the relay reads it from EasyNotes.</p>
+  <h3 class="h3" id="mcp-scopes">Token scopes</h3>
   <table class="spec">
     <tr><th>read</th><td>Look only &ndash; topics, pages, search, backlinks, page history, reminders, Transit, the session clipboard, backups and settings</td></tr>
     <tr><th>write <em>(default)</em></th><td>Also create, change, append, move, rename and open pages and topics, import documents, set cells, add reminders, insert pictures and shapes, use Transit and the clipboard, run a backup</td></tr>
     <tr><th>full</th><td>Also delete and clear. Deleted pages still go to the notes folder&rsquo;s trash</td></tr>
   </table>
-  <h3 class="h3">Rules for AI tools</h3>
-  <p>Rules reach the AI when it connects, through the <code>get_rules</code> tool, at the top of every write tool&rsquo;s description and again after every write. The rules used by the workspace on this page:</p>
-  <div class="rules"><p>1. Never read, change or delete anything under the topic &ldquo;Personal&rdquo;.</p><p>2. Never change my existing pages. Put your version on a new page right below the page you worked from, with the title prefixed &ldquo;Claude - &rdquo;.</p><p>3. Keep my headings and bullet style; British English.</p></div>
+  <h3 class="h3" id="mcp-rules">Rules for AI tools</h3>
+  <p>Rules reach the AI when it connects, through the <code>get_rules</code> tool, at the top of every write tool&rsquo;s description and again after every write. Here is an example &ndash; the rules used in the workspace shown on this page:</p>
+  <div class="rules"><span class="rules-tag">Example</span><p>1. Never read, change or delete anything under the topic &ldquo;Personal&rdquo;.</p><p>2. Never change my existing pages. Put your version on a new page right below the page you worked from, with the title prefixed &ldquo;Claude - &rdquo;.</p><p>3. Keep my headings and bullet style; British English.</p></div>
+  <p>Write any rules your work needs, in your own words, in <em>Settings &rsaquo; MCP</em> &ndash; what to leave alone, where new work goes, the style to keep. <em>Insert example</em> there gives you a starting point.</p>
   <p class="small">Rules are requests to the AI, not locks: a tool can still ignore them. Token scopes are the hard limit, and every call &ndash; read or write &ndash; stays in the audit log.</p>
   <figure class="shot win"><img class="zoom" src="assets/shots/s06-settings-mcp.webp" width="900" height="920" alt="Settings › MCP: the switch, port, write notifications, rules, tokens and the audit log." loading="lazy" decoding="async"><figcaption>Settings &rsaquo; MCP: the switch, port, write notifications, rules, tokens and the audit log.</figcaption></figure>
   <div class="pair"><figure class="shot "><img class="zoom" src="assets/shots/a40-mcp-page.webp" width="1600" height="1000" alt="A page written by Claude Desktop under the rules: a new “Claude - ” page right below the source" loading="lazy" decoding="async"><figcaption>A page written by Claude Desktop under the rules: a new &ldquo;Claude - &rdquo; page right below the source</figcaption></figure><figure class="shot "><img class="zoom" src="assets/shots/a41-notifications.webp" width="1600" height="1000" alt="The write, reported in Notifications with the client, the tool and the page" loading="lazy" decoding="async"><figcaption>The write, reported in Notifications with the client, the tool and the page</figcaption></figure></div>
@@ -1192,6 +1552,40 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   var pb=document.getElementById('playTour'); if(pb)pb.addEventListener('click',function(){playVid(pb,TOUR[0],TOUR[1]);});
   var pf=document.getElementById('playFilm'); if(pf)pf.addEventListener('click',function(){playVid(pf,FILM[0],FILM[1]);});
   document.querySelectorAll('[data-play="tour"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();playVid(a,TOUR[0],TOUR[1]);});});
+})();
+
+/* Feature reel - A glide: one seamless loop (the tiles are cloned once; the track moves by exactly one set),
+   B step: one tile every 3.2 s. Hover or keyboard focus pauses; the button pauses for good; reduced motion = a row
+   you scroll yourself. Author: Satish Singhi */
+(function(){
+  var reel=document.querySelector('.rl-reel'), track=document.getElementById('rl-track'), btn=document.querySelector('.rl-reel-ctl');
+  var originals=[].slice.call(track.children), stepTimer=null, mode='glide';
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // clone the set once for the seamless loop; clones are hidden from assistive tech
+  originals.forEach(function(t){var c=t.cloneNode(true);c.setAttribute('aria-hidden','true');c.querySelectorAll('[id]').forEach(function(n){n.id+='-c';});
+    c.querySelectorAll('[clip-path]').forEach(function(n){n.setAttribute('clip-path',n.getAttribute('clip-path').replace(')','-c)'));});track.appendChild(c);});
+  function setWidth(){
+    var gap=parseFloat(getComputedStyle(track).columnGap)||16, w=0;
+    originals.forEach(function(t){w+=t.getBoundingClientRect().width+gap;});
+    
+    track.style.setProperty('--reel-dur',((track.scrollWidth/2)/36).toFixed(1)+'s');   // 36 px a second: readable, never hurried
+    return w;
+  }
+  function stepOnce(){
+    if(reel.classList.contains('rl-paused')||reel.matches(':hover')||reel.contains(document.activeElement))return;
+    var first=track.firstElementChild, d=first.getBoundingClientRect().width+16;
+    track.style.transform='translateX('+(-d)+'px)';
+    setTimeout(function(){track.style.transition='none';track.appendChild(first);track.style.transform='none';void track.offsetWidth;track.style.transition='';},820);
+  }
+  function setMode(m){
+    mode=m; clearInterval(stepTimer); track.style.transform='';
+    reel.classList.remove('rl-glide','rl-step'); reel.classList.add('rl-'+m);
+    if(m==='step'&&!reduce) stepTimer=setInterval(stepOnce,3200);
+  }
+  setWidth(); window.addEventListener('resize',setWidth);
+  if(reduce){reel.classList.remove('rl-glide');}
+  btn.addEventListener('click',function(){var p=reel.classList.toggle('rl-paused');btn.setAttribute('aria-pressed',p);
+    btn.setAttribute('aria-label',p?'Play the feature reel':'Pause the feature reel');});
 })();
 
 </script>
