@@ -1,17 +1,17 @@
 WEBVTT
 
-00:00:10.770 --> 00:00:13.930
+00:00:10.320 --> 00:00:13.370
 MCP lets your AI tools work with your notes through the running app. Off by default; this PC only.
 
-00:00:13.930 --> 00:00:27.130
+00:00:13.370 --> 00:00:26.470
 Settings > MCP: switch it on, write your rules, create one token per client - shown once, stored as a hash.
 
-00:00:27.130 --> 00:00:41.260
+00:00:26.470 --> 00:00:39.910
 Connected: Claude Desktop reads the rules first, then works - every call lands in the audit log.
 
-00:00:41.260 --> 00:00:56.190
+00:00:39.910 --> 00:00:54.630
 The new page sits right below the source, exactly as the rules say. The bell reports every write.
 
-00:00:56.190 --> 00:01:02.500
+00:00:54.630 --> 00:01:00.967
 Scoped tokens are the hard limit: read, write or full. Rules are what you ask; the audit log is what happened.
 

@@ -1,20 +1,20 @@
 WEBVTT
 
-00:00:21.180 --> 00:00:50.430
+00:00:20.810 --> 00:00:50.520
 A page is blocks: headings, paragraphs, lists, tables, callouts... Markdown shortcuts work as you type.
 
-00:00:50.430 --> 00:01:04.980
+00:00:50.520 --> 00:01:04.080
 Select words and format them from the toolbar - or with Ctrl+B, Ctrl+I, Ctrl+U.
 
-00:01:04.980 --> 00:01:36.140
+00:01:04.080 --> 00:01:34.130
 Type "/" for blocks: callout, table, quote, code, to-dos, picture, video, PDF, file...
 
-00:01:36.140 --> 00:02:01.160
+00:01:34.130 --> 00:01:58.520
 A checklist block: title, items and notes - three levels deep. Tick a box when it is done.
 
-00:02:01.160 --> 00:02:09.000
+00:01:58.520 --> 00:02:06.310
 Ctrl+Shift+D stamps the date and time. Type @ to link another page.
 
-00:02:09.000 --> 00:02:14.733
+00:02:06.310 --> 00:02:12.200
 Everything is saved as you type. Ctrl+Z works across the whole session.
 
