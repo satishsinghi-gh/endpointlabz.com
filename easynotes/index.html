@@ -245,6 +245,22 @@ body{overflow-x:hidden}
 .pillrow span{font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
 .win-glyph{width:19px;height:19px;flex:none}
+/* v5.12: the official Microsoft Store badge (unmodified artwork, self-hosted) + the Store app deep link */
+.ms-badge{display:inline-flex;line-height:0;border-radius:6px;flex:none}
+.ms-badge img{height:48px;width:auto}
+.ms-badge .b-on-dark{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-light{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-dark{display:inline}
+.ms-badge:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.store-app-link{font-size:13.5px;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.store-app-link:hover{color:var(--teal)}
+.inst-card{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:22px 24px;background:var(--surface);margin:18px 0 22px;display:flex;flex-direction:column;gap:10px}
+.inst-card h3{font-size:22px;font-weight:600}
+.inst-card p{margin:0}
+.inst-card .badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:6px 0 2px}
+.get .get-cta{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px}
+.hero-cta .ms-badge img{height:40px}
+@media (max-width:600px){.hero-cta .ms-badge img{height:44px}}
 .store-btn{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 14px;border-radius:12px;background:#111;color:#fff;border:1px solid #111;font-weight:700;line-height:1.05;transition:transform .15s,box-shadow .2s}
 :root[data-theme="dark"] .store-btn{background:#F4F7F8;color:#0B1418;border-color:#F4F7F8}
 .store-btn svg{width:26px;height:26px}
@@ -655,7 +671,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <p class="tagline">Productivity starts with organizing</p>
       <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; pictures, shapes and icons on the page, documents imported from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
       <div class="hero-cta">
-        <a class="soon" href="#install">Coming soon to <svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Windows 10 and 11"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></a>
+        <a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="../assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="../assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a>
         <button class="btn btn-ghost btn-play" id="playFilm" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>3-minute film</button>
         <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>The full tour</button>
       </div>
@@ -866,9 +882,9 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 
 <main class="docs">
   <div class="wrap">
-    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-clients">The same three values, in every tool</a></li><li><a href="#mcp-scopes">Token scopes</a></li><li><a href="#mcp-rules">Rules for AI tools</a></li><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#code">Code pages</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Coming soon</a></li></ul></nav>
+    <nav class="toc" aria-label="On this page"><button class="toc-btn" type="button" aria-expanded="false">On this page <span aria-hidden="true">&#9662;</span></button><ul><li class="grp">Get started</li><li><a href="#intro">Introduction</a></li><li><a href="#requirements">System requirements</a></li><li><a href="#install">Installation</a></li><li><a href="#first-launch">First launch</a></li><li><a href="#user-data">User Data path</a></li><li><a href="#backup">Backup</a></li><li><a href="#import">Import documents and OneNote</a><ul><li><a href="#onenote">OneNote notebooks</a></li></ul></li><li><a href="#mcp">MCP for AI tools</a><ul><li><a href="#mcp-clients">The same three values, in every tool</a></li><li><a href="#mcp-scopes">Token scopes</a></li><li><a href="#mcp-rules">Rules for AI tools</a></li><li><a href="#mcp-tools">Built-in MCP functions</a></li></ul></li><li class="grp">Use EasyNotes</li><li><a href="#features">Key features</a></li><li><a href="#tutorials">Tutorials</a></li><li><a href="#editor">The page editor</a><ul><li><a href="#ed-zoom">Page zoom</a></li><li><a href="#ed-blocks">Blocks and the &ldquo;/&rdquo; menu</a></li><li><a href="#ed-format">Formatting</a></li><li><a href="#ed-sections">Sections and the block handle</a></li><li><a href="#ed-pictures">Pictures, side by side</a></li><li><a href="#ed-shapes">Shapes</a></li><li><a href="#ed-icons">Icons</a></li><li><a href="#ed-links">Page links, backlinks and contents</a></li><li><a href="#ed-find">Find and replace, date and time</a></li><li><a href="#ed-export">Print and export</a></li></ul></li><li><a href="#sheets">Spreadsheets</a></li><li><a href="#code">Code pages</a></li><li><a href="#dashboard">Dashboard</a></li><li><a href="#left-pane">Left pane</a></li><li><a href="#reminders">Checklists, to-dos and reminders</a></li><li><a href="#transit">Multi-select and Transit</a></li><li><a href="#clipboard">Session Clipboard</a></li><li><a href="#header">Header options</a><ul><li><a href="#h-mcp">MCP activity</a></li><li><a href="#h-todo">To-Do&rsquo;s dropdown</a></li><li><a href="#h-clock">World clock</a></li><li><a href="#h-top">Stay on top</a></li><li><a href="#h-dark">Dark theme</a></li><li><a href="#h-dim">Dim</a></li><li><a href="#h-settings">Settings</a></li></ul></li><li><a href="#settings">Settings</a></li><li class="grp">Reference</li><li><a href="#shortcuts">Keyboard shortcuts</a></li><li><a href="#get">Get EasyNotes</a></li></ul></nav>
     <article class="doc">
-<!-- EasyNotes page body (v5 - version 1.0, build 207: reminders menu, page zoom, MCP function table, install "coming soon") - content source for mk-en.py. Author: Satish Singhi -->
+<!-- EasyNotes page body (v5 - version 1.0, build 207: reminders menu, page zoom, MCP function table, install from the Microsoft Store - v5.12) - content source for mk-en.py. Author: Satish Singhi -->
 <!-- ================= GET STARTED ================= -->
 <section id="intro" class="doc-sec" data-group="Get started">
   <p class="kicker">Get started</p>
@@ -877,7 +893,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
   <p>It lives in the system tray, comes to the front with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> and keeps the small things within reach: the twenty pages you touched last, what you copied ten minutes ago, the to-do buried in yesterday&rsquo;s notes, the pieces you need to carry between apps. It imports the documents you already have &ndash; Word, PDF, Excel, PowerPoint, web pages, OneNote &ndash; exports to PDF, Word, Markdown and HTML, backs everything up on a schedule, and gives your AI tools a local, rule-bound way in.</p>
   <div class="glance">
     <div><b>Free for all</b><span>Productivity shouldn&rsquo;t come at a cost.</span></div>
-    <div class="g-soon"><b>Coming soon</b><span><svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Windows 10 and 11"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></span></div>
+    <a class="g-soon" href="#install"><b>Microsoft Store</b><span><svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Windows 10 and 11"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></span></a>
     <div><b>Works offline</b><span>No registration or subscription required.</span></div>
     <div><b>MCP support</b><span>Let your AI tools work with you on your terms.</span></div>
     <a href="#features"><b>Comprehensive feature list</b><span>Practical features that meet your granular needs.</span></a>
@@ -902,15 +918,20 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 
 <section id="install" class="doc-sec">
   <h2>Installation</h2>
-  <div class="soon-card">
-    <span class="inst-kind">Version 1.0</span>
-    <h3>Coming soon</h3>
-    <p>EasyNotes 1.0 is being prepared for release. How to install it &ndash; and how to keep it up to date &ndash; will be published here on release day. It will be free, with nothing to register and nothing to subscribe to.</p>
-    <p class="small">Until then, the <a href="#tutorials">tutorials</a> and the rest of this guide show the app exactly as it will ship.</p>
+  <div class="inst-card">
+    <span class="inst-kind">Version 1.0 &middot; Microsoft Store</span>
+    <h3>Install from the Microsoft Store</h3>
+    <div class="badge-row"><a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="../assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="../assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><a class="store-app-link" href="ms-windows-store://pdp/?productid=9N4B0PDPDD3K">Open in the Microsoft Store app</a></div>
+    <ol class="steps">
+      <li>Select <em>Download from the Microsoft Store</em> &ndash; the EasyNotes page opens in the Microsoft Store. On Windows, <em>Open in the Microsoft Store app</em> goes straight to the Store app.</li>
+      <li>Select <em>Get</em>. EasyNotes installs for your Windows account only &ndash; no administrator rights, no account to create.</li>
+      <li>Start <em>EasyNotes</em> from the Start menu. The first launch asks where to keep your notes &ndash; see <a href="#first-launch">First launch</a>.</li>
+    </ol>
+    <p>It is free, with nothing to register and nothing to subscribe to. Updates arrive through the Microsoft Store like any other Store app; EasyNotes itself never checks for updates or contacts the internet. To remove it, use <em>Settings &rsaquo; Apps &rsaquo; Installed apps &rsaquo; EasyNotes &rsaquo; Uninstall</em> &ndash; your notes folder and your backups stay where they are.</p>
   </div>
   <div class="callout">
     <b>For IT administrators</b>
-    <p>EasyNotes ships Group Policy (ADMX/ADML) templates that work with Intune and other MDMs. They can set a default, block or enforce: MCP and its rules, port and policy file, the session clipboard, scheduled backups, the backup folder, frequency and retention, and the notes folder. Managed controls show &ldquo;Managed by your organisation&rdquo; and cannot be changed by the user. An enforced MCP setting that cannot be read from a trusted file keeps MCP off.</p>
+    <p>EasyNotes ships Group Policy (ADMX/ADML) templates that work with Intune and other MDMs. To deploy the app itself, add it in Intune as a <em>Microsoft Store app (new)</em> with the Store ID <code>9N4B0PDPDD3K</code>. They can set a default, block or enforce: MCP and its rules, port and policy file, the session clipboard, scheduled backups, the backup folder, frequency and retention, and the notes folder. Managed controls show &ldquo;Managed by your organisation&rdquo; and cannot be changed by the user. An enforced MCP setting that cannot be read from a trusted file keeps MCP off.</p>
   </div>
 </section>
 
@@ -1395,10 +1416,11 @@ env = { EASYNOTES_MCP_TOKEN = <span class="c-s">'&lt;your token&gt;'</span> }</p
   <div class="get-card">
     <div>
       <img class="app-logo" src="../assets/easynotes-logo.png" width="60" height="60" alt="">
-      <h2>EasyNotes 1.0 &ndash; coming soon</h2>
+      <h2>EasyNotes 1.0 &ndash; on the Microsoft Store</h2>
       <p>Free for Windows 10 (2004 or later) and Windows 11. No registration, no subscription, works offline &ndash; and MCP supported.</p>
     </div>
     <div class="get-cta">
+      <a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="../assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="../assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a>
       <a class="btn-get" href="#tutorials">Watch the tutorials</a>
     </div>
   </div>

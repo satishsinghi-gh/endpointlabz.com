@@ -279,6 +279,16 @@ section.block{padding-block:88px}
 .demo-btn[aria-pressed="true"] .ic-off,.demo-btn[data-playing="true"] .ic-play{display:none}
 @media (max-width:900px){.feat{grid-template-columns:1fr}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}.demo-bar{margin-top:10px}.demo-seek span{display:none}}
 .btn.is-soon{cursor:default}
+/* v29: the official Microsoft Store badge (unmodified artwork, self-hosted) */
+.ms-badge{display:inline-flex;line-height:0;border-radius:6px;flex:none}
+.ms-badge img{height:48px;width:auto}
+.ms-badge .b-on-dark{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-light{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-dark{display:inline}
+.ms-badge:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.store-app-link{font-size:13.5px;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.store-app-link:hover{color:var(--teal)}
+.actions{align-items:center}
 .win-glyph{width:18px;height:18px;flex:none;margin-left:2px}
 @media (max-width:900px){.feat{grid-template-columns:1fr}.demo-replay,.demo-sound{opacity:.75}.demo-wrap{margin:0 -10px;width:auto;border-radius:10px}}
 @media (prefers-reduced-motion:reduce){.sp.play *{animation:none!important}}
@@ -766,7 +776,7 @@ footer li a,footer h5{overflow-wrap:anywhere}
       </div>
 
       <div class="actions">
-        <a class="btn btn-ocean is-soon" href="easynotes/#install">v1.0 coming soon <svg class="win-glyph" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="for Windows"><title>Windows 10 and 11</title><rect x="3" y="3.5" width="14" height="13" rx="2.2"/><path d="M10 3.5v13M3 10h14"/></svg></a>
+        <a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a>
         <a class="btn btn-ghost" href="easynotes/#first-launch">Getting started guide</a>
       </div>
     </article>
