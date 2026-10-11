@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-6A39xKDtLsvGn1NbN0tilgVt13wrX8LbAFf42vZeO7U='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-TRtc1x8ac19RGqf/ApntOGjfbyxxmYtbh2zNUoq4esE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://endpointlabz.com/easynotes/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -612,6 +612,25 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
 .rl-reel-track{padding-right:16px}
 @keyframes rl-reel-glide{to{transform:translateX(-50%)}}
 
+/* v5.13: Download button + Store / Web menu (popover) */
+.get-dd{position:relative;display:inline-flex}
+.get-dd .get-defs{position:absolute;width:0;height:0;margin:0;overflow:hidden}
+.get-dd .get-t .i{width:17px;height:17px;margin:0;flex:none}
+.get-dd .get-t .chev{width:14px;height:14px;margin:0;flex:none;transition:transform .2s ease}
+.get-dd.open .get-t .chev{transform:rotate(180deg)}
+:root[data-theme="dark"] .get-dd .get-t{color:#06201D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .get-dd .get-t{color:#06201D}}
+.get-cta .get-dd .get-t{padding:12px 22px;font-size:16px;line-height:1.6}   /* closing card: same size as "Watch the tutorials" */
+.get-m{position:fixed;inset:auto;margin:0;min-width:290px;padding:8px;border-radius:14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 18px 40px -18px rgba(0,0,0,.45);flex-direction:column;gap:2px;text-align:left}
+.get-m:popover-open{display:flex}
+.get-m a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--ink);text-decoration:none}
+.get-m a::after{display:none}
+.get-m a:hover,.get-m a:focus-visible{background:var(--bg-2);outline:none}
+.get-m a:focus-visible{box-shadow:inset 0 0 0 2px var(--teal)}
+.get-m b{display:block;font-weight:700;font-size:14.5px;color:var(--ink)}
+.get-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.get-m .get-ic{width:38px;height:38px;margin:0;flex:none;border-radius:10px;box-shadow:0 4px 12px -6px rgba(15,59,120,.55)}
+
 
 /* v5.2: 125% is the new 100% on screens 1280 px and wider (CSS zoom = browser zoom; vw / vh corrected by --zf) */
 :root{--zf:1}
@@ -671,7 +690,7 @@ ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
       <p class="tagline">Productivity starts with organizing</p>
       <p class="lead">Notes, spreadsheets and checklists, organised into topics &ndash; pictures, shapes and icons on the page, documents imported from Word, PDF, Excel, PowerPoint and OneNote, a session clipboard, Transit, reminders, verified backups and an optional local MCP endpoint for your AI tools. Everything stays in folders you choose.</p>
       <div class="hero-cta">
-        <a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="../assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="../assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a>
+        <div class="get-dd"><svg class="get-defs" aria-hidden="true" focusable="false"><defs><linearGradient id="gdT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2BC4B4"/><stop offset="1" stop-color="#1B5FBF"/></linearGradient><linearGradient id="gdB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".98"/><stop offset="1" stop-color="#DDEFF5" stop-opacity=".95"/></linearGradient><linearGradient id="gdW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B8DEF"/><stop offset="1" stop-color="#0F3B78"/></linearGradient></defs></svg><button class="btn btn-primary get-t" type="button" popovertarget="get-m1" data-web="https://apps.microsoft.com/detail/9N4B0PDPDD3K"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="get-m" id="get-m1" popover="auto"><a href="ms-windows-store://pdp/?productid=9N4B0PDPDD3K"><svg class="get-ic" viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="10" fill="url(#gdT)"/><path d="M14.5 14v-2.2a4.5 4.5 0 0 1 9 0V14" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><path d="M10.6 14.2h16.8l-1.3 13.1a2.2 2.2 0 0 1-2.2 2H14.1a2.2 2.2 0 0 1-2.2-2z" fill="url(#gdB)"/><path d="M19 17.6v6.2m-2.8-2.8 2.8 2.9 2.8-2.9" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Store</b><small>Microsoft Store app on Windows</small></span></a><a href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener"><svg class="get-ic" viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="10" fill="url(#gdW)"/><circle cx="19" cy="19" r="8.6" fill="none" stroke="#fff" stroke-width="1.7"/><ellipse cx="19" cy="19" rx="3.8" ry="8.6" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M10.6 16.3h16.8M10.6 21.7h16.8" stroke="#fff" stroke-width="1.4" opacity=".85"/></svg><span><b>Web</b><small>apps.microsoft.com in your browser</small></span></a></div></div>
         <button class="btn btn-ghost btn-play" id="playFilm" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>3-minute film</button>
         <button class="btn btn-ghost btn-play" id="playTour" type="button"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>The full tour</button>
       </div>
@@ -1420,7 +1439,7 @@ env = { EASYNOTES_MCP_TOKEN = <span class="c-s">'&lt;your token&gt;'</span> }</p
       <p>Free for Windows 10 (2004 or later) and Windows 11. No registration, no subscription, works offline &ndash; and MCP supported.</p>
     </div>
     <div class="get-cta">
-      <a class="ms-badge" href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener" aria-label="Get EasyNotes from the Microsoft Store"><img class="b-on-light" src="../assets/ms-store-badge-en-us-dark.svg" width="161" height="44" alt="Download from the Microsoft Store"><img class="b-on-dark" src="../assets/ms-store-badge-en-us-light.svg" width="161" height="44" alt="Download from the Microsoft Store"></a>
+      <div class="get-dd"><button class="btn btn-primary get-t" type="button" popovertarget="get-m2" data-web="https://apps.microsoft.com/detail/9N4B0PDPDD3K"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="get-m" id="get-m2" popover="auto"><a href="ms-windows-store://pdp/?productid=9N4B0PDPDD3K"><svg class="get-ic" viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="10" fill="url(#gdT)"/><path d="M14.5 14v-2.2a4.5 4.5 0 0 1 9 0V14" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><path d="M10.6 14.2h16.8l-1.3 13.1a2.2 2.2 0 0 1-2.2 2H14.1a2.2 2.2 0 0 1-2.2-2z" fill="url(#gdB)"/><path d="M19 17.6v6.2m-2.8-2.8 2.8 2.9 2.8-2.9" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Store</b><small>Microsoft Store app on Windows</small></span></a><a href="https://apps.microsoft.com/detail/9N4B0PDPDD3K" target="_blank" rel="noopener"><svg class="get-ic" viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="10" fill="url(#gdW)"/><circle cx="19" cy="19" r="8.6" fill="none" stroke="#fff" stroke-width="1.7"/><ellipse cx="19" cy="19" rx="3.8" ry="8.6" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M10.6 16.3h16.8M10.6 21.7h16.8" stroke="#fff" stroke-width="1.4" opacity=".85"/></svg><span><b>Web</b><small>apps.microsoft.com in your browser</small></span></a></div></div>
       <a class="btn-get" href="#tutorials">Watch the tutorials</a>
     </div>
   </div>
@@ -1575,6 +1594,26 @@ env = { EASYNOTES_MCP_TOKEN = <span class="c-s">'&lt;your token&gt;'</span> }</p
   var pb=document.getElementById('playTour'); if(pb)pb.addEventListener('click',function(){playVid(pb,TOUR[0],TOUR[1]);});
   var pf=document.getElementById('playFilm'); if(pf)pf.addEventListener('click',function(){playVid(pf,FILM[0],FILM[1]);});
   document.querySelectorAll('[data-play="tour"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();playVid(a,TOUR[0],TOUR[1]);});});
+})();
+
+/* v5.13: Download menu - popover placed under (or above) its button; root zoom corrected; old browsers go to the web listing */
+(function(){
+  var dds=document.querySelectorAll('.get-dd'); if(!dds.length) return;
+  var hasPop=typeof HTMLElement!=='undefined' && HTMLElement.prototype.hasOwnProperty('popover');
+  Array.prototype.forEach.call(dds,function(dd){
+    var b=dd.querySelector('.get-t'), m=dd.querySelector('.get-m');
+    if(!hasPop){ b.removeAttribute('popovertarget'); b.addEventListener('click',function(){ window.open(b.getAttribute('data-web'),'_blank','noopener'); }); return; }
+    function place(){
+      var z=parseFloat(getComputedStyle(document.documentElement).zoom)||1, r=b.getBoundingClientRect(),
+          h=m.offsetHeight*z, w=m.offsetWidth*z, below=window.innerHeight-r.bottom>h+16;
+      m.style.top=((below?r.bottom+10:Math.max(8,r.top-h-10))/z)+'px';
+      m.style.left=(Math.max(8,Math.min(r.left,window.innerWidth-w-8))/z)+'px';
+    }
+    m.addEventListener('toggle',function(e){ var o=e.newState==='open'; dd.classList.toggle('open',o); b.setAttribute('aria-expanded',o?'true':'false'); if(o) place(); });
+    Array.prototype.forEach.call(m.querySelectorAll('a'),function(a){ a.addEventListener('click',function(){ setTimeout(function(){ try{ m.hidePopover(); }catch(_){} },150); }); });
+    window.addEventListener('scroll',function(){ if(m.matches(':popover-open')) place(); },{passive:true});
+    window.addEventListener('resize',function(){ if(m.matches(':popover-open')) place(); });
+  });
 })();
 
 /* Feature reel - A glide: one seamless loop (the tiles are cloned once; the track moves by exactly one set),
