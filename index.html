@@ -332,7 +332,7 @@ section.block{padding-block:88px}
 /* ---------- about ---------- */
 .about{background:var(--bg-2);border-top:1px solid var(--line)}
 .about .wrap{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start}
-.portrait{aspect-ratio:1;border-radius:var(--r-m);background:var(--surface);border:1px dashed var(--line-2);display:grid;place-items:center;color:var(--ink-3);font-family:var(--ff-mono);font-size:12px;text-align:center;padding:12px}
+.portrait{aspect-ratio:1;width:100%;height:auto;display:block;object-fit:cover;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line)}
 .about h2{font-size:clamp(26px,calc(3vw / var(--zf)),34px);font-weight:600}
 .about p{color:var(--ink-2);font-size:16.5px;margin-top:14px;max-width:66ch}
 .about .creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
@@ -934,7 +934,7 @@ footer li a,footer h5{overflow-wrap:anywhere}
 <!-- ================= ABOUT ================= -->
 <section class="block about" id="about">
   <div class="wrap">
-    <div class="portrait">[Portrait photo]<br>Satish Singhi</div>
+    <img class="portrait" src="assets/portrait-satish.jpg" width="800" height="800" alt="Satish Singhi" loading="lazy" decoding="async">
     <div>
       <h2>About me</h2>
       <p>I keep organizations safe and productive in my capacity as a Digital Workplace Architect. My core areas of expertise are Endpoints and Identity.</p>
