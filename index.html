@@ -595,6 +595,15 @@ footer li a,footer h5{overflow-wrap:anywhere}
 .get-m b{display:block;font-weight:700;font-size:14.5px;color:var(--ink)}
 .get-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
 .get-m .get-ic{width:38px;height:38px;margin:0;flex:none;border-radius:10px;box-shadow:0 4px 12px -6px rgba(15,59,120,.55)}
+/* v33: blog card (Community Contributions) - text left, design image right, stacks on narrow screens */
+.card.blog{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:center;padding:34px}
+.card.blog .f-text{display:flex;flex-direction:column;gap:14px}
+.card.blog p{color:var(--ink-2);line-height:1.65}
+.blog-shot{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0A2147;box-shadow:0 24px 60px -28px rgba(15,27,34,.45);transition:transform .2s,border-color .2s}
+.blog-shot img{display:block;width:100%;height:auto}
+.blog-shot:hover{transform:translateY(-2px);border-color:var(--teal)}
+@media (max-width:960px){.card.blog{grid-template-columns:1fr;padding:28px}}
+@media (prefers-reduced-motion:reduce){.blog-shot{transition:none}.blog-shot:hover{transform:none}}
 </style>
 
 </head>
@@ -842,6 +851,20 @@ footer li a,footer h5{overflow-wrap:anywhere}
     </div>
 
     <div class="lab">
+      <article class="card blog" id="psso">
+        <div class="f-text">
+          <span class="kind">Blog · macOS · Intune · Platform SSO</span>
+          <h3>macOS - Deploying Platform SSO with Intune</h3>
+          <p>Closing the gaps in deploying macOS Platform SSO with Intune: Company Portal enrollment timing, Password AutoFill, Company Portal credential provider permissions and an AutoFill provider allowlist.</p>
+          <div class="links">
+            <a href="https://github.com/satishsinghi-gh/macOS-Intune-PSSO-Readiness" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.6 0 0 3.6 0 8c0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.2-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.2 0 3.1-1.9 3.8-3.7 4 .3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4C13.7 14.5 16 11.5 16 8c0-4.4-3.6-8-8-8z"/></svg>GitHub repository</a>
+            <a href="https://satishsinghi-gh.github.io/macOS-Intune-PSSO-Readiness/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 2h7l3 3v9H3z"/><path d="M6 8h4M6 11h3"/></svg>Read the blog</a>
+          </div>
+        </div>
+        <a class="blog-shot" href="https://satishsinghi-gh.github.io/macOS-Intune-PSSO-Readiness/" target="_blank" rel="noopener" aria-label="Read the blog: macOS - Deploying Platform SSO with Intune">
+          <img src="assets/psso-design.webp" width="1600" height="900" alt="macOS - Deploying Platform SSO with Intune: Intune configuration, the supervised Mac (Secure Enclave, Touch ID unlock, Company Portal AutoFill, credential provider allowlist) and Entra ID (SSO token, passkey challenge, Conditional Access)" loading="lazy" decoding="async">
+        </a>
+      </article>
       <article class="card featured" id="tools">
         <div class="f-text">
           <span class="kind">Open source · PowerShell 7 · MS Graph</span>
