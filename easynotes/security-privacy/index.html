@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-OVMMUtrQItykdWo3eCEGcj5r6veqcO5kff2ByimANLE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://endpointlabz.com/easynotes/security-privacy/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Security and privacy in EasyNotes: how notes are stored and backed up, the session clipboard, MCP access tokens and rules, the Agent panel, browser security, network connections and controls for organisations.">
+<!-- EndpointLabz - EasyNotes: Security and privacy in EasyNotes (site v5.20, EasyNotes 1.1) · Author: Satish Singhi -->
+<title>Security and privacy in EasyNotes · EndpointLabz</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABwElEQVRYhc2XQUgUURjHf9+bpZRqRkHtstRBOtghhC4GyboXD9WlVALDDkFXyXvH7h48RoeIPXjIi4IncRCEPUoSI1aHukUrzKqQO7X7dXFDZHdp5Dmv/2l437z5/eZ9fAMjnMjB5vhAPUlmEe4DN4BL2EkViEQp+T+7X8u91VqzIM2LOCxMgbwBrliCtsuOUR76xXDnr8AxfPGk0DlnT6RxJyhsfJKDzfGB+q/kM+f/5qeiHwKV26aeJLPZwwHkViw6YxAeZA8/VkCe5oDBtBvLUY1ydPTP9794FLQrDeeAy+kFjph/X7Uh0GPSwm3HuUDOxkO+lq6dea/zE3AuYKUF5ajWcj3f55Hv74ywIvD41feW63MTQacRBP6DFjgXsNKCxZdXW67n+7xsBEaGLp55r/MWOBeQOBzTVoXrT75Zg3QaR+cn4Fyg7RTMTXT+gqXJyFBX25rE4VgM2KOliu4bhC03cAD5YoB3rvCKLpugwVtg2wG/6qksGCmGv43nTQJ7GcJVRZ75xbBiAPzRtV2j3AWiDOBVFZnsLawvwamfUf04dWG/8uN5Q3VakJtAjyXoIeiuwoqnsuAXw0qz8Ado7nd7wOwhCAAAAABJRU5ErkJggg==">
+<link rel="stylesheet" href="../../assets/fonts/fonts.css">
+<style>
+/* EndpointLabz - EasyNotes page v5 · Author: Satish Singhi */
+:root{
+  --bg:#F8FAFB; --bg-2:#EEF4F6; --surface:#FFFFFF; --line:#D9E3E7; --line-2:#C2D0D6;
+  --ink:#0F1B22; --ink-2:#3A4B53; --ink-3:#6B7C84;
+  --teal:#0F766E; --teal-2:#0B5C56; --teal-soft:#DDF1EE; --teal-glow:rgba(15,118,110,.18);
+  --gold:#F0C040; --gold-soft:#FBF0D3;
+  --ocean-a:#0F3B78; --ocean-b:#1B5FBF; --ocean-soft:#EAF0FA; --amber:#FFB020;
+  --hero-bg:linear-gradient(180deg,#EAF5F3 0%,#F8FAFB 70%);
+  --blob-a:rgba(20,184,166,.22); --blob-b:rgba(212,160,23,.16); --blob-c:rgba(59,111,216,.14);
+  /* ecosystem node colours: (ink, disc) */
+  --n-endpoints:#0F766E; --n-endpoints-bg:#D7EFEB;
+  --n-cloud:#2F6BD6;     --n-cloud-bg:#DFE9FB;
+  --n-identity:#6B4FC7;  --n-identity-bg:#E9E3FA;
+  --n-data:#4A5BA6;      --n-data-bg:#E2E6F5;
+  --n-productivity:#B7791F; --n-productivity-bg:#FBF0D3;
+  --n-connectivity:#0E7C9A; --n-connectivity-bg:#DBF1F6;
+  --n-security:#C0483D;  --n-security-bg:#FBE3DF;
+  --n-monitoring:#2F8A5B; --n-monitoring-bg:#DFF3E7;
+  --shadow:0 1px 2px rgba(15,27,34,.05),0 12px 32px -12px rgba(15,27,34,.14);
+  --r-s:8px; --r-m:14px; --r-l:22px;
+  --ff-display:"Sora",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-body:"Manrope",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --ff-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1418; --bg-2:#101B20; --surface:#131F25; --line:#22323A; --line-2:#2E4149;
+  --ink:#E8EEF0; --ink-2:#B4C2C8; --ink-3:#7F929A;
+  --teal:#2BB3A6; --teal-2:#5ED0C5; --teal-soft:#123B38; --teal-glow:rgba(43,179,166,.22);
+  --gold:#E4B63A; --ocean-soft:#16263F;
+  --gold-soft:#3A2F10; --hero-bg:linear-gradient(180deg,#0E1A1F 0%,#0B1418 70%);
+  --blob-a:rgba(43,179,166,.18); --blob-b:rgba(228,182,58,.10); --blob-c:rgba(90,140,240,.12);
+  --n-endpoints:#5ED0C5; --n-endpoints-bg:#123B38;
+  --n-cloud:#7FA8F0;     --n-cloud-bg:#16263F;
+  --n-identity:#B39CF2;  --n-identity-bg:#26203F;
+  --n-data:#9EAAE6;      --n-data-bg:#1E2540;
+  --n-productivity:#E4B63A; --n-productivity-bg:#3A2F10;
+  --n-connectivity:#5FC8E0; --n-connectivity-bg:#0F3540;
+  --n-security:#F08A7E;  --n-security-bg:#3F1F1B;
+  --n-monitoring:#6FD39A; --n-monitoring-bg:#153A26;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--ff-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+img,svg{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--ff-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+@media (max-width:640px){.wrap{width:calc(100% - 32px)}}
+.mono{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.02em}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backdrop-filter:saturate(1.4) blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--ff-display);font-weight:700;font-size:17px;letter-spacing:-.02em}
+.brand svg{width:28px;height:28px}
+.brand span b{color:#E2AC25;font-weight:700}
+:root[data-theme="dark"] .brand span b{color:#F0C040}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.nav-links a{position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--teal);transition:right .25s ease}
+.nav-links a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:14.5px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,border-color .2s,box-shadow .2s;font-family:var(--ff-body)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 18px -6px var(--teal-glow)}
+.btn-primary:hover{background:var(--teal-2)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.btn-ocean{background:linear-gradient(90deg,var(--ocean-a),var(--ocean-b));color:#fff}
+.btn-ocean:hover{filter:brightness(1.08)}
+.nav .btn{padding:9px 16px}
+.theme-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,color .2s}
+.theme-btn:hover{border-color:var(--teal);color:var(--teal)}
+.theme-btn svg{width:17px;height:17px}
+.theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:block}:root[data-theme="dark"] .theme-btn .moon{display:none}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:10px;width:40px;height:40px;color:var(--ink);cursor:pointer}
+@media (max-width:860px){
+  .theme-btn{margin-left:auto}
+  .menu-btn{margin-left:0}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
+  .nav-links a::after{display:none}
+  .nav.open .nav-links{display:flex}
+  .nav .btn-primary{display:none}
+  .menu-btn{display:grid;place-items:center}
+}
+
+
+/* ---------- footer ---------- */
+footer{padding-block:40px 32px;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h5{font-family:var(--ff-display);font-size:13px;font-weight:600;margin:0 0 12px;color:var(--ink)}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--ink-2)}
+footer ul a:hover{color:var(--teal)}
+footer .fine{color:var(--ink-3);font-size:13px;margin-top:12px;max-width:40ch}
+footer .bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-3);font-size:13px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr 1fr}}
+
+
+.dd{position:relative}
+.dd-t{display:inline-flex;align-items:center;gap:6px}
+.dd-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.dd-m{position:absolute;top:calc(100% + 10px);left:-14px;min-width:260px;padding:8px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;z-index:50}
+.dd-m::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd:hover .dd-m,.dd:focus-within .dd-m{opacity:1;visibility:visible;transform:none;transition:opacity .18s ease,transform .18s ease}
+.dd:hover .chev,.dd:focus-within .chev{transform:rotate(180deg)}
+.dd-m a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--ink)}
+.dd-m a::after{display:none}
+.dd-m a:hover,.dd-m a:focus-visible{background:var(--bg-2)}
+.dd-m b{display:block;font-weight:700;font-size:14.5px}
+.dd-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.dd-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.dd-ic svg{width:18px;height:18px}
+.dd-ic.en{background:var(--ocean-soft);color:var(--ocean-b)}
+.dd-ic.tl{background:var(--teal-soft);color:var(--teal)}
+.dd-ic.sc{background:var(--gold-soft);color:#9A6B00}
+:root[data-theme="dark"] .dd-ic.sc{color:var(--gold)}
+@media (max-width:860px){
+  .nav-links{align-items:stretch}
+  .dd{width:100%}
+  .dd-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .dd-t .chev{display:none}
+  .dd-m{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:none;padding:4px 0 6px 10px;min-width:0}
+  .dd-m::before{display:none}
+  .dd-m a{border-bottom:0;padding:8px 6px}
+}
+/* ---------- v18: support pop-over, app logo ---------- */
+.sup{position:relative;display:flex;align-items:center}
+.sup-t{font:inherit;color:inherit;background:none;border:0;padding:6px 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;position:relative}
+.sup-t .chev{width:12px;height:12px;transition:transform .2s ease;opacity:.7}
+.sup-t[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.sup-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:max-content;min-width:280px;padding:14px 14px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);z-index:60;text-align:left}
+.sup-pop[hidden]{display:none}
+.sup-h{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.sup-row{display:flex;align-items:center;gap:10px;margin-top:8px;padding:8px 8px 8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg-2)}
+.sup-mail{font-weight:700;font-size:15px;color:var(--ink);user-select:all;white-space:nowrap}
+.sup-copy{margin-left:auto;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
+.sup-copy:hover,.sup-copy:focus-visible{color:var(--teal);border-color:var(--teal)}
+.sup-copy svg{width:17px;height:17px}
+.sup-copy .ok{display:none;color:var(--teal)}
+.sup-copy.done .cp{display:none}
+.sup-copy.done .ok{display:block}
+.sup-note{font-size:12.5px;color:var(--ink-3);margin-top:8px;min-height:1.2em}
+.en-logo{width:40px;height:40px;flex:none}
+@media (min-width:861px){.dd.dd-x .dd-m{opacity:0!important;visibility:hidden!important}.dd.dd-x .chev{transform:none!important}}
+.dd-ic.en{background:none}
+.dd-ic img{width:30px;height:30px}
+@media (max-width:860px){
+  .sup{width:100%;flex-direction:column;align-items:stretch}
+  .sup-t{width:100%;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  .sup-pop{position:static;transform:none;width:auto;min-width:0;margin:8px 0 6px;box-shadow:none}
+  .sup-mail{white-space:normal;word-break:break-all}
+}
+
+/* ---------- v20: hero outcomes - what every solution raises / reduces (option H) ---------- */
+.outcomes{margin-top:24px;max-width:580px}
+.opt{display:block;position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.opt ul{list-style:none;margin:0;padding:0}
+.opt .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none}
+.opt .ic svg{width:15px;height:15px}
+.opt .ar svg{width:14px;height:14px;display:block}
+.opt .up .ar{animation:bobU 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+.opt .down .ar{animation:bobD 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.2s)}
+@keyframes bobU{0%,100%{transform:translateY(1.5px)}50%{transform:translateY(-2.5px)}}
+@keyframes bobD{0%,100%{transform:translateY(-1.5px)}50%{transform:translateY(2.5px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+:root{--upc:#0F766E;--upc2:#14B8A6;--ups:#DDF1EE;--dnc:#1B5FBF;--dnc2:#3B82F6;--dns:#EAF0FA}
+:root[data-theme="dark"]{--upc:#2BB3A6;--upc2:#5ED0C5;--ups:#123B38;--dnc:#7FA8F0;--dnc2:#3B82F6;--dns:#16263F}
+/* H - momentum cards */
+.oh-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:12px}
+.oh-card{position:relative;overflow:hidden;border-radius:18px;padding:16px 14px 12px;color:#fff;box-shadow:0 22px 44px -22px rgba(15,27,34,.55)}
+.oh-card.up{background:linear-gradient(135deg,#0B5C56 0%,#0F766E 55%,#14B8A6 130%)}
+.oh-card.down{background:linear-gradient(135deg,#0F3B78 0%,#1B5FBF 60%,#3B82F6 130%)}
+.oh-big{position:absolute;right:-18px;bottom:-22px;width:150px;height:150px;color:#fff;opacity:.10;pointer-events:none}
+.oh-big svg{width:100%;height:100%;display:block}
+.oh-card.up .oh-big{animation:floatU 3.2s ease-in-out infinite} .oh-card.down .oh-big{animation:floatD 3.2s ease-in-out infinite}
+@keyframes floatU{0%,100%{transform:translateY(4px)}50%{transform:translateY(-6px)}}
+@keyframes floatD{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
+.oh-shine{position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);transform:translateX(-60%);animation:shine 5s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes shine{0%{transform:translateX(-60%)}35%,100%{transform:translateX(60%)}}
+.oh-card ul{position:relative}
+.oh-card li{display:flex;align-items:center;gap:10px;padding:6px 0;font-weight:600;font-size:14px;border-top:1px solid rgba(255,255,255,.14);animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.25s + var(--i)*.08s)}
+.oh-card li:first-child{border-top:0;padding-top:0}
+.oh-card li span{flex:1}
+.oh-card .ic{background:rgba(255,255,255,.16);color:#fff}
+.oh-card .ar{color:#fff;opacity:.9}
+@media (max-width:560px){.oh-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.opt *{animation:none!important}}
+
+
+/* ---------- EasyNotes page (v1) ---------- */
+body{overflow-x:hidden}
+.en-hero{position:relative;overflow:hidden;padding-block:64px 56px;background:var(--hero-bg);border-bottom:1px solid var(--line)}
+.en-hero::before{content:"";position:absolute;width:560px;height:560px;right:-160px;top:-200px;border-radius:50%;filter:blur(70px);background:radial-gradient(circle,var(--blob-c),transparent 65%);pointer-events:none}
+.en-hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:52px;align-items:center}
+.crumbs{font-size:13px;color:var(--ink-3);display:flex;gap:8px;align-items:center}
+.crumbs a:hover{color:var(--teal)}
+.en-title{display:flex;align-items:center;gap:16px;margin-top:18px}
+.en-title svg,.en-title .app-logo{width:60px;height:60px;flex:none;filter:drop-shadow(0 8px 18px rgba(15,59,120,.28))}
+.en-title h1{font-size:clamp(40px,calc(5vw / var(--zf)),60px);line-height:1;font-weight:700;letter-spacing:-.03em}
+.tagline{font-family:"Caveat",cursive;font-size:30px;color:var(--ocean-b);margin-top:10px;line-height:1.1}
+:root[data-theme="dark"] .tagline{color:#8DB6F5}
+.en-hero .lead{margin-top:18px;font-size:17.5px;line-height:1.62;color:var(--ink-2);max-width:54ch}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pillrow span{font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.win-glyph{width:19px;height:19px;flex:none}
+/* v5.12: the official Microsoft Store badge (unmodified artwork, self-hosted) + the Store app deep link */
+.ms-badge{display:inline-flex;line-height:0;border-radius:6px;flex:none}
+.ms-badge img{height:48px;width:auto}
+.ms-badge .b-on-dark{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-light{display:none}
+:root[data-theme="dark"] .ms-badge .b-on-dark{display:inline}
+.ms-badge:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.store-app-link{font-size:13.5px;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.store-app-link:hover{color:var(--teal)}
+.inst-card{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:22px 24px;background:var(--surface);margin:18px 0 22px;display:flex;flex-direction:column;gap:10px}
+.inst-card h3{font-size:22px;font-weight:600}
+.inst-card p{margin:0}
+.inst-card .badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:6px 0 2px}
+.get .get-cta{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px}
+.hero-cta .ms-badge img{height:40px}
+@media (max-width:600px){.hero-cta .ms-badge img{height:44px}}
+.store-btn{display:inline-flex;align-items:center;gap:11px;padding:9px 18px 9px 14px;border-radius:12px;background:#111;color:#fff;border:1px solid #111;font-weight:700;line-height:1.05;transition:transform .15s,box-shadow .2s}
+:root[data-theme="dark"] .store-btn{background:#F4F7F8;color:#0B1418;border-color:#F4F7F8}
+.store-btn svg{width:26px;height:26px}
+.store-btn small{display:block;font-size:10.5px;font-weight:600;opacity:.8;letter-spacing:.02em}
+.store-btn span{font-size:16px}
+.store-btn.big{padding:12px 22px 12px 16px}
+.store-btn.big svg{width:30px;height:30px}
+.store-btn.is-placeholder{cursor:not-allowed;position:relative}
+.doc .store-btn{color:#fff}
+:root[data-theme="dark"] .doc .store-btn{color:#0B1418}
+.store-btn.is-placeholder::after{content:"Soon";position:absolute;top:-8px;right:-8px;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px;background:var(--gold);color:#3A2A00;letter-spacing:.04em}
+.ph-note{display:block;font-size:12.5px;color:var(--ink-3);margin-top:8px}
+.btn-play svg{width:15px;height:15px}
+.hero-shot{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(15,59,120,.55);background:var(--surface)}
+.hero-shot img{width:100%;height:auto}
+.only-dark{display:none!important}
+:root[data-theme="dark"] .only-dark{display:block!important}
+:root[data-theme="dark"] .only-light{display:none!important}
+.facts{border-bottom:1px solid var(--line);background:var(--bg-2)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.facts div{padding:18px 18px 18px 0;border-left:1px solid var(--line);padding-left:18px}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts b{display:block;font-family:var(--ff-display);font-size:15px}
+.facts span{display:block;font-size:13.5px;line-height:1.45;margin-top:3px;color:var(--ink-3)}
+/* docs body */
+.docs .wrap{display:grid;grid-template-columns:272px minmax(0,1fr);gap:48px;padding-block:24px 80px}
+/* v5.1 (Prompt 443): the section index - larger type, roomy rows, a card on its own surface, sub-sections only for the section
+   you are in, the current item marked with a pill + accent bar, and the index scrolls itself to keep it in view */
+.toc{position:sticky;top:88px;align-self:start;max-height:calc(calc(100vh / var(--zf)) - 108px);overflow:auto;overscroll-behavior:contain;
+  margin-top:18px;padding:16px 12px 18px;font-size:15px;line-height:1.35;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;box-shadow:0 18px 40px -30px rgba(15,59,120,.35);scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.toc::-webkit-scrollbar{width:6px}.toc::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}.toc::-webkit-scrollbar-track{background:transparent}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc li.grp{font-family:var(--ff-mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);
+  margin:20px 10px 8px;padding-top:16px;border-top:1px solid var(--line)}
+.toc li.grp:first-child{margin-top:2px;padding-top:0;border-top:0}
+.toc a{position:relative;display:block;padding:8px 12px;border-radius:10px;color:var(--ink-2);font-weight:600;text-decoration:none;
+  transition:color .15s,background .15s}
+.toc a:hover{color:var(--ink);background:var(--bg-2)}
+.toc a:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+.toc a.in{color:var(--ink)}
+.toc a.on{color:var(--teal-2);background:var(--teal-soft)}
+.toc a.on::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--teal)}
+.toc ul ul{margin:2px 0 6px 14px;padding-left:10px;border-left:2px solid var(--line);display:none}
+.toc li.open>ul{display:block}
+.toc ul ul a{padding:6px 10px;font-size:14px;font-weight:500;color:var(--ink-3)}
+.toc ul ul a:hover{color:var(--ink)}
+.toc ul ul a.on{color:var(--teal-2);font-weight:600}
+.toc-btn{display:none}
+.doc{min-width:0}
+.doc-sec{padding-block:44px;border-top:1px solid var(--line);scroll-margin-top:76px}
+.doc-sec:first-child{border-top:0;padding-top:22px}
+.kicker{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.doc h2{font-size:clamp(26px,calc(2.6vw / var(--zf)),32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+.doc .h3{font-size:19px;font-weight:600;margin:30px 0 10px;scroll-margin-top:76px}
+.doc h4{font-family:var(--ff-display);font-size:15px;font-weight:600;margin-bottom:8px}
+.doc p{color:var(--ink-2);max-width:74ch;margin-bottom:12px}
+.doc p.small{font-size:14px;color:var(--ink-3)}
+.doc a{color:var(--teal);font-weight:600}
+.doc code,.doc kbd{font-family:var(--ff-mono);font-size:.82em}
+.doc code{background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink);word-break:break-word}
+kbd{display:inline-block;min-width:22px;text-align:center;font-family:var(--ff-mono);font-size:12px;line-height:1;padding:4px 6px;border-radius:6px;border:1px solid var(--line-2);border-bottom-width:2px;background:var(--surface);color:var(--ink)}
+.doc ul,.doc ol{color:var(--ink-2);max-width:74ch;padding-left:20px;margin:0 0 14px}
+.doc li{margin:5px 0}
+.doc em{font-style:normal;font-weight:600;color:var(--ink)}
+ul.ticks,ul.dash{list-style:none;padding-left:0}
+ul.ticks li,ul.dash li{position:relative;padding-left:24px}
+ul.ticks li::before{content:"";position:absolute;left:2px;top:.55em;width:11px;height:6px;border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg)}
+ul.dash li::before{content:"";position:absolute;left:3px;top:.8em;width:10px;height:2px;background:var(--gold)}
+ol.steps{counter-reset:s;list-style:none;padding-left:0}
+ol.steps li{counter-increment:s;position:relative;padding-left:40px;margin:10px 0}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-b);font:700 13px/26px var(--ff-display);text-align:center}
+:root[data-theme="dark"] ol.steps li::before{color:#8DB6F5}
+.glance{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0 6px}
+.glance div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+.glance b{display:block;font-family:var(--ff-display);font-size:15px}
+.glance span{font-size:13.5px;color:var(--ink-3);line-height:1.45;display:block;margin-top:4px}
+table.spec{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+table.spec th,table.spec td{text-align:left;vertical-align:top;padding:11px 14px 11px 0;border-bottom:1px solid var(--line)}
+table.spec th{width:30%;font-weight:700;color:var(--ink);padding-right:18px}
+table.spec th em{font-weight:500;color:var(--ink-3);font-style:normal;font-size:13px}
+table.spec td{color:var(--ink-2)}
+table.spec tr:first-child th,table.spec tr:first-child td{border-top:1px solid var(--line)}
+table.map th{width:22%}
+table.keys th{width:38%;white-space:nowrap}
+.callout{border:1px solid var(--line);border-left:3px solid var(--teal);background:color-mix(in srgb,var(--teal-soft) 55%,var(--surface));border-radius:10px;padding:14px 18px;margin:18px 0}
+.callout.ok{border-left-color:#2F8A5B;background:color-mix(in srgb,#DFF3E7 55%,var(--surface))}
+:root[data-theme="dark"] .callout.ok{background:color-mix(in srgb,#153A26 60%,var(--surface))}
+.callout b{display:block;font-family:var(--ff-display);font-size:15px;margin-bottom:4px;color:var(--ink)}
+.callout p{margin:0;font-size:15px}
+.install{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0 8px}
+.inst-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.inst-card h3{font-size:20px;font-weight:600}
+.inst-card p{margin:0;font-size:15px}
+.inst-kind{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.inst-card .store-btn{align-self:flex-start;margin-top:6px}
+.code{position:relative;max-width:100%;margin:10px 0 14px;border-radius:10px;background:#0E1A1F;border:1px solid #1E3038}
+.code pre{margin:0;padding:14px 76px 14px 16px;overflow-x:auto;font-family:var(--ff-mono);font-size:12.8px;line-height:1.7;color:#CFE6E2}
+.code .c-p{color:#5E7F87}.code .c-h{color:#F0C040}.code .c-k{color:#7FE0D4}.code .c-s{color:#F2C58A}
+.code .copy{position:absolute;top:8px;right:8px;font:700 11.5px var(--ff-body);color:#CFE6E2;background:#17282F;border:1px solid #2A4049;border-radius:7px;padding:5px 9px;cursor:pointer}
+.code .copy:hover{border-color:#7FE0D4;color:#fff}
+.rules{border:1px dashed var(--line-2);border-radius:10px;padding:12px 16px;background:var(--surface);margin:8px 0 12px;position:relative}
+/* v5.8: the rules are an example (Prompt 477); the any-client MCP guide (Prompts 478-480); the intro cards (Prompt 473) */
+.rules-tag{position:absolute;top:-10px;right:14px;font:600 10.5px var(--ff-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:3px 9px}
+.mcp-note{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:14px 18px;background:var(--teal-soft);color:var(--ink-2);margin:14px 0 6px;max-width:74ch;line-height:1.55}
+.mcp-note b{color:var(--ink)}
+.doc h4{margin-top:18px}
+.glance a{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface);text-decoration:none;color:inherit;font-weight:400;transition:border-color .2s,transform .2s}
+.glance a:hover,.glance a:focus-visible{border-color:var(--teal);transform:translateY(-1px)}
+.glance a b{display:block;font-family:var(--ff-display);font-size:15px;color:var(--ink)}
+.glance a b::after{content:" \2192";color:var(--teal)}
+.glance a span{font-size:13.5px;color:var(--ink-3);line-height:1.45;display:block;margin-top:4px}
+.glance .g-soon .win-glyph{width:28px;height:28px;color:var(--teal);margin-top:6px}
+.rules p{margin:3px 0;font-family:var(--ff-mono);font-size:13px;color:var(--ink)}
+/* v5: the MCP function table and the install 'coming soon' card */
+.tbl-scroll{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:12px}
+table.mcp-tools{width:100%;border-collapse:collapse;font-size:14.5px}
+table.mcp-clients{width:100%;border-collapse:collapse;font-size:14.5px}
+table.mcp-tools th,table.mcp-tools td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
+table.mcp-clients th,table.mcp-clients td{text-align:left;vertical-align:top;padding:9px 14px;border-bottom:1px solid var(--line)}
+table.mcp-tools thead th{font-family:var(--ff-display);font-size:13px;letter-spacing:.02em;color:var(--ink);background:var(--surface)}
+table.mcp-clients thead th{font-family:var(--ff-display);font-size:13px;letter-spacing:.02em;color:var(--ink);background:var(--surface)}
+table.mcp-tools tr.grp th{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--surface);padding-top:14px}
+table.mcp-tools td:first-child{white-space:nowrap;width:1%}
+table.mcp-tools td code{font-size:13px}
+table.mcp-clients td code{font-size:12.5px}
+.code.wrapcode pre{white-space:pre-wrap;word-break:break-word;padding-right:84px}
+table.mcp-tools td{color:var(--ink-2)}
+table.mcp-clients td{color:var(--ink-2)}
+table.mcp-tools tbody tr:last-child td{border-bottom:0}
+table.mcp-clients tbody tr:last-child td{border-bottom:0}
+.soon-card{border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:22px 24px;background:var(--surface);margin:18px 0 22px;display:flex;flex-direction:column;gap:8px}
+.soon-card h3{font-size:22px;font-weight:600}
+.soon-card p{margin:0}
+.soon{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;border:1px dashed var(--teal);color:var(--teal);font-weight:700;font-size:15px}
+details.tools{border:1px solid var(--line);border-radius:10px;padding:0 16px;margin:14px 0;background:var(--surface)}
+details.tools summary{cursor:pointer;padding:12px 0;font-weight:700;color:var(--ink)}
+details.tools p{font-family:var(--ff-mono);font-size:12.5px;line-height:1.75}
+details.tools b{font-family:var(--ff-body);font-size:13px;display:block;color:var(--ink)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:12px 0}
+.two>div{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--surface)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.fgrid div{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.fgrid i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--ocean-soft);color:var(--ocean-b)}
+:root[data-theme="dark"] .fgrid i{color:#8DB6F5}
+.fgrid i svg{width:19px;height:19px}
+.fgrid b{font-family:var(--ff-display);font-size:15px;margin-top:4px}
+.fgrid span{font-size:14px;color:var(--ink-3);line-height:1.5}
+.ptypes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
+.ptypes div{border:1px solid var(--line);border-top:3px solid var(--ocean-b);border-radius:10px;padding:14px;background:var(--surface)}
+.ptypes b{font-family:var(--ff-display);display:block}
+.ptypes span{font-size:14px;color:var(--ink-3);display:block;margin-top:4px;line-height:1.5}
+.menus{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 6px}
+.menus>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface)}
+ul.menu{list-style:none;padding:0;margin:0;font-size:14px}
+ul.menu li{padding:5px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+ul.menu li:last-child{border-bottom:0}
+ul.menu small{display:block;color:var(--ink-3);font-size:12.5px}
+/* figures */
+figure.shot{margin:18px 0 22px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.shot img{width:100%;height:auto;cursor:zoom-in;background:#fff}
+figure.shot.win{max-width:760px}
+figure.shot.nat{width:fit-content;max-width:100%}
+figure.shot.nat img{width:auto;max-width:100%}
+figure.shot.win img{background:transparent}
+figure.shot figcaption{font-size:13.5px;color:var(--ink-3);padding:10px 14px;border-top:1px solid var(--line);line-height:1.45}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.pair figure.shot,.gallery figure.shot{margin:8px 0 12px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:14px 0 8px;align-items:start}
+.tuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0 6px}
+figure.tut{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.tut video{display:block;width:100%;height:auto;aspect-ratio:4/3;background:#0B1418}
+figure.tut figcaption{padding:12px 14px 14px;border-top:1px solid var(--line)}
+figure.tut b{display:block;font-family:var(--ff-display);font-size:15px;color:var(--ink)}
+figure.tut b small{font-family:var(--ff-mono);font-weight:500;font-size:11.5px;color:var(--ink-3);margin-left:6px}
+figure.tut span{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.5;margin-top:4px}
+.ph-shot{aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--bg-2) 0 12px,var(--surface) 12px 24px);color:var(--ink-3);font-family:var(--ff-mono);font-size:12px}
+.hdr-anno{position:relative;width:640px;max-width:100%;margin:10px 0 28px;border:1px solid var(--line);border-radius:12px;overflow:visible;background:var(--surface)}
+.hdr-anno img{width:100%;height:auto;border-radius:11px 11px 0 0;cursor:zoom-in}
+.ruler{position:relative;height:30px;border-top:1px solid var(--line)}
+.ruler span{position:absolute;top:6px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;font:700 11px/20px var(--ff-display);text-align:center}
+.ruler span::before{content:"";position:absolute;left:50%;top:-7px;width:1px;height:7px;background:var(--teal)}
+ol.hdr-list{columns:2;column-gap:28px;padding-left:22px;margin-top:0}
+ol.hdr-list li{break-inside:avoid;margin:0 0 6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 4px}
+:root[data-theme="dark"] .toc a.on{color:#7FE3D6;background:rgba(43,179,166,.16)}
+:root[data-theme="dark"] .toc{box-shadow:none}
+.tabs button{font:700 13.5px var(--ff-body);padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.get{border-top:0}
+.get-card{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;border-radius:18px;padding:32px 34px;background:linear-gradient(120deg,var(--ocean-a),var(--ocean-b));color:#fff;box-shadow:0 30px 60px -30px rgba(15,59,120,.6)}
+.get-card svg,.get-card .app-logo{width:54px;height:54px;margin-bottom:12px}
+.get-card .app-logo{display:block}
+.get-card h2{color:#fff;margin-bottom:6px}
+.get-card p{color:#DCE8FB;margin:0}
+.get-card .store-btn{background:#fff;color:#0F1B22;border-color:#fff}
+.get-card .ph-note{color:#C7DBFF}
+.get-cta{display:flex;flex-direction:column;align-items:flex-start}
+.get-cta .btn-get{display:inline-flex;align-items:center;padding:12px 22px;border-radius:999px;background:#fff;color:#0F3B78;font-weight:700;text-decoration:none;border:1px solid #fff;transition:transform .2s}
+.get-cta .btn-get:hover,.get-cta .btn-get:focus-visible{transform:translateY(-1px)}
+/* lightbox and video */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,14,18,.86);display:none;align-items:center;justify-content:center;padding:28px}
+.lb.open{display:flex}
+.lb figure{margin:0;max-width:min(1400px,100%);max-height:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb img,.lb video{max-width:100%;max-height:calc(calc(100vh / var(--zf)) - 110px);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff}
+.lb video{background:#121A30}
+.lb figcaption{color:#DCE6EA;font-size:14px;text-align:center;max-width:80ch}
+/* v5.5 (Prompt 453): the film / tour controls sit under the video, never over it */
+.lb-bar{display:none;width:min(1400px,100%);align-items:center;gap:14px}
+.lb.vid .lb-bar{display:flex}
+.lb-seek{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.lb-seek input{flex:1;min-width:0;height:4px;accent-color:#6CC8D8;cursor:pointer}
+.lb-seek span{font-size:12.5px;color:#DCE6EA;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lb-btns{display:flex;gap:8px}
+.lb .lb-btn{position:static;width:42px;height:42px;display:grid;place-items:center;font-size:0;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px -12px rgba(0,0,0,.7)}
+.lb .lb-btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.12))}
+.lb .lb-btn svg{width:18px;height:18px}
+/* v5.10: the sound button looks like the others when on - the icon shows the state (Prompt 483) */
+.lb .lb-btn .ic-on,.lb .lb-btn .ic-pause{display:none}
+.lb .lb-btn[aria-pressed="true"] .ic-on,.lb .lb-btn[data-playing="true"] .ic-pause{display:block}
+.lb .lb-btn[aria-pressed="true"] .ic-off,.lb .lb-btn[data-playing="true"] .ic-play{display:none}
+.lb img,.lb.vid video{max-height:calc(calc(100vh / var(--zf)) - 170px)}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.lb button:hover{background:rgba(255,255,255,.22)}
+.lb .x{top:18px;right:18px}.lb .prev{left:18px;top:50%}.lb .next{right:18px;top:50%}
+@media (max-width:1020px){
+  .en-hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .docs .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{position:sticky;top:64px;z-index:30;max-height:none;overflow:visible;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line);margin:0 -20px;padding-inline:20px}
+  .toc{border-radius:0;border-width:0 0 1px;box-shadow:none;margin-top:0}
+  .toc>ul{display:none;max-height:calc(60vh / var(--zf));overflow:auto;padding:8px 0}
+  .toc ul ul{display:block}
+  .toc.open>ul{display:block}
+  .toc-btn{display:flex;width:100%;justify-content:space-between;align-items:center;font:700 14px var(--ff-body);background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;color:var(--ink);cursor:pointer}
+  .glance{grid-template-columns:1fr 1fr}
+
+  .fgrid,.menus,.ptypes{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  table.mcp-tools thead{display:none}
+  table.mcp-tools tr{display:block;border-bottom:1px solid var(--line)}
+  table.mcp-tools td,table.mcp-tools th{display:block;border:0;width:auto}
+  table.mcp-tools td:first-child{padding-bottom:2px}
+  table.mcp-tools td:last-child{padding-top:2px}
+  .facts .wrap{grid-template-columns:1fr 1fr}.facts div{border-left:0;padding-left:0}
+  .install,.two,.pair,.glance,.fgrid,.menus,.ptypes,.tuts{grid-template-columns:minmax(0,1fr)}
+  ol.hdr-list{columns:1}
+  table.spec th{width:38%}
+  table.keys th{white-space:normal}
+  .toc{margin:0 -16px;padding-inline:16px}
+  .get-card{padding:24px}
+}
+
+:root{--a-sheet:#FFFFFF;--a-line:#DCE5EA;--a-text:#C9D5DB;--a-text-2:#AFC0C8;--a-shadow:rgba(15,27,34,.10);--amber:#FFB020}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--a-sheet:#1A2930;--a-line:#2A3C44;--a-text:#34484F;--a-text-2:#44595F;--a-shadow:rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--a-sheet:#1A2930;--a-line:#2A3C44;--a-text:#34484F;--a-text-2:#44595F;--a-shadow:rgba(0,0,0,.35)}
+/* ================= the reel ================= */
+.rl-reel{position:relative;border-bottom:1px solid var(--line);background:var(--bg-2);padding:22px 0 20px;overflow:hidden}
+.rl-reel-view{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+.rl-reel-track{display:flex;gap:16px;width:max-content;padding:4px 0 6px;will-change:transform}
+.rl-reel.rl-glide .rl-reel-track{animation:rl-reel-glide var(--reel-dur,90s) linear infinite}
+.rl-reel.rl-glide:hover .rl-reel-track,.rl-reel.rl-glide:focus-within .rl-reel-track,.rl-reel.rl-paused .rl-reel-track{animation-play-state:paused}
+@keyframes rl-reel-glide{to{transform:translateX(calc(-1 * var(--reel-shift,50%)))}}
+.rl-reel.rl-step .rl-reel-track{transition:transform .8s cubic-bezier(.65,0,.35,1)}
+
+.rl-tile{flex:0 0 auto;width:252px;margin:0;border-radius:16px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(15,27,34,.04),0 14px 30px -22px rgba(15,27,34,.35);overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.rl-tile:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 45%,var(--line));
+  box-shadow:0 1px 2px rgba(15,27,34,.04),0 22px 40px -22px color-mix(in srgb,var(--c) 55%,transparent)}
+.rl-art{position:relative;height:132px;background:
+   radial-gradient(120% 90% at 85% 0%,color-mix(in srgb,var(--c) 22%,transparent) 0%,transparent 60%),
+   linear-gradient(180deg,var(--cb),color-mix(in srgb,var(--cb) 55%,var(--surface)));
+  border-bottom:1px solid color-mix(in srgb,var(--c) 14%,var(--line))}
+.rl-art svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rl-tile figcaption{padding:12px 16px 14px;display:flex;flex-direction:column;gap:2px}
+.rl-tile b{font:600 15px/1.25 var(--ff-display);letter-spacing:-.005em;color:var(--ink)}
+.rl-tile figcaption span{font-size:13px;line-height:1.35;color:var(--ink-3)}
+
+.rl-reel-ctl{position:absolute;right:20px;bottom:10px;z-index:2;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;opacity:.0;transition:opacity .25s}
+.rl-reel:hover .rl-reel-ctl,.rl-reel-ctl:focus-visible,.rl-reel.rl-paused .rl-reel-ctl{opacity:1}
+.rl-reel-ctl:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.rl-reel-ctl svg{width:12px;height:12px}
+.rl-reel-ctl .rl-i-play{display:none}.rl-reel.rl-paused .rl-reel-ctl .rl-i-play{display:block}.rl-reel.rl-paused .rl-reel-ctl .rl-i-pause{display:none}
+
+/* ---- shared art pieces ---- */
+.rl-s-sheet{fill:var(--a-sheet)}
+.rl-s-card{fill:var(--a-sheet);stroke:var(--a-line);stroke-width:1}
+.rl-s-shadow{filter:drop-shadow(0 6px 10px var(--a-shadow))}
+.rl-t1{fill:var(--a-text)}.rl-t2{fill:var(--a-text-2)}
+.rl-acc{fill:var(--c)}.rl-acc-s{stroke:var(--c)}.rl-acc-soft{fill:color-mix(in srgb,var(--c) 22%,var(--a-sheet))}
+.rl-mono{font-family:var(--ff-mono);font-weight:600}
+.rl-ink{fill:var(--ink-2)}
+
+/* ---- per-art motion (all loop; staggered so the reel never pulses in sync) ---- */
+@keyframes rl-grow{0%,8%{transform:scaleX(0)}38%,82%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+.rl-g-line{transform-box:fill-box;transform-origin:left center;animation:rl-grow 7s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes rl-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.rl-caret{animation:rl-blink 1.05s steps(1) infinite}
+@keyframes rl-cellmove{0%,12%{transform:translate(0,0)}25%,37%{transform:translate(40px,0)}50%,62%{transform:translate(40px,15px)}75%,87%{transform:translate(80px,15px)}100%{transform:translate(0,0)}}
+.rl-cell-hi{animation:rl-cellmove 8s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes rl-draw{0%,10%{stroke-dashoffset:20}24%,86%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+.rl-tick{stroke-dasharray:20;stroke-dashoffset:20;animation:rl-draw 6s ease-in-out infinite}
+@keyframes rl-boxfill{0%,10%{fill:var(--a-sheet)}22%,86%{fill:var(--c)}100%{fill:var(--a-sheet)}}
+.rl-cbox{animation:rl-boxfill 6s ease-in-out infinite}
+@keyframes rl-bar{0%,10%{transform:scaleX(.08)}90%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.rl-progress{transform-box:fill-box;transform-origin:left;animation:rl-bar 6s ease-in-out infinite}
+@keyframes rl-type{0%,6%{transform:scaleX(0)}30%,84%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:.0}}
+.rl-typed{transform-box:fill-box;transform-origin:left;animation:rl-type 6.5s steps(9) infinite}
+@keyframes rl-flow{0%{offset-distance:0%;opacity:0}12%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.rl-dot{animation:rl-flow 2.4s linear infinite}
+@keyframes rl-ring{0%{r:16;opacity:.55}100%{r:30;opacity:0}}
+.rl-pulse{animation:rl-ring 2s ease-out infinite}
+@keyframes rl-lift{0%,30%{transform:translate(0,0) rotate(0)}45%,70%{transform:translate(26px,-10px) rotate(4deg)}85%,100%{transform:translate(0,0) rotate(0)}}
+.rl-lift{transform-box:fill-box;transform-origin:center;animation:rl-lift 5.5s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes rl-swing{0%,55%,100%{transform:rotate(0)}62%{transform:rotate(14deg)}69%{transform:rotate(-11deg)}76%{transform:rotate(7deg)}83%{transform:rotate(-3deg)}}
+.rl-bell{transform-box:fill-box;transform-origin:50% 8%;animation:rl-swing 4.5s ease-in-out infinite}
+@keyframes rl-toast{0%,50%{transform:translateX(60px);opacity:0}62%,92%{transform:translateX(0);opacity:1}100%{transform:translateX(0);opacity:0}}
+.rl-toast{animation:rl-toast 4.5s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes rl-pick{0%{opacity:0;transform:scale(.4)}12%,88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.rl-pick{transform-box:fill-box;transform-origin:center;opacity:0;animation:rl-pick 6s cubic-bezier(.2,.9,.3,1.3) infinite}
+@keyframes rl-hl{0%{opacity:0}10%,88%{opacity:1}100%{opacity:0}}
+.rl-hl{opacity:0;animation:rl-hl 6s ease infinite}
+@keyframes rl-drop{0%,6%{transform:translateY(-34px);opacity:0}22%,80%{transform:translateY(0);opacity:1}92%,100%{transform:translateX(70px);opacity:0}}
+.rl-drop{animation:rl-drop 6.4s cubic-bezier(.3,.9,.3,1) infinite}
+@keyframes rl-spin{to{transform:rotate(360deg)}}
+.rl-hand-m{transform-box:view-box;animation:rl-spin 6s linear infinite}
+.rl-hand-h{transform-box:view-box;animation:rl-spin 72s linear infinite}
+.rl-orbit{transform-box:fill-box;transform-origin:center;animation:rl-spin 3.2s linear infinite}
+@keyframes rl-pop{0%,40%{transform:scale(0)}52%{transform:scale(1.15)}58%,92%{transform:scale(1)}100%{transform:scale(0)}}
+.rl-pop{transform-box:fill-box;transform-origin:center;animation:rl-pop 4.8s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes rl-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.rl-nudge{animation:rl-nudge 1.6s ease-in-out infinite}
+@keyframes rl-rise{0%{transform:translateY(0)}50%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.rl-float{animation:rl-rise 3.6s ease-in-out infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .rl-reel-track{animation:none!important;transition:none!important}
+  .rl-reel-view{overflow-x:auto;scroll-snap-type:x mandatory}
+  .rl-tile{scroll-snap-align:start}
+  .rl-art *{animation:none!important}
+  .rl-hl,.rl-pick{opacity:1}
+  .rl-reel-ctl{display:none}
+}
+
+.rl-reel-track{padding-right:16px}
+@keyframes rl-reel-glide{to{transform:translateX(-50%)}}
+
+/* v5.13: Download button + Store / Web menu (popover) */
+.get-dd{position:relative;display:inline-flex}
+.get-dd .get-defs{position:absolute;width:0;height:0;margin:0;overflow:hidden}
+.get-dd .get-t .i{width:17px;height:17px;margin:0;flex:none}
+.get-dd .get-t .chev{width:14px;height:14px;margin:0;flex:none;transition:transform .2s ease}
+.get-dd.open .get-t .chev{transform:rotate(180deg)}
+:root[data-theme="dark"] .get-dd .get-t{color:#06201D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .get-dd .get-t{color:#06201D}}
+.get-cta .get-dd .get-t{padding:12px 22px;font-size:16px;line-height:1.6}   /* closing card: same size as "Watch the tutorials" */
+.get-m{position:fixed;inset:auto;margin:0;min-width:290px;padding:8px;border-radius:14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 18px 40px -18px rgba(0,0,0,.45);flex-direction:column;gap:2px;text-align:left}
+.get-m:popover-open{display:flex}
+.get-m a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--ink);text-decoration:none}
+.get-m a::after{display:none}
+.get-m a:hover,.get-m a:focus-visible{background:var(--bg-2);outline:none}
+.get-m a:focus-visible{box-shadow:inset 0 0 0 2px var(--teal)}
+.get-m b{display:block;font-weight:700;font-size:14.5px;color:var(--ink)}
+.get-m small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.get-m .get-ic{width:38px;height:38px;margin:0;flex:none;border-radius:10px;box-shadow:0 4px 12px -6px rgba(15,59,120,.55)}
+
+
+/* v5.2: 125% is the new 100% on screens 1280 px and wider (CSS zoom = browser zoom; vw / vh corrected by --zf) */
+:root{--zf:1}
+@media (min-width:1280px){html{zoom:1.25}:root{--zf:1.25}}
+/* document pages (privacy, support) - one column, article typography */
+.docs.single .wrap{display:block;max-width:900px;padding-block:28px 88px}
+.page-head{padding:34px 0 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.page-head .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.page-head .eyebrow::before{content:"";width:18px;height:2px;background:var(--teal);border-radius:2px}
+.page-head h1{font-size:clamp(32px,calc(3.6vw / var(--zf)),44px);font-weight:700;letter-spacing:-.025em;margin:10px 0 10px;line-height:1.12}
+.page-head .meta{color:var(--ink-3);font-size:14.5px;display:flex;flex-wrap:wrap;gap:6px 18px;margin:0}
+.page-head .meta b{color:var(--ink-2);font-weight:600}
+.doc .lede{font-size:18px;color:var(--ink);max-width:68ch;line-height:1.6;margin:22px 0 6px}
+.doc-sec h2{display:flex;align-items:flex-start;gap:12px}
+.doc-sec h2 .n{margin-top:.42em;font-family:var(--ff-mono);font-size:13px;letter-spacing:.06em;color:var(--teal);padding:3px 9px;border:1px solid color-mix(in srgb,var(--teal) 40%,var(--line));border-radius:999px;background:var(--teal-soft)}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0 8px}
+.summary div{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:16px 16px 14px}
+.summary b{display:flex;align-items:center;gap:9px;font-family:var(--ff-display);font-size:15px;margin-bottom:6px;color:var(--ink)}
+.summary b svg{width:20px;height:20px;flex:none;color:var(--teal)}
+.summary span{display:block;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.contact-card{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:18px 0 10px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--teal-soft) 70%,var(--surface)),var(--surface))}
+.contact-card .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--teal);color:#fff;flex:none}
+.contact-card .ic svg{width:24px;height:24px}
+.contact-card .who{flex:1;min-width:220px}
+.contact-card .who b{display:block;font-family:var(--ff-display);font-size:17px;color:var(--ink)}
+.contact-card .who span{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
+.contact-card a.mail{font-family:var(--ff-mono);font-size:15px;font-weight:600;color:var(--teal);text-decoration:none;border:1px solid color-mix(in srgb,var(--teal) 35%,var(--line));background:var(--surface);padding:10px 14px;border-radius:10px}
+.contact-card a.mail:hover{background:var(--teal-soft)}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:10px 0;padding:0 18px}
+.faq summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:14px 0;font-family:var(--ff-display);font-weight:600;font-size:15.5px;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg);transition:transform .18s;margin-left:2px}
+.faq details[open] summary::before{transform:rotate(45deg)}
+.faq details p,.faq details ul{margin-bottom:14px}
+.faq details p:first-of-type{margin-top:-2px}
+.steps{counter-reset:s;list-style:none;padding:0;max-width:74ch}
+.steps li{counter-increment:s;position:relative;padding-left:42px;margin:10px 0;color:var(--ink-2)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--ff-mono);font-size:12.5px;font-weight:600;color:var(--teal);background:var(--teal-soft);border:1px solid color-mix(in srgb,var(--teal) 35%,var(--line))}
+.doc table.spec th{width:26%}
+.end-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.end-links a{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;text-decoration:none;font-size:14.5px}
+.end-links a:hover{border-color:var(--teal);color:var(--teal)}
+.end-links a svg{width:16px;height:16px}
+@media (max-width:640px){.page-head{padding-top:22px}.contact-card{padding:16px}.docs.single .wrap{padding-bottom:64px}}
+.doc .grid{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 18px}.doc .grid th,.doc .grid td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}.doc .grid th{font-weight:600}.doc .tbl{overflow-x:auto}.doc h3.h3{margin:22px 0 8px;font-size:17px}.doc p.sub{margin:16px 0 4px}.doc ol.steps,.doc .doc-sec ul{margin:6px 0 14px 22px}</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="EndpointLabz home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg>
+      <span>Endpoint<b>Labz</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <div class="dd">
+        <a class="dd-t" href="../../#products" aria-haspopup="true">Products <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Products">
+          <a role="menuitem" href="../"><i class="dd-ic en"><img src="../../assets/easynotes-logo.png" width="30" height="30" alt=""></i><span><b>EasyNotes</b><small>Free</small></span></a>
+        </div>
+      </div>
+      <div class="dd">
+        <a class="dd-t" href="../../#community" aria-haspopup="true">Community Contributions <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="dd-m" role="menu" aria-label="Community Contributions">
+          <a role="menuitem" href="../../#tools"><i class="dd-ic tl"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="11" rx="2"/><path d="M7 18h6M6 8l2 2-2 2M10 12h3"/></svg></i><span><b>Tools</b><small>MDM-ODA</small></span></a>
+          <a role="menuitem" href="../../#scripts"><i class="dd-ic sc"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4M11 4l-2 12"/></svg></i><span><b>Scripts &amp; Automations</b><small>Intune, Graph &amp; OS platform</small></span></a>
+        </div>
+      </div>
+      <div class="sup" id="sup">
+        <button class="sup-t" id="supBtn" type="button" aria-expanded="false" aria-controls="supPop">Contact <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
+        <div class="sup-pop" id="supPop" role="dialog" aria-label="Contact" hidden>
+          <p class="sup-h">Email</p>
+          <div class="sup-row">
+            <span class="sup-mail" id="supMail">hello@endpointlabz.com</span>
+            <button class="sup-copy" id="supCopy" type="button" aria-label="Copy the email address" title="Copy">
+              <svg class="cp" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg>
+              <svg class="ok" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+            </button>
+          </div>
+          <p class="sup-note" id="supNote" aria-live="polite"></p>
+        </div>
+      </div>
+      <a href="../../#about">About</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode" title="Light / dark">
+      <svg class="moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12.5A7 7 0 0 1 7.5 4a7 7 0 1 0 8.5 8.5z"/></svg>
+      <svg class="sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>
+    </button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg></button>
+  </div>
+</header>
+<main class="docs single">
+  <div class="wrap">
+    <div class="doc">
+
+<div class="page-head">
+  <span class="eyebrow">EndpointLabz &middot; EasyNotes</span>
+  <h1>Security and privacy in EasyNotes</h1>
+  <p class="meta"><span><b>Applies to</b> EasyNotes 1.1 for Windows 11</span><span><b>Publisher</b> Satish Singhi, trading as EndpointLabz</span><span><b>Updated</b> November 2026</span></p>
+</div>
+<p class="lede">EasyNotes is a privacy-first productivity app. Your notes stay on your PC, there is no account to create, and the app sends no usage data. This article explains how EasyNotes stores and protects your notes, how the optional features that connect to AI tools and to the internet work, and the controls available to you and to your organisation.</p>
+
+<section id="design-principles" class="doc-sec">
+  <h2><span class="n">1</span>Design principles</h2>
+  <ul>
+    <li><b>Privacy first.</b> Your notes are stored on your PC, in a folder you choose - and, if you wish, synced to your own cloud drive.</li>
+    <li><b>No account, no subscription, no telemetry.</b> EasyNotes does not ask who you are and does not collect usage data.</li>
+    <li><b>Powerful and practical AI features - off by default.</b> Features that open your notes to other software - MCP, the Agent panel and the session clipboard - are off by default.</li>
+    <li><b>Least-privilege MCP.</b> You decide the level of access each AI tool gets, through a separate secure token generated for every AI tool that connects to EasyNotes over MCP. You also write the rules your AI tools must follow when they work with EasyNotes.</li>
+    <li><b>Nothing installed behind your back.</b> EasyNotes never downloads or installs AI tools or any of their components. You install and sign in to the AI tools you choose.</li>
+    <li><b>Safe by default.</b> When a setting or a security check cannot be confirmed, EasyNotes chooses the more restrictive option.</li>
+  </ul>
+</section>
+
+<section id="how-easynotes-stores-your-notes" class="doc-sec">
+  <h2><span class="n">2</span>How EasyNotes stores your notes</h2>
+  <p>Your notes are stored in your notes folder, which you choose during setup and can change later in <b>Settings › Storage</b>.</p>
+  <ul>
+    <li><b>Open, readable formats.</b> Each page, sheet and code page is a separate file: pages and code pages are stored as JSON text, and sheets as CSV files that open in Excel. Pictures and attachments are kept as the original files, next to the pages that use them.</li>
+    <li><b>Your structure is recoverable.</b> An index file records your topics and their order. Each page also keeps a small recovery record, so EasyNotes can rebuild the structure if the index file is ever damaged or lost.</li>
+    <li><b>Saves cannot leave a half-written file.</b> EasyNotes writes each change to a temporary file, flushes it to disk, and then replaces the previous version in a single step. A crash or power cut leaves either the old version or the new one, never a mix.</li>
+    <li><b>Safety copies stay on this PC.</b> The previous version of each saved file is kept as a safety copy in the app data folder on this PC - not in your notes folder - so it is never synced and never included in a backup.</li>
+    <li><b>Deleted items are recoverable.</b> Deleted topics and pages move to a trash folder inside your notes folder.</li>
+    <li><b>Sync folders are supported.</b> If your notes folder is in OneDrive, Google Drive or Dropbox, EasyNotes detects the conflict copies these services create and merges them instead of overwriting your changes.</li>
+    <li><b>Older versions do not overwrite newer data.</b> If a notes folder was last saved by a newer version of EasyNotes, an older version opens it read-only.</li>
+    <li><b>App settings stay on this PC.</b> Settings, reminders and the app's diagnostic log are stored in your user profile (<code>%LOCALAPPDATA%\EasyNotes</code>). The diagnostic log is never sent anywhere.</li>
+  </ul>
+  <div class="callout"><b>Note</b><p>EasyNotes does not encrypt your notes. They are protected by your Windows user account, and by BitLocker device encryption if it is turned on. We recommend turning on BitLocker on any PC that holds sensitive notes. If you keep your notes folder in a cloud sync folder, that service's own security and retention policies apply to it.</p></div>
+</section>
+
+<section id="backups" class="doc-sec">
+  <h2><span class="n">3</span>Backups</h2>
+  <p>EasyNotes backs up your notes automatically. You can change the schedule and the location in <b>Settings › Backup</b>.</p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Setting</th><th>Default</th><th>Options</th></tr></thead><tbody>
+    <tr><td>Backup schedule</td><td>Every day</td><td>Every 2, 4 or 8 hours, or every 1 to 7 days</td></tr>
+    <tr><td>Keep backups for</td><td>30 days</td><td>1 to 90 days</td></tr>
+    <tr><td>Backup location</td><td><code>Documents\EasyNotes_Backup</code> (in OneDrive Documents if OneDrive is set up)</td><td>Any folder you choose</td></tr>
+  </tbody></table></div>
+  <ul>
+    <li><b>Every backup is verified.</b> EasyNotes saves your open notes, writes the backup as a ZIP file under a temporary name, then reopens it and checks every file in it before giving it its final name. An existing backup is never overwritten.</li>
+    <li><b>Clean-up is limited to EasyNotes backups.</b> When old backups expire, EasyNotes deletes only files named <code>EasyNotes_Backup_*.zip</code> in the backup folder.</li>
+    <li><b>Restoring never destroys data.</b> A restore unpacks the backup into a separate folder and then swaps it in. Your current notes are kept in a folder named <code>&lt;notes folder&gt;_before-restore_&lt;date&gt;</code>.</li>
+    <li><b>You can turn backups off</b> if you don't need them.</li>
+  </ul>
+</section>
+
+<section id="session-clipboard" class="doc-sec">
+  <h2><span class="n">4</span>Session clipboard</h2>
+  <p>The session clipboard remembers what you copy while EasyNotes is running, so nothing you copy during a call or while researching is lost. It is off by default; turn it on in <b>Settings › Session Clipboard</b>.</p>
+  <ul>
+    <li>It keeps up to 300 items: text, links, files and pictures.</li>
+    <li>Items are stored only on this PC, in your user profile. They are never written to your notes folder, never synced and never included in a backup.</li>
+    <li>Items are deleted when EasyNotes closes. If EasyNotes closes unexpectedly, the leftovers are deleted the next time it starts.</li>
+    <li>Content that other apps mark as private, such as passwords copied from a password manager, is not recorded.</li>
+  </ul>
+</section>
+
+<section id="ai-tools-and-mcp" class="doc-sec">
+  <h2><span class="n">5</span>AI tools and MCP</h2>
+  <h3 class="h3" id="about-mcp">About MCP</h3>
+  <p>The Model Context Protocol (MCP) is an open standard that lets AI tools work with other apps.</p>
+  <p>When you turn MCP on, EasyNotes acts as an MCP server, and supported AI tools on your PC connect to it as clients. A connected tool can use only the EasyNotes functions that its access token allows (see <b>MCP functions</b> below).</p>
+  <h3 class="h3" id="supported-ai-tools">Supported AI tools</h3>
+  <div class="tbl"><table class="grid"><thead><tr><th>AI tool</th><th>How it connects</th><th>Notes</th></tr></thead><tbody>
+    <tr><td>Claude desktop app</td><td><b>AI tools on this PC</b> sets it up for you, or <b>Copy config</b></td><td>Restart Claude to load EasyNotes</td></tr>
+    <tr><td>Codex app (ChatGPT desktop / Codex)</td><td><b>AI tools on this PC</b> sets it up for you, or <b>Copy config</b></td><td>ChatGPT desktop chats may not offer MCP tools yet - Codex does</td></tr>
+    <tr><td>Perplexity app</td><td><b>Copy config</b> - add EasyNotes in Perplexity's own settings</td><td>Perplexity may offer local MCP only on certain plans</td></tr>
+  </tbody></table></div>
+  <p>Gemini and Grok work in the Agent panel only; they cannot connect to EasyNotes over MCP.</p>
+  <h3 class="h3" id="before-you-connect-an-ai-tool">Before you connect an AI tool</h3>
+  <ol class="steps">
+    <li><b>Install the AI tool yourself</b>, from its publisher or the Microsoft Store. EasyNotes never downloads or installs AI tools or their components. Whether installing needs administrator rights depends on that tool's own installer.</li>
+    <li><b>Open the AI tool once and sign in</b> with your account. Some tools create their settings folder only on first run.</li>
+    <li><b>Turn on MCP</b> in <b>Settings › MCP</b>, then connect the tool as described below.</li>
+  </ol>
+  <h3 class="h3" id="connect-an-ai-tool">Connect an AI tool</h3>
+  <p>You can connect an AI tool in two ways, both in <b>Settings › MCP</b>:</p>
+  <ul>
+    <li><b>AI tools on this PC.</b> EasyNotes shows which supported AI tools are installed for your Windows account and can add EasyNotes to a tool's MCP settings for you, with a token created for that tool.</li>
+    <li><b>Copy config.</b> Copy the configuration and add it to the AI tool's own MCP settings yourself. Use this for tools EasyNotes cannot set up automatically, such as Perplexity.</li>
+  </ul>
+  <p>When EasyNotes sets up a tool for you:</p>
+  <ul>
+    <li><b>It checks only when you ask.</b> EasyNotes looks for installed AI tools only when you open the MCP settings or select <b>Re-detect</b> - never in the background. It does not keep a record of the software on your PC.</li>
+    <li><b>It writes only to a tool that is installed.</b> If a tool is not found, nothing is written.</li>
+    <li><b>It changes only its own entry.</b> EasyNotes adds, replaces or removes only the <code>easynotes</code> entry in the tool's configuration file and leaves everything else in the file as it was. If EasyNotes cannot read the file with certainty, it does not change it and tells you why.</li>
+    <li><b>It backs up first.</b> Before any change, EasyNotes saves a copy of the tool's configuration file in its own folder, readable only by your Windows account. The last five copies for each tool are kept.</li>
+    <li><b>It replaces tokens safely.</b> When EasyNotes sets up a tool again, it creates a new token and revokes the one it replaces. Token values are never shown or logged.</li>
+  </ul>
+  <p>Your organisation can turn off automatic setup with a policy; the <b>Copy config</b> option remains available.</p>
+  <h3 class="h3" id="how-access-is-controlled">How access is controlled</h3>
+  <ul>
+    <li><b>Off by default.</b> MCP is off until you turn it on in <b>Settings › MCP</b>.</li>
+    <li><b>Local only.</b> EasyNotes listens only on your own PC (<code>127.0.0.1</code>, port 47391 by default). It cannot be reached from your network or from the internet, and it does not need administrator rights.</li>
+    <li><b>One access token per tool.</b> Every request must include a valid token. Each AI tool gets its own token, with the permission scope you choose:</li>
+  </ul>
+  <div class="tbl"><table class="grid"><thead><tr><th>Scope</th><th>Allows</th></tr></thead><tbody>
+    <tr><td>Read</td><td>The read functions in the table below</td></tr>
+    <tr><td>Write</td><td>Read, plus the write functions</td></tr>
+    <tr><td>Full</td><td>Write, plus the delete functions</td></tr>
+  </tbody></table></div>
+  <ul>
+    <li><b>Your rules apply.</b> In <b>Settings › MCP</b> you can write rules in plain language, such as which topics an AI tool must not read or change. Every connected tool receives these rules before it works with your notes, and can read them again at any time.</li>
+    <li><b>Requests from web pages are refused.</b> EasyNotes rejects requests that come from a website, so a page you visit cannot use your browser to reach your notes.</li>
+  </ul>
+  <h3 class="h3" id="mcp-functions">MCP functions</h3>
+  <p>EasyNotes offers 49 MCP functions. The scope column shows the lowest scope that allows each one.</p>
+  <p class="sub"><b>Rules and status</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>get_rules</td><td>Returns your rules for AI tools</td><td>Read</td></tr>
+    <tr><td>get_status</td><td>App version, notes folder, counts of topics, pages and reminders, the open page, backup state</td><td>Read</td></tr>
+    <tr><td>get_settings</td><td>Settings that matter to an AI tool (fonts, theme, backup, notes folder) - never secrets</td><td>Read</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Topics</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_topics</td><td>The topic tree, optionally with the pages in each topic</td><td>Read</td></tr>
+    <tr><td>create_topic</td><td>Create a topic or sub-topic</td><td>Write</td></tr>
+    <tr><td>rename_topic</td><td>Rename a topic</td><td>Write</td></tr>
+    <tr><td>move_topic</td><td>Move a topic to another parent or position</td><td>Write</td></tr>
+    <tr><td>delete_topic</td><td>Delete a topic and everything under it (to the trash folder)</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Pages, sheets and code pages</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_pages</td><td>List pages, filtered by topic, type or title</td><td>Read</td></tr>
+    <tr><td>get_page</td><td>Read a page, sheet or code page</td><td>Read</td></tr>
+    <tr><td>search</td><td>Search titles and page content</td><td>Read</td></tr>
+    <tr><td>list_backlinks</td><td>Pages that link to a page</td><td>Read</td></tr>
+    <tr><td>get_page_history</td><td>A page's undo steps for this session</td><td>Read</td></tr>
+    <tr><td>open_page</td><td>Show a page in the EasyNotes window</td><td>Write</td></tr>
+    <tr><td>show_dashboard</td><td>Switch the window to the Dashboard</td><td>Write</td></tr>
+    <tr><td>create_page</td><td>Create a page, checklist, sheet or code page</td><td>Write</td></tr>
+    <tr><td>update_page</td><td>Replace a page's content (the previous version stays in its undo history)</td><td>Write</td></tr>
+    <tr><td>append_to_page</td><td>Add content to the end of a page</td><td>Write</td></tr>
+    <tr><td>insert_into_page</td><td>Insert content at a position on a page</td><td>Write</td></tr>
+    <tr><td>replace_in_page</td><td>Find and replace text on a page</td><td>Write</td></tr>
+    <tr><td>set_cell</td><td>Set one cell of a sheet</td><td>Write</td></tr>
+    <tr><td>rename_page</td><td>Rename a page</td><td>Write</td></tr>
+    <tr><td>move_page</td><td>Move a page to another topic or position</td><td>Write</td></tr>
+    <tr><td>undo_page</td><td>Step a page back or forward through its undo history</td><td>Write</td></tr>
+    <tr><td>import_document</td><td>Import a file from your PC (PDF, Word, PowerPoint, web page, Markdown, Excel/CSV, code and text files)</td><td>Write</td></tr>
+    <tr><td>delete_page</td><td>Delete a page (to the trash folder)</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Pictures and shapes</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_page_images</td><td>The pictures and other media on a page</td><td>Read</td></tr>
+    <tr><td>get_page_image</td><td>View a picture on a page</td><td>Read</td></tr>
+    <tr><td>insert_image</td><td>Add a picture to a page</td><td>Write</td></tr>
+    <tr><td>insert_shape</td><td>Draw a shape on a page</td><td>Write</td></tr>
+    <tr><td>remove_image</td><td>Remove a picture or media item (to the trash folder)</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Reminders</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_reminders</td><td>Pending, overdue, completed and missing reminders</td><td>Read</td></tr>
+    <tr><td>create_reminder</td><td>Set a reminder on text on a page</td><td>Write</td></tr>
+    <tr><td>complete_reminder</td><td>Tick or un-tick a reminder</td><td>Write</td></tr>
+    <tr><td>reschedule_reminder</td><td>Change when a reminder is due</td><td>Write</td></tr>
+    <tr><td>delete_reminder</td><td>Remove a reminder</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Transit</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>get_transit</td><td>Read the Transit pad</td><td>Read</td></tr>
+    <tr><td>append_to_transit</td><td>Park content in Transit</td><td>Write</td></tr>
+    <tr><td>send_to_transit</td><td>Copy a page, or part of it, into Transit</td><td>Write</td></tr>
+    <tr><td>clear_transit</td><td>Empty Transit</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Session clipboard</b> (only when the session clipboard is on)</p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_clipboard</td><td>Items in the session clipboard</td><td>Read</td></tr>
+    <tr><td>get_clipboard_entry</td><td>One item in full</td><td>Read</td></tr>
+    <tr><td>copy_to_clipboard</td><td>Put text on the Windows clipboard</td><td>Write</td></tr>
+    <tr><td>paste_clipboard_entry</td><td>Paste an item at the end of a page</td><td>Write</td></tr>
+    <tr><td>remove_clipboard_entry</td><td>Remove one item, or all items</td><td>Full</td></tr>
+  </tbody></table></div>
+  <p class="sub"><b>Notifications and backups</b></p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Function</th><th>What it does</th><th>Scope</th></tr></thead><tbody>
+    <tr><td>list_notifications</td><td>The bell's notifications</td><td>Read</td></tr>
+    <tr><td>mark_notifications_read</td><td>Mark all notifications as read</td><td>Write</td></tr>
+    <tr><td>list_backups</td><td>Backups and the backup schedule</td><td>Read</td></tr>
+    <tr><td>run_backup</td><td>Take a backup now</td><td>Write</td></tr>
+  </tbody></table></div>
+  <h3 class="h3" id="how-access-tokens-are-protected">How access tokens are protected</h3>
+  <ul>
+    <li><b>Strong tokens.</b> Each token is a 256-bit random value generated by the Windows cryptographic random number generator.</li>
+    <li><b>Never stored by EasyNotes.</b> EasyNotes stores only a SHA-256 fingerprint of each token, which cannot be turned back into the token. A token you create yourself is shown only once.</li>
+    <li><b>Copied privately.</b> When you copy a token, EasyNotes marks it as private, so it is not saved in Windows clipboard history or synced to your other devices.</li>
+    <li><b>Kept off the command line.</b> The configuration that EasyNotes provides passes the token to the AI tool as an environment variable, not as a command-line argument.</li>
+    <li><b>Revoked instantly.</b> When you revoke a token in <b>Settings › MCP</b>, the tool that uses it loses access at once.</li>
+  </ul>
+  <div class="callout"><b>Important</b><p>Your AI tool keeps its token in its own configuration file on your PC, and the configuration backups EasyNotes makes contain earlier tokens. Anyone who can sign in to your Windows account can read these files. If you suspect a token has been exposed, revoke it and create a new one.</p></div>
+  <h3 class="h3" id="transparency-and-audit">Transparency and audit</h3>
+  <ul>
+    <li>Every change an AI tool makes is recorded in the audit trail, and the bell notifies you. Audit trails for all activities inside EasyNotes can be viewed and searched in the Dashboard.</li>
+    <li>Every request, allowed or refused, is recorded in the audit log, which you can view in <b>Settings › MCP</b>.</li>
+    <li>Every AI change is also a step in the page's undo history, so you can step it back.</li>
+    <li>When an AI tool imports a file from your PC, EasyNotes reads the file directly. The file's content does not pass through the AI tool.</li>
+  </ul>
+</section>
+
+<section id="agent-panel" class="doc-sec">
+  <h2><span class="n">6</span>Agent panel</h2>
+  <p>The Agent panel lets you work with your AI agent in a side panel, next to your notes. EasyNotes supports these agents:</p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Agent</th><th>Website</th><th>Sign-in options</th><th>Can also work with your notes over MCP</th></tr></thead><tbody>
+    <tr><td>Claude (Anthropic)</td><td>claude.ai</td><td>Email, Google or Apple</td><td>Yes - with the Claude desktop app</td></tr>
+    <tr><td>ChatGPT and Codex (OpenAI)</td><td>chatgpt.com</td><td>Email, Google, Apple or Microsoft</td><td>Yes - with the Codex app</td></tr>
+    <tr><td>Perplexity</td><td>perplexity.ai</td><td>Email, Google or Apple</td><td>Yes - with the Perplexity app</td></tr>
+    <tr><td>Gemini (Google)</td><td>gemini.google.com</td><td>Google account</td><td>No - Agent panel only</td></tr>
+    <tr><td>Grok (xAI)</td><td>grok.com</td><td>Email, Google, Apple or X</td><td>No - Agent panel only</td></tr>
+  </tbody></table></div>
+  <p>One agent is active at a time, and the panel header shows which one. You can switch agents from the header or the panel menu. Each agent has its own separate browser profile, and nothing is carried from one agent to another when you switch.</p>
+  <div class="callout"><b>Gemini and Grok - Agent panel only</b><p>A Gemini or Grok chat in the panel cannot hand work to an app on your PC, so these agents cannot read or write your notes directly. Use <b>Send page</b>, <b>Send selection</b> and <b>Insert reply</b> instead. You do not need the Gemini or Grok desktop or command-line tools.</p></div>
+  <p>The panel is off until you set it up. Your organisation can turn it off, or allow only some agents, with a policy.</p>
+  <h3 class="h3" id="how-the-agent-panel-works">How the Agent panel works</h3>
+  <ul>
+    <li><b>An input to your AI tools, from your notes.</b> The Agent panel is how you hand content from your notes to your AI agent. For Claude, ChatGPT/Codex and Perplexity, when the agent's desktop app is also connected to EasyNotes over MCP, the same agent can write its output back into your notes - see <b>Let the agent work with your notes</b> below.</li>
+    <li><b>A built-in, separate browser.</b> The panel uses Microsoft Edge WebView2, the browser engine of Microsoft Edge that is built into Windows 11 and kept up to date by Microsoft. It runs as an isolated profile, separate from Edge, Chrome or any other browser you use: it shares no sign-ins, cookies or saved passwords with them, browser extensions are turned off, and it is not signed in with your Windows account.</li>
+    <li><b>You sign in on the agent's own website.</b> You sign in on the agent's own sign-in page. EasyNotes never sees your password, your account details or your chats, and it does not run any code in the agent's website or read from it.</li>
+    <li><b>You decide what is shared.</b> Your notes reach the agent only when you choose <b>Send page</b> or <b>Send selection</b>. EasyNotes copies the content to the clipboard as a private item and pastes it into the agent's message box; you review it and send it yourself. Pictures are passed as temporary files, which are deleted after the next send, when the panel closes and when EasyNotes exits.</li>
+    <li><b>You decide what comes back.</b> <b>Insert reply</b> adds text you copied in the panel to your page or to a new page.</li>
+  </ul>
+  <h3 class="h3" id="sign-in-options">Sign-in options</h3>
+  <div class="tbl"><table class="grid"><thead><tr><th>Option</th><th>What is kept on this PC</th><th>Recommended for</th></tr></thead><tbody>
+    <tr><td><b>Sign in at every launch</b> (default, most secure)</td><td>Nothing. The panel runs as a private (InPrivate) browser session that ends when EasyNotes closes, or when you switch to another agent.</td><td>Shared PCs and sensitive work</td></tr>
+    <tr><td><b>Stay signed in</b></td><td>The agent's sign-in, in that agent's own browser profile in your user profile. Optional automatic sign-out after 1 to 30 days.</td><td>Personal PCs</td></tr>
+  </tbody></table></div>
+  <p>With <b>Stay signed in</b>, you can also choose <b>Keep only the sign-in cookie</b>. Each time EasyNotes starts, it deletes everything in the panel's browser profile except the agent's sign-in cookie, including the cache, history and cookies from other sites.</p>
+  <h3 class="h3" id="windows-hello-optional-added-security-for-agent-panel-access">Windows Hello (optional added security for Agent panel access)</h3>
+  <p>You can require Windows Hello - your PIN, face or fingerprint - before the Agent panel opens. Choose when EasyNotes asks:</p>
+  <ul>
+    <li>At the first open after EasyNotes starts</li>
+    <li>After Windows is locked</li>
+    <li>After the panel has not been used for a set time</li>
+    <li>Every time the panel opens</li>
+  </ul>
+  <p>If you cancel Windows Hello, the panel stays closed. Windows Hello protects the Agent panel only; it never blocks access to your notes.</p>
+  <p>EasyNotes also protects an open panel:</p>
+  <ul>
+    <li>The panel closes when Windows locks, or when it has not been used for the time you set. The next time it opens, Windows Hello is required again.</li>
+    <li>If Windows Hello stops being available - for example, it is turned off, or you connect over Remote Desktop - EasyNotes removes the saved sign-in and asks you to set up the panel again.</li>
+  </ul>
+  <h3 class="h3" id="let-the-agent-work-with-your-notes">Let the agent work with your notes</h3>
+  <p>On its own, the Agent panel is a website and cannot read or change your notes. Together with MCP, it completes the loop: you send content from your notes to the agent in the panel, and the same agent writes its output back into EasyNotes over MCP. This is available for Claude, ChatGPT/Codex and Perplexity - not for Gemini or Grok, which are limited to the Agent panel. It requires all of the following:</p>
+  <ol class="steps">
+    <li>The agent's desktop app is installed on the same PC - the Claude desktop app, the Codex app or the Perplexity app (see <b>Before you connect an AI tool</b> above).</li>
+    <li>The desktop app is signed in with the same account that you use in the Agent panel.</li>
+    <li>EasyNotes is connected to the desktop app over MCP, with an access token (see <b>Connect an AI tool</b> above).</li>
+    <li>The conversation you use in the agent is set to use this computer.</li>
+  </ol>
+  <p>Some AI tools offer local MCP connections only on certain plans; check the tool's own documentation.</p>
+  <p>The agent can then do only what its token allows, under your rules, and every change is recorded in the notification bell and the audit trail. To stop the agent from working with your notes, revoke its token or turn off MCP. <b>Send page</b> and <b>Insert reply</b> continue to work without MCP.</p>
+</section>
+
+<section id="browser-security" class="doc-sec">
+  <h2><span class="n">7</span>Browser security</h2>
+  <p>EasyNotes uses Microsoft Edge WebView2 in two places, and locks each one down for its purpose.</p>
+  <p class="sub"><b>Agent panel</b></p>
+  <ul>
+    <li>Loads only the active agent's website and its sign-in pages. Other links open in your default browser.</li>
+    <li>Developer tools, password saving, form autofill and browser extensions are turned off by design.</li>
+    <li>The agent's website has no connection to EasyNotes and cannot read or change your notes.</li>
+    <li>Permission requests are refused, except the browser's own prompts for microphone access (for dictation) and for reading the clipboard.</li>
+  </ul>
+  <p class="sub"><b>Page editor</b></p>
+  <ul>
+    <li>The editor that displays your pages runs entirely inside EasyNotes and makes no network connections. A strict content security policy blocks every outside connection, and navigation to any other address is blocked.</li>
+    <li>Developer tools are turned off.</li>
+  </ul>
+</section>
+
+<section id="links-in-topics-and-pages" class="doc-sec">
+  <h2><span class="n">8</span>Links in topics and pages</h2>
+  <ul>
+    <li>Web links open in your default browser.</li>
+    <li>Links to folders open in File Explorer.</li>
+    <li>Links to files show the file selected in File Explorer. EasyNotes never runs or opens the file itself.</li>
+    <li>Other types of links are refused.</li>
+  </ul>
+</section>
+
+<section id="network-connections" class="doc-sec">
+  <h2><span class="n">9</span>Network connections</h2>
+  <p>EasyNotes makes no network connections of its own. The following table lists every connection made when you use EasyNotes.</p>
+  <div class="tbl"><table class="grid"><thead><tr><th>Action</th><th>Endpoint</th><th>Actor</th></tr></thead><tbody>
+    <tr><td>You open the Agent panel</td><td>The active agent's website (claude.ai, chatgpt.com, perplexity.ai, gemini.google.com or grok.com) and, if you use them to sign in, the Google, Apple, Microsoft or X sign-in pages</td><td>The Agent panel browser</td></tr>
+    <tr><td>You open a web link, or <b>Help</b></td><td>The address you open</td><td>Your default browser</td></tr>
+    <tr><td>An AI tool uses MCP</td><td>Your own PC only (<code>127.0.0.1</code>)</td><td>EasyNotes</td></tr>
+    <tr><td>You connect an AI tool in <b>Settings › MCP</b></td><td>None - EasyNotes reads and writes the tool's configuration file on your PC</td><td>EasyNotes</td></tr>
+    <tr><td>Updates</td><td>Microsoft Store (EasyNotes) and Microsoft (WebView2)</td><td>Windows</td></tr>
+  </tbody></table></div>
+  <p>EasyNotes has no telemetry, no advertising and no update check of its own.</p>
+</section>
+
+<section id="controls-for-organisations" class="doc-sec">
+  <h2><span class="n">10</span>Controls for organisations</h2>
+  <p>Administrators can manage EasyNotes with Group Policy or MDM (for example Microsoft Intune), using the EasyNotes administrative templates (ADMX). The templates ship inside EasyNotes: <b>Settings › Policy Templates › Extract templates…</b>, or <code>EasyNotes.exe --export-policy-templates "&lt;folder&gt;"</code>. Policies are read from <code>HKLM\SOFTWARE\Policies\EasyNotes</code> first, then from <code>HKCU</code>. With policies, you can:</p>
+  <ul>
+    <li>Turn MCP on or off, set its rules and port, and turn off automatic setup of AI tools.</li>
+    <li>Turn the session clipboard and backups on or off, and set the backup location, schedule and retention.</li>
+    <li>Set the notes folder.</li>
+    <li>Turn off the Agent panel, choose which agents are allowed and which is the default, and require its sign-in option, automatic sign-out, <b>Keep only the sign-in cookie</b> and Windows Hello.</li>
+  </ul>
+  <p>A setting that is set by policy is locked in the app and shows that it is managed by your organisation. For deployment steps and the full list of policies, see <a href="../enterprise-policies/">Deploy EasyNotes in your organisation</a>.</p>
+</section>
+
+<section id="report-a-security-issue" class="doc-sec">
+  <h2><span class="n">11</span>Report a security issue</h2>
+  <p>We treat security and privacy concerns with the utmost seriousness. If you believe you have found a security or privacy issue in EasyNotes, contact us at <a href="mailto:hello@endpointlabz.com">hello@endpointlabz.com</a>, with the steps to reproduce it. Every report is reviewed and actioned according to its severity, and we will keep you informed until it is resolved.</p>
+</section>
+
+<section class="doc-sec">
+  <div class="end-links">
+    <a href="../faq/">EasyNotes FAQ <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <a href="../enterprise-policies/">Deploy EasyNotes in your organisation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <a href="../../privacy/">Privacy policy <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <a href="../">EasyNotes guide <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  </div>
+</section>
+
+    </div>
+  </div>
+</main>
+<footer id="support">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="../../#top"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#F0C040"/><path d="M27 13h23v7H34v7.5h13v7H34v7.5h17v7H12v-7h15z" fill="#0F1B22"/></svg><span>Endpoint<b>Labz</b></span></a>
+      <p class="fine">Tools and automations for people who run the Microsoft endpoint estate. Built and maintained by Satish Singhi.</p>
+    </div>
+    <div><h5>Products</h5><ul><li><a href="../../easynotes/">EasyNotes</a></li><li><a href="../../easynotes/#first-launch">Getting started</a></li><li><a href="../../easynotes/faq/">FAQ</a></li><li><a href="../../easynotes/security-privacy/">Security and privacy</a></li><li><a href="../../easynotes/enterprise-policies/">Enterprise policies</a></li><li><a href="../../privacy/">Privacy policy</a></li></ul></div>
+    <div><h5>Community Contributions</h5><ul><li><a href="../../#tools">Tools</a></li><li><a href="../../#scripts">Scripts &amp; Automations</a></li><li><a href="https://github.com/satishsinghi-gh" target="_blank" rel="noopener">GitHub</a></li></ul></div>
+    <div><h5>Contact</h5><ul><li><a href="mailto:hello@endpointlabz.com">hello@endpointlabz.com</a></li><li><a href="../../support/">Report an issue</a></li><li><a href="../../#about">About</a></li><li><a href="https://www.linkedin.com/in/satish-singhi-791163167/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="wrap bottom">
+    <span>© 2026 EndpointLabz · Satish Singhi. All rights reserved.</span>
+    <span class="mono">Made in the UK</span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),saved=null;
+  try{saved=localStorage.getItem('elz-theme');}catch(e){}
+  function apply(t){root.setAttribute('data-theme',t);btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');}
+  apply(saved==='dark'?'dark':'light');
+  btn.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('elz-theme',t);}catch(e){}});
+})();
+(function(){
+  var nav=document.getElementById('nav'),btn=document.getElementById('menuBtn');
+  btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  nav.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+})();
+(function(){
+  var wrap=document.getElementById('sup'),btn=document.getElementById('supBtn'),pop=document.getElementById('supPop'),
+      cp=document.getElementById('supCopy'),mail=document.getElementById('supMail'),note=document.getElementById('supNote');
+  if(!wrap)return;
+  function open(o){pop.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false');if(!o){note.textContent='';cp.classList.remove('done');}}
+  btn.addEventListener('click',function(e){e.stopPropagation();open(pop.hidden);});
+  document.addEventListener('click',function(e){if(!pop.hidden&&!wrap.contains(e.target))open(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden){open(false);btn.focus();}});
+  function done(ok){cp.classList.toggle('done',ok);note.textContent=ok?'Copied to the clipboard':'Select the address and copy it';setTimeout(function(){cp.classList.remove('done');},1800);}
+  function fallback(){try{var r=document.createRange();r.selectNodeContents(mail);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);done(document.execCommand('copy'));}catch(e){done(false);}}
+  cp.addEventListener('click',function(){var t=mail.textContent.trim();
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){done(true);},fallback);}else fallback();});
+})();
+</script>
+</body>
+</html>
